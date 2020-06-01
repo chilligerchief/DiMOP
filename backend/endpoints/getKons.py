@@ -3,10 +3,10 @@ from dbfunctions.connect import *
 import json
 import pandas as pd
 
-listusers_bp = Blueprint('listusers', __name__)
+getKons_bp = Blueprint('getKons', __name__)
 
-@listusers_bp.route('/getUsers', methods=["GET"])
-def listusers():
+@getKons_bp.route('/getKons', methods=["GET"])
+def getKons():
     # Bekommt per POST Protokoll, Server, Port, Benutzername, Passwort, Datenbanktyp
     # Speichert das in lokaler sqlite datenbank als dict ab
 
@@ -15,10 +15,10 @@ def listusers():
 
     conn = connect_db()
 
-    konsid = request.args.get('konsid')
-    print(request.args.get('konsid'))
+    userid = request.args.get('userid')
+    print(request.args.get('userid'))
 
-    df = pd.read_sql_query("SELECT mara.mara_nr, mara.mat_desc, mast.bom_al, mast.user_id, mast.created_at, mast.updated_at, mast.cad_nr FROM mast LEFT JOIN mara ON mast.mara_id=mara.id WHERE kons_id='"+ konsid + "'", conn)
+    df = pd.read_sql_query("SELECT kons.* FROM perp LEFT JOIN kons ON perp.kons_id=kons.id WHERE user_id='"+ userid + "'", conn)
 
 
     # Bei erfolg http status 200 zurückgeben an frontend
