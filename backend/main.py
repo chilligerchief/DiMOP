@@ -8,6 +8,8 @@ from endpoints.getKons import *
 from endpoints.getPersKons import *
 from endpoints.updateKons import *
 from endpoints.updatePersKons import *
+from endpoints.deleteKons import *
+from endpoints.deletePersKons import *
 
 # SETUP STEP
 
@@ -20,6 +22,8 @@ app.register_blueprint(getKons_bp)
 app.register_blueprint(getPersKons_bp)
 app.register_blueprint(updateKons_bp)
 app.register_blueprint(updatePersKons_bp)
+app.register_blueprint(deleteKons_bp)
+app.register_blueprint(deletePersKons_bp)
 
 
 if __name__ == '__main__':
