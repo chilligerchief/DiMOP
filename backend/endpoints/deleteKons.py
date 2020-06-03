@@ -18,7 +18,7 @@ def deleteKons():
     userid = request.args.get('userid')
     print(request.args.get('userid'))
 
-    #df = pd.read_sql_query("DELETE kons.* FROM perp LEFT JOIN kons ON perp.kons_id=kons.id WHERE user_id='"+ userid + "'", conn)
+    df = pd.read_sql_query("DELETE kons.* FROM perp LEFT JOIN kons ON perp.kons_id=kons.id WHERE user_id='"+ userid + "'", conn)
 
 
     # Bei erfolg http status 200 zurückgeben an frontend
