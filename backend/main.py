@@ -6,8 +6,8 @@ from endpoints.listusers import *
 from endpoints.getBom import *
 from endpoints.getKons import *
 from endpoints.getPersKons import *
-from endpoints.updateKons import *
-from endpoints.updatePersKons import *
+from endpoints.putKons import *
+from endpoints.putPersKons import *
 from endpoints.deleteKons import *
 from endpoints.deletePersKons import *
 from endpoints.getUser import *
@@ -21,8 +21,8 @@ app.register_blueprint(listusers_bp)
 app.register_blueprint(getBom_bp)
 app.register_blueprint(getKons_bp)
 app.register_blueprint(getPersKons_bp)
-app.register_blueprint(updateKons_bp)
-app.register_blueprint(updatePersKons_bp)
+app.register_blueprint(putKons_bp)
+app.register_blueprint(putPersKons_bp)
 app.register_blueprint(deleteKons_bp)
 app.register_blueprint(deletePersKons_bp)
 app.register_blueprint(getUser_bp)

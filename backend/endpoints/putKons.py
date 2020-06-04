@@ -3,10 +3,10 @@ from dbfunctions.connect import *
 import json
 import pandas as pd
 
-updateKons_bp = Blueprint('updateKons', __name__)
+putKons_bp = Blueprint('putKons', __name__)
 
-@updateKons_bp.route('/updateKons', methods=["UPDATE"])
-def updateKons():
+@putKons_bp.route('/putKons', methods=["PUT"])
+def putKons():
     # Bekommt per POST Protokoll, Server, Port, Benutzername, Passwort, Datenbanktyp
     # Speichert das in lokaler sqlite datenbank als dict ab
 
@@ -18,7 +18,7 @@ def updateKons():
     userid = request.args.get('userid')
     print(request.args.get('userid'))
 
-    df = pd.read_sql_query("UPDATE kons.* FROM perp LEFT JOIN kons ON perp.kons_id=kons.id WHERE user_id='"+ userid + "'", conn)
+    df = pd.read_sql_query("PUT kons.* FROM perp LEFT JOIN kons ON perp.kons_id=kons.id WHERE user_id='"+ userid + "'", conn)
 
 
     # Bei erfolg http status 200 zurückgeben an frontend
