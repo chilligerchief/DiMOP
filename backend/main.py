@@ -10,6 +10,7 @@ from endpoints.updateKons import *
 from endpoints.updatePersKons import *
 from endpoints.deleteKons import *
 from endpoints.deletePersKons import *
+from endpoints.getUser import *
 
 # SETUP STEP
 
@@ -24,6 +25,7 @@ app.register_blueprint(updateKons_bp)
 app.register_blueprint(updatePersKons_bp)
 app.register_blueprint(deleteKons_bp)
 app.register_blueprint(deletePersKons_bp)
+app.register_blueprint(getUser_bp)
 
 
 if __name__ == '__main__':
