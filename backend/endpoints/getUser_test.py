@@ -13,7 +13,12 @@ def getUser():
     # {'IPPort': '4124', 'IPAddress': '12', 'protocol': 'fsdgfd', 'username': 'dfhg', 'password': 'dfgh'}
     # print(request.json)
 
-    df = pd.read_sql_query("SELECT user.id, user.firstname, user.surname, user.e_mail, orga.orga_name, t_function.function FROM user LEFT join orga ON (orga.id=user.orga_id) LEFT join t_function ON (t_function.id=user.t_function_id))
+    conn = connect_db()
+
+    userid = request.args.get('userid')
+    print(request.args.get('userid'))
+
+    df = pd.read_sql_query("SELECT user.id, user.firstname, user.surname, user.e_mail, orga.orga_name, t_function.function FROM user LEFT join orga ON (orga.id=user.orga_id) LEFT join t_function ON (t_function.id=user.t_function_id) WHERE user.id='"+ userid + "'", conn)
 
 
     # Bei erfolg http status 200 zurückgeben an frontend
