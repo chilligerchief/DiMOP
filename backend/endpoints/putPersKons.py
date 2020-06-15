@@ -5,7 +5,7 @@ import pandas as pd
 
 putPersKons_bp = Blueprint('putPersKons', __name__)
 
-@putPersKons_bp.route('/putPersKons', methods=["PUT"])
+@putPersKons_bp.route('/putPersKons', methods=["PUT", "GET"])
 def putPersKons():
     # Bekommt per POST Protokoll, Server, Port, Benutzername, Passwort, Datenbanktyp
     # Speichert das in lokaler sqlite datenbank als dict ab
@@ -16,9 +16,10 @@ def putPersKons():
     conn = connect_db()
 
     konsid = request.args.get('konsid')
+    userid = request.args.get('userid')
     print(request.args.get('konsid'))
 
-    df = pd.read_sql_query("PUT user.*, orga.orga_name, t_function.`function`, perp.auth_read, perp.auth_write, perp.auth_delete From perp LEFT JOIN user ON (user.id=perp.user_id) LEFT JOIN orga ON (user.orga_id=orga.id) LEFT JOIN t_function ON (user.t_function_id=t_function.id) WHERE kons_id='"+ konsid + "'", conn)
+    df = pd.read_sql_query("Update perp set orga_id=3 where kons_id='"+ konsid + "' and user_id='"+userid +"'", conn)
 
 
     # Bei erfolg http status 200 zurückgeben an frontend
