@@ -5,7 +5,7 @@ import pandas as pd
 
 deleteKons_bp = Blueprint('deleteKons', __name__)
 
-@deleteKons_bp.route('/deleteKons', methods=["DELETE"])
+@deleteKons_bp.route('/deleteKons', methods=["DELETE", "GET"])
 def deleteKons():
     # Bekommt per POST Protokoll, Server, Port, Benutzername, Passwort, Datenbanktyp
     # Speichert das in lokaler sqlite datenbank als dict ab
@@ -15,10 +15,10 @@ def deleteKons():
 
     conn = connect_db()
 
-    userid = request.args.get('userid')
-    print(request.args.get('userid'))
+    konsid = request.args.get('konsid')
+    print(request.args.get('konsid'))
 
-    df = pd.read_sql_query("DELETE kons.* FROM perp LEFT JOIN kons ON perp.kons_id=kons.id WHERE user_id='"+ userid + "'", conn)
+    df = pd.read_sql_query("DELETE from kons where id='"+ konsid + "'", conn)
 
 
     # Bei erfolg http status 200 zurückgeben an frontend
