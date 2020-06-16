@@ -13,7 +13,9 @@ def postKons():
     # {'IPPort': '4124', 'IPAddress': '12', 'protocol': 'fsdgfd', 'username': 'dfhg', 'password': 'dfgh'}
     # print(request.json)
 
-    df = pd.read_sql_query()
+    conn = connect_db()
+
+    df = pd.read_sql_query("insert into kons values ('7', 'kons_title_test', 'kons_desc_test', '1', '1', '2020-06-16', 'NULL', '0')",conn)
 
 
     # Bei erfolg http status 200 zurückgeben an frontend
