@@ -12,6 +12,7 @@ from endpoints.deleteKons import *
 from endpoints.deletePersKons import *
 from endpoints.getUser import *
 from endpoints.postKons import *
+from endpoints.getMara import *
 
 # SETUP STEP
 
@@ -28,6 +29,7 @@ app.register_blueprint(deleteKons_bp)
 app.register_blueprint(deletePersKons_bp)
 app.register_blueprint(getUser_bp)
 app.register_blueprint(postKons_bp)
+app.register_blueprint(getMara_bp)
 
 
 
