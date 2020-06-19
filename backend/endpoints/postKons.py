@@ -10,12 +10,12 @@ def postKons():
     # Bekommt per POST Protokoll, Server, Port, Benutzername, Passwort, Datenbanktyp
     # Speichert das in lokaler sqlite datenbank als dict ab
 
-    # {'IPPort': '4124', 'IPAddress': '12', 'protocol': 'fsdgfd', 'username': 'dfhg', 'password': 'dfgh'}
-    # print(request.json)'
+    #{'IPPort': '4124', 'IPAddress': '12', 'protocol': 'fsdgfd', 'username': 'dfhg', 'password': 'dfgh'}
+    #print(request.json)'
 
     conn = connect_db()
-
-    df = pd.read_sql_query("insert into kons values ('7', 'kons_title_test', 'kons_desc_test', '1', '1', '2020-06-16', '2020-06-16', '0')",conn)
+    data=request.json
+    df = pd.read_sql_query("insert into kons (kons_title, kons_desc, orga_id, mara_id) values ('"+ data["kons_title"]+"','"+ data["kons_desc"]+"', '"+ data["orga_id"]+"', '"+ data["mara_id"]+"')",conn)
 
 
     # Bei erfolg http status 200 zurückgeben an frontend
