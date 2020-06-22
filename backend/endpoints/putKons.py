@@ -16,9 +16,10 @@ def putKons():
     conn = connect_db()
 
     konsid = request.args.get('konsid')
+    data = request.json
     print(request.args.get('konsid'))
 
-    df = pd.read_sql_query(" Update kons set kons_desc='neue Beschreibung' where id='"+ konsid + "'", conn)
+    df = pd.read_sql_query("Update kons set kons_title='"+ data["kons_title"]+"', kons_desc='"+ data["kons_desc"]+"', orga_id='"+ data["orga_id"]+"', mara_id='"+ data["mara_id"]+"', del_kz='"+ data["del_kz"]+"' where id='"+ konsid + "'", conn)
 
 
     # Bei erfolg http status 200 zurückgeben an frontend

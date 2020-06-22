@@ -17,9 +17,10 @@ def putPersKons():
 
     konsid = request.args.get('konsid')
     userid = request.args.get('userid')
+    data = request.json
     print(request.args.get('konsid'))
 
-    df = pd.read_sql_query("Update perp set orga_id=3 where kons_id='"+ konsid + "' and user_id='"+userid +"'", conn)
+    df = pd.read_sql_query("Update perp set perp.auth_read='"+ data["auth_read"]+"', perp.auth_write='"+ data["auth_write"]+"', perp.auth_delete='"+ data["auth_delete"]+"' where kons_id='"+ konsid + "' and user_id='"+userid +"'", conn)
 
 
     # Bei erfolg http status 200 zurückgeben an frontend
