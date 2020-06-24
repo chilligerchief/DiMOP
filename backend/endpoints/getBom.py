@@ -18,7 +18,7 @@ def getBom():
     konsid = request.args.get('konsid')
     print(request.args.get('konsid'))
 
-    df = pd.read_sql_query("SELECT mara.mara_nr, mara.mat_desc, mast.bom_al, mast.user_id, mast.created_at, mast.updated_at, mast.cad_nr FROM mast LEFT JOIN mara ON mast.mara_id=mara.id WHERE kons_id='"+ konsid + "'", conn)
+    df = pd.read_sql_query("SELECT mara.id, mara.mara_nr, mara.mat_desc, mast.bom_al, mast.user_id, user.firstname, user.surname, mast.created_at, mast.updated_at, mast.cad_nr FROM mast LEFT JOIN mara ON mast.mara_id=mara.id LEFT JOIN user ON mast.user_id=user.id WHERE kons_id='"+ konsid + "'", conn)
 
 
     # Bei erfolg http status 200 zurückgeben an frontend
