@@ -15,6 +15,12 @@ from endpoints.postKons import *
 from endpoints.getMara import *
 from endpoints.getUsers import *
 from endpoints.getOrga import *
+from endpoints.getBomItem import *
+from endpoints.getBomAl import *
+from endpoints.getBranch import *
+from endpoints.getFunction import *
+from endpoints.getReltyp import *
+from endpoints.getFam import *
 
 # SETUP STEP
 
@@ -34,6 +40,12 @@ app.register_blueprint(postKons_bp)
 app.register_blueprint(getMara_bp)
 app.register_blueprint(getUsers_bp)
 app.register_blueprint(getOrga_bp)
+app.register_blueprint(getBomItem_bp)
+app.register_blueprint(getBomAl_bp)
+app.register_blueprint(getBranch_bp)
+app.register_blueprint(getFunction_bp)
+app.register_blueprint(getReltyp_bp)
+app.register_blueprint(getFam_bp)
 
 
 
