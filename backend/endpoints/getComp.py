@@ -3,10 +3,10 @@ from dbfunctions.connect import *
 import json
 import pandas as pd
 
-getPersKons_bp = Blueprint('getPersKons', __name__)
+getComp_bp = Blueprint('getComp', __name__)
 
-@getPersKons_bp.route('/getPersKons', methods=["GET"])
-def getPersKons():
+@getComp_bp.route('/getComp', methods=["GET"])
+def getComp():
     # Bekommt per POST Protokoll, Server, Port, Benutzername, Passwort, Datenbanktyp
     # Speichert das in lokaler sqlite datenbank als dict ab
 
@@ -15,10 +15,10 @@ def getPersKons():
 
     conn = connect_db()
 
-    konsid = request.args.get('konsid')
-    print(request.args.get('konsid'))
+    parentid = request.args.get('parentid')
+    print(request.args.get('parentid'))
 
-    df = pd.read_sql_query("SELECT perp.id, user.firstname, user.surname, orga.orga_name, t_function.function, perp.auth_read, perp.auth_write, perp.auth_delete, perp.del_kz FROM perp LEFT JOIN orga ON perp.orga_id=orga.id LEFT JOIN user ON perp.user_id=user.id LEFT JOIN t_function ON user.t_function_id=t_function.id WHERE perp.kons_id='"+ konsid + "'", conn)
+    df = pd.read_sql_query("SELECT comp.id, comp.t_fam_id_parent, F1.fam AS parent_fam, comp.t_fam_id_child, F2.fam AS child_fam, t_origin.type_desc, comp.comp_value, user.firstname, user.surname FROM comp LEFT JOIN user ON comp.user_id=user.id LEFT JOIN t_origin ON comp.t_origin_id=t_origin.id LEFT JOIN t_fam AS F1 ON comp.t_fam_id_parent=F1.id LEFT JOIN t_fam AS F2 ON comp.t_fam_id_child=F2.id WHERE comp.t_fam_id_parent='"+ parentid + "'", conn)
 
 
     # Bei erfolg http status 200 zurückgeben an frontend
