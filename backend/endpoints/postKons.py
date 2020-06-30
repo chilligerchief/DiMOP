@@ -15,7 +15,7 @@ def postKons():
 
     conn = connect_db()
     data=request.json
-    df = pd.read_sql_query("insert into kons (kons_title, kons_desc, orga_id, mara_id) values ('"+ data["kons_title"]+"','"+ data["kons_desc"]+"', '"+ data["orga_id"]+"', '"+ data["mara_id"]+"')",conn)
+    df = pd.read_sql_query("insert into kons (kons_title, kons_desc, orga_id, mara_id, del_kz) values ('"+ data["kons_title"]+"','"+ data["kons_desc"]+"', '"+ data["orga_id"]+"', '"+ data["mara_id"]+"', '"+ data["del_kz"]+"')",conn)
 
 
     # Bei erfolg http status 200 zurückgeben an frontend
