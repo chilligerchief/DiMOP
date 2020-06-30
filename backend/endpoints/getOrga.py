@@ -3,10 +3,10 @@ from dbfunctions.connect import *
 import json
 import pandas as pd
 
-getUsers_bp = Blueprint('getUsers', __name__)
+getOrga_bp = Blueprint('getOrga', __name__)
 
-@getUsers_bp.route('/getUsers', methods=["GET"])
-def getUsers():
+@getOrga_bp.route('/getOrga', methods=["GET"])
+def getOrga():
     # Bekommt per POST Protokoll, Server, Port, Benutzername, Passwort, Datenbanktyp
     # Speichert das in lokaler sqlite datenbank als dict ab
 
@@ -15,7 +15,7 @@ def getUsers():
 
     conn = connect_db()
 
-    df = pd.read_sql_query("SELECT user.id, user.firstname, user.surname, user.e_mail, orga.orga_name, t_function.`function`, user.del_kz FROM user LEFT JOIN orga ON user.orga_id=orga.id LEFT JOIN t_function ON user.t_function_id=t_function.id ", conn)
+    df = pd.read_sql_query("SELECT orga.id, orga.orga_nr, orga.orga_name, t_branch.branch_name FROM orga LEFT JOIN t_branch ON orga.t_branch_id=t_branch.id", conn)
 
     # Bei erfolg http status 200 zurückgeben an frontend
     #ret = {"id_database_severs": database_server["id_database_severs"]}

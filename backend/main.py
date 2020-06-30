@@ -14,6 +14,7 @@ from endpoints.getUser import *
 from endpoints.postKons import *
 from endpoints.getMara import *
 from endpoints.getUsers import *
+from endpoints.getOrga import *
 
 # SETUP STEP
 
@@ -32,6 +33,7 @@ app.register_blueprint(getUser_bp)
 app.register_blueprint(postKons_bp)
 app.register_blueprint(getMara_bp)
 app.register_blueprint(getUsers_bp)
+app.register_blueprint(getOrga_bp)
 
 
 
