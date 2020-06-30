@@ -22,7 +22,6 @@ from endpoints.getReltyp import *
 from endpoints.getFam import *
 from endpoints.getComp import *
 from endpoints.getKons_test import *
-from endpoints.getUsers import *
 from endpoints.getMaco import *
 
 # SETUP STEP
@@ -50,7 +49,6 @@ app.register_blueprint(getReltyp_bp)
 app.register_blueprint(getFam_bp)
 app.register_blueprint(getComp_bp)
 app.register_blueprint(getKons_test_bp)
-app.register_blueprint(getUsers_bp)
 app.register_blueprint(getMaco_bp)
 
 
