@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify
 from dbfunctions.connect_test import *
 import json
 import pandas as pd
@@ -23,5 +23,7 @@ def getKons():
 
     # Bei erfolg http status 200 zurückgeben an frontend
     #ret = {"id_database_severs": database_server["id_database_severs"]}
-    print(df.head())
-    return df.to_json(orient='records'), 200, {'ContentType': 'application/json'}
+    print(df)
+    return json.dumps(df)
+    #return jsonify(df)
+    #return df.to_json(orient='records'), 200, {'ContentType': 'application/json'}
