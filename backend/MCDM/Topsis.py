@@ -16,15 +16,15 @@ col_sums = array(cumsum(X**2, 0))
 NX = array([[round(X[i, j] / sqrt(col_sums[X.shape[0]-1, j]), 4) for j in range(4)] for i in range(2)])
 print('NX =', NX)
 
-# Schritt 2: Berechnung der gewichteten nornalisierten Entscheidungsmatrix V
+# Schritt 2: Berechnung der gewichteten normalisierten Entscheidungsmatrix V
 V = array([[round(w[j] * NX[i, j], 4) for j in range(4)] for i in range(2)])
 print ("V = ",V)
 
 # Schrit 3: Bestimmung der idealen (A_stern) und anti-idealen Lösung (A_minus)
-A_stern = array([amin(V[:, :1]), amax(V[:, 1:2]),amax(V[:, 2:3]), amax(V[:, 3:4])])
+A_stern = array([amin(V[:, :1]), amax(V[:, 1:2]),amax(V[:, 2:3]), amin(V[:, 3:4])])
 print ("A_stern = ",A_stern)
 
-A_minus = array([amax(V[:, :1]), amin(V[:, 1:2]),amin(V[:, 2:3]), amin(V[:, 3:4])])
+A_minus = array([amax(V[:, :1]), amin(V[:, 1:2]),amin(V[:, 2:3]), amax(V[:, 3:4])])
 print ("A_minus = ",A_minus)
 
 # Schrit 4: Berechnung der Trennungsmaße D_stern und D_minus
