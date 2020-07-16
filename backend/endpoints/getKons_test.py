@@ -27,3 +27,12 @@ def getKons_test():
     return json.dumps(df)
     #return jsonify(df)
     #return df.to_json(orient='records'), 200, {'ContentType': 'application/json'}
+
+
+#________
+# import json
+# file = open ('Dateiname') # json laden
+# j_array = json.load(file) # json an Variable übergeben
+# for i in j_array:
+
+# print (json.dumps(j_array, indent=4)) # json in string dekodiert
