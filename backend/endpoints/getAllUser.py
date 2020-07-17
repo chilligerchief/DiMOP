@@ -20,4 +20,4 @@ def getAllUser():
     # Bei erfolg http status 200 zurückgeben an frontend
     #ret = {"id_database_severs": database_server["id_database_severs"]}
     print(df.head())
-    return df.to_json(orient='records'), 200, {'ContentType': 'application/json'}
+    return df.to_json(orient='records'), 200, {'ContentType': 'application/json'} 
