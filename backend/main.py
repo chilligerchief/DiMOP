@@ -24,6 +24,7 @@ from endpoints.getComp import *
 from endpoints.getKons_test import *
 from endpoints.getMaco import *
 from endpoints.getAllUser import *
+from endpoints.getAllComp import *
 
 # SETUP STEP
 
@@ -52,6 +53,7 @@ app.register_blueprint(getComp_bp)
 app.register_blueprint(getKons_test_bp)
 app.register_blueprint(getMaco_bp)
 app.register_blueprint(getAllUser_bp)
+app.register_blueprint(getAllComp_bp)
 
 
 if __name__ == '__main__':
