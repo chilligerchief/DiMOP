@@ -18,7 +18,7 @@ def getMara():
     userid = request.args.get('userid')
     print(request.args.get('userid'))
 
-    df = pd.read_sql_query("SELECT * FROM mara WHERE mara.user_id='"+ userid + "'", conn)
+    df = pd.read_sql_query("SELECT mara.id, mara.mara_nr, mara.mat_desc, mara.mat_int_desc, mara.mat_rw, mara.t_fam_id, t_fam.fam_dimop_desc, mara.campus_fam, mara.t_mara_art_id, t_mara_art.art, mara.upload_kind, mara.created_at, mara.updated_at, mara.dichte, mara.unit, mara.del_kz, mara.producer, mara.Verarbeitungsmethode, mara.Belastung, mara.Temperatur, mara.MVR, mara.Bruchdehnung, mara.Bruchspannung, mara.Zugmodul FROM mara LEFT JOIN t_fam ON mara.t_fam_id=t_fam.id LEFT JOIN t_mara_art ON mara.t_mara_art_id=t_mara_art.id WHERE mara.user_id='"+ userid + "'", conn)
 
 
     # Bei erfolg http status 200 zurückgeben an frontend
