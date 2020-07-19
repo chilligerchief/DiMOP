@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from flask_cors import CORS
-from flask_jwt import JWT
+#from flask_jwt import JWT
 #from dbfunctions.connect import db
 from flask_restful import Api
 
@@ -30,12 +30,8 @@ from endpoints.getComp import *
 from endpoints.getKons_test import *
 from endpoints.getMaco import *
 from endpoints.getAllUser import *
-<<<<<<< HEAD
 from endpoints.user import UserRegister
-=======
 from endpoints.getAllComp import *
-
->>>>>>> f47ed386e4453777550edf69f2a073b4d7fefd2d
 # SETUP STEP
 
 app = Flask(__name__)
@@ -91,12 +87,9 @@ app.register_blueprint(getComp_bp)
 app.register_blueprint(getKons_test_bp)
 app.register_blueprint(getMaco_bp)
 app.register_blueprint(getAllUser_bp)
-<<<<<<< HEAD
 #app.register_blueprint(User_bp)
-=======
 app.register_blueprint(getAllComp_bp)
 
->>>>>>> f47ed386e4453777550edf69f2a073b4d7fefd2d
 
 if __name__ == '__main__':
     from dbfunctions.connect import db
