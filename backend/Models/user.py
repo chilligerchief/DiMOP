@@ -18,7 +18,7 @@ class UserModel(db.Model):
     del_kz = db.Column(db.Boolean)
 
 
-    def __init__(self, e_mail, password, firstname, surname=None, orga_id=None, t_function_id=None, created_at=None, updated_at=None, pw_salt=None, ver_indicator=None, del_kz=None):
+    def __init__(self, e_mail, password, firstname, surname, orga_id, t_function_id, created_at=None, updated_at=None, pw_salt=None, ver_indicator=None, del_kz=None):
         self.firstname = firstname
         self.surname = surname
         self.e_mail = e_mail
@@ -42,8 +42,8 @@ class UserModel(db.Model):
         return cls.query.filter_by(e_mail=e_mail).first()
 
     @classmethod
-    def find_by_id(cls, id):
-        return cls.query.filter_by(id=id).first()
+    def find_by_id(cls, _id):
+        return cls.query.filter_by(id=_id).first()
 
     #### POST PUT
 

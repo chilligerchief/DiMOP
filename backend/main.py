@@ -1,10 +1,10 @@
 from flask import Flask, render_template, request
 from flask_cors import CORS
-#from flask_jwt import JWT
+from flask_jwt import JWT, jwt_required
 #from dbfunctions.connect import db
 from flask_restful import Api
 
-#from security import authenticate_e_mail, identity_id
+from security import authenticate, identity
  
 ###ENDPOINTS (Resource)
 
@@ -43,14 +43,14 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://milena:ALAQsM8W@132.187
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['PROPAGATE_EXCEPTIONS'] = True
-app.secret_key = 'jose'
+app.secret_key = 'bcdudes69_'
 api = Api(app)
 
 @app.before_first_request
 def create_tables():
     db.create_all()
 
-# jwt = JWT(app, authenticate_e_mail, identity_id)  # /auth
+jwt = JWT(app, authenticate, identity)  # Endpoint /auth
 
 #api.add_resource(Store, '/store/<string:name>')
 #api.add_resource(StoreList, '/stores')
