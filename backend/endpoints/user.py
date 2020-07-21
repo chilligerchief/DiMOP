@@ -43,7 +43,7 @@ class UserRegister(Resource):
         password = data["password"]
 
         salt = uuid.uuid4().hex
-        hashed_password = hashlib.sha512(password + salt).hexdigest()
+        hashed_password = hashlib.sha512(password.encode('utf-8') + salt.encode('utf-8')).hexdigest()
 
         data["password"]  = hashed_password
         data["pw_salt"] = salt
