@@ -1,5 +1,6 @@
 from flask_restful import Resource, reqparse
 from Models.user import UserModel
+import hashlib, uuid
 
 class UserRegister(Resource):
     parser = reqparse.RequestParser()
@@ -39,6 +40,14 @@ class UserRegister(Resource):
     def post(self):
         data = UserRegister.parser.parse_args()
 
+        password = data["password"]
+
+        salt = uuid.uuid4().hex
+        hashed_password = hashlib.sha512(password + salt).hexdigest()
+
+        data["password"]  = hashed_password
+        data["pw_salt"] = salt
+
         if UserModel.find_by_e_mail(data["e_mail"]):
             return {"message": "A user with that e_mail already exists"}, 400
 
@@ -59,7 +68,7 @@ class User(Resource):
         pass
 
 
-    ####### NOTIZEN 
+    ####### NOTIZEN
 
     # from dbfunctions.connect import *
 # from flask import Blueprint, request
@@ -92,7 +101,7 @@ class User(Resource):
          #       user = cls(*row) #_id, firstname, e_mail, password (row[0], row[1], row[2], row[3])
           #  else:
            #     user = None
-            
+
            # return e_mail
 #@getAllUser_bp.route('/getAllUser', methods=["GET"])
 #def getAllUser():
@@ -108,8 +117,8 @@ class User(Resource):
 
     # Bei erfolg http status 200 zurückgeben an frontend
     #ret = {"id_database_severs": database_server["id_database_severs"]}
-    
-    
+
+
     #print(df.head())
     #return df.to_json(orient='records'), 200, {'ContentType': 'application/json'}
 
@@ -128,7 +137,7 @@ class User(Resource):
 #                 user = cls(*row) #_id, firstname, e_mail, password (row[0], row[1], row[2], row[3])
 #             else:
 #                 user = None
-            
+
 #             return _id #user?
 
 # class UserRegister(Resource):
@@ -145,7 +154,7 @@ class User(Resource):
 #         required=True,
 #         help="This field cannot be blank"
 #     )
-    
+
 # ‚
 #     def post(self):
 #         data = UserRegister.parser.parse_args()

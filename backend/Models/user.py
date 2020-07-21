@@ -12,8 +12,8 @@ class UserModel(db.Model):
     t_function_id = db.Column(db.Integer) #db.ForeignKey('t_function.id')
     created_at = datetime
     updated_at = datetime
-    password = db.Column(db.String(255))
-    pw_salt = db.Column(db.String(255))
+    password = db.Column(db.String(1024))
+    pw_salt = db.Column(db.String(1024))
     ver_indicator = db.Column(db.Boolean)
     del_kz = db.Column(db.Boolean)
 
@@ -59,4 +59,4 @@ class UserModel(db.Model):
 # #     # Bei erfolg http status 200 zurückgeben an frontend
 # #     #ret = {"id_database_severs": database_server["id_database_severs"]}
 # #     print(df.head())
-# #     return df.to_json(orient='records'), 200, {'ContentType': 'application/json'} 
+# #     return df.to_json(orient='records'), 200, {'ContentType': 'application/json'}
