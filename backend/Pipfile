@@ -12,6 +12,8 @@ sqlalchemy = "*"
 pymysql = "*"
 pandas = "*"
 mysql-connector = "*"
+flask-restful = "*"
+flask-sqlalchemy = "*"
 
 [requires]
 python_version = "3"
