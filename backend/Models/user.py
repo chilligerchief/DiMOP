@@ -18,7 +18,7 @@ class UserModel(db.Model):
     del_kz = db.Column(db.Boolean)
 
 
-    def __init__(self, e_mail, password, firstname, surname, orga_id, t_function_id, created_at=None, updated_at=None, pw_salt=None, ver_indicator=None, del_kz=None):
+    def __init__(self, e_mail, password, firstname, surname, t_function_id, orga_id=None, created_at=None, updated_at=None, pw_salt=None, ver_indicator=None, del_kz=None):
         self.firstname = firstname
         self.surname = surname
         self.e_mail = e_mail
@@ -32,6 +32,11 @@ class UserModel(db.Model):
         self.del_kz = del_kz
 
     ### GET, POST; PUT; DELETE
+    def json(self):
+        return { 'firstname' : self.firstname, 'surname' : self.surname, 'e_mail' : self.e_mail, 'orga_id' : self.orga_id, 't_function_id' : self.t_function_id, 'del_kz' : self.del_kz}
+        
+        #{ 'firstname' : self.firstname, 'surname' : self.surname, 'e_mail' : self.e_mail, 'orga_id' : self.orga_id, 't_function_id' : self.t_function_id, 'created_at' : self.created_at, 
+        #'updated_at' : self.updated_at, 'password' : self.password, 'pw_salt' : self.pw_salt, 'ver_indicator' : self.ver_indicator, 'del_kz' : self.del_kz}
 
     @classmethod
     def find_by_surname(cls, surname):
@@ -51,7 +56,9 @@ class UserModel(db.Model):
         db.session.add(self)
         db.session.commit()
 
-
+    def delete_from_db(self):
+        db.session.delete(self)
+        db.session.commit()
 # # conn = connect_db()
 
 # #     df = pd.read_sql_query("SELECT user.id, user.firstname, user.surname, user.e_mail, orga.orga_name, t_function.function, user.del_kz FROM user LEFT JOIN orga ON user.orga_id=orga.id LEFT JOIN t_function ON user.t_function_id=t_function.id", conn)

@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request
 from flask_cors import CORS
 from flask_jwt import JWT, jwt_required
-#from dbfunctions.connect import db
 from flask_restful import Api
 
 from security import authenticate, identity
@@ -30,7 +29,7 @@ from endpoints.getComp import *
 from endpoints.getKons_test import *
 from endpoints.getMaco import *
 from endpoints.getAllUser import *
-from endpoints.user import UserRegister
+from endpoints.user import UserRegister, DimopUser, Users
 from endpoints.getAllComp import *
 # SETUP STEP
 
@@ -50,13 +49,11 @@ api = Api(app)
 def create_tables():
     db.create_all()
 
+api.add_resource(UserRegister, '/register') # Registrieren
 jwt = JWT(app, authenticate, identity)  # Endpoint /auth
+api.add_resource(DimopUser, '/user/<string:_id>')# Ein User
+api.add_resource(Users, '/users')           #Alle User
 
-#api.add_resource(Store, '/store/<string:name>')
-#api.add_resource(StoreList, '/stores')
-#api.add_resource(Item, '/item/<string:name>')
-#api.add_resource(Item, '/item')
-api.add_resource(UserRegister, '/register')
 
 #if __name__ == '__main__':
 #     from db import db
