@@ -5,16 +5,6 @@ from datetime import datetime
 
 class UserRegister(Resource):
     parser = reqparse.RequestParser()
-    parser.add_argument('e_mail',
-                        type=str,
-                        required=True,
-                        help="This field cannot be blank."
-                        )
-    parser.add_argument('password',
-                        type=str,
-                        required=True,
-                        help="This field cannot be blank."
-                        )
     parser.add_argument('firstname',
                         type=str,
                         required=True,
@@ -26,11 +16,20 @@ class UserRegister(Resource):
                         help="This field is optional, but a real Name should be used ;)."
                         )
     parser.add_argument('t_function_id',
-                        type=str,
+                        type=int,
                         required=True,
                         help="This field is optional, but a real Name should be used ;)."
                         )
-
+    parser.add_argument('e_mail',
+                        type=str,
+                        required=True,
+                        help="This field cannot be blank."
+                        )
+    parser.add_argument('password',
+                        type=str,
+                        required=True,
+                        help="This field cannot be blank."
+                        )
 
     def post(self):
         data = UserRegister.parser.parse_args()
@@ -53,15 +52,35 @@ class UserRegister(Resource):
 
 class DimopUser(Resource):
     parser = reqparse.RequestParser()
-    # parser.add_argument('_id',
-    #                     type=str,
-    #                     required=True,
-    #                     help="ID field cannot be blank."
-    #                     )
     parser.add_argument('firstname',
                         type=str,
                         required=True,
                         help="ID field cannot be blank."
+                        )
+    parser.add_argument('surname',
+                        type=str,
+                        required=True,
+                        help="ID field cannot be blank."
+                        )
+    parser.add_argument('t_function_id',
+                        type=int,
+                        required=True,
+                        help="ID field cannot be blank."
+                        )
+    parser.add_argument('e_mail',
+                        type=str,
+                        required=True,
+                        help="ID field cannot be blank."
+                        )
+    parser.add_argument('password',
+                        type=str,
+                        required=True,
+                        help="Please enter your password :)"
+                        )
+    parser.add_argument('orga_id',
+                        type=int,
+                        required=True,
+                        help="Please enter your Company :)"
                         )
     def get(self,_id):
         user = UserModel.find_by_id(_id)
@@ -72,19 +91,21 @@ class DimopUser(Resource):
     
     def put(self, _id):
         data = DimopUser.parser.parse_args()
-
         user = UserModel.find_by_id(_id)
-        update_user = {"firstname": data["firstname"]}
-        #"id": data["_id"],'surname': data['surname'], 'orga_id': data['orga_id'], 't_function_id': data['t_function_id'], 'updated_at': datetime, 'del_kz': data["del_kz"]
-        if user:
-            try:
-                UserModel.update(update_user)
-            except:
-                return {"message": "An error occurred updating the DimopUser."}, 500
-       
-        return update_user
 
-    def delete(self, _id):
+                                                #define Values for Change
+        if user:
+          user.firstname = data['firstname']
+          user.surname = data['surname']
+          user.orga_id = data['orga_id']
+          user.t_function_id = data['t_function_id']
+          user.password = data['password']
+
+        user.save_to_db()
+
+        return user.json()
+
+    def delete(self, _id):                      # Delete User by ID
         user = UserModel.find_by_id(_id)
         if user:
             user.delete_from_db()
