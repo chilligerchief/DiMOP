@@ -30,6 +30,7 @@ from endpoints.getKons_test import *
 from endpoints.getMaco import *
 from endpoints.getAllUser import *
 from endpoints.user import UserRegister, DimopUser, Users
+from endpoints.function import Function
 from endpoints.getAllComp import *
 # SETUP STEP
 
@@ -53,6 +54,7 @@ api.add_resource(UserRegister, '/register') # Registrieren
 jwt = JWT(app, authenticate, identity)  # Endpoint /auth
 api.add_resource(DimopUser, '/user/<string:_id>')# Ein User
 api.add_resource(Users, '/users')           #Alle User
+api.add_resource(Function, '/functions') #Alle Funktionen
 
 
 #if __name__ == '__main__':

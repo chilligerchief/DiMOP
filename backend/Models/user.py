@@ -33,10 +33,8 @@ class UserModel(db.Model):
 
     ### GET, POST; PUT; DELETE
     def json(self):
-        return { 'firstname' : self.firstname, 'surname' : self.surname, 'e_mail' : self.e_mail, 'orga_id' : self.orga_id, 't_function_id' : self.t_function_id, 'del_kz' : self.del_kz}
-        
-        #{ 'firstname' : self.firstname, 'surname' : self.surname, 'e_mail' : self.e_mail, 'orga_id' : self.orga_id, 't_function_id' : self.t_function_id, 'created_at' : self.created_at, 
-        #'updated_at' : self.updated_at, 'password' : self.password, 'pw_salt' : self.pw_salt, 'ver_indicator' : self.ver_indicator, 'del_kz' : self.del_kz}
+        return { 'id' : self.id, 'firstname' : self.firstname, 'surname' : self.surname, 'e_mail' : self.e_mail, 'orga_id' : self.orga_id, 't_function_id' : self.t_function_id, 'del_kz' : self.del_kz}
+
 
     @classmethod
     def find_by_surname(cls, surname):
