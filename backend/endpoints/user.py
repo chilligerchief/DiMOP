@@ -150,7 +150,7 @@ class Users(Resource):
         #    if row not None:
          #       user = cls(*row) #_id, firstname, e_mail, password (row[0], row[1], row[2], row[3])
           #  else:
-           #     user = None
+           #     user< = None
 
            # return e_mail
 #@getAllUser_bp.route('/getAllUser', methods=["GET"])
