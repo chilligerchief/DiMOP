@@ -18,7 +18,7 @@ class UserModel(db.Model):
     del_kz = db.Column(db.Boolean)
 
 
-    def __init__(self, e_mail, password, firstname, surname, t_function_id, orga_id=None, created_at=None, updated_at=None, pw_salt=None, ver_indicator=None, del_kz=None):
+    def __init__(self, firstname, surname, t_function_id, e_mail, password, orga_id=None, created_at=None, updated_at=None, pw_salt=None, ver_indicator=None, del_kz=None):
         self.firstname = firstname
         self.surname = surname
         self.e_mail = e_mail
