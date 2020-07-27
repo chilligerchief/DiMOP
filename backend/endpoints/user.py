@@ -88,7 +88,7 @@ class DimopUser(Resource):
             return user.json()
         else:
             return {'user': 'User not found'}, 404
-    
+
     def put(self, _id):
         data = DimopUser.parser.parse_args()
         user = UserModel.find_by_id(_id)
@@ -100,6 +100,7 @@ class DimopUser(Resource):
           user.orga_id = data['orga_id']
           user.t_function_id = data['t_function_id']
           user.password = data['password']
+
 
         user.save_to_db()
 

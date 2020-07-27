@@ -12,7 +12,7 @@ import hashlib
 #     return UserModel.find_by_id(user_id)
 
 def authenticate(e_mail, password):
-   user = UserModel.find_by_e_mail(e_mail) #if no email found, return none
+   user = UserModel.find_by_e_mail(e_mail) #if no email found, return none # email = Username
    hashed_password = hashlib.sha512(password.encode('utf-8') + user.pw_salt.encode('utf-8')).hexdigest()
    if user and safe_str_cmp(user.password, hashed_password):
       return user
