@@ -7,33 +7,34 @@ from security import authenticate, identity
  
 ###ENDPOINTS (Resource)
 
-from endpoints.listusers import *
+#from endpoints.listusers import *
 from endpoints.getBom import *
-from endpoints.getKons import *
-from endpoints.getPersKons import *
-from endpoints.putKons import *
-from endpoints.putPersKons import *
-from endpoints.deleteKons import *
-from endpoints.deletePersKons import *
-from endpoints.getUser import *
-from endpoints.postKons import *
+#from endpoints.getKons import *
+#from endpoints.getPersKons import *
+#from endpoints.putKons import *
+#from endpoints.putPersKons import *
+#from endpoints.deleteKons import *
+#from endpoints.deletePersKons import *
+#from endpoints.getUser import *
+#from endpoints.postKons import *
 from endpoints.getMara import *
 from endpoints.getOrga import *
 from endpoints.getBomItem import *
 from endpoints.getBomAl import *
 from endpoints.getBranch import *
-from endpoints.getFunction import *
+#from endpoints.getFunction import *
 from endpoints.getReltyp import *
 from endpoints.getFam import *
 from endpoints.getComp import *
-from endpoints.getKons_test import *
+#from endpoints.getKons_test import *
 from endpoints.getMaco import *
-from endpoints.getAllUser import *
+#from endpoints.getAllUser import *
+from endpoints.getAllComp import *
 from endpoints.user import UserRegister, DimopUser, Users
 from endpoints.function import Function
 from endpoints.perp import PerpPost, Perp, PerpGet
-#from endpoints.kons import Kons
-from endpoints.getAllComp import *
+from endpoints.kons import KonsPost, Kons, KonsGet
+
 # SETUP STEP
 
 app = Flask(__name__)
@@ -60,6 +61,9 @@ api.add_resource(Function, '/functions') #Alle Funktionen
 api.add_resource(PerpPost, '/perp') #Post
 api.add_resource(Perp, '/perp/<string:_id>') #Put & Delete
 api.add_resource(PerpGet, '/perp/<string:kons_id>') #Get
+api.add_resource(KonsPost, '/kons') # Post
+api.add_resource(Kons, '/kons/<string:_id>') #Put & Delete
+api.add_resource(KonsGet, '/kons/<string:_id>') #Get
 
 #api.add_resource(Kons, 'kons')
 
@@ -71,16 +75,16 @@ api.add_resource(PerpGet, '/perp/<string:kons_id>') #Get
 
 ####Adrian Input######
 
-app.register_blueprint(listusers_bp)
+#app.register_blueprint(listusers_bp)
 app.register_blueprint(getBom_bp)
-app.register_blueprint(getKons_bp)
+#app.register_blueprint(getKons_bp)
 #app.register_blueprint(getPersKons_bp)
-app.register_blueprint(putKons_bp)
+#app.register_blueprint(putKons_bp)
 #app.register_blueprint(putPersKons_bp)
-app.register_blueprint(deleteKons_bp)
+#app.register_blueprint(deleteKons_bp)
 #app.register_blueprint(deletePersKons_bp)
-app.register_blueprint(getUser_bp)
-app.register_blueprint(postKons_bp)
+#app.register_blueprint(getUser_bp)
+#app.register_blueprint(postKons_bp)
 app.register_blueprint(getMara_bp)
 app.register_blueprint(getOrga_bp)
 app.register_blueprint(getBomItem_bp)
@@ -90,7 +94,7 @@ app.register_blueprint(getBranch_bp)
 app.register_blueprint(getReltyp_bp)
 app.register_blueprint(getFam_bp)
 app.register_blueprint(getComp_bp)
-app.register_blueprint(getKons_test_bp)
+#app.register_blueprint(getKons_test_bp)
 app.register_blueprint(getMaco_bp)
 #app.register_blueprint(getAllUser_bp)
 #app.register_blueprint(User_bp)

@@ -12,11 +12,12 @@ class KonsModel(db.Model):
     created_at = datetime
     updated_at = datetime
     del_kz = db.Column(db.Boolean)
+    #perp = db.relationship('PerpModel')
 
 
-    def __init__(self, kons_title, kons_desc, orga_id, mara_id, created_at=None, updated_at=None, del_kz=None):
+    def __init__(self, kons_title, kons_desc, orga_id, mara_id, del_kz, created_at=None, updated_at=None):
         self.kons_title = kons_title
-        self.surname = kons_desc
+        self.kons_desc = kons_desc
         self.orga_id = orga_id
         self.mara_id = mara_id
         self.created_at = created_at
@@ -27,20 +28,14 @@ class KonsModel(db.Model):
     def json(self):
         return { 'id' : self.id, 'kons_title' : self.kons_title, 'kons_desc' : self.kons_desc, 'orga_id' : self.orga_id, 'mara_id' : self.mara_id, 'del_kz' : self.del_kz}
 
-
-    @classmethod
-    def find_by_userid(cls, userid):
-       # query = ('SELECT kons.id, kons.kons_title, kons.kons_desc, orga.orga_name, mara.mara_nr, mara.mat_desc, kons.created_at, kons.updated_at, kons.del_kz FROM kons LEFT JOIN mara ON kons.mara_id=mara.id LEFT join orga ON kons.orga_id=orga.id LEFT JOIN perp on perp.kons_id=kons.id LEFT JOIN user on perp.user_id=user.id WHERE user.id='"+ userid + "'")
-
-        #return cls.query.filter_by(surname=surname).first()
-
-    @classmethod
-    def find_by_e_mail(cls, e_mail):
-        return cls.query.filter_by(e_mail=e_mail).first()
+    #@classmethod
+    #def find_by_user_id(cls, user_id):
+        #return cls.query().join(cls.perp, _id == cls.perp.kons_id).filter_by(userid=user_id)
 
     @classmethod
     def find_by_id(cls, _id):
-        return cls.query.filter_by(id=_id).first()
+        return cls.query.filter_by(id=_id)
+
 
     #### POST PUT
 
