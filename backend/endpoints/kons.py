@@ -26,11 +26,6 @@ class UserRegister(Resource):
                         required=True,
                         help="This field is optional, but a real Name should be used ;)."
                         )
-    parser.add_argument('created_at...',
-                        type=str,
-                        required=True,
-                        help="This field is optional, but a real Name should be used ;)."
-                        )
 
     def post(self):
         data = UserRegister.parser.parse_args()
@@ -54,15 +49,25 @@ class UserRegister(Resource):
 
 class DimopUser(Resource):
     parser = reqparse.RequestParser()
-    # parser.add_argument('_id',
-    #                     type=str,
-    #                     required=True,
-    #                     help="ID field cannot be blank."
-    #                     )
-    parser.add_argument('firstname',
+    parser.add_argument('kons_title',
                         type=str,
                         required=True,
-                        help="ID field cannot be blank."
+                        help="This field cannot be blank."
+                        )
+    parser.add_argument('kons_desc',
+                        type=str,
+                        required=True,
+                        help="This field cannot be blank."
+                        )
+    parser.add_argument('orga_id',
+                        type=int,
+                        required=True,
+                        help="This field is optional, but a real Name should be used ;)."
+                        )
+    parser.add_argument('mara_id',
+                        type=int,
+                        required=True,
+                        help="This field is optional, but a real Name should be used ;)."
                         )
 
     def get(self, _id):

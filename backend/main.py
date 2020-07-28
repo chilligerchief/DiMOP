@@ -31,6 +31,7 @@ from endpoints.getMaco import *
 from endpoints.getAllUser import *
 from endpoints.user import UserRegister, DimopUser, Users
 from endpoints.function import Function
+from endpoints.perp import PerpPost, Perp, PerpGet
 #from endpoints.kons import Kons
 from endpoints.getAllComp import *
 # SETUP STEP
@@ -56,6 +57,10 @@ jwt = JWT(app, authenticate, identity)  # Endpoint /auth
 api.add_resource(DimopUser, '/user/<string:_id>')# Ein User
 api.add_resource(Users, '/users')           #Alle User
 api.add_resource(Function, '/functions') #Alle Funktionen
+api.add_resource(PerpPost, '/perp') #Post
+api.add_resource(Perp, '/perp/<string:_id>') #Put & Delete
+api.add_resource(PerpGet, '/perp/<string:kons_id>') #Get
+
 #api.add_resource(Kons, 'kons')
 
 
@@ -69,11 +74,11 @@ api.add_resource(Function, '/functions') #Alle Funktionen
 app.register_blueprint(listusers_bp)
 app.register_blueprint(getBom_bp)
 app.register_blueprint(getKons_bp)
-app.register_blueprint(getPersKons_bp)
+#app.register_blueprint(getPersKons_bp)
 app.register_blueprint(putKons_bp)
-app.register_blueprint(putPersKons_bp)
+#app.register_blueprint(putPersKons_bp)
 app.register_blueprint(deleteKons_bp)
-app.register_blueprint(deletePersKons_bp)
+#app.register_blueprint(deletePersKons_bp)
 app.register_blueprint(getUser_bp)
 app.register_blueprint(postKons_bp)
 app.register_blueprint(getMara_bp)
@@ -81,13 +86,13 @@ app.register_blueprint(getOrga_bp)
 app.register_blueprint(getBomItem_bp)
 app.register_blueprint(getBomAl_bp)
 app.register_blueprint(getBranch_bp)
-app.register_blueprint(getFunction_bp)
+#app.register_blueprint(getFunction_bp)
 app.register_blueprint(getReltyp_bp)
 app.register_blueprint(getFam_bp)
 app.register_blueprint(getComp_bp)
 app.register_blueprint(getKons_test_bp)
 app.register_blueprint(getMaco_bp)
-app.register_blueprint(getAllUser_bp)
+#app.register_blueprint(getAllUser_bp)
 #app.register_blueprint(User_bp)
 app.register_blueprint(getAllComp_bp)
 

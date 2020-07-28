@@ -9,6 +9,9 @@ class FunctionModel(db.Model):
     def __init__(self, function):
         self.function = function
 
-### GET
     def json(self):
         return {'id' : self.id, 'function': self.function}
+
+    @classmethod
+    def get_all(cls):
+        return cls.query.all()
