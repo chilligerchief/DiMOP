@@ -70,8 +70,8 @@ class Kons(Resource):
         return {'kons': 'Kons deleted successfully'}
 
 class KonsGet(Resource):
-    def get(self, _id):
-        kons = KonsModel.find_by_id(_id).first()
+    def get(self, user_id):
+        kons = KonsModel.find_by_user_id(user_id)
         if kons:
             return kons.json()
         else:

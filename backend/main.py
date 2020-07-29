@@ -34,6 +34,7 @@ from endpoints.user import UserRegister, DimopUser, Users
 from endpoints.function import Function
 from endpoints.perp import PerpPost, Perp, PerpGet
 from endpoints.kons import KonsPost, Kons, KonsGet
+from endpoints.mara import MaraGet
 
 # SETUP STEP
 
@@ -63,7 +64,8 @@ api.add_resource(Perp, '/perp/<string:_id>') #Put & Delete
 api.add_resource(PerpGet, '/perp/<string:kons_id>') #Get
 api.add_resource(KonsPost, '/kons') # Post
 api.add_resource(Kons, '/kons/<string:_id>') #Put & Delete
-api.add_resource(KonsGet, '/kons/<string:_id>') #Get
+api.add_resource(KonsGet, '/kons/<string:user_id>') #Get
+api.add_resource(MaraGet, '/mara/<string:user_id>') # Get
 
 #api.add_resource(Kons, 'kons')
 

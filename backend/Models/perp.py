@@ -1,5 +1,5 @@
 from dbfunctions.connect import db
-from datetime import datetime
+from sqlalchemy import ForeignKey
 
 class PerpModel(db.Model):
     __tablename__ = 'perp'
@@ -7,7 +7,7 @@ class PerpModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer) #db.ForeignKey('user_id.id')
     orga_id = db.Column(db.Integer) #db.ForeignKey('orga_id.id')
-    kons_id = db.Column(db.Integer, db.ForeignKey('kons_id'))
+    kons_id = db.Column(db.Integer, db.ForeignKey('kons.id'))
     #kons = db.relationship('KonsModel')
     auth_read = db.Column(db.Boolean)
     auth_write = db.Column(db.Boolean)
