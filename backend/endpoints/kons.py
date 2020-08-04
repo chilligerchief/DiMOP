@@ -1,7 +1,8 @@
+from flask import jsonify
 from flask_restful import Resource, reqparse
 from Models.kons import KonsModel
+from dbfunctions.connect import db
 import hashlib, uuid
-from datetime import datetime
 
 
 class KonsPost(Resource):
@@ -70,10 +71,14 @@ class Kons(Resource):
         return {'kons': 'Kons deleted successfully'}
 
 class KonsGet(Resource):
-    def get(self, user_id):
-        kons = KonsModel.find_by_user_id(user_id)
+    def get(self, _id):
+        kons = KonsModel.find_by_id(_id).first()
         if kons:
             return kons.json()
         else:
             return {'kons': 'kons not found'}, 404
 
+class TestKonsGet(Resource):
+    def get(self):
+        query = db.session.execute('Select * from kons')
+        return {'Konstruktionen': [x.json() for x in query]}

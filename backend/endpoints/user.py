@@ -82,8 +82,8 @@ class DimopUser(Resource):
                         required=True,
                         help="Please enter your Company :)"
                         )
-    def get(self,_id):
-        user = UserModel.find_by_id(_id)
+    def get(self,e_mail):
+        user = UserModel.find_by_e_mail(e_mail)
         if user:
             return user.json()
         else:

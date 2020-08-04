@@ -47,7 +47,7 @@ class BomAlModel(db.Model):
 
     ### GET, POST; PUT; DELETE
     def json(self):
-        return { 'id' : self.id, 'bom_nr' : self.bom_nr, 'bom_al' : self.bom_al, 'bom_al_desc' : self.bom_al_desc, 'user_id' : self.user_id, 'orga_id' : self.orga_id, 'kons_id' : self.kons_id, 'mara_id' : self.mara_id, 'fav' : self.fav, 'ext_mara_id' : self.ext_mara_id, 'ext_mara_desc' : self.ext_mara_desc, 'cad_nr' : self.cad_nr, 'auth_read' : self.auth_read, 'auth_write' : self.auth_write, 'auth_delete' : self.auth_delete, 'auth_orga' : self.auth_orga, 'del_kz' : self.del_kz}
+        return { 'id' : self.id, 'bom_nr' : self.bom_nr, 'bom_al' : self.bom_al, 'bom_al_desc' : self.bom_al_desc, 'mara_id' : self.mara_id, 'fav' : self.fav, 'cad_nr' : self.cad_nr, 'del_kz' : self.del_kz}
 
     @classmethod
     def find_by_kons_id(cls, kons_id):

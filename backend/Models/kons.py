@@ -29,9 +29,9 @@ class KonsModel(db.Model):
     def json(self):
         return { 'id' : self.id, 'kons_title' : self.kons_title, 'kons_desc' : self.kons_desc, 'orga_id' : self.orga_id, 'mara_id' : self.mara_id, 'del_kz' : self.del_kz}
 
-    @classmethod
-    def find_by_user_id(cls, user_id):
-        return cls.query().join(cls.perp, cls._id == cls.perp.kons_id).filter_by(userid=cls.perp.user_id).all()
+    #@classmethod
+    #def find_by_user_id(cls, user_id):
+        #return cls.query().join(cls.perp, cls._id == cls.perp.kons_id).filter_by(userid=cls.perp.user_id).all()
 
     @classmethod
     def find_by_id(cls, _id):
@@ -47,3 +47,6 @@ class KonsModel(db.Model):
     def delete_from_db(self):
         db.session.delete(self)
         db.session.commit()
+
+    #def get_from_db(self):
+        #db.session.execute(self)

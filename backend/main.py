@@ -58,7 +58,7 @@ def create_tables():
 
 api.add_resource(UserRegister, '/register') # Registrieren
 jwt = JWT(app, authenticate, identity)  # Endpoint /auth
-api.add_resource(DimopUser, '/user/<string:_id>')# Ein User
+api.add_resource(DimopUser, '/user/<string:e_mail>')# Ein User
 api.add_resource(Users, '/users')           #Alle User
 api.add_resource(Function, '/functions') #Alle Funktionen
 api.add_resource(PerpPost, '/perp') #Post
@@ -66,7 +66,7 @@ api.add_resource(Perp, '/perp/<string:_id>') #Put & Delete
 api.add_resource(PerpGet, '/perp/<string:kons_id>') #Get
 api.add_resource(KonsPost, '/kons') # Post
 api.add_resource(Kons, '/kons/<string:_id>') #Put & Delete
-api.add_resource(KonsGet, '/kons/<string:user_id>') #Get
+api.add_resource(KonsGet, '/kons/<string:_id>') #Get
 api.add_resource(MaraGet, '/mara/<string:user_id>') # Get
 api.add_resource(BomItemGet, '/bomitem/<string:mast_id>') #Get
 api.add_resource(BomAlGet, '/bomal/<string:kons_id>') #Get

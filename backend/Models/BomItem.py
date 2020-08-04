@@ -31,7 +31,7 @@ class BomItemModel(db.Model):
 
     ### GET, POST; PUT; DELETE
     def json(self):
-        return { 'id' : self.id, 'mast_id' : self.mast_id, 'mara_id' : self.mara_id, 'pos' : self.pos, 'height_erp' : self.height_erp, 'width_erp' : self.width_erp, 'depth_erp' : self.depth_erp, 'volume_cad' : self.volume_cad, 'unit_cad' : self.unit_cad, 'weight_ui' : self.weight_ui, 'qr_relevant' : self.qr_relevant}
+        return { 'id' : self.id, 'mara_id' : self.mara_id, 'pos' : self.pos, 'height_erp' : self.height_erp, 'width_erp' : self.width_erp, 'depth_erp' : self.depth_erp, 'volume_cad' : self.volume_cad, 'unit_cad' : self.unit_cad, 'weight_ui' : self.weight_ui, 'qr_relevant' : self.qr_relevant}
 
     @classmethod
     def find_by_mast_id(cls, mast_id):

@@ -26,7 +26,7 @@ class PerpModel(db.Model):
 
     ### GET, POST; PUT; DELETE
     def json(self):
-        return { 'id' : self.id, 'user_id' : self.user_id, 'orga_id' : self.orga_id, 'kons_id' : self.kons_id, 'auth_read' : self.auth_read, 'auth_write' : self.auth_write, 'auth_delete' : self.auth_delete, 'del_kz' : self.del_kz}
+        return { 'id' : self.id, 'user_id' : self.user_id, 'orga_id' : self.orga_id, 'auth_read' : self.auth_read, 'auth_write' : self.auth_write, 'auth_delete' : self.auth_delete, 'del_kz' : self.del_kz}
 
     @classmethod
     def find_by_kons_id(cls, kons_id):
