@@ -83,9 +83,9 @@ class Perp(Resource):
 
 class PerpGet(Resource):
     def get(self, kons_id):
-        perp = PerpModel.find_by_kons_id(kons_id).first()
+        perp = PerpModel.find_by_kons_id(kons_id)
         if perp:
-            return perp.json()
+            return {'Personen': [x.json() for x in perp.all()]}
         else:
             return {'perp': 'person not found'}, 404
 

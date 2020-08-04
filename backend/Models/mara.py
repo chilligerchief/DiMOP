@@ -77,12 +77,13 @@ class MaraModel(db.Model):
 
     ### GET, POST; PUT; DELETE
     def json(self):
-        return { 'mara_nr' : self.mara_nr, 'mat_desc' : self.mat_desc, 'mat_int_desc' : self.mat_int_desc, 'mat_rw' : self.mat_rw, 't_fam_id' : self.t_fam_id, 'campus_fam' : self.campus_fam, 'user_id' : self.user_id,
-                 't_mara_art_id' : self.t_mara_art_id, 'upload_kind' : self.upload_kind, 'created_at' : self.created_at, 'updated_at' : self.updated_at, 'dichte' : self.dichte, 'unit' : self.unit, 'del_kz' : self.del_kz,
+        return { 'id' : self.id, 'mara_nr' : self.mara_nr, 'mat_desc' : self.mat_desc, 'mat_int_desc' : self.mat_int_desc, 'mat_rw' : self.mat_rw, 't_fam_id' : self.t_fam_id, 'campus_fam' : self.campus_fam, 'user_id' : self.user_id,
+                 't_mara_art_id' : self.t_mara_art_id, 'upload_kind' : self.upload_kind, 'dichte' : self.dichte, 'unit' : self.unit, 'del_kz' : self.del_kz,
                  'producer' : self.producer, 'Verarbeitungsmethode' : self.Verarbeitungsmethode, 'Belastung' : self.Belastung, 'Temperatur' : self.Temperatur, 'MVR' : self.MVR, 'Bruchdehnung' : self.Bruchdehnung,
                  'Bruchdehnung_Nominell' : self.Bruchdehnung_Nominell, 'Bruchdehnung_TPE' : self.Bruchdehnung_TPE, 'Bruchdehnung_Senkrecht' : self.Bruchdehnung_Senkrecht, 'Bruchdehnung_Parallel' : self.Bruchdehnung_Parallel,
                  'Bruchspannung_MPa' : self.Bruchspannung_MPa, 'Bruchspannung_TPE_MPa' : self.Bruchspannung_TPE_MPa, 'Bruchspannung_Parallel_MPa' : self.Bruchspannung_Parallel_MPa, 'Bruchspannung_Senkrecht_Mpa' : self.Bruchspannung_Senkrecht_Mpa,
-                 'Zugmodul_MPa' : self.Zugmodul_MPa, 'Zugmodul_Kriech_1h_MPa' : self.Zugmodul_Kriech_1h_MPa, 'Zugmodul_Kriech_1000h_MPa' : self.Zugmodul_Kriech_1000h_MPa, 'Zugmodul_Parallel_MPa' : self.Zugmodul_Parallel_MPa, 'Zugmodul_Senkrecht_MPa' : self.Zugmodul_Senkrecht_MPa}
+                 'Zugmodul_MPa' : self.Zugmodul_MPa, 'Zugmodul_Kriech_1h_MPa' : self.Zugmodul_Kriech_1h_MPa, 'Zugmodul_Kriech_1000h_MPa' : self.Zugmodul_Kriech_1000h_MPa, 'Zugmodul_Parallel_MPa' : self.Zugmodul_Parallel_MPa, 'Zugmodul_Senkrecht_MPa' : self.Zugmodul_Senkrecht_MPa }
+
 
     @classmethod
     def find_by_user_id(cls, user_id):

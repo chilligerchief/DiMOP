@@ -8,7 +8,7 @@ from security import authenticate, identity
 ###ENDPOINTS (Resource)
 
 #from endpoints.listusers import *
-from endpoints.getBom import *
+#from endpoints.getBom import *
 #from endpoints.getKons import *
 #from endpoints.getPersKons import *
 #from endpoints.putKons import *
@@ -17,9 +17,9 @@ from endpoints.getBom import *
 #from endpoints.deletePersKons import *
 #from endpoints.getUser import *
 #from endpoints.postKons import *
-from endpoints.getMara import *
+#from endpoints.getMara import *
 from endpoints.getOrga import *
-from endpoints.getBomItem import *
+#from endpoints.getBomItem import *
 from endpoints.getBomAl import *
 from endpoints.getBranch import *
 #from endpoints.getFunction import *
@@ -35,6 +35,8 @@ from endpoints.function import Function
 from endpoints.perp import PerpPost, Perp, PerpGet
 from endpoints.kons import KonsPost, Kons, KonsGet
 from endpoints.mara import MaraGet
+from endpoints.BomItem import BomItemGet
+from endpoints.BomAl import BomAlGet
 
 # SETUP STEP
 
@@ -66,6 +68,8 @@ api.add_resource(KonsPost, '/kons') # Post
 api.add_resource(Kons, '/kons/<string:_id>') #Put & Delete
 api.add_resource(KonsGet, '/kons/<string:user_id>') #Get
 api.add_resource(MaraGet, '/mara/<string:user_id>') # Get
+api.add_resource(BomItemGet, '/bomitem/<string:mast_id>') #Get
+api.add_resource(BomAlGet, '/bomal/<string:kons_id>') #Get
 
 #api.add_resource(Kons, 'kons')
 
@@ -78,7 +82,7 @@ api.add_resource(MaraGet, '/mara/<string:user_id>') # Get
 ####Adrian Input######
 
 #app.register_blueprint(listusers_bp)
-app.register_blueprint(getBom_bp)
+#app.register_blueprint(getBom_bp)
 #app.register_blueprint(getKons_bp)
 #app.register_blueprint(getPersKons_bp)
 #app.register_blueprint(putKons_bp)
@@ -87,9 +91,9 @@ app.register_blueprint(getBom_bp)
 #app.register_blueprint(deletePersKons_bp)
 #app.register_blueprint(getUser_bp)
 #app.register_blueprint(postKons_bp)
-app.register_blueprint(getMara_bp)
+#app.register_blueprint(getMara_bp)
 app.register_blueprint(getOrga_bp)
-app.register_blueprint(getBomItem_bp)
+#app.register_blueprint(getBomItem_bp)
 app.register_blueprint(getBomAl_bp)
 app.register_blueprint(getBranch_bp)
 #app.register_blueprint(getFunction_bp)

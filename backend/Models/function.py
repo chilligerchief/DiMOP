@@ -12,6 +12,6 @@ class FunctionModel(db.Model):
     def json(self):
         return {'id' : self.id, 'function': self.function}
 
-    @classmethod
-    def get_all(cls):
-        return cls.query.all()
+    #@classmethod
+    #def get_all(cls):
+        #return cls.query.all()

@@ -3,9 +3,9 @@ from Models.mara import MaraModel
 
 class MaraGet(Resource):
     def get(self, user_id):
-        mara = MaraModel.find_by_user_id(user_id).first()
+        mara = MaraModel.find_by_user_id(user_id)
         if mara:
-            return mara.json()
+            return {'Materialien': [x.json() for x in mara.all()]}
         else:
             return {'mara': 'material not found'}, 404
 

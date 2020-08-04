@@ -1,17 +1,15 @@
+import sqlalchemy
+from flask import jsonify
 from flask_restful import Resource, reqparse
 from Models.function import FunctionModel
-
+from dbfunctions.connect import db
 
 class Function(Resource):
     def get(self):
+        query = sqlalchemy.text('Select * from t_function')
         return {'Funktionen': [x.json() for x in FunctionModel.query.all()]}
 
 
-        #db = mysql.connect(host="132.187.102.201", user="milena", passwd="ALAQsM8W", database='dimop')
-        #cursor = db.cursor()
-        #query = 'Select * from t_function'
-        #output = cursor.execute(query)
-        #return json.dumps(output)
         #output = db.engine.execute(query)
         #return json.dumps(output)
 
