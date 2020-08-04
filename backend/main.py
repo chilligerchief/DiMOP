@@ -41,7 +41,7 @@ from endpoints.BomAl import BomAlGet
 # SETUP STEP
 
 app = Flask(__name__)
-#CORS(app)
+CORS(app)
 
 #####Norman Input#####
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://milena:ALAQsM8W@132.187.102.201/dimop' 
