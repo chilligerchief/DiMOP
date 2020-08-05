@@ -1,5 +1,9 @@
 from dbfunctions.connect import db
 from datetime import datetime
+from sqlalchemy import text
+
+from sqlalchemy.dialects import mysql
+
 
 class KonsModel(db.Model):
     __tablename__ = 'kons'
@@ -29,8 +33,11 @@ class KonsModel(db.Model):
     def json(self):
         return { 'id' : self.id, 'kons_title' : self.kons_title, 'kons_desc' : self.kons_desc, 'orga_id' : self.orga_id, 'mara_id' : self.mara_id, 'del_kz' : self.del_kz}
 
-    #@classmethod
-    #def find_by_user_id(cls, user_id):
+    @classmethod
+    def find_by_user_id(cls, _id):
+        sql = text("select * from kons where id=?")
+        result = db.session.execute(sql, _id)
+
         #return cls.query().join(cls.perp, cls._id == cls.perp.kons_id).filter_by(userid=cls.perp.user_id).all()
 
     @classmethod

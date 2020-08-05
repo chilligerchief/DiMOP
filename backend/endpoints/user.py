@@ -3,7 +3,7 @@ from Models.user import UserModel
 import hashlib, uuid
 from datetime import datetime
 
-class UserRegister(Resource):
+class UserPost(Resource):
     parser = reqparse.RequestParser()
     parser.add_argument('firstname',
                         type=str,
@@ -20,6 +20,11 @@ class UserRegister(Resource):
                         required=True,
                         help="This field is optional, but a real Name should be used ;)."
                         )
+    parser.add_argument('orga_id',
+                        type=int,
+                        required=True,
+                        help="This field is optional, but a real Name should be used ;)."
+                        )
     parser.add_argument('e_mail',
                         type=str,
                         required=True,
@@ -30,9 +35,14 @@ class UserRegister(Resource):
                         required=True,
                         help="This field cannot be blank."
                         )
+    parser.add_argument('del_kz',
+                        type=bool,
+                        required=True,
+                        help="This field cannot be blank."
+                        )
 
     def post(self):
-        data = UserRegister.parser.parse_args()
+        data = UserPost.parser.parse_args()
 
         password = data["password"]
 
@@ -50,7 +60,7 @@ class UserRegister(Resource):
 
         return {"message": "User created successfully."}, 201
 
-class DimopUser(Resource):
+class User(Resource):
     parser = reqparse.RequestParser()
     parser.add_argument('firstname',
                         type=str,
@@ -82,35 +92,35 @@ class DimopUser(Resource):
                         required=True,
                         help="Please enter your Company :)"
                         )
-    def get(self,e_mail):
-        user = UserModel.find_by_e_mail(e_mail)
-        if user:
-            return user.json()
-        else:
-            return {'user': 'User not found'}, 404
 
     def put(self, _id):
-        data = DimopUser.parser.parse_args()
+        data = User.parser.parse_args()
         user = UserModel.find_by_id(_id)
 
-                                                #define Values for Change
         if user:
           user.firstname = data['firstname']
           user.surname = data['surname']
           user.orga_id = data['orga_id']
           user.t_function_id = data['t_function_id']
           user.password = data['password']
-
+          user.e_mail = data['e_mail']
 
         user.save_to_db()
-
-        return user.json()
+        return {'User': 'User updated successfully'}
 
     def delete(self, _id):                      # Delete User by ID
         user = UserModel.find_by_id(_id)
         if user:
             user.delete_from_db()
         return {'user': 'User deleted'}
+
+class UserGet(Resource):
+    def get(self,e_mail):
+        user = UserModel.find_by_e_mail(e_mail)
+        if user:
+            return user.json()
+        else:
+            return {'user': 'User not found'}, 404
 
 class Users(Resource):
     def get(self):

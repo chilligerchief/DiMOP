@@ -30,7 +30,7 @@ from endpoints.getComp import *
 from endpoints.getMaco import *
 #from endpoints.getAllUser import *
 from endpoints.getAllComp import *
-from endpoints.user import UserRegister, DimopUser, Users
+from endpoints.user import UserPost, User, UserGet, Users
 from endpoints.function import Function
 from endpoints.perp import PerpPost, Perp, PerpGet
 from endpoints.kons import KonsPost, Kons, KonsGet
@@ -56,10 +56,11 @@ api = Api(app)
 def create_tables():
     db.create_all()
 
-api.add_resource(UserRegister, '/register') # Registrieren
+api.add_resource(UserPost, '/user') # Post (registrieren)
 jwt = JWT(app, authenticate, identity)  # Endpoint /auth
-api.add_resource(DimopUser, '/user/<string:e_mail>')# Ein User
-api.add_resource(Users, '/users')           #Alle User
+api.add_resource(User, '/user/<string:_id>')# Put & Delete (ein User)
+api.add_resource(UserGet, '/user/<string:e_mail>')# Get (ein User)
+api.add_resource(Users, '/users') # Get (alle User)
 api.add_resource(Function, '/functions') #Alle Funktionen
 api.add_resource(PerpPost, '/perp') #Post
 api.add_resource(Perp, '/perp/<string:_id>') #Put & Delete
