@@ -4,7 +4,7 @@ from Models.BomAl import BomAlModel
 class BomAlGet(Resource):
     def get(self, kons_id):
         bomal = BomAlModel.find_by_kons_id(kons_id)
-        if bomal:
-            return {'Stücklistenalternativen': [x.json() for x in bomal.all()]}
-        else:
-            return {'bomal': 'bom alternative not found'}, 404
+        my_list = []
+        for x in bomal:
+            my_list.append(dict(x))
+        return my_list

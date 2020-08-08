@@ -1,10 +1,10 @@
-import sqlalchemy
-from flask import jsonify
 from flask_restful import Resource, reqparse
 from Models.function import FunctionModel
-from dbfunctions.connect import db
 
-class Function(Resource):
+class FunctionGet(Resource):
     def get(self):
-        query = sqlalchemy.text('Select * from t_function')
-        return {'Funktionen': [x.json() for x in FunctionModel.query.all()]}
+        function = FunctionModel.find_all_functions()
+        my_list = []
+        for x in function:
+            my_list.append(dict(x))
+        return my_list

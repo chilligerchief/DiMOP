@@ -115,16 +115,26 @@ class User(Resource):
         return {'user': 'User deleted'}
 
 class UserGet(Resource):
-    def get(self,e_mail):
+    def get(self, e_mail):
         user = UserModel.find_by_e_mail(e_mail)
-        if user:
-            return user.json()
+        my_list = []
+        for x in user:
+            my_list.append(dict(x))
+            return my_list
         else:
             return {'user': 'User not found'}, 404
 
 class Users(Resource):
     def get(self):
-        return {'users': [user.json() for user in UserModel.query.all()]}
+        users = UserModel.find_all_Users()
+        my_list = []
+        for x in users:
+            my_list.append(dict(x))
+        return my_list
+
+#class Users(Resource):
+    #def get(self):
+        #return {'users': [user.json() for user in UserModel.query.all()]}
 
 
 

@@ -1,5 +1,6 @@
 from dbfunctions.connect import db
 from datetime import datetime
+from sqlalchemy import text
 
 class BomAlModel(db.Model):
     __tablename__ = 'mast'
@@ -51,7 +52,9 @@ class BomAlModel(db.Model):
 
     @classmethod
     def find_by_kons_id(cls, kons_id):
-        return cls.query.filter_by(kons_id=kons_id)
+        sql = text("SELECT mast.id, mast.bom_nr, mast.bom_al, mast.bom_al_desc, mast.mara_id, mara.mara_nr, mara.mat_desc, mast.fav, mast.cad_nr, mast.del_kz FROM mast LEFT JOIN mara ON mast.mara_id=mara.id WHERE mast.kons_id=:kons_id")
+        result = db.session.execute(sql, params={"kons_id": kons_id})
+        return result.fetchall()
 
 
     #### POST PUT

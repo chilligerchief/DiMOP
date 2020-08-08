@@ -2,7 +2,6 @@ from flask import Flask, render_template, request
 from flask_cors import CORS
 from flask_jwt import JWT, jwt_required
 from flask_restful import Api
-
 from security import authenticate, identity
  
 ###ENDPOINTS (Resource)
@@ -31,7 +30,7 @@ from endpoints.getMaco import *
 #from endpoints.getAllUser import *
 from endpoints.getAllComp import *
 from endpoints.user import UserPost, User, UserGet, Users
-from endpoints.function import Function
+from endpoints.function import FunctionGet
 from endpoints.perp import PerpPost, Perp, PerpGet
 from endpoints.kons import KonsPost, Kons, KonsGet
 from endpoints.mara import MaraGet
@@ -61,13 +60,13 @@ jwt = JWT(app, authenticate, identity)  # Endpoint /auth
 api.add_resource(User, '/user/<string:_id>')# Put & Delete (ein User)
 api.add_resource(UserGet, '/user/<string:e_mail>')# Get (ein User)
 api.add_resource(Users, '/users') # Get (alle User)
-api.add_resource(Function, '/functions') #Alle Funktionen
+api.add_resource(FunctionGet, '/functions') #Alle Funktionen
 api.add_resource(PerpPost, '/perp') #Post
 api.add_resource(Perp, '/perp/<string:_id>') #Put & Delete
 api.add_resource(PerpGet, '/perp/<string:kons_id>') #Get
 api.add_resource(KonsPost, '/kons') # Post
 api.add_resource(Kons, '/kons/<string:_id>') #Put & Delete
-api.add_resource(KonsGet, '/kons/<string:_id>') #Get
+api.add_resource(KonsGet, '/kons/<string:user_id>') #Get
 api.add_resource(MaraGet, '/mara/<string:user_id>') # Get
 api.add_resource(BomItemGet, '/bomitem/<string:mast_id>') #Get
 api.add_resource(BomAlGet, '/bomal/<string:kons_id>') #Get

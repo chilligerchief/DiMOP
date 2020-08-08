@@ -1,5 +1,6 @@
 from dbfunctions.connect import db
 from sqlalchemy import ForeignKey
+from sqlalchemy import text
 
 class PerpModel(db.Model):
     __tablename__ = 'perp'
@@ -30,7 +31,9 @@ class PerpModel(db.Model):
 
     @classmethod
     def find_by_kons_id(cls, kons_id):
-        return cls.query.filter_by(kons_id=kons_id)
+        sql = text("SELECT perp.id, perp.user_id, user.firstname, user.surname, user.e_mail, perp.orga_id, orga.orga_name, user.t_function_id, t_function.function, perp.auth_read, perp.auth_write, perp.auth_delete, perp.del_kz FROM perp LEFT JOIN orga ON perp.orga_id=orga.id LEFT JOIN user ON perp.user_id=user.id LEFT JOIN t_function ON user.t_function_id=t_function.id WHERE perp.kons_id=:kons_id")
+        result = db.session.execute(sql, params={"kons_id": kons_id})
+        return result.fetchall()
 
     @classmethod
     def find_by_id(cls, _id):

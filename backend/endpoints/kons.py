@@ -69,9 +69,15 @@ class Kons(Resource):
         return {'kons': 'Kons deleted successfully'}
 
 class KonsGet(Resource):
-    def get(self, _id):
-        kons = KonsModel.find_by_id(_id)
-        if kons:
-            return {'Konstruktionen': [x.json() for x in kons]}
-        else:
-            return {'kons': 'kons not found'}, 404
+    def get(self, user_id):
+        kons = KonsModel.find_by_user_id(user_id)
+        my_list = []
+        for x in kons:
+            my_list.append(dict(x))
+        return my_list
+
+
+        #if kons:
+        #    return {'Konstruktionen': [x.json() for x in kons]}
+        #else:
+        #    return {'kons': 'kons not found'}, 404

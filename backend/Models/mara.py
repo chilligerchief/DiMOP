@@ -1,5 +1,6 @@
 from dbfunctions.connect import db
 from datetime import datetime
+from sqlalchemy import text
 
 class MaraModel(db.Model):
     __tablename__ = 'mara'
@@ -87,7 +88,9 @@ class MaraModel(db.Model):
 
     @classmethod
     def find_by_user_id(cls, user_id):
-        return cls.query.filter_by(user_id=user_id)
+        sql = text("SELECT mara.id, mara.mara_nr, mara.mat_desc, mara.mat_int_desc, mara.mat_rw, mara.t_fam_id, t_fam.fam_dimop_desc, mara.campus_fam, mara.user_id, user.firstname, user.surname, mara.t_mara_art_id, t_mara_art.art, mara.upload_kind, mara.dichte, mara.unit, mara.del_kz, mara.producer, mara.Verarbeitungsmethode, mara.Belastung, mara.Temperatur, mara.MVR, mara.Bruchdehnung, mara.Bruchdehnung_Nominell, mara.Bruchdehnung_TPE, mara.Bruchdehnung_Parallel, mara.Bruchdehnung_Senkrecht, mara.Bruchspannung_MPa, mara.Bruchspannung_TPE_MPa, mara.Bruchspannung_Parallel_MPa, mara.Bruchspannung_Senkrecht_MPa, mara.Zugmodul_MPa, mara.Zugmodul_Kriech_1h_MPa, mara.Zugmodul_Kriech_1000h_MPa, mara.Zugmodul_Parallel_MPa, mara.Zugmodul_Senkrecht_MPa FROM mara LEFT JOIN t_fam ON mara.t_fam_id=t_fam.id LEFT JOIN t_mara_art ON mara.t_mara_art_id=t_mara_art.id LEFT JOIN user ON mara.user_id=user.id WHERE mara.user_id=:user_id")
+        result = db.session.execute(sql, params={"user_id": user_id})
+        return result.fetchall()
 
     #### POST PUT
 

@@ -34,9 +34,10 @@ class KonsModel(db.Model):
         return { 'id' : self.id, 'kons_title' : self.kons_title, 'kons_desc' : self.kons_desc, 'orga_id' : self.orga_id, 'mara_id' : self.mara_id, 'del_kz' : self.del_kz}
 
     @classmethod
-    def find_by_user_id(cls, _id):
-        sql = text("select * from kons where id=?")
-        result = db.session.execute(sql, _id)
+    def find_by_user_id(cls, user_id):
+        sql = text("SELECT kons.id, kons.kons_title, kons.kons_desc, kons.orga_id, orga.orga_name, kons.mara_id, mara.mara_nr, mara.mat_desc, kons.del_kz FROM kons LEFT JOIN mara ON kons.mara_id=mara.id LEFT join orga ON kons.orga_id=orga.id LEFT JOIN perp on perp.kons_id=kons.id LEFT JOIN user on perp.user_id=user.id where user.id=:user_id")
+        result = db.session.execute(sql, params={"user_id": user_id})
+        return result.fetchall()
 
         #return cls.query().join(cls.perp, cls._id == cls.perp.kons_id).filter_by(userid=cls.perp.user_id).all()
 
