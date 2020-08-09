@@ -31,7 +31,7 @@ from endpoints.getMaco import *
 from endpoints.getAllComp import *
 from endpoints.user import UserPost, User, UserGet, Users
 from endpoints.function import FunctionGet
-from endpoints.perp import PerpPost, Perp, PerpGet, PerpDelete
+from endpoints.perp import PerpPost, Perp, PerpGet
 from endpoints.kons import KonsPost, Kons, KonsGet
 from endpoints.mara import MaraGet
 from endpoints.BomItem import BomItemGet
@@ -63,7 +63,6 @@ api.add_resource(Users, '/users') # Get (alle User)
 api.add_resource(FunctionGet, '/functions') #Alle Funktionen
 api.add_resource(PerpPost, '/perp') #Post
 api.add_resource(Perp, '/perp/<string:_id>') #Put & Delete
-api.add_resource(PerpDelete, '/perpdelete/<string:_id>')
 api.add_resource(PerpGet, '/perp/<string:kons_id>') #Get
 api.add_resource(KonsPost, '/kons') # Post
 api.add_resource(Kons, '/kons/<string:_id>') #Put & Delete

@@ -75,8 +75,6 @@ class Perp(Resource):
             perp.save_to_db()
         return {'perp': 'Perp updated successfully'}
 
-
-class PerpDelete(Resource):
     def delete(self, _id):
         perp = PerpModel.find_by_id(_id).first()
         if perp:
