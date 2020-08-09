@@ -52,7 +52,7 @@ class BomAlModel(db.Model):
 
     @classmethod
     def find_by_kons_id(cls, kons_id):
-        sql = text("SELECT mast.id, mast.bom_nr, mast.bom_al, mast.bom_al_desc, mast.mara_id, mara.mara_nr, mara.mat_desc, mast.fav, mast.cad_nr, mast.del_kz FROM mast LEFT JOIN mara ON mast.mara_id=mara.id WHERE mast.kons_id=:kons_id")
+        sql = text("SELECT mast.id, mast.bom_nr, mast.bom_al, mast.bom_al_desc, mast.mara_id, mara.mara_nr, mara.mat_desc, mast.fav, mast.cad_nr, mast.del_kz, mast.user_id, user.firstname, user.surname FROM mast LEFT JOIN mara ON mast.mara_id=mara.id LEFT JOIN user ON mast.user_id=user.id WHERE mast.kons_id=:kons_id")
         result = db.session.execute(sql, params={"kons_id": kons_id})
         return result.fetchall()
 
