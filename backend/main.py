@@ -35,7 +35,7 @@ from endpoints.perp import PerpPost, Perp, PerpGet
 from endpoints.kons import KonsPost, Kons, KonsGet
 from endpoints.mara import MaraGet
 from endpoints.BomItem import BomItemGet
-from endpoints.BomAl import BomAlGet
+from endpoints.BomAl import BomAlGet, BomAl, BomAlPost
 
 # SETUP STEP
 
@@ -55,21 +55,31 @@ api = Api(app)
 def create_tables():
     db.create_all()
 
+# User
 api.add_resource(UserPost, '/user') # Post (registrieren)
-jwt = JWT(app, authenticate, identity)  # Endpoint /auth
 api.add_resource(User, '/user/<string:_id>')# Put & Delete (ein User)
 api.add_resource(UserGet, '/user/<string:e_mail>')# Get (ein User)
 api.add_resource(Users, '/users') # Get (alle User)
+# Auth
+jwt = JWT(app, authenticate, identity)  # Endpoint /auth
+# t_function
 api.add_resource(FunctionGet, '/functions') #Alle Funktionen
+# Perp
 api.add_resource(PerpPost, '/perp') #Post
 api.add_resource(Perp, '/perp/<string:_id>') #Put & Delete
 api.add_resource(PerpGet, '/perp/<string:kons_id>') #Get
+# Kons
 api.add_resource(KonsPost, '/kons') # Post
 api.add_resource(Kons, '/kons/<string:_id>') #Put & Delete
 api.add_resource(KonsGet, '/kons/<string:user_id>') #Get
+# Mara
 api.add_resource(MaraGet, '/mara/<string:user_id>') # Get
+# BomItem
 api.add_resource(BomItemGet, '/bomitem/<string:mast_id>') #Get
+# BomAl
 api.add_resource(BomAlGet, '/bomal/<string:kons_id>') #Get
+api.add_resource(BomAl, '/bomal/<string:_id>') #Put & Delete
+api.add_resource(BomAlPost, '/bomal') # Post
 
 #api.add_resource(Kons, 'kons')
 

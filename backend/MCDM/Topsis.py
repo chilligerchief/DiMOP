@@ -8,6 +8,8 @@ from numpy.ma import array, sqrt
 X = array([[750, 7, 0.73, 0.106],
            [890, 3, 0.84, 0.0408]])
 
+# Class und Put Methode!
+
 # Gewichtungen der Kriterien w
 w = array([0.25, 0.25, 0.25, 0.25])
 
