@@ -31,6 +31,8 @@ from endpoints.getMaco import *
 from endpoints.getAllComp import *
 from endpoints.user import UserPost, User, UserGet, Users
 from endpoints.function import FunctionGet
+from endpoints.reltyp import ReltypGet
+from endpoints.branch import BranchGet
 from endpoints.perp import PerpPost, Perp, PerpGet
 from endpoints.kons import KonsPost, Kons, KonsGet
 from endpoints.mara import MaraGet, MaraPost, Mara
@@ -64,6 +66,10 @@ api.add_resource(Users, '/users') # Get (alle User)
 jwt = JWT(app, authenticate, identity)  # Endpoint /auth
 # t_function
 api.add_resource(FunctionGet, '/functions') #Alle Funktionen
+# t_reltype
+api.add_resource(ReltypGet, '/reltyps') #Alle Reltyps
+# t_branch
+api.add_resource(BranchGet, '/branches')#Alle Branchen
 # Perp
 api.add_resource(PerpPost, '/perp') #Post
 api.add_resource(Perp, '/perp/<string:_id>') #Put & Delete
