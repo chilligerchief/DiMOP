@@ -40,6 +40,9 @@ class BomItemModel(db.Model):
         result = db.session.execute(sql, params={"mast_id": mast_id})
         return result.fetchall()
 
+    @classmethod
+    def find_by_id(cls, _id):
+        return cls.query.filter_by(id=_id)
 
     #### POST PUT
 
