@@ -33,7 +33,7 @@ from endpoints.user import UserPost, User, UserGet, Users
 from endpoints.function import FunctionGet
 from endpoints.perp import PerpPost, Perp, PerpGet
 from endpoints.kons import KonsPost, Kons, KonsGet
-from endpoints.mara import MaraGet
+from endpoints.mara import MaraGet, MaraPost, Mara
 from endpoints.BomItem import BomItemGet, BomItem, BomItemPost
 from endpoints.BomAl import BomAlGet, BomAl, BomAlPost
 
@@ -74,6 +74,8 @@ api.add_resource(Kons, '/kons/<string:_id>') #Put & Delete
 api.add_resource(KonsGet, '/kons/<string:user_id>') #Get
 # Mara
 api.add_resource(MaraGet, '/mara/<string:user_id>') # Get
+api.add_resource(MaraPost, '/mara') # Post
+api.add_resource(Mara, '/mara/<string:_id>') # Put & Delete
 # BomItem
 api.add_resource(BomItemGet, '/bomitem/<string:mast_id>') #Get
 api.add_resource(BomItemPost, '/bomitem') #Post

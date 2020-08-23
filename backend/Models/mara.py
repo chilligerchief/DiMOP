@@ -41,7 +41,7 @@ class MaraModel(db.Model):
     Zugmodul_Senkrecht_MPa = db.Column(db.String)
 
 
-    def __init__(self, mara_nr, mat_desc, mat_int_desc,mat_rw, t_fam_id, campus_fam, user_id, t_mara_art_id, upload_kind, created_at, updated_at, dichte, unit,del_kz,producer,Verarbeitungsmethode, Belastung, Temperatur, MVR, Bruchdehnung, Bruchdehnung_Nominell, Bruchdehnung_TPE, Bruchdehnung_Senkrecht, Bruchdehnung_Parallel, Bruchspannung_MPa, Bruchspannung_TPE_MPa, Bruchspannung_Parallel_MPa, Bruchspannung_Senkrecht_Mpa, Zugmodul_MPa, Zugmodul_Kriech_1h_MPa, Zugmodul_Kriech_1000h_MPa, Zugmodul_Parallel_MPa, Zugmodul_Senkrecht_MPa):
+    def __init__(self, mara_nr, mat_desc, t_fam_id, dichte, mat_int_desc=None,mat_rw=None, campus_fam=None, user_id=None, t_mara_art_id=None, upload_kind=None, created_at=None, updated_at=None, unit=None,del_kz=None,producer=None,Verarbeitungsmethode=None, Belastung=None, Temperatur=None, MVR=None, Bruchdehnung=None, Bruchdehnung_Nominell=None, Bruchdehnung_TPE=None, Bruchdehnung_Senkrecht=None, Bruchdehnung_Parallel=None, Bruchspannung_MPa=None, Bruchspannung_TPE_MPa=None, Bruchspannung_Parallel_MPa=None, Bruchspannung_Senkrecht_Mpa=None, Zugmodul_MPa=None, Zugmodul_Kriech_1h_MPa=None, Zugmodul_Kriech_1000h_MPa=None, Zugmodul_Parallel_MPa=None, Zugmodul_Senkrecht_MPa=None):
         self.mara_nr = mara_nr
         self.mat_desc = mat_desc
         self.mat_int_desc = mat_int_desc
@@ -91,6 +91,10 @@ class MaraModel(db.Model):
         sql = text("SELECT mara.id, mara.mara_nr, mara.mat_desc, mara.mat_int_desc, mara.mat_rw, mara.t_fam_id, t_fam.fam_dimop_desc, mara.campus_fam, mara.user_id, user.firstname, user.surname, mara.t_mara_art_id, t_mara_art.art, mara.upload_kind, mara.dichte, mara.unit, mara.del_kz, mara.producer, mara.Verarbeitungsmethode, mara.Belastung, mara.Temperatur, mara.MVR, mara.Bruchdehnung, mara.Bruchdehnung_Nominell, mara.Bruchdehnung_TPE, mara.Bruchdehnung_Parallel, mara.Bruchdehnung_Senkrecht, mara.Bruchspannung_MPa, mara.Bruchspannung_TPE_MPa, mara.Bruchspannung_Parallel_MPa, mara.Bruchspannung_Senkrecht_MPa, mara.Zugmodul_MPa, mara.Zugmodul_Kriech_1h_MPa, mara.Zugmodul_Kriech_1000h_MPa, mara.Zugmodul_Parallel_MPa, mara.Zugmodul_Senkrecht_MPa FROM mara LEFT JOIN t_fam ON mara.t_fam_id=t_fam.id LEFT JOIN t_mara_art ON mara.t_mara_art_id=t_mara_art.id LEFT JOIN user ON mara.user_id=user.id WHERE mara.user_id=:user_id")
         result = db.session.execute(sql, params={"user_id": user_id})
         return result.fetchall()
+
+    @classmethod
+    def find_by_id(cls, _id):
+        return cls.query.filter_by(id=_id)
 
     #### POST PUT
 
