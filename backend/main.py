@@ -39,6 +39,7 @@ from endpoints.mara import MaraGet, MaraPost, Mara
 from endpoints.BomItem import BomItemGet, BomItem, BomItemPost
 from endpoints.BomAl import BomAlGet, BomAl, BomAlPost
 from endpoints.orga import Orgas, Orga, OrgaPost
+from endpoints.family import FamilyPost, Family, Families
 
 # SETUP STEP
 
@@ -95,6 +96,10 @@ api.add_resource(BomAlPost, '/bomal') #Post
 api.add_resource(Orgas, '/orgas') #Alle Organisationen
 api.add_resource(OrgaPost, '/orga') #Post
 api.add_resource(Orga, '/orga/<string:_id>') #Put & Deleste
+# Family
+api.add_resource(Families, '/families') #Alle Familien
+api.add_resource(FamilyPost, '/family') #Post
+api.add_resource(Family, '/family/<string:_id>') #Put & Deleste
 
 #api.add_resource(Kons, 'kons')
 

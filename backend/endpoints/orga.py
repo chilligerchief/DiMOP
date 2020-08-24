@@ -34,6 +34,7 @@ class Orga(Resource):
         if orga:
             orga.orga_nr = data['orga_nr']
             orga.orga_name = data['orga_name']
+            orga.t_branch_id = data['t_branch_id']
             orga.save_to_db()
         return {'orga': 'Orga updated successfully'}
 
