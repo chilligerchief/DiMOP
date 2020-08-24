@@ -38,6 +38,7 @@ from endpoints.kons import KonsPost, Kons, KonsGet
 from endpoints.mara import MaraGet, MaraPost, Mara
 from endpoints.BomItem import BomItemGet, BomItem, BomItemPost
 from endpoints.BomAl import BomAlGet, BomAl, BomAlPost
+from endpoints.orga import Orgas, Orga, OrgaPost
 
 # SETUP STEP
 
@@ -90,6 +91,10 @@ api.add_resource(BomItem, '/bomitem/<string:_id>') #Put & Delete
 api.add_resource(BomAlGet, '/bomal/<string:kons_id>') #Get
 api.add_resource(BomAl, '/bomal/<string:_id>') #Put & Delete
 api.add_resource(BomAlPost, '/bomal') #Post
+# Orga
+api.add_resource(Orgas, '/orgas') #Alle Organisationen
+api.add_resource(OrgaPost, '/orga') #Post
+api.add_resource(Orga, '/orga/<string:_id>') #Put & Deleste
 
 #api.add_resource(Kons, 'kons')
 
