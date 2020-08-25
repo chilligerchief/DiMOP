@@ -42,6 +42,7 @@ from endpoints.orga import Orgas, Orga, OrgaPost
 from endpoints.family import FamilyPost, Family, Families
 from endpoints.maco import MacoGet, MacoPost, Maco
 from endpoints.comp import CompGet, CompPost, Comp
+from endpoints.origin import OriginGet
 
 # SETUP STEP
 
@@ -74,6 +75,8 @@ api.add_resource(FunctionGet, '/functions') #Alle Funktionen
 api.add_resource(ReltypGet, '/reltyps') #Alle Reltyps
 # t_branch
 api.add_resource(BranchGet, '/branches')#Alle Branchen
+# t_origin
+api.add_resource(OriginGet, '/origins') #Alle Origings der Comp-values
 # Perp
 api.add_resource(PerpPost, '/perp') #Post
 api.add_resource(Perp, '/perp/<string:_id>') #Put & Delete
