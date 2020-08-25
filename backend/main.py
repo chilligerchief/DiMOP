@@ -40,6 +40,7 @@ from endpoints.BomItem import BomItemGet, BomItem, BomItemPost
 from endpoints.BomAl import BomAlGet, BomAl, BomAlPost
 from endpoints.orga import Orgas, Orga, OrgaPost
 from endpoints.family import FamilyPost, Family, Families
+from endpoints.maco import MacoGet, MacoPost, Maco
 
 # SETUP STEP
 
@@ -100,6 +101,10 @@ api.add_resource(Orga, '/orga/<string:_id>') #Put & Deleste
 api.add_resource(Families, '/families') #Alle Familien
 api.add_resource(FamilyPost, '/family') #Post
 api.add_resource(Family, '/family/<string:_id>') #Put & Deleste
+# Maco
+api.add_resource(MacoGet, '/maco/<string:stpo_id>') #Get
+api.add_resource(MacoPost, '/maco') #Post
+api.add_resource(Maco, '/maco/<string:_id>') #Put & Deleste
 
 #api.add_resource(Kons, 'kons')
 
