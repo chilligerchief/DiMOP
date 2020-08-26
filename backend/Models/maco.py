@@ -2,9 +2,6 @@ from dbfunctions.connect import db
 from datetime import datetime
 from sqlalchemy import text
 
-from sqlalchemy.dialects import mysql
-
-
 class MacoModel(db.Model):
     __tablename__ = 'maco'
 
@@ -20,7 +17,6 @@ class MacoModel(db.Model):
         self.t_reltyp_id = t_reltyp_id
         self.mass_product = mass_product
 
-    ### GET, POST; PUT; DELETE
     def json(self):
         return { 'id' : self.id, 'stpo_id_comp_a' : self.stpo_id_comp_a, 'stpo_id_comp_b' : self.stpo_id_comp_b, 't_reltyp_id' : self.t_reltyp_id, 'mass_product' : self.mass_product}
 
@@ -34,9 +30,6 @@ class MacoModel(db.Model):
     def find_by_id(cls, _id):
         return cls.query.filter_by(id=_id)
 
-
-    #### POST PUT
-
     def save_to_db(self):
         db.session.add(self)
         db.session.commit()
@@ -44,6 +37,3 @@ class MacoModel(db.Model):
     def delete_from_db(self):
         db.session.delete(self)
         db.session.commit()
-
-    #def get_from_db(self):
-        #db.session.execute(self)

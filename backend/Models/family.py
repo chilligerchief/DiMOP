@@ -11,15 +11,12 @@ class FamilyModel(db.Model):
     level = db.Column(db.Integer)
     fam_weak = db.Column(db.Integer)
 
-
     def __init__(self, fam, fam_dimop_desc, level, fam_weak):
         self.fam = fam
         self.fam_dimop_desc = fam_dimop_desc
         self.level = level
         self.fam_weak = fam_weak
 
-
-    ### GET, POST; PUT; DELETE
     def json(self):
         return { 'id' : self.id, 'fam' : self.fam, 'fam_dimop_desc' : self.fam_dimop_desc, 'level' : self.level, 'fam_weak': self.fam_weak}
 
@@ -32,8 +29,6 @@ class FamilyModel(db.Model):
         sql = text("SELECT * from t_fam")
         result = db.session.execute(sql)
         return result.fetchall()
-
-    #### POST PUT
 
     def save_to_db(self):
         db.session.add(self)

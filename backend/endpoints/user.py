@@ -108,7 +108,7 @@ class User(Resource):
         user.save_to_db()
         return {'User': 'User updated successfully'}
 
-    def delete(self, _id):                      # Delete User by ID
+    def delete(self, _id):
         user = UserModel.find_by_id(_id)
         if user:
             user.delete_from_db()

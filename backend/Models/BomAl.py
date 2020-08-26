@@ -25,7 +25,6 @@ class BomAlModel(db.Model):
     auth_orga = db.Column(db.Boolean)
     del_kz = db.Column(db.Boolean)
 
-
     def __init__(self, bom_nr, bom_al, bom_al_desc,user_id, orga_id, kons_id, mara_id, fav, ext_mara_id, ext_mara_desc, cad_nr, auth_read, auth_write, auth_delete, auth_orga, del_kz, created_at= None, updated_at= None):
         self.bom_nr = bom_nr
         self.bom_al = bom_al
@@ -46,7 +45,6 @@ class BomAlModel(db.Model):
         self.auth_orga = auth_orga
         self.del_kz = del_kz
 
-    ### GET, POST; PUT; DELETE
     def json(self):
         return { 'id' : self.id, 'bom_nr' : self.bom_nr, 'bom_al' : self.bom_al, 'bom_al_desc' : self.bom_al_desc, 'mara_id' : self.mara_id, 'fav' : self.fav, 'cad_nr' : self.cad_nr, 'del_kz' : self.del_kz}
 
@@ -59,9 +57,6 @@ class BomAlModel(db.Model):
     @classmethod
     def find_by_id(cls, _id):
         return cls.query.filter_by(id=_id)
-
-
-    #### POST PUT
 
     def save_to_db(self):
         db.session.add(self)

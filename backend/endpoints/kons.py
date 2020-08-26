@@ -1,6 +1,5 @@
 from flask_restful import Resource, reqparse
 from Models.kons import KonsModel
-import hashlib, uuid
 
 
 class KonsPost(Resource):
@@ -75,9 +74,3 @@ class KonsGet(Resource):
         for x in kons:
             my_list.append(dict(x))
         return my_list
-
-
-        #if kons:
-        #    return {'Konstruktionen': [x.json() for x in kons]}
-        #else:
-        #    return {'kons': 'kons not found'}, 404

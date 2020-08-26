@@ -5,30 +5,6 @@ from flask_restful import Api
 from security import authenticate, identity
  
 ###ENDPOINTS (Resource)
-
-#from endpoints.listusers import *
-#from endpoints.getBom import *
-#from endpoints.getKons import *
-#from endpoints.getPersKons import *
-#from endpoints.putKons import *
-#from endpoints.putPersKons import *
-#from endpoints.deleteKons import *
-#from endpoints.deletePersKons import *
-#from endpoints.getUser import *
-#from endpoints.postKons import *
-#from endpoints.getMara import *
-from endpoints.getOrga import *
-#from endpoints.getBomItem import *
-from endpoints.getBomAl import *
-from endpoints.getBranch import *
-#from endpoints.getFunction import *
-from endpoints.getReltyp import *
-from endpoints.getFam import *
-from endpoints.getComp import *
-#from endpoints.getKons_test import *
-from endpoints.getMaco import *
-#from endpoints.getAllUser import *
-from endpoints.getAllComp import *
 from endpoints.user import UserPost, User, UserGet, Users
 from endpoints.function import FunctionGet
 from endpoints.reltyp import ReltypGet
@@ -45,7 +21,6 @@ from endpoints.comp import CompGet, CompPost, Comp
 from endpoints.origin import OriginGet
 
 # SETUP STEP
-
 app = Flask(__name__)
 CORS(app)
 
@@ -62,13 +37,8 @@ api = Api(app)
 def create_tables():
     db.create_all()
 
-# User
-api.add_resource(UserPost, '/user') # Post (registrieren)
-api.add_resource(User, '/user/<string:_id>')# Put & Delete (ein User)
-api.add_resource(UserGet, '/user/<string:e_mail>')# Get (ein User)
-api.add_resource(Users, '/users') # Get (alle User)
 # Auth
-jwt = JWT(app, authenticate, identity)  # Endpoint /auth
+jwt = JWT(app, authenticate, identity)  #Auth
 # t_function
 api.add_resource(FunctionGet, '/functions') #Alle Funktionen
 # t_reltype
@@ -77,6 +47,11 @@ api.add_resource(ReltypGet, '/reltyps') #Alle Reltyps
 api.add_resource(BranchGet, '/branches')#Alle Branchen
 # t_origin
 api.add_resource(OriginGet, '/origins') #Alle Origings der Comp-values
+# User
+api.add_resource(UserPost, '/user') # Post (Registrierung)
+api.add_resource(User, '/user/<string:_id>')# Put & Delete (ein User)
+api.add_resource(UserGet, '/user/<string:e_mail>')# Get (ein User)
+api.add_resource(Users, '/users') # Get (alle User)
 # Perp
 api.add_resource(PerpPost, '/perp') #Post
 api.add_resource(Perp, '/perp/<string:_id>') #Put & Delete
@@ -114,43 +89,14 @@ api.add_resource(CompGet, '/comp/<string:t_fam_id>') #Get
 api.add_resource(CompPost, '/comp') #Post
 api.add_resource(Comp, '/comp/<string:_id>') #Put & Deleste
 
-#api.add_resource(Kons, 'kons')
-
-
-#if __name__ == '__main__':
-#     from db import db
-#     db.init_app(app)
-#     app.run(port=5000, debug=True)
-
-####Adrian Input######
-
-#app.register_blueprint(listusers_bp)
-#app.register_blueprint(getBom_bp)
-#app.register_blueprint(getKons_bp)
-#app.register_blueprint(getPersKons_bp)
-#app.register_blueprint(putKons_bp)
-#app.register_blueprint(putPersKons_bp)
-#app.register_blueprint(deleteKons_bp)
-#app.register_blueprint(deletePersKons_bp)
-#app.register_blueprint(getUser_bp)
-#app.register_blueprint(postKons_bp)
-#app.register_blueprint(getMara_bp)
-app.register_blueprint(getOrga_bp)
-#app.register_blueprint(getBomItem_bp)
-app.register_blueprint(getBomAl_bp)
-app.register_blueprint(getBranch_bp)
-#app.register_blueprint(getFunction_bp)
-app.register_blueprint(getReltyp_bp)
-app.register_blueprint(getFam_bp)
-app.register_blueprint(getComp_bp)
-#app.register_blueprint(getKons_test_bp)
-app.register_blueprint(getMaco_bp)
-#app.register_blueprint(getAllUser_bp)
-#app.register_blueprint(User_bp)
-app.register_blueprint(getAllComp_bp)
-
-
 if __name__ == '__main__':
     from dbfunctions.connect import db
     db.init_app(app)
     app.run(host= '0.0.0.0',debug=True)
+
+#####Altes Format Main
+#app.register_blueprint(listusers_bp) # als altes Beispiel beibehalten
+#if __name__ == '__main__':
+#     from db import db
+#     db.init_app(app)
+#     app.run(port=5000, debug=True)

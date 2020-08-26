@@ -1,6 +1,5 @@
 from flask_restful import Resource, reqparse
 from Models.comp import CompModel
-import hashlib, uuid
 
 
 class CompPost(Resource):

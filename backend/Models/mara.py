@@ -40,7 +40,6 @@ class MaraModel(db.Model):
     Zugmodul_Parallel_MPa = db.Column(db.String)
     Zugmodul_Senkrecht_MPa = db.Column(db.String)
 
-
     def __init__(self, mara_nr, mat_desc, t_fam_id, dichte, mat_int_desc=None,mat_rw=None, campus_fam=None, user_id=None, t_mara_art_id=None, upload_kind=None, created_at=None, updated_at=None, unit=None,del_kz=None,producer=None,Verarbeitungsmethode=None, Belastung=None, Temperatur=None, MVR=None, Bruchdehnung=None, Bruchdehnung_Nominell=None, Bruchdehnung_TPE=None, Bruchdehnung_Senkrecht=None, Bruchdehnung_Parallel=None, Bruchspannung_MPa=None, Bruchspannung_TPE_MPa=None, Bruchspannung_Parallel_MPa=None, Bruchspannung_Senkrecht_Mpa=None, Zugmodul_MPa=None, Zugmodul_Kriech_1h_MPa=None, Zugmodul_Kriech_1000h_MPa=None, Zugmodul_Parallel_MPa=None, Zugmodul_Senkrecht_MPa=None):
         self.mara_nr = mara_nr
         self.mat_desc = mat_desc
@@ -76,7 +75,6 @@ class MaraModel(db.Model):
         self.Zugmodul_Parallel_MPa = Zugmodul_Parallel_MPa
         self.Zugmodul_Senkrecht_MPa = Zugmodul_Senkrecht_MPa
 
-    ### GET, POST; PUT; DELETE
     def json(self):
         return { 'id' : self.id, 'mara_nr' : self.mara_nr, 'mat_desc' : self.mat_desc, 'mat_int_desc' : self.mat_int_desc, 'mat_rw' : self.mat_rw, 't_fam_id' : self.t_fam_id, 'campus_fam' : self.campus_fam, 'user_id' : self.user_id,
                  't_mara_art_id' : self.t_mara_art_id, 'upload_kind' : self.upload_kind, 'dichte' : self.dichte, 'unit' : self.unit, 'del_kz' : self.del_kz,
@@ -95,8 +93,6 @@ class MaraModel(db.Model):
     @classmethod
     def find_by_id(cls, _id):
         return cls.query.filter_by(id=_id)
-
-    #### POST PUT
 
     def save_to_db(self):
         db.session.add(self)

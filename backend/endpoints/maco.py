@@ -1,7 +1,5 @@
 from flask_restful import Resource, reqparse
 from Models.maco import MacoModel
-import hashlib, uuid
-
 
 class MacoPost(Resource):
     parser = reqparse.RequestParser()

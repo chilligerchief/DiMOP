@@ -30,7 +30,6 @@ class BomItemModel(db.Model):
         self.weight_ui = weight_ui
         self.qr_relevant = qr_relevant
 
-    ### GET, POST; PUT; DELETE
     def json(self):
         return { 'id' : self.id, 'mara_id' : self.mara_id, 'pos' : self.pos, 'height_erp' : self.height_erp, 'width_erp' : self.width_erp, 'depth_erp' : self.depth_erp, 'volume_cad' : self.volume_cad, 'unit_cad' : self.unit_cad, 'weight_ui' : self.weight_ui, 'qr_relevant' : self.qr_relevant}
 
@@ -43,8 +42,6 @@ class BomItemModel(db.Model):
     @classmethod
     def find_by_id(cls, _id):
         return cls.query.filter_by(id=_id)
-
-    #### POST PUT
 
     def save_to_db(self):
         db.session.add(self)

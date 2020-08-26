@@ -2,9 +2,6 @@ from dbfunctions.connect import db
 from datetime import datetime
 from sqlalchemy import text
 
-from sqlalchemy.dialects import mysql
-
-
 class CompModel(db.Model):
     __tablename__ = 'comp'
 
@@ -24,7 +21,6 @@ class CompModel(db.Model):
         self.orga_id = orga_id
         self.comp_value = comp_value
 
-    ### GET, POST; PUT; DELETE
     def json(self):
         return { 'id' : self.id, 't_fam_id_parent' : self.t_fam_id_parent, 't_fam_id_child' : self.t_fam_id_child, 't_origin_id' : self.t_origin_id, 'user_id' : self.user_id, 'orga_id' : self.orga_id, 'comp_value' : self.comp_value}
 
@@ -38,9 +34,6 @@ class CompModel(db.Model):
     def find_by_id(cls, _id):
         return cls.query.filter_by(id=_id)
 
-
-    #### POST PUT
-
     def save_to_db(self):
         db.session.add(self)
         db.session.commit()
@@ -48,6 +41,3 @@ class CompModel(db.Model):
     def delete_from_db(self):
         db.session.delete(self)
         db.session.commit()
-
-    #def get_from_db(self):
-        #db.session.execute(self)
