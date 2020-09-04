@@ -6,7 +6,7 @@ class BomAlModel(db.Model):
     __tablename__ = 'mast'
 
     id = db.Column(db.Integer, primary_key=True)
-    bom_nr = db.Column(db.Integer)
+    bom_desc = db.Column(db.String)
     bom_al = db.Column(db.Integer, unique=True)
     bom_al_desc = db.Column(db.String)
     user_id = db.Column(db.Integer)
@@ -25,8 +25,8 @@ class BomAlModel(db.Model):
     auth_orga = db.Column(db.Boolean)
     del_kz = db.Column(db.Boolean)
 
-    def __init__(self, bom_nr, bom_al, bom_al_desc,user_id, orga_id, kons_id, mara_id, fav, ext_mara_id, ext_mara_desc, cad_nr, auth_read, auth_write, auth_delete, auth_orga, del_kz, created_at= None, updated_at= None):
-        self.bom_nr = bom_nr
+    def __init__(self, bom_desc, bom_al, bom_al_desc,user_id, orga_id, kons_id, mara_id, fav, ext_mara_id, ext_mara_desc, cad_nr, auth_read, auth_write, auth_delete, auth_orga, del_kz, created_at= None, updated_at= None):
+        self.bom_desc = bom_desc
         self.bom_al = bom_al
         self.bom_al_desc = bom_al_desc
         self.user_id = user_id
@@ -46,11 +46,11 @@ class BomAlModel(db.Model):
         self.del_kz = del_kz
 
     def json(self):
-        return { 'id' : self.id, 'bom_nr' : self.bom_nr, 'bom_al' : self.bom_al, 'bom_al_desc' : self.bom_al_desc, 'mara_id' : self.mara_id, 'fav' : self.fav, 'cad_nr' : self.cad_nr, 'del_kz' : self.del_kz}
+        return { 'id' : self.id, 'bom_desc' : self.bom_desc, 'bom_al' : self.bom_al, 'bom_al_desc' : self.bom_al_desc, 'mara_id' : self.mara_id, 'fav' : self.fav, 'cad_nr' : self.cad_nr, 'del_kz' : self.del_kz}
 
     @classmethod
     def find_by_kons_id(cls, kons_id):
-        sql = text("SELECT mast.id, mast.bom_nr, mast.bom_al, mast.bom_al_desc, mast.mara_id, mara.mara_nr, mara.mat_desc, mast.fav, mast.cad_nr, mast.del_kz, mast.user_id, user.firstname, user.surname FROM mast LEFT JOIN mara ON mast.mara_id=mara.id LEFT JOIN user ON mast.user_id=user.id WHERE mast.kons_id=:kons_id")
+        sql = text("SELECT mast.id, mast.bom_desc, mast.bom_al, mast.bom_al_desc, mast.mara_id, mara.mara_nr, mara.mat_desc, mast.fav, mast.cad_nr, mast.del_kz, mast.user_id, user.firstname, user.surname FROM mast LEFT JOIN mara ON mast.mara_id=mara.id LEFT JOIN user ON mast.user_id=user.id WHERE mast.kons_id=:kons_id")
         result = db.session.execute(sql, params={"kons_id": kons_id})
         return result.fetchall()
 

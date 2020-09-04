@@ -4,8 +4,8 @@ from datetime import datetime
 
 class BomAlPost(Resource):
     parser = reqparse.RequestParser()
-    parser.add_argument('bom_nr',
-                        type=int,
+    parser.add_argument('bom_desc',
+                        type=str,
                         required=True,
                         help="This field cannot be blank."
                         )
@@ -96,8 +96,8 @@ class BomAlPost(Resource):
 
 class BomAl(Resource):
     parser = reqparse.RequestParser()
-    parser.add_argument('bom_nr',
-                        type=int,
+    parser.add_argument('bom_desc',
+                        type=str,
                         required=True,
                         help="This field cannot be blank."
                         )
@@ -161,7 +161,7 @@ class BomAl(Resource):
         data = BomAl.parser.parse_args()
         bomal = BomAlModel.find_by_id(_id).first()
         if bomal:
-            bomal.bom_nr = data['bom_nr']
+            bomal.bom_desc = data['bom_desc']
             bomal.bom_al = data['bom_al']
             bomal.bom_al_desc = data['bom_al_desc']
             bomal.user_id = data['user_id']
