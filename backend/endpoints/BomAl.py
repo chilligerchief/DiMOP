@@ -136,6 +136,11 @@ class BomAl(Resource):
                         required=True,
                         help="This field cannot be blank."
                         )
+    parser.add_argument('cad_nr',
+                        type=int,
+                        required=True,
+                        help="This field cannot be blank."
+                        )
     parser.add_argument('auth_read',
                         type=bool,
                         required=True,
@@ -164,6 +169,7 @@ class BomAl(Resource):
             bomal.kons_id = data['kons_id']
             bomal.mara_id = data['mara_id']
             bomal.fav = data['fav']
+            bomal.cad_nr = data['cad_nr']
             bomal.auth_read = data['auth_read']
             bomal.auth_write = data['auth_write']
             bomal.auth_delete = data['auth_delete']

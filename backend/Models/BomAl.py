@@ -7,7 +7,7 @@ class BomAlModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     bom_nr = db.Column(db.Integer)
-    bom_al = db.Column(db.Integer)
+    bom_al = db.Column(db.Integer, unique=True)
     bom_al_desc = db.Column(db.String)
     user_id = db.Column(db.Integer)
     orga_id = db.Column(db.Integer)
