@@ -5,7 +5,7 @@ from flask_restful import Api
 from security import authenticate, identity
  
 ###ENDPOINTS (Resource)
-from endpoints.user import UserPost, User, UserGet, Users
+from endpoints.user import UserPost, User, UserGet, Users, ChangePassword
 from endpoints.function import FunctionGet
 from endpoints.reltyp import ReltypGet
 from endpoints.branch import BranchGet
@@ -52,6 +52,7 @@ api.add_resource(UserPost, '/user') # Post (Registrierung)
 api.add_resource(User, '/user/<string:_id>')# Put & Delete (ein User)
 api.add_resource(UserGet, '/user/<string:e_mail>')# Get (ein User)
 api.add_resource(Users, '/users') # Get (alle User)
+api.add_resource(ChangePassword, '/password/<string:_id>')# Put User-Passwort
 # Perp
 api.add_resource(PerpPost, '/perp') #Post
 api.add_resource(Perp, '/perp/<string:_id>') #Put & Delete

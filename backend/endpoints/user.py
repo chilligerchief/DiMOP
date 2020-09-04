@@ -132,11 +132,29 @@ class Users(Resource):
             my_list.append(dict(x))
         return my_list
 
+class ChangePassword(Resource):
+    parser = reqparse.RequestParser()
+    parser.add_argument('password',
+                        type=str,
+                        required=True,
+                        help="Please enter your password :)"
+                        )
+
+    def put(self, _id):
+        data = ChangePassword.parser.parse_args()
+        user = UserModel.find_by_id(_id)
+
+        if user:
+          user.password = data['password']
+
+        user.save_to_db()
+        return {'PW': 'Password updated successfully'}
+
+
+
 #class Users(Resource):
     #def get(self):
         #return {'users': [user.json() for user in UserModel.query.all()]}
-
-
 
 
     ####### NOTIZEN
