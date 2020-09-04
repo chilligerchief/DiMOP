@@ -44,16 +44,6 @@ class BomAlPost(Resource):
                         required=True,
                         help="This field cannot be blank."
                         )
-    parser.add_argument('ext_mara_id',
-                        type=str,
-                        required=True,
-                        help="This field cannot be blank."
-                        )
-    parser.add_argument('ext_mara_desc',
-                        type=str,
-                        required=True,
-                        help="This field cannot be blank."
-                        )
     parser.add_argument('cad_nr',
                         type=int,
                         required=True,

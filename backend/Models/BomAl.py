@@ -25,7 +25,7 @@ class BomAlModel(db.Model):
     auth_orga = db.Column(db.Boolean)
     del_kz = db.Column(db.Boolean)
 
-    def __init__(self, bom_desc, bom_al, bom_al_desc,user_id, orga_id, kons_id, mara_id, fav, ext_mara_id, ext_mara_desc, cad_nr, auth_read, auth_write, auth_delete, auth_orga, del_kz, created_at= None, updated_at= None):
+    def __init__(self, bom_desc, bom_al, bom_al_desc,user_id, orga_id, kons_id, mara_id, fav, cad_nr, auth_read, auth_write, auth_delete, auth_orga, del_kz, ext_mara_id=None, ext_mara_desc=None, created_at= None, updated_at= None):
         self.bom_desc = bom_desc
         self.bom_al = bom_al
         self.bom_al_desc = bom_al_desc
