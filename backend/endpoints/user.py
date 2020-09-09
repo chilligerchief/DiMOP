@@ -82,11 +82,6 @@ class User(Resource):
                         required=True,
                         help="ID field cannot be blank."
                         )
-    parser.add_argument('password',
-                        type=str,
-                        required=True,
-                        help="Please enter your password :)"
-                        )
     parser.add_argument('orga_id',
                         type=int,
                         required=True,
@@ -102,7 +97,6 @@ class User(Resource):
           user.surname = data['surname']
           user.orga_id = data['orga_id']
           user.t_function_id = data['t_function_id']
-          user.password = data['password']
           user.e_mail = data['e_mail']
 
         user.save_to_db()
