@@ -47,7 +47,9 @@ class UserModel(db.Model):
 
     @classmethod
     def find_by_id(cls, _id):
-        return cls.query.filter_by(id=_id).first()
+        sql = text("SELECT user.id, user.firstname, user.surname, user.e_mail, user.orga_id, orga.orga_name, user.t_function_id, t_function.`function`, user.del_kz FROM user LEFT JOIN orga ON user.orga_id=orga.id LEFT JOIN t_function ON user.t_function_id=t_function.id WHERE user.id=:id")
+        result = db.session.execute(sql, params={"id": _id})
+        return result.fetchall()
 
     @classmethod
     def find_all_Users(cls):

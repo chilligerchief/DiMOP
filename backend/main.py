@@ -50,7 +50,7 @@ api.add_resource(OriginGet, '/origins') #Alle Origings der Comp-values
 # User
 api.add_resource(UserPost, '/user') # Post (Registrierung)
 api.add_resource(User, '/user/<string:_id>')# Put & Delete (ein User)
-api.add_resource(UserGet, '/user/<string:e_mail>')# Get (ein User)
+api.add_resource(UserGet, '/user/<string:_id>')# Get (ein User)
 api.add_resource(Users, '/users') # Get (alle User)
 api.add_resource(ChangePassword, '/password/<string:_id>')# Put User-Passwort
 # Perp

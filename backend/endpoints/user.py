@@ -109,8 +109,8 @@ class User(Resource):
         return {'user': 'User deleted'}
 
 class UserGet(Resource):
-    def get(self, e_mail):
-        user = UserModel.find_by_e_mail(e_mail)
+    def get(self, _id):
+        user = UserModel.find_by_id(_id)
         my_list = []
         for x in user:
             my_list.append(dict(x))
