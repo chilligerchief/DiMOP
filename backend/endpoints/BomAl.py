@@ -24,11 +24,6 @@ class BomAlPost(Resource):
                         required=True,
                         help="This field cannot be blank."
                         )
-    parser.add_argument('orga_id',
-                        type=int,
-                        required=True,
-                        help="This field cannot be blank."
-                        )
     parser.add_argument('kons_id',
                         type=int,
                         required=True,
@@ -106,11 +101,6 @@ class BomAl(Resource):
                         required=True,
                         help="This field cannot be blank."
                         )
-    parser.add_argument('orga_id',
-                        type=int,
-                        required=True,
-                        help="This field cannot be blank."
-                        )
     parser.add_argument('kons_id',
                         type=int,
                         required=True,
@@ -155,7 +145,6 @@ class BomAl(Resource):
             bomal.bom_al = data['bom_al']
             bomal.bom_al_desc = data['bom_al_desc']
             bomal.user_id = data['user_id']
-            bomal.orga_id = data['orga_id']
             bomal.kons_id = data['kons_id']
             bomal.mara_id = data['mara_id']
             bomal.fav = data['fav']
