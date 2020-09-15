@@ -3,12 +3,10 @@ from numpy.core import cumsum, amax, amin
 from numpy.ma import array, sqrt
 
 # Entscheidungsmatrix X
-# Kriterien: Preis (€/T), Co2 (Random Werte von 1-7), RW (siehe Mara), Gewicht (Fertigprodukt)
+# Kriterien: Preis (€/T, random Werte), Co2 (Random Werte von 1-7), RW (siehe Mara: mat_rw), Gewicht (siehe stpo: weight_ui)
 # verglichene Materialien bzw. Mara_id: 1 & 25
 X = array([[750, 7, 0.73, 0.106],
            [890, 3, 0.84, 0.0408]])
-
-# Class und Put Methode!
 
 # Gewichtungen der Kriterien w
 w = array([0.25, 0.25, 0.25, 0.25])
@@ -39,5 +37,6 @@ D_minus = np.round(sqrt(sum(b2, 0)),4)
 print ('D_minus = ',D_minus)
 
 # Schrit 5: Berechnung der relativen Nähe zur idealen Lösung
-C_stern = array([round(D_minus[i] / (D_stern[i] + D_minus[i]),4) for i in range(2)])
-print("C_stern = ", C_stern)
+Gesamtwert = array([round(D_minus[i] / (D_stern[i] + D_minus[i]),4) for i in range(2)])
+print("Gesamtwert = ", Gesamtwert)
+# --> höchster Wert am besten (bei Maximierungsproblem)
