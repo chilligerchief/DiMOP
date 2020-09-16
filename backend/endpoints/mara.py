@@ -42,6 +42,7 @@ class Mara(Resource):
             mara.mat_desc = data['mat_desc']
             mara.t_fam_id = data['t_fam_id']
             mara.dichte = data['dichte']
+            # Anmerkung Tobi: Eventuell muesste man Dichte hier umbenennen
             mara.save_to_db()
         return {'mara': 'material updated successfully'}
 
