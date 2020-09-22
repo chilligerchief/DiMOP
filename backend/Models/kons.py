@@ -1,6 +1,7 @@
 from dbfunctions.connect import db
 from datetime import datetime
 from sqlalchemy import text
+from sqlalchemy.sql import func
 
 class KonsModel(db.Model):
     __tablename__ = 'kons'
@@ -10,7 +11,7 @@ class KonsModel(db.Model):
     kons_desc = db.Column(db.Text(65535))
     orga_id = db.Column(db.Integer)
     mara_id = db.Column(db.Integer)
-    created_at = datetime
+    created_at = db.Column(db.DateTime)
     updated_at = datetime
     del_kz = db.Column(db.Boolean)
 
@@ -28,7 +29,12 @@ class KonsModel(db.Model):
 
     @classmethod
     def find_by_user_id(cls, user_id):
-        sql = text("SELECT kons.id, kons.kons_title, kons.kons_desc, kons.orga_id, orga.orga_name, kons.mara_id, mara.mara_nr, mara.mat_desc, kons.del_kz FROM kons LEFT JOIN mara ON kons.mara_id=mara.id LEFT join orga ON kons.orga_id=orga.id LEFT JOIN perp on perp.kons_id=kons.id LEFT JOIN user on perp.user_id=user.id where user.id=:user_id")
+        sql = text("SELECT kons.id, kons.kons_title, kons.kons_desc, kons.orga_id, orga.orga_name, kons.mara_id, "
+                   "mara.mara_nr, mara.mat_desc, kons.del_kz FROM kons LEFT JOIN "
+                   "mara ON kons.mara_id=mara.id LEFT join orga ON kons.orga_id=orga.id LEFT JOIN perp on "
+                   "perp.kons_id=kons.id LEFT JOIN user on perp.user_id=user.id where user.id=:user_id")
+        #kons.created_at =:created
+        #sql = sql.bindparams(created=datetime)
         result = db.session.execute(sql, params={"user_id": user_id})
         return result.fetchall()
 
