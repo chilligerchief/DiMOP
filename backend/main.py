@@ -19,6 +19,7 @@ from endpoints.family import FamilyPost, Family, Families
 from endpoints.maco import MacoGet, MacoPost, Maco
 from endpoints.comp import CompGet, CompPost, Comp
 from endpoints.origin import OriginGet
+from endpoints.tabletree import Tabletree
 
 # SETUP STEP
 app = Flask(__name__)
@@ -41,6 +42,8 @@ def create_tables():
 jwt = JWT(app, authenticate, identity)  #Auth
 # t_function
 api.add_resource(FunctionGet, '/functions') #Alle Funktionen
+# tabletree
+api.add_resource(Tabletree, '/tree/<string:mast_id>')
 # t_reltype
 api.add_resource(ReltypGet, '/reltyps') #Alle Reltyps
 # t_branch
