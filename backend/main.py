@@ -20,6 +20,7 @@ from endpoints.maco import MacoGet, MacoPost, Maco
 from endpoints.comp import CompGet, CompPost, Comp
 from endpoints.origin import OriginGet
 from endpoints.tabletree import Tabletree
+#from endpoints.topsis import Topsis
 
 # SETUP STEP
 app = Flask(__name__)
@@ -44,6 +45,8 @@ jwt = JWT(app, authenticate, identity)  #Auth
 api.add_resource(FunctionGet, '/functions') #Alle Funktionen
 # tabletree
 api.add_resource(Tabletree, '/tree/<string:mast_id>')
+# topsis
+#api.add_resource(Topsis, '/topsis')
 # t_reltype
 api.add_resource(ReltypGet, '/reltyps') #Alle Reltyps
 # t_branch

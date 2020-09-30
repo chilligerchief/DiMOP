@@ -3,7 +3,7 @@ from numpy.core import cumsum, amax, amin
 from numpy.ma import array, sqrt
 
 # Entscheidungsmatrix X
-# Kriterien: Preis (€/k) --> Min, Co2 (CO2-Äquivalent/kg Kunststoff) --> Max, RW --> Max,
+# Kriterien: Preis (€/kg) --> Min, Co2 (CO2-Äquivalent/kg Kunststoff) --> Max, RW --> Max,
 # Gewicht (siehe stpo: weight_ui) --> Min
 X = array([[0.89, 2.31, 0.73, 0.1060],
            [1.45, 1.79, 0.84, 0.0408],
