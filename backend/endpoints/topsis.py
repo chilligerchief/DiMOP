@@ -50,7 +50,14 @@ class Topsis(Resource):
         print("Gesamtwert = ", Gesamtwert)
         # --> höchster Wert am besten (bei Maximierungsproblem)
         result = Gesamtwert.tolist()
-        return {'Gesamtwert Material 1' : result[0], 'Gesamtwert Material 2' : result[1],
-                'Gesamtwert Material 3' : result[2], 'Gesamtwert Material 4' : result[3],
-                'Gesamtwert Material 5' : result[4], 'Gesamtwert Material 6' : result[5],
-                'Gesamtwert Material 7' : result[6], 'Gesamtwert Material 8' : result[7]}
+        input = X.tolist()
+        return {
+                'Input Material 1 (P, CO2, RW, W)': input[0], 'Gesamtwert Material 1': result[0],
+                'Input Material 2 (P, CO2, RW, W)': input[1], 'Gesamtwert Material 2': result[1],
+                'Input Material 3 (P, CO2, RW, W)': input[2], 'Gesamtwert Material 3': result[2],
+                'Input Material 4 (P, CO2, RW, W)': input[3], 'Gesamtwert Material 4': result[3],
+                'Input Material 5 (P, CO2, RW, W)': input[4], 'Gesamtwert Material 5': result[4],
+                'Input Material 6 (P, CO2, RW, W)': input[5], 'Gesamtwert Material 6': result[5],
+                'Input Material 7 (P, CO2, RW, W)': input[6], 'Gesamtwert Material 7': result[6],
+                'Input Material 8 (P, CO2, RW, W)': input[7], 'Gesamtwert Material 8': result[7],
+                }
