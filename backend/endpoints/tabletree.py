@@ -3,7 +3,6 @@ from dbfunctions.connect import db
 from sqlalchemy import create_engine, MetaData, text
 from flask_sqlalchemy import SQLAlchemy
 import pandas as pd
-#from flask import jsonify
 
 
 class Tabletree(Resource):
@@ -18,7 +17,12 @@ class Tabletree(Resource):
         result_list.append(result)
         result_list = getChildren(mara_id, result_list, mast, stpo)
 
-        return result_list
+        result_df = pd.DataFrame(result_list)
+        result_df = result_df.rename(
+            columns={0: "mara_id", 1: "result_id", 2: "parent_id"})
+        result_json = result_df.to_json(orient="records")
+
+        return result_json
 
 
 def connect_db():
