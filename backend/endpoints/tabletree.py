@@ -1,19 +1,67 @@
 from flask_restful import Resource, reqparse
 from dbfunctions.connect import db
-from sqlalchemy import text
+from sqlalchemy import create_engine, MetaData, text
+from flask_sqlalchemy import SQLAlchemy
+import pandas as pd
+
 
 class Tabletree(Resource):
-    def get(self, mast_id):
-        full_list = []
-        mast_ids = [mast_id]
-        while mast_ids:
-            mast_id = mast_ids.pop()
-            temp = [dict(x) for x in findchildren(mast_id)]
-            full_list += temp
-            mast_ids += [t["mast_id_children"] for t in temp if t["mast_id_children"] != None]
-        return full_list
+    def get(self, mara_id):
 
-def findchildren(mast_id):
-    sql = text("SELECT stpo.mast_id AS mast_id_parent, stpo.mara_id, mara.mara_nr, mara.mat_desc, stpo.pos, mast.id AS mast_id_children, stpo.height_erp, stpo.width_erp, stpo.depth_erp, stpo.unit_erp, stpo.volume_cad, stpo.unit_cad, stpo.weight_ui, stpo.qr_relevant FROM stpo left join mast ON stpo.mara_id=mast.mara_id LEFT JOIN mara ON mast.mara_id=mara.id WHERE stpo.mast_id=:mast_id")
-    result = db.session.execute (sql, params={"mast_id": mast_id})
-    return result.fetchall()
+        db = connect_db()
+
+        mast, stpo = loadTables(db)
+
+        result_list = []
+        result = [mara_id, 1, 0]
+        result_list.append(result)
+        result_list = getChildren(mara_id, result_list, mast, stpo)
+
+        return result_list
+
+
+def connect_db():
+    db_connection_str = 'mysql+pymysql://milena:ALAQsM8W@132.187.102.201/dimop'
+    db_connection = create_engine(db_connection_str)
+
+    return db_connection
+
+
+def loadTables(db):
+
+    print("SQL request")
+    # mast - table with materials that have children
+    mast = pd.read_sql_table('mastTobi', db)
+
+    # stpo - table with bom (bill of materials) positions
+    stpo = pd.read_sql_table('stpoTobi', db)
+
+    return mast, stpo
+
+
+def addResult(child, parent_id, result_list):
+
+    result = [child, result_list[len(result_list)-1][1]+1, parent_id]
+    result_list.append(result)
+
+    return result_list
+
+
+def getChildren(mara_id, result_list, mast, stpo):
+
+    mast_entry = mast.loc[mast["mara_id"] == mara_id]["id"]
+
+    if(len(mast_entry)):
+        mast_id = mast_entry.item()
+        children = stpo.loc[stpo["mast_id"] == mast_id]["mara_id"].tolist()
+
+        parent_id = result_list[len(result_list)-1][1]
+
+        for child in children:
+            addResult(child, parent_id, result_list)
+            getChildren(child, result_list, mast, stpo)
+
+    else:
+        print(F"{mara_id} has no mast entry")
+
+    return result_list
