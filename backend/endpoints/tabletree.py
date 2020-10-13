@@ -10,16 +10,25 @@ class Tabletree(Resource):
 
         db = connect_db()
 
-        mast, stpo = loadTables(db)
+        mara_fert = pd.read_sql_table('mara_fert', db)
+        stpo = pd.read_sql_table('stpo', db)
 
         result_list = []
-        result = [mara_id, 1, 0]
+        result = [1, 0]
+
+        result_df = mara_fert.loc[mara_fert["id"] == mara_id]
+
+        for col in result_df.columns:
+            result.append(result_df[col].item())
+
         result_list.append(result)
-        result_list = getChildren(mara_id, result_list, mast, stpo)
+
+        result_list = getChildren(mara_id, result_list, mara_fert, stpo)
 
         result_df = pd.DataFrame(result_list)
         result_df = result_df.rename(
-            columns={0: "mara_id", 1: "result_id", 2: "parent_id"})
+            columns={0: "result_id", 1: "parent_id", 2: "mara_fert_id", 3: "mat_desc", 4: "mat_id_int", 5: "mat_desc_int", 6: "cad_id", 7: "mara_plast_id", 8: "mat_rw", 9: "height", 10: "width", 11: "depth", 12: "unit", 13: "weight", 14: "weight_unit", 15: "volume", 16: "volume_unit"})
+
         result_json = result_df.to_json(orient="records")
 
         return result_json
@@ -32,41 +41,36 @@ def connect_db():
     return db_connection
 
 
-def loadTables(db):
-
-    print("SQL request")
-    # mast - table with materials that have children
-    mast = pd.read_sql_table('mastTobi', db)
-
-    # stpo - table with bom (bill of materials) positions
-    stpo = pd.read_sql_table('stpoTobi', db)
-
-    return mast, stpo
-
-
 def addResult(child, parent_id, result_list):
 
-    result = [child, result_list[len(result_list)-1][1]+1, parent_id]
+    result_df = mara_fert.loc[mara_fert["id"] == child]
+
+    result = [result_list[len(result_list)-1][0]+1, parent_id]
+
+    for col in result_df.columns:
+        result.append(result_df[col].item())
+
     result_list.append(result)
 
     return result_list
 
 
-def getChildren(mara_id, result_list, mast, stpo):
+def getChildren(mara_id, result_list, mara_fert, stpo):
 
-    mast_entry = mast.loc[mast["mara_id"] == mara_id]["id"]
+    stpo_entry = stpo.loc[stpo["parent_mara_id"] == mara_id]
 
-    if(len(mast_entry)):
-        mast_id = mast_entry.item()
-        children = stpo.loc[stpo["mast_id"] == mast_id]["mara_id"].tolist()
+    if(len(stpo_entry) != 0):
 
-        parent_id = result_list[len(result_list)-1][1]
+        children = stpo.loc[stpo["parent_mara_id"]
+                            == mara_id]["mara_id"].tolist()
+
+        parent_id = result_list[len(result_list)-1][0]
 
         for child in children:
             addResult(child, parent_id, result_list)
-            getChildren(child, result_list, mast, stpo)
+            getChildren(child, result_list, mara_fert, stpo)
 
     else:
-        print(F"{mara_id} has no mast entry")
+        print(F"{mara_id} has no children")
 
     return result_list
