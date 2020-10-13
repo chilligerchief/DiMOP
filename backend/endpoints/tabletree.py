@@ -25,13 +25,13 @@ class Tabletree(Resource):
 
         result_list = getChildren(mara_id, result_list, mara_fert, stpo)
 
-        result_df = pd.DataFrame(result_list)
-        result_df = result_df.rename(
-            columns={0: "result_id", 1: "parent_id", 2: "mara_fert_id", 3: "mat_desc", 4: "mat_id_int", 5: "mat_desc_int", 6: "cad_id", 7: "mara_plast_id", 8: "mat_rw", 9: "height", 10: "width", 11: "depth", 12: "unit", 13: "weight", 14: "weight_unit", 15: "volume", 16: "volume_unit"})
+        #result_df = pd.DataFrame(result_list)
+        # result_df = result_df.rename(
+        #    columns={0: "result_id", 1: "parent_id", 2: "mara_fert_id", 3: "mat_desc", 4: "mat_id_int", 5: "mat_desc_int", 6: "cad_id", 7: "mara_plast_id", 8: "mat_rw", 9: "height", 10: "width", 11: "depth", 12: "unit", 13: "weight", 14: "weight_unit", 15: "volume", 16: "volume_unit"})
 
-        result_json = result_df.to_json(orient="split")
+        #result_json = result_df.to_json(orient="split")
 
-        return result_json
+        return result_list
 
 
 def connect_db():
