@@ -3,6 +3,7 @@ from dbfunctions.connect import db
 from sqlalchemy import create_engine, MetaData, text
 from flask_sqlalchemy import SQLAlchemy
 import pandas as pd
+import numpy as np
 
 
 class Tabletree(Resource):
@@ -14,7 +15,7 @@ class Tabletree(Resource):
         stpo = pd.read_sql_table('stpo', db)
 
         result_list = []
-        result = [1, 0]
+        result = [1, None]
 
         result_df = mara_fert.loc[mara_fert["id"] == mara_id]
 
@@ -25,7 +26,8 @@ class Tabletree(Resource):
 
         result_list = getChildren(mara_id, result_list, mara_fert, stpo)
 
-        result_df = pd.DataFrame(result_list)
+        result_df = pd.DataFrame(result_list).fillna(
+            np.nan).replace([np.nan], [None])
         result_df = result_df.rename(
             columns={0: "result_id", 1: "parent_id", 2: "mara_fert_id", 3: "mat_desc", 4: "mat_id_int", 5: "mat_desc_int", 6: "cad_id", 7: "mara_plast_id", 8: "mat_rw", 9: "height", 10: "width", 11: "depth", 12: "unit", 13: "weight", 14: "weight_unit", 15: "volume", 16: "volume_unit"})
 
