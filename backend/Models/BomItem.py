@@ -1,6 +1,7 @@
 from dbfunctions.connect import db
 from sqlalchemy import text
 
+
 class BomItemModel(db.Model):
     __tablename__ = 'stpo'
 
@@ -31,11 +32,11 @@ class BomItemModel(db.Model):
         self.qr_relevant = qr_relevant
 
     def json(self):
-        return { 'id' : self.id, 'mara_id' : self.mara_id, 'pos' : self.pos, 'height_erp' : self.height_erp, 'width_erp' : self.width_erp, 'depth_erp' : self.depth_erp, 'volume_cad' : self.volume_cad, 'unit_cad' : self.unit_cad, 'weight_ui' : self.weight_ui, 'qr_relevant' : self.qr_relevant}
+        return {'id': self.id, 'mara_id': self.mara_id, 'pos': self.pos, 'height_erp': self.height_erp, 'width_erp': self.width_erp, 'depth_erp': self.depth_erp, 'volume_cad': self.volume_cad, 'unit_cad': self.unit_cad, 'weight_ui': self.weight_ui, 'qr_relevant': self.qr_relevant}
 
     @classmethod
     def find_by_mast_id(cls, mast_id):
-        sql = text("SELECT stpo.id, stpo.mara_id, mara.mara_nr, mara.mat_desc, stpo.pos, stpo.height_erp, stpo.width_erp, stpo.depth_erp, stpo.unit_erp, stpo.volume_cad, stpo.unit_cad, stpo.weight_ui, stpo.qr_relevant FROM stpo LEFT JOIN mara ON stpo.mara_id=mara.id WHERE stpo.mast_id=:mast_id")
+        sql = text("SELECT stpo_outdated.id, stpo_outdated.mara_id, mara.mara_nr, mara.mat_desc, stpo_outdated.pos, stpo_outdated.height_erp, stpo_outdated.width_erp, stpo_outdated.depth_erp, stpo_outdated.unit_erp, stpo_outdated.volume_cad, stpo_outdated.unit_cad, stpo_outdated.weight_ui, stpo_outdated.qr_relevant FROM stpo_outdated LEFT JOIN mara ON stpo_outdated.mara_id=mara.id WHERE stpo_outdated.mast_id=:mast_id")
         result = db.session.execute(sql, params={"mast_id": mast_id})
         return result.fetchall()
 
