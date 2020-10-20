@@ -46,7 +46,7 @@ jwt = JWT(app, authenticate, identity)  # Auth
 # t_function
 api.add_resource(FunctionGet, '/functions')  # Alle Funktionen
 # tabletree
-api.add_resource(Tabletree, '/tree/<int:mara_id>')
+api.add_resource(Tabletree, '/tree/<int:mat_id>')
 # topsis
 api.add_resource(Topsis, '/topsis')
 # t_reltype
