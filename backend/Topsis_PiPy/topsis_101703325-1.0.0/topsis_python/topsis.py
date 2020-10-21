@@ -5,11 +5,11 @@ import pandas as pd
 import  numpy as np
 import sys
 import math as m
-if len(sys.argv) < 4:
+if len(sys.argv) < 2:
     print('NOT ENOUGH ARG')
     sys.exit()
 
-filename=sys.argv[1]
+filename = sys.argv[1]
 weights = sys.argv[2]
 impacts = sys.argv[3]
 
@@ -19,7 +19,7 @@ impacts = list(map(str ,impacts.split(',')))
 
 # print(weights)
 #
-dataset = pd.read_csv('Topsis_Daten.csv')
+dataset = pd.read_csv(filename)
 #dataset = pd.read_csv('data.csv')
 #
 # print(dataset)
