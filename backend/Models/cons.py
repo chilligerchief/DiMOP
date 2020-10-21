@@ -4,7 +4,7 @@ from sqlalchemy import text
 from sqlalchemy.sql import func
 
 
-class KonsModel(db.Model):
+class ConsModel(db.Model):
     __tablename__ = 'cons'
 
     id = db.Column(db.Integer, primary_key=True)
