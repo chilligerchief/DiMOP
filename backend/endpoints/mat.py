@@ -127,7 +127,7 @@ class Mat(Resource):
 
 
 class MatGet(Resource):
-    def get(self, mast_id):
+    def get(self, orga_id):
         mat = MatModel.find_by_orga_id(orga_id)
         my_list = []
         for x in mat:
