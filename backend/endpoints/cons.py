@@ -64,8 +64,8 @@ class Cons(Resource):
 
 
 class ConsGet(Resource):
-    def get(self, user_id):
-        cons = ConsModel.find_by_user_id(user_id)
+    def get(self, orga_id):
+        cons = ConsModel.find_by_orga_id(orga_id)
         my_list = []
         for x in cons:
             my_list.append(dict(x))
