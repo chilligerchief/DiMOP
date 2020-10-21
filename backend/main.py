@@ -11,8 +11,10 @@ from endpoints.reltyp import ReltypGet
 from endpoints.branch import BranchGet
 from endpoints.perp import PerpPost, Perp, PerpGet
 from endpoints.kons import KonsPost, Kons, KonsGet
+from endpoints.cons import ConsPost, Cons, ConsGet
 from endpoints.mara import MaraGet, MaraPost, Mara
 from endpoints.BomItem import BomItemGet, BomItem, BomItemPost
+from endpoints.mat import MatGet, Mat, MatPost
 from endpoints.BomAl import BomAlGet, BomAl, BomAlPost
 from endpoints.orga import Orgas, Orga, OrgaPost
 from endpoints.family import FamilyPost, Family, Families
@@ -46,7 +48,7 @@ jwt = JWT(app, authenticate, identity)  # Auth
 # t_function
 api.add_resource(FunctionGet, '/functions')  # Alle Funktionen
 # tabletree
-api.add_resource(Tabletree, '/tree/<int:mara_id>')
+api.add_resource(Tabletree, '/tree/<int:mat_id>')
 # topsis
 api.add_resource(Topsis, '/topsis')
 # t_reltype
@@ -69,6 +71,10 @@ api.add_resource(PerpGet, '/perp/<string:kons_id>')  # Get
 api.add_resource(KonsPost, '/kons')  # Post
 api.add_resource(Kons, '/kons/<string:_id>')  # Put & Delete
 api.add_resource(KonsGet, '/kons/<string:user_id>')  # Get
+# Cons
+api.add_resource(ConsPost, '/cons')  # Post
+api.add_resource(Cons, '/cons/<string:_id>')  # Put & Delete
+api.add_resource(ConsGet, '/cons/<string:orga_id>')  # Get
 # Mara
 api.add_resource(MaraGet, '/mara/<string:user_id>')  # Get
 api.add_resource(MaraPost, '/mara')  # Post
@@ -77,6 +83,10 @@ api.add_resource(Mara, '/mara/<string:_id>')  # Put & Delete
 api.add_resource(BomItemGet, '/bomitem/<string:mast_id>')  # Get
 api.add_resource(BomItemPost, '/bomitem')  # Post
 api.add_resource(BomItem, '/bomitem/<string:_id>')  # Put & Delete
+# Mat
+api.add_resource(MatGet, '/mat/<string:orga_id>')  # Get
+api.add_resource(MatPost, '/mat')  # Post
+api.add_resource(Mat, '/mat/<string:_id>')  # Put & Delete
 # BomAl
 api.add_resource(BomAlGet, '/bomal/<string:kons_id>')  # Get
 api.add_resource(BomAl, '/bomal/<string:_id>')  # Put & Delete
