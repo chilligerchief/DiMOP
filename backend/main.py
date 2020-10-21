@@ -14,6 +14,7 @@ from endpoints.kons import KonsPost, Kons, KonsGet
 from endpoints.cons import ConsPost, Cons, ConsGet
 from endpoints.mara import MaraGet, MaraPost, Mara
 from endpoints.BomItem import BomItemGet, BomItem, BomItemPost
+from endpoints.mat import MatGet, Mat, MatPost
 from endpoints.BomAl import BomAlGet, BomAl, BomAlPost
 from endpoints.orga import Orgas, Orga, OrgaPost
 from endpoints.family import FamilyPost, Family, Families
@@ -82,6 +83,10 @@ api.add_resource(Mara, '/mara/<string:_id>')  # Put & Delete
 api.add_resource(BomItemGet, '/bomitem/<string:mast_id>')  # Get
 api.add_resource(BomItemPost, '/bomitem')  # Post
 api.add_resource(BomItem, '/bomitem/<string:_id>')  # Put & Delete
+# Mat
+api.add_resource(MatGet, '/mat/<string:orga_id>')  # Get
+api.add_resource(MatPost, '/mat')  # Post
+api.add_resource(Mat, '/mat/<string:_id>')  # Put & Delete
 # BomAl
 api.add_resource(BomAlGet, '/bomal/<string:kons_id>')  # Get
 api.add_resource(BomAl, '/bomal/<string:_id>')  # Put & Delete
