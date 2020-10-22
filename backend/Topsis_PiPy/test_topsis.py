@@ -1,7 +1,7 @@
 import pandas as pd
 from topsis_python import topsis
-dataset = pd.read_csv('data.csv').values
-filename = dataset[:, 1:]
-weights = [1, 1, 1, 1]
-impacts = ["+", "+", "-", "+"]
-topsis(filename,weights,impacts)
+dataset = pd.read_csv('topsis_data.csv').values
+d = dataset[:, 1:]
+w = [1, 1, 1, 1]
+im = ["+", "+", "-", "+"]
+topsis(d,w,im)
