@@ -26,7 +26,8 @@ class ConsModel(db.Model):
 
     @classmethod
     def find_by_orga_id(cls, orga_id):
-        sql = text("SELECT * FROM cons WHERE cons.orga_id=:orga_id")
+        sql = text(
+            "SELECT id, cons_title, cons_desc, orga_id, del_kz FROM cons WHERE cons.orga_id=:orga_id")
         result = db.session.execute(sql, params={"orga_id": orga_id})
         return result.fetchall()
 

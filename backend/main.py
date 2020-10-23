@@ -84,7 +84,7 @@ api.add_resource(BomItemGet, '/bomitem/<string:mast_id>')  # Get
 api.add_resource(BomItemPost, '/bomitem')  # Post
 api.add_resource(BomItem, '/bomitem/<string:_id>')  # Put & Delete
 # Mat
-api.add_resource(MatGet, '/mat/<string:orga_id>')  # Get
+api.add_resource(MatGet, '/mat')  # Get
 api.add_resource(MatPost, '/mat')  # Post
 api.add_resource(Mat, '/mat/<string:_id>')  # Put & Delete
 # BomAl

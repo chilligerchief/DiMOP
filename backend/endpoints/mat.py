@@ -1,5 +1,6 @@
 from flask_restful import Resource, reqparse
 from Models.mat import MatModel
+from flask import request
 
 
 class MatPost(Resource):
@@ -127,8 +128,12 @@ class Mat(Resource):
 
 
 class MatGet(Resource):
-    def get(self, orga_id):
-        mat = MatModel.find_by_orga_id(orga_id)
+    def get(self):
+        args = request.args
+        if "orga_id" in args:
+            mat = MatModel.find_by_orga_id(args["orga_id"])
+        elif "cons_id" in args:
+            mat = MatModel.find_by_cons_id(args["cons_id"])
         my_list = []
         for x in mat:
             my_list.append(dict(x))
