@@ -15,7 +15,7 @@ class Tabletree(Resource):
         bom = pd.read_sql_table('bom', db)
 
         result_list = []
-        result = [1, None]
+        result = [None, 1, None]
 
         result_df = mat.loc[mat["id"] == mat_id]
 
@@ -30,7 +30,29 @@ class Tabletree(Resource):
             np.nan).replace([np.nan], [None])
 
         result_df = result_df.rename(
-            columns={0: "result_id", 1: "parent_id", 2: "mat_id", 3: "mat_desc", 4: "mat_id_int", 5: "mat_desc_int", 6: "cad_id", 7: "mara_plast_id", 8: "mat_rw", 9: "height", 10: "width", 11: "depth", 12: "unit", 13: "weight", 14: "weight_unit", 15: "volume", 16: "volume_unit", 17: "is_atomic", 18: "orga_id"})
+            columns={
+                0: "bom_id",
+                1: "result_id",
+                2: "parent_id",
+                3: "mat_id",
+                4: "mat_desc",
+                5: "mat_id_int",
+                6: "mat_desc_int",
+                7: "cad_id",
+                8: "mara_plast_id",
+                9: "mat_rw",
+                10: "height",
+                11: "width",
+                12: "depth",
+                13: "unit",
+                14: "weight",
+                15: "weight_unit",
+                16: "volume",
+                17: "volume_unit",
+                18: "is_atomic",
+                19: "orga_id"})
+
+        result_df = getBomPosition(result_df)
 
         result_json = result_df.to_dict(orient="records")
 
@@ -44,11 +66,11 @@ def connect_db():
     return db_connection
 
 
-def addResult(child, parent_id, result_list, mat):
+def addResult(child, parent_id, result_list, mat, child_bom_entry):
 
     result_df = mat.loc[mat["id"] == child]
 
-    result = [result_list[len(result_list)-1][0]+1, parent_id]
+    result = [child_bom_entry, result_list[len(result_list)-1][1]+1, parent_id]
 
     for col in result_df.columns:
         result.append(result_df[col].item())
@@ -65,14 +87,58 @@ def getChildren(mat_id, result_list, mat, bom):
     if(len(bom_entry) != 0):
 
         children = bom.loc[bom["parent_mat_id"] == mat_id]["mat_id"].tolist()
+        children_bom_entries = bom.loc[bom["parent_mat_id"]
+                                       == mat_id]["id"].tolist()
 
-        parent_id = result_list[len(result_list)-1][0]
+        parent_id = result_list[len(result_list)-1][1]
 
-        for child in children:
-            addResult(child, parent_id, result_list, mat)
+        for child, child_bom_entry in zip(children, children_bom_entries):
+            addResult(child, parent_id, result_list, mat, child_bom_entry)
             getChildren(child, result_list, mat, bom)
 
     else:
         print(F"{mat_id} has no children")
 
     return result_list
+
+
+def getLevels(dictionary, depth_list, start=0):
+
+    for key, value in dictionary.items():
+        depth_list.append(start + 10)
+        if isinstance(value, dict):
+            getLevels(value, depth_list, start=start+10)
+
+    return depth_list
+
+
+def getBomPosition(df):
+
+    parent_child_pairs = []
+
+    for parent, child in zip(df["parent_id"].to_list(), df["result_id"].to_list()):
+        parent_child_pairs.append((parent, child))
+
+    parent_child_pairs = parent_child_pairs[1:]
+
+    graph = {name: set() for tup in parent_child_pairs for name in tup}
+    has_parent = {name: False for tup in parent_child_pairs for name in tup}
+    for parent, child in parent_child_pairs:
+        graph[parent].add(child)
+        has_parent[child] = True
+
+    # All names that have absolutely no parent:
+    roots = [name for name, parents in has_parent.items() if not parents]
+
+    # traversal of the graph (doesn't care about duplicates and cycles)
+    def traverse(hierarchy, graph, names):
+        for name in names:
+            hierarchy[name] = traverse({}, graph, graph[name])
+        return hierarchy
+
+    nested_parent_child_dict = traverse({}, graph, roots)
+
+    levels = getLevels(nested_parent_child_dict, depth_list=[])
+    df["position"] = levels
+
+    return df
