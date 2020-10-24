@@ -105,9 +105,9 @@ def getChildren(mat_id, result_list, mat, bom):
 def getLevels(dictionary, depth_list, start=0):
 
     for key, value in dictionary.items():
-        depth_list.append(start + 10)
+        depth_list.append(start + 1)
         if isinstance(value, dict):
-            getLevels(value, depth_list, start=start+10)
+            getLevels(value, depth_list, start=start+1)
 
     return depth_list
 
@@ -139,6 +139,6 @@ def getBomPosition(df):
     nested_parent_child_dict = traverse({}, graph, roots)
 
     levels = getLevels(nested_parent_child_dict, depth_list=[])
-    df["position"] = levels
+    df["level"] = levels
 
     return df
