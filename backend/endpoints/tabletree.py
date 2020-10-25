@@ -127,10 +127,8 @@ def getBomPosition(df):
         graph[parent].add(child)
         has_parent[child] = True
 
-    # All names that have absolutely no parent:
     roots = [name for name, parents in has_parent.items() if not parents]
 
-    # traversal of the graph (doesn't care about duplicates and cycles)
     def traverse(hierarchy, graph, names):
         for name in names:
             hierarchy[name] = traverse({}, graph, graph[name])
