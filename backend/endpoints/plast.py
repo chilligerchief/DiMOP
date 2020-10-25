@@ -51,6 +51,6 @@ class PlastGet(Resource):
     def get(self):
         plast = PlastModel.find_all()
         my_list = []
-        for x in my_list:
+        for x in plast:
             my_list.append(dict(x))
         return my_list

@@ -13,7 +13,7 @@ from endpoints.perp import PerpPost, Perp, PerpGet
 from endpoints.kons import KonsPost, Kons, KonsGet
 from endpoints.cons import ConsPost, Cons, ConsGet
 from endpoints.mara import MaraGet, MaraPost, Mara
-from endpoints.plast import PlastGet
+from endpoints.plast import PlastGet, Plast
 from endpoints.BomItem import BomItemGet, BomItem, BomItemPost
 from endpoints.mat import MatGet, Mat, MatPost
 from endpoints.BomAl import BomAlGet, BomAl, BomAlPost
@@ -81,7 +81,8 @@ api.add_resource(MaraGet, '/mara/<string:user_id>')  # Get
 api.add_resource(MaraPost, '/mara')  # Post
 api.add_resource(Mara, '/mara/<string:_id>')  # Put & Delete
 # Plast
-api.add_resource(PlastGet, '/ plast/')  # Get
+api.add_resource(PlastGet, '/plast')  # Get
+api.add_resource(Plast, '/plast/<string:_id>')  # Put & Delete
 # BomItem
 api.add_resource(BomItemGet, '/bomitem/<string:mast_id>')  # Get
 api.add_resource(BomItemPost, '/bomitem')  # Post
