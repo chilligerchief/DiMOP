@@ -3,7 +3,7 @@ import numpy as np
 from numpy.core import cumsum, amax, amin
 from numpy.ma import array, sqrt
 
-X= pd.read_csv('Topsis_Daten.csv', sep=";").values
+X= pd.read_csv('Topsis_Milena/topsis_data.csv', sep=";").values
 print(X)
 
 row_count = sum(1 for row in X)
