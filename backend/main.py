@@ -23,7 +23,8 @@ from endpoints.maco import MacoGet, MacoPost, Maco
 from endpoints.comp import CompGet, CompPost, Comp
 from endpoints.origin import OriginGet
 from endpoints.tabletree import Tabletree
-from endpoints.bom import BomGet, Bom, BomPost
+#from endpoints.bom import BomGet, Bom, BomPost
+from endpoints.bom import Bom
 from Topsis_Milena.topsis_endpoint import Topsis
 
 # SETUP STEP
@@ -113,9 +114,10 @@ api.add_resource(CompGet, '/comp/<string:t_fam_id>')  # Get
 api.add_resource(CompPost, '/comp')  # Post
 api.add_resource(Comp, '/comp/<string:_id>')  # Put & Deleste
 # Bom
-api.add_resource(BomGet, '/bom')
-api.add_resource(BomPost, '/bom')
-api.add_resource(Bom, '/bom/<string:_id>')
+#api.add_resource(BomGet, '/bom')
+#api.add_resource(BomPost, '/bom')
+#api.add_resource(Bom, '/bom/<string:_id>')
+api.add_resource(Bom, '/bom')
 
 if __name__ == '__main__':
     from dbfunctions.connect import db

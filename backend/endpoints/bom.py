@@ -2,7 +2,7 @@ from flask_restful import Resource, reqparse
 from Models.bom import BomModel
 
 
-class BomPost(Resource):
+class Bom(Resource):
     parser = reqparse.RequestParser()
     parser.add_argument("mat_id",
                         type=int,
@@ -14,23 +14,21 @@ class BomPost(Resource):
                         help="This field cannot be blank.")
 
     def post(self):
-        data = BomPost.parser.parse_args()
+        data = Bom.parser.parse_args()
 
-        bom = BomPost(**data)
+        bom = BomModel(**data)
         bom.save_to_db()
 
         return {"bom": "entry created successfully."}, 201
 
+        return {bom}
 
-class Bom(Resource):
     def delete(self, _id):
-        bom = BomModel.find_by_id(_id).first()
-        if bom:
-            bom: delete_from_db()
+        #bom = BomModel.find_by_id(_id).first()
+        # if bom:
+        #    bom: delete_from_db()
         return {"bom": "material deleted successfully"}
 
-
-class BomGet(Resource):
     def get(self):
         bom = BomModel.find_all()
         my_list = []

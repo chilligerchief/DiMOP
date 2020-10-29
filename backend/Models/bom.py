@@ -6,7 +6,7 @@ from sqlalchemy import text
 class BomModel(db.Model):
     __tablename__ = "bom"
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     mat_id = db.Column(db.Integer)
     parent_mat_id = db.Column(db.Integer)
 
