@@ -54,7 +54,28 @@ class Tabletree(Resource):
 
         result_df = getBomPosition(result_df)
 
-        result_json = result_df.to_dict(orient="records")
+        plast_list = list(set(result_df.loc[(result_df["mara_plast_id"] != "None") & (
+            result_df["mara_plast_id"].notna())]["mara_plast_id"].tolist()))
+        print(plast_list)
+        plast_desc, plast_family = [], []
+
+        for element in plast_list:
+            sql = F"SELECT mat_desc, campus_fam FROM plast WHERE id = {element}"
+            result = db.execute(sql).fetchall()
+            plast_desc.append(result[0][0])
+            plast_family.append(result[0][1])
+
+        plast_tuples = list(zip(plast_list, plast_desc, plast_family))
+        df_plast = pd.DataFrame(plast_tuples, columns=[
+                                'p_id', 'plast_desc', 'plast_fam'])
+
+        df_merged = pd.merge(result_df, df_plast, left_on='mara_plast_id',
+                             right_on='p_id', how='left').drop('p_id', axis=1)
+
+        df_merged = df_merged.fillna(
+            np.nan).replace([np.nan], [None])
+
+        result_json = df_merged.to_dict(orient="records")
 
         return result_json
 

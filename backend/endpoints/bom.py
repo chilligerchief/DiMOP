@@ -23,15 +23,17 @@ class Bom(Resource):
 
         return {bom}
 
-    def delete(self, _id):
-        #bom = BomModel.find_by_id(_id).first()
-        # if bom:
-        #    bom: delete_from_db()
-        return {"bom": "material deleted successfully"}
-
     def get(self):
         bom = BomModel.find_all()
         my_list = []
         for x in bom:
             my_list.append(dict(x))
         return my_list
+
+
+class BomAlter(Resource):
+    def delete(self, _id):
+        bom = BomModel.find_by_id(_id).first()
+        if bom:
+            bom.delete_from_db()
+        return {"bom": "material deleted successfully"}
