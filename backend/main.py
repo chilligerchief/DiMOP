@@ -23,7 +23,6 @@ from endpoints.maco import MacoGet, MacoPost, Maco
 from endpoints.comp import CompGet, CompPost, Comp
 from endpoints.origin import OriginGet
 from endpoints.tabletree import Tabletree
-#from endpoints.bom import BomGet, Bom, BomPost
 from endpoints.bom import Bom, BomAlter
 from Topsis_Milena.topsis_endpoint import Topsis
 
