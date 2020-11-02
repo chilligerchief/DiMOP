@@ -25,6 +25,10 @@ from endpoints.origin import OriginGet
 from endpoints.tabletree import Tabletree
 from Topsis_Milena.topsis_endpoint import Topsis
 
+from endpoints.test import Test
+from endpoints.search import Search
+from endpoints.search import Results
+
 # SETUP STEP
 app = Flask(__name__)
 CORS(app)
@@ -111,6 +115,12 @@ api.add_resource(Maco, '/maco/<string:_id>')  # Put & Deleste
 api.add_resource(CompGet, '/comp/<string:t_fam_id>')  # Get
 api.add_resource(CompPost, '/comp')  # Post
 api.add_resource(Comp, '/comp/<string:_id>')  # Put & Deleste
+
+api.add_resource(Search, '/search/<string:criteria>')
+api.add_resource(Results, '/results')
+
+api.add_resource(Test, "/test")
+
 
 if __name__ == '__main__':
     from dbfunctions.connect import db
