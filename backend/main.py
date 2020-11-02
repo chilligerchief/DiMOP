@@ -23,6 +23,7 @@ from endpoints.maco import MacoGet, MacoPost, Maco
 from endpoints.comp import CompGet, CompPost, Comp
 from endpoints.origin import OriginGet
 from endpoints.tabletree import Tabletree
+from endpoints.bom import Bom, BomAlter
 from Topsis_Milena.topsis_endpoint import Topsis
 
 from endpoints.test import Test
@@ -115,6 +116,12 @@ api.add_resource(Maco, '/maco/<string:_id>')  # Put & Deleste
 api.add_resource(CompGet, '/comp/<string:t_fam_id>')  # Get
 api.add_resource(CompPost, '/comp')  # Post
 api.add_resource(Comp, '/comp/<string:_id>')  # Put & Deleste
+# Bom
+#api.add_resource(BomGet, '/bom')
+#api.add_resource(BomPost, '/bom')
+#api.add_resource(Bom, '/bom/<string:_id>')
+api.add_resource(Bom, '/bom')
+api.add_resource(BomAlter, '/bom/<string:_id>')
 
 api.add_resource(Search, '/search/<string:criteria>')
 api.add_resource(Results, '/results')
