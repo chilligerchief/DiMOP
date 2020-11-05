@@ -119,6 +119,15 @@ class Results(Resource):
     parser.add_argument("Zugmodul_Senkrecht_MPa_trocken", type=str)
     parser.add_argument("Zugmodul_Senkrecht_MPa_konditioniert", type=str)
 
+    parser.add_argument("newMaterial", type=dict)
+
+    def post(self):
+
+        args = self.parser.parse_args()
+
+        print("{}   ----    {}  ----    {}".format(args['newMaterial']['id'], args['newMaterial']
+                                                   ['mat_desc'], args['newMaterial']['campus_fam']))
+
     def get(self):
         args = self.parser.parse_args()
         print(args['id'])
