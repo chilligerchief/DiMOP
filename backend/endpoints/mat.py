@@ -1,6 +1,12 @@
-from flask_restful import Resource, reqparse
-from Models.mat import MatModel
+# author: topr
+# last updated: 05.11.2020
+# currently used: yes
+# description: is used to manage materials (parts that either can have components below
+# (if is_atomic == false) or plastics (if is_atomic == true))
+
 from flask import request
+from Models.mat import MatModel
+from flask_restful import Resource, reqparse
 
 
 class MatPost(Resource):
@@ -100,22 +106,22 @@ class Mat(Resource):
         data = MatPost.parser.parse_args()
         mat = MatModel.find_by_id(_id).first()
         if mat:
-            mat.mat_desc = data['mat_desc']
-            mat.mat_id_int = data['mat_id_int']
-            mat.mat_desc_int = data['mat_desc_int']
-            mat.cad_id = data['cad_id']
+            #mat.mat_desc = data['mat_desc']
+            #mat.mat_id_int = data['mat_id_int']
+            #mat.mat_desc_int = data['mat_desc_int']
+            #mat.cad_id = data['cad_id']
             mat.mara_plast_id = data['mara_plast_id']
-            mat.mat_rw = data['mat_rw']
-            mat.height = data['height']
-            mat.width = data['width']
-            mat.depth = data['depth']
-            mat.unit = data['unit']
-            mat.weight = data['weight']
-            mat.weight_unit = data['weight_unit']
-            mat.volume = data['volume']
-            mat.volume_unit = data['volume_unit']
-            mat.is_atomic = data['is_atomic']
-            mat.orga_id = data['orga_id']
+            #mat.mat_rw = data['mat_rw']
+            #mat.height = data['height']
+            #mat.width = data['width']
+            #mat.depth = data['depth']
+            #mat.unit = data['unit']
+            #mat.weight = data['weight']
+            #mat.weight_unit = data['weight_unit']
+            #mat.volume = data['volume']
+            #mat.volume_unit = data['volume_unit']
+            #mat.is_atomic = data['is_atomic']
+            #mat.orga_id = data['orga_id']
 
             mat.save_to_db()
         return {'mat': 'mat updated successfully'}

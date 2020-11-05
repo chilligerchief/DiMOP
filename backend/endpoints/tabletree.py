@@ -1,3 +1,8 @@
+# author: topr
+# last updated: 05.11.2020
+# currently used: yes
+# description: used to create the bill of material in a tree structure
+
 from flask_restful import Resource, reqparse
 from dbfunctions.connect import db
 from sqlalchemy import create_engine, MetaData, text
@@ -7,10 +12,11 @@ import numpy as np
 
 
 class Tabletree(Resource):
+
+    # main function that assembles table tree of a given mat_id
     def get(self, mat_id):
 
         db = connect_db()
-
         mat = pd.read_sql_table('mat', db)
         bom = pd.read_sql_table('bom', db)
 
@@ -52,7 +58,7 @@ class Tabletree(Resource):
                 18: "is_atomic",
                 19: "orga_id"})
 
-        result_df = getBomPosition(result_df)
+        result_df = getBomLevel(result_df)
 
         plast_list = list(set(result_df.loc[(result_df["mara_plast_id"] != "None") & (
             result_df["mara_plast_id"].notna())]["mara_plast_id"].tolist()))
@@ -79,12 +85,16 @@ class Tabletree(Resource):
 
         return result_json
 
+# connects to database
+
 
 def connect_db():
     db_connection_str = 'mysql+pymysql://milena:ALAQsM8W@132.187.102.201/dimop'
     db_connection = create_engine(db_connection_str)
 
     return db_connection
+
+# adds result (tuple) to result list
 
 
 def addResult(child, parent_id, result_list, mat, child_bom_entry):
@@ -99,6 +109,8 @@ def addResult(child, parent_id, result_list, mat, child_bom_entry):
     result_list.append(result)
 
     return result_list
+
+# get children for given mat_id
 
 
 def getChildren(mat_id, result_list, mat, bom):
@@ -122,6 +134,8 @@ def getChildren(mat_id, result_list, mat, bom):
 
     return result_list
 
+# Subfunction for getBomLevel
+
 
 def getLevels(dictionary, depth_list, start=0):
 
@@ -133,7 +147,8 @@ def getLevels(dictionary, depth_list, start=0):
     return depth_list
 
 
-def getBomPosition(df):
+# Gets bom level (depth) of each component
+def getBomLevel(df):
 
     parent_child_pairs = []
 
