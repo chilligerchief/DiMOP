@@ -66,20 +66,29 @@ class Tabletree(Resource):
         plast_desc, plast_family = [], []
 
         for element in plast_list:
-            sql = F"SELECT mat_desc, campus_fam FROM plast WHERE id = {element}"
+            sql = F"SELECT mat_desc, campus_fam FROM plast WHERE id = {int(element)}"
             result = db.execute(sql).fetchall()
             plast_desc.append(result[0][0])
             plast_family.append(result[0][1])
 
         plast_tuples = list(zip(plast_list, plast_desc, plast_family))
+
         df_plast = pd.DataFrame(plast_tuples, columns=[
                                 'p_id', 'plast_desc', 'plast_fam'])
+
+        #df_plast["p_id"] = df_plast["p_id"].astype(int)
+
+        df_plast["p_id"] = df_plast["p_id"].astype(str)
+        result_df["mara_plast_id"] = result_df["mara_plast_id"].astype(
+            str)
+
+        print(df_plast.dtypes)
+        print(result_df.dtypes)
 
         df_merged = pd.merge(result_df, df_plast, left_on='mara_plast_id',
                              right_on='p_id', how='left').drop('p_id', axis=1)
 
-        df_merged = df_merged.fillna(
-            np.nan).replace([np.nan], [None])
+        df_merged = df_merged.fillna(np.nan).replace([np.nan], [None])
 
         result_json = df_merged.to_dict(orient="records")
 
