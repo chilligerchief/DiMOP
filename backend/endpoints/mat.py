@@ -18,17 +18,17 @@ class MatPost(Resource):
                         )
     parser.add_argument('mat_id_int',
                         type=str,
-                        required=True,
+                        required=False,
                         help="This field cannot be blank."
                         )
     parser.add_argument('mat_desc_int',
                         type=str,
-                        required=True,
+                        required=False,
                         help="This field cannot be blank."
                         )
     parser.add_argument('cad_id',
                         type=str,
-                        required=True,
+                        required=False,
                         help="This field cannot be blank."
                         )
     parser.add_argument('mara_plast_id',
@@ -43,52 +43,52 @@ class MatPost(Resource):
                         )
     parser.add_argument('height',
                         type=float,
-                        required=True,
+                        required=False,
                         help="This field cannot be blank."
                         )
     parser.add_argument('width',
                         type=float,
-                        required=True,
+                        required=False,
                         help="This field cannot be blank."
                         )
     parser.add_argument('depth',
                         type=float,
-                        required=True,
+                        required=False,
                         help="This field cannot be blank."
                         )
     parser.add_argument('unit',
                         type=str,
-                        required=True,
+                        required=False,
                         help="This field cannot be blank."
                         )
     parser.add_argument('weight',
                         type=float,
-                        required=True,
+                        required=False,
                         help="This field cannot be blank."
                         )
     parser.add_argument('weight_unit',
                         type=str,
-                        required=True,
+                        required=False,
                         help="This field cannot be blank."
                         )
     parser.add_argument('volume',
                         type=float,
-                        required=True,
+                        required=False,
                         help="This field cannot be blank."
                         )
     parser.add_argument('volume_unit',
                         type=str,
-                        required=True,
+                        required=False,
                         help="This field cannot be blank."
                         )
     parser.add_argument('is_atomic',
                         type=bool,
-                        required=True,
+                        required=False,
                         help="This field cannot be blank."
                         )
     parser.add_argument('orga_id',
                         type=int,
-                        required=True,
+                        required=False,
                         help="This field cannot be blank."
                         )
 
@@ -106,22 +106,7 @@ class Mat(Resource):
         data = MatPost.parser.parse_args()
         mat = MatModel.find_by_id(_id).first()
         if mat:
-            #mat.mat_desc = data['mat_desc']
-            #mat.mat_id_int = data['mat_id_int']
-            #mat.mat_desc_int = data['mat_desc_int']
-            #mat.cad_id = data['cad_id']
             mat.mara_plast_id = data['mara_plast_id']
-            #mat.mat_rw = data['mat_rw']
-            #mat.height = data['height']
-            #mat.width = data['width']
-            #mat.depth = data['depth']
-            #mat.unit = data['unit']
-            #mat.weight = data['weight']
-            #mat.weight_unit = data['weight_unit']
-            #mat.volume = data['volume']
-            #mat.volume_unit = data['volume_unit']
-            #mat.is_atomic = data['is_atomic']
-            #mat.orga_id = data['orga_id']
 
             mat.save_to_db()
         return {'mat': 'mat updated successfully'}
