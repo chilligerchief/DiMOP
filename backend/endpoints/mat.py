@@ -13,7 +13,7 @@ class MatPost(Resource):
     parser = reqparse.RequestParser()
     parser.add_argument('mat_desc',
                         type=str,
-                        required=True,
+                        required=False,
                         help="This field cannot be blank."
                         )
     parser.add_argument('mat_id_int',
