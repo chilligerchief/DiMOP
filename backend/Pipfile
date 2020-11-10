@@ -15,6 +15,7 @@ mysql-connector = "*"
 flask-restful = "*"
 flask-sqlalchemy = "*"
 flask-jwt = "*"
+topsis-jamesfallon = "*"
 
 [requires]
 python_version = "3"
