@@ -24,7 +24,9 @@ from endpoints.comp import CompGet, CompPost, Comp
 from endpoints.origin import OriginGet
 from endpoints.tabletree import Tabletree
 from endpoints.bom import Bom, BomAlter
-from Topsis_Milena.topsis_endpoint import Topsis
+from endpoints.topsis import TopsisTobi
+
+#from Topsis_Milena.topsis_endpoint import Topsis
 
 from endpoints.test import Test
 from endpoints.search import Search
@@ -56,7 +58,7 @@ api.add_resource(FunctionGet, '/functions')  # Alle Funktionen
 # tabletree
 api.add_resource(Tabletree, '/tree/<int:mat_id>')
 # topsis
-api.add_resource(Topsis, '/topsis')
+api.add_resource(TopsisTobi, '/topsis')
 # t_reltype
 api.add_resource(ReltypGet, '/reltyps')  # Alle Reltyps
 # t_branch
