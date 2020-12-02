@@ -11,15 +11,13 @@ class ConsModel(db.Model):
     cons_title = db.Column(db.String(255))
     cons_desc = db.Column(db.Text(65535))
     orga_id = db.Column(db.Integer)
-    created_at = db.Column(db.DateTime)
     del_kz = db.Column(db.Boolean)
 
     def __init__(self, cons_title, cons_desc, orga_id, del_kz, created_at=None):
         self.cons_title = cons_title
         self.cons_desc = cons_desc
         self.orga_id = orga_id
-        self.created_at = created_at
-        self.updated_at = updated_at
+        self.del_kz = del_kz
 
     def json(self):
         return {'id': self.id, 'cons_title': self.cons_title, 'cons_desc': self.cons_desc, 'orga_id': self.orga_id, 'del_kz': self.del_kz}
