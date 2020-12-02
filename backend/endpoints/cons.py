@@ -1,5 +1,5 @@
 # author: topr
-# last updated: 05.11.2020
+# last updated: 02.12.2020
 # currently used: yes
 # description: used to get, add and delete constructions
 
@@ -52,8 +52,11 @@ class Cons(Resource):
             my_list.append(dict(x))
         return my_list
 
+
+class ConsAlter(Resource):
     def delete(self, _id):
         cons = ConsModel.find_by_id(_id).first()
         if cons:
-            cons.delete_from_db()
-        return {'cons': 'Cons deleted successfully'}
+            cons.del_kz = 1
+            cons.save_to_db()
+        return {'cons': 'cons deleted successfully'}

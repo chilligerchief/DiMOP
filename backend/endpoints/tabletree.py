@@ -1,5 +1,5 @@
 # author: topr
-# last updated: 05.11.2020
+# last updated: 02.12.2020
 # currently used: yes
 # description: used to create the bill of material in a tree structure
 
@@ -56,9 +56,14 @@ class Tabletree(Resource):
                 16: "volume",
                 17: "volume_unit",
                 18: "is_atomic",
-                19: "orga_id"})
+                19: "orga_id",
+                20: "cons_id"})
 
-        result_df = getBomLevel(result_df)
+        # To catch materials that have no components and are not atomic
+        try:
+            result_df = getBomLevel(result_df)
+        except:
+            result_df["level"] = 1
 
         plast_list = list(set(result_df.loc[(result_df["mara_plast_id"] != "None") & (
             result_df["mara_plast_id"].notna())]["mara_plast_id"].tolist()))
@@ -75,8 +80,6 @@ class Tabletree(Resource):
 
         df_plast = pd.DataFrame(plast_tuples, columns=[
                                 'p_id', 'plast_desc', 'plast_fam'])
-
-        #df_plast["p_id"] = df_plast["p_id"].astype(int)
 
         df_plast["p_id"] = df_plast["p_id"].astype(str)
         result_df["mara_plast_id"] = result_df["mara_plast_id"].astype(

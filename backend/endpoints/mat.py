@@ -1,5 +1,5 @@
 # author: topr
-# last updated: 05.11.2020
+# last updated: 02.12.2020
 # currently used: yes
 # description: is used to manage materials (parts that either can have components below
 # (if is_atomic == false) or plastics (if is_atomic == true))
@@ -13,7 +13,7 @@ class MatPost(Resource):
     parser = reqparse.RequestParser()
     parser.add_argument('mat_desc',
                         type=str,
-                        required=False,
+                        required=True,
                         help="This field cannot be blank."
                         )
     parser.add_argument('mat_id_int',
@@ -33,7 +33,7 @@ class MatPost(Resource):
                         )
     parser.add_argument('mara_plast_id',
                         type=int,
-                        required=True,
+                        required=False,
                         help="This field cannot be blank."
                         )
     parser.add_argument('mat_rw',
@@ -58,17 +58,17 @@ class MatPost(Resource):
                         )
     parser.add_argument('unit',
                         type=str,
-                        required=False,
+                        required=True,
                         help="This field cannot be blank."
                         )
     parser.add_argument('weight',
                         type=float,
-                        required=False,
+                        required=True,
                         help="This field cannot be blank."
                         )
     parser.add_argument('weight_unit',
                         type=str,
-                        required=False,
+                        required=True,
                         help="This field cannot be blank."
                         )
     parser.add_argument('volume',
@@ -78,17 +78,27 @@ class MatPost(Resource):
                         )
     parser.add_argument('volume_unit',
                         type=str,
-                        required=False,
+                        required=True,
                         help="This field cannot be blank."
                         )
     parser.add_argument('is_atomic',
-                        type=bool,
-                        required=False,
+                        type=int,
+                        required=True,
                         help="This field cannot be blank."
                         )
     parser.add_argument('orga_id',
                         type=int,
-                        required=False,
+                        required=True,
+                        help="This field cannot be blank."
+                        )
+    parser.add_argument('cons_id',
+                        type=int,
+                        required=True,
+                        help="This field cannot be blank."
+                        )
+    parser.add_argument('del_kz',
+                        type=int,
+                        required=True,
                         help="This field cannot be blank."
                         )
 

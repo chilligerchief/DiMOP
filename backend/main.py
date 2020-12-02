@@ -11,7 +11,7 @@ from endpoints.reltyp import ReltypGet
 from endpoints.branch import BranchGet
 from endpoints.perp import PerpPost, Perp, PerpGet
 from endpoints.kons import KonsPost, Kons, KonsGet
-from endpoints.cons import Cons, ConsPost
+from endpoints.cons import Cons, ConsPost, ConsAlter
 from endpoints.mara import MaraGet, MaraPost, Mara
 from endpoints.plast import PlastGet, Plast
 from endpoints.BomItem import BomItemGet, BomItem, BomItemPost
@@ -81,7 +81,7 @@ api.add_resource(Kons, '/kons/<string:_id>')  # Put & Delete
 api.add_resource(KonsGet, '/kons/<string:user_id>')  # Get
 # Cons
 api.add_resource(ConsPost, '/cons')  # Post
-# api.add_resource(Cons, '/cons/<string:_id>')  # Put & Delete
+api.add_resource(ConsAlter, '/cons/<string:_id>')  # Put & Delete
 api.add_resource(Cons, '/cons/<string:orga_id>')  # Get
 # Mara
 api.add_resource(MaraGet, '/mara/<string:user_id>')  # Get

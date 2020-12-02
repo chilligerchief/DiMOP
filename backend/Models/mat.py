@@ -20,10 +20,12 @@ class MatModel(db.Model):
     weight_unit = db.Column(db.String)
     volume = db.Column(db.Float)
     volume_unit = db.Column(db.String)
-    is_atomic = db.Column(db.Boolean)
+    is_atomic = db.Column(db.Integer)
     orga_id = db.Column(db.Integer)
+    cons_id = db.Column(db.Integer)
+    del_kz = db.Column(db.Integer)
 
-    def __init__(self, mat_desc, mat_id_int, mat_desc_int, cad_id, mara_plast_id, mat_rw, height, width, depth, unit, weight, weight_unit, volume, volume_unit, is_atomic, orga_id):
+    def __init__(self, mat_desc, mat_id_int, mat_desc_int, cad_id, mara_plast_id, mat_rw, height, width, depth, unit, weight, weight_unit, volume, volume_unit, is_atomic, orga_id, cons_id, del_kz):
 
         self.mat_desc = mat_desc
         self.mat_id_int = mat_id_int
@@ -41,11 +43,13 @@ class MatModel(db.Model):
         self.volume_unit = volume_unit
         self.is_atomic = is_atomic
         self.orga_id = orga_id
+        self.cons_id = cons_id
+        self.del_kz = del_kz
 
     def json(self):
         return {'id': self.id,
                 'mat_desc': self.mat_desc, 'mat_id_int': self.mat_id_int, 'mat_desc_int': self.mat_desc_int, 'cad_id': self.cad_id, 'mara_plast_id': self.mara_plast_id, 'mat_rw': self.mat_rw, 'height': self.height, 'width': self.width, 'depth': self.depth,
-                'unit': self.unit, 'weight': self.weight, 'weight_unit': self.weight_unit, 'volume': self.volume, 'volume_unit': self.volume_unit, 'is_atomic': self.is_atomic, 'orga_id': self.orga_id
+                'unit': self.unit, 'weight': self.weight, 'weight_unit': self.weight_unit, 'volume': self.volume, 'volume_unit': self.volume_unit, 'is_atomic': self.is_atomic, 'orga_id': self.orga_id, self.cons_id: cons_id, self.del_kz: del_kz
                 }
 
     @classmethod
@@ -57,7 +61,7 @@ class MatModel(db.Model):
     @classmethod
     def find_by_cons_id(cls, cons_id):
         sql = text(
-            "SELECT * FROM mat LEFT JOIN mat_cons ON mat_cons.mat_id=mat.id WHERE mat_cons.cons_id=:cons_id")
+            "SELECT * FROM mat WHERE cons_id=:cons_id AND is_atomic=0 AND del_kz=0")
         result = db.session.execute(sql, params={"cons_id": cons_id})
         return result.fetchall()
 
