@@ -25,6 +25,7 @@ from endpoints.origin import OriginGet
 from endpoints.tabletree import Tabletree
 from endpoints.bom import Bom, BomAlter
 from endpoints.topsis import TopsisTobi
+from endpoints.rel import Rel, RelAlter, RelGet
 
 #from Topsis_Milena.topsis_endpoint import Topsis
 
@@ -118,10 +119,11 @@ api.add_resource(Maco, '/maco/<string:_id>')  # Put & Deleste
 api.add_resource(CompGet, '/comp/<string:t_fam_id>')  # Get
 api.add_resource(CompPost, '/comp')  # Post
 api.add_resource(Comp, '/comp/<string:_id>')  # Put & Deleste
+# Rel
+api.add_resource(Rel, '/rel')  # Post
+api.add_resource(RelAlter, '/rel/<string:_id>')  # Delete
+api.add_resource(RelGet, '/rel')  # Get
 # Bom
-#api.add_resource(BomGet, '/bom')
-#api.add_resource(BomPost, '/bom')
-#api.add_resource(Bom, '/bom/<string:_id>')
 api.add_resource(Bom, '/bom')
 api.add_resource(BomAlter, '/bom/<string:_id>')
 
