@@ -85,8 +85,8 @@ class Tabletree(Resource):
         result_df["mara_plast_id"] = result_df["mara_plast_id"].astype(
             str)
 
-        print(df_plast.dtypes)
-        print(result_df.dtypes)
+        # print(df_plast.dtypes)
+        # print(result_df.dtypes)
 
         df_merged = pd.merge(result_df, df_plast, left_on='mara_plast_id',
                              right_on='p_id', how='left').drop('p_id', axis=1)

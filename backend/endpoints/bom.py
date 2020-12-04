@@ -1,10 +1,16 @@
 # author: topr
-# last updated: 05.11.2020
+# last updated: 04.12.2020
 # currently used: yes
 # description: used to get, add and delete bom entries
 
 from flask_restful import Resource, reqparse
 from Models.bom import BomModel
+from Models.rel import RelModel
+from dbfunctions.connect import db
+from sqlalchemy import create_engine, MetaData, text
+from flask_sqlalchemy import SQLAlchemy
+import pandas as pd
+
 
 class Bom(Resource):
     parser = reqparse.RequestParser()
@@ -37,7 +43,50 @@ class Bom(Resource):
 
 class BomAlter(Resource):
     def delete(self, _id):
-        bom = BomModel.find_by_id(_id).first()
-        if bom:
-            bom.delete_from_db()
-        return {"bom": "material deleted successfully"}
+        db_connection_str = 'mysql+pymysql://milena:ALAQsM8W@132.187.102.201/dimop'
+        db = create_engine(db_connection_str)
+
+        rel = pd.read_sql_table('rel', db)
+        bom = pd.read_sql_table('bom', db)
+
+        print(int(_id))
+        print(type(_id))
+        delete_bom_parent = bom.loc[bom["id"] == int(_id)]["parent_mat_id"].tolist()[
+            0]
+        delete_bom_material = bom.loc[bom["id"]
+                                      == int(_id)]["mat_id"].tolist()[0]
+
+        # Delte bom entry
+        bom_model_entry = BomModel.find_by_id(_id).first()
+        if bom_model_entry:
+            bom_model_entry.delete_from_db()
+
+        bom = pd.read_sql_table('bom', db)
+
+        # Check if there are other bom entries with deleted mat_id
+        # If there are no other entries, delete all relations
+        if(len(bom.loc[(bom["parent_mat_id"] == delete_bom_parent) & (bom["mat_id"] == delete_bom_material)]) == 0):
+            print("Delete relations.")
+
+            mat_rels = rel.loc[(rel["p_id"] == delete_bom_parent) & (((rel["m1_id"] == delete_bom_material) | (
+                (rel["m2_id"] == delete_bom_material))))]["id"].tolist()
+
+            for mat_rel in mat_rels:
+                rel = RelModel.find_by_id(mat_rel).first()
+                if rel:
+                    rel.delete_from_db()
+                print(F"Relation {mat_rel} deleted.")
+
+        # If there is only one entry left, delte mat_rel to mat_rel relation
+        elif(len(bom.loc[(bom["parent_mat_id"] == delete_bom_parent) & (bom["mat_id"] == delete_bom_material)]) == 1):
+            mat_rel = rel.loc[(rel["p_id"] == delete_bom_parent) & (((rel["m1_id"] == delete_bom_material) & (
+                (rel["m2_id"] == delete_bom_material))))]["id"].tolist()[0]
+            rel = RelModel.find_by_id(mat_rel).first()
+            if rel:
+                rel.delete_from_db()
+                print(F"Relation {mat_rel} deleted.")
+        # If there are other entries, do not delete relations
+        else:
+            print("Do not delete relations.")
+
+        return {"bom": "bom and rel entry deleted successfully deleted successfully"}

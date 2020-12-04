@@ -1,5 +1,5 @@
 # author: topr
-# last updated: 03.12.2020
+# last updated: 04.12.2020
 # currently used: yes
 # description: used to save relations of siblings
 
@@ -55,22 +55,23 @@ class Rel(Resource):
 
             sql = text(
                 F"UPDATE rel SET rel_type={rel_type} WHERE id={rel_id}")
+            result = db.execute(sql)
 
             return {"rel": "entry already exists. But rel_type was set to new value."}, 201
 
 
-class RelGet(Resource):
-    def get(self):
-        rel = RelModel.find_all()
-        my_list = []
-        for x in rel:
-            my_list.append(dict(x))
-        return my_list
+# class RelGet(Resource):
+#    def get(self):
+#        rel = RelModel.find_all()
+#        my_list = []
+#        for x in rel:
+#            my_list.append(dict(x))
+#        return my_list
 
 
-class RelAlter(Resource):
-    def delete(self, _id):
-        rel = RelModel.find_by_id(_id).first()
-        if rel:
-            rel.delete_from_db()
-        return {"rel": "entry deleted successfully"}
+# class RelAlter(Resource):
+#    def delete(self, _id):
+#        rel = RelModel.find_by_id(_id).first()
+#        if rel:
+#            rel.delete_from_db()
+#        return {"rel": "entry #deleted successfully"}
