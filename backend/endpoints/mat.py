@@ -4,9 +4,12 @@
 # description: is used to manage materials (parts that either can have components below
 # (if is_atomic == false) or plastics (if is_atomic == true))
 
-from flask import request
 from Models.mat import MatModel
-from flask_restful import Resource, reqparse
+from flask_restful import Resource, reqparse, request
+from dbfunctions.connect import db
+from sqlalchemy import create_engine, MetaData, text
+from flask_sqlalchemy import SQLAlchemy
+import pandas as pd
 
 
 class MatPost(Resource):
@@ -139,3 +142,15 @@ class MatGet(Resource):
         for x in mat:
             my_list.append(dict(x))
         return my_list
+
+
+class MatGetNew(Resource):
+    def get(self):
+        db_connection_str = 'mysql+pymysql://milena:ALAQsM8W@132.187.102.201/dimop'
+        db = create_engine(db_connection_str)
+
+        mat = pd.read_sql_table('mat', db)
+
+        newest_mat = mat["id"][mat.shape[0]-1]
+
+        return newest_mat
