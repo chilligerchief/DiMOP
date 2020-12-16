@@ -1,7 +1,9 @@
-# author: topr
-# last updated: 04.12.2020
-# currently used: yes
-# description: used to get, add and delete bom entries
+"""
+author: topr
+last updated: 16.12.2020
+currently used: yes
+description: used to get, add and delete bom entries
+"""
 
 from flask_restful import Resource, reqparse
 from Models.bom import BomModel
@@ -56,7 +58,7 @@ class BomAlter(Resource):
         delete_bom_material = bom.loc[bom["id"]
                                       == int(_id)]["mat_id"].tolist()[0]
 
-        # Delte bom entry
+        # Delete bom entry
         bom_model_entry = BomModel.find_by_id(_id).first()
         if bom_model_entry:
             bom_model_entry.delete_from_db()
@@ -68,9 +70,11 @@ class BomAlter(Resource):
         if(len(bom.loc[(bom["parent_mat_id"] == delete_bom_parent) & (bom["mat_id"] == delete_bom_material)]) == 0):
             print("Delete relations.")
 
+            # Find all relations
             mat_rels = rel.loc[(rel["p_id"] == delete_bom_parent) & (((rel["m1_id"] == delete_bom_material) | (
                 (rel["m2_id"] == delete_bom_material))))]["id"].tolist()
 
+            # Iterate through relations and relete
             for mat_rel in mat_rels:
                 rel = RelModel.find_by_id(mat_rel).first()
                 if rel:
@@ -79,9 +83,13 @@ class BomAlter(Resource):
 
         # If there is only one entry left, delte mat_rel to mat_rel relation
         elif(len(bom.loc[(bom["parent_mat_id"] == delete_bom_parent) & (bom["mat_id"] == delete_bom_material)]) == 1):
+
+            # Find relation
             mat_rel = rel.loc[(rel["p_id"] == delete_bom_parent) & (((rel["m1_id"] == delete_bom_material) & (
                 (rel["m2_id"] == delete_bom_material))))]["id"].tolist()[0]
             rel = RelModel.find_by_id(mat_rel).first()
+
+            # Delete relation
             if rel:
                 rel.delete_from_db()
                 print(F"Relation {mat_rel} deleted.")

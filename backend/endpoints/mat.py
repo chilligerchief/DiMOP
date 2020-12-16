@@ -1,8 +1,10 @@
-# author: topr
-# last updated: 02.12.2020
-# currently used: yes
-# description: is used to manage materials (parts that either can have components below
-# (if is_atomic == false) or plastics (if is_atomic == true))
+"""
+author: topr
+last updated: 02.12.2020
+currently used: yes
+description: is used to manage materials (parts that either can have components below
+(if is_atomic == false) or plastics (if is_atomic == true))
+"""
 
 from Models.mat import MatModel
 from flask_restful import Resource, reqparse, request

@@ -1,7 +1,9 @@
-# author: topr
-# last updated: 11.11.2020
-# currently used: yes
-# description: includes topsis function
+"""
+author: topr
+last updated: 11.11.2020
+currently used: yes
+description: includes topsis function
+"""
 
 from flask_restful import Resource, reqparse
 from dbfunctions.connect import db

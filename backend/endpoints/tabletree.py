@@ -1,7 +1,12 @@
-# author: topr
-# last updated: 02.12.2020
-# currently used: yes
-# description: used to create the bill of material in a tree structure
+"""
+author: topr
+last updated: 12.12.2020
+currently used: yes
+description: used to create the bill of material in a tree structure
+
+Needs more description of what is going on.
+
+"""
 
 from flask_restful import Resource, reqparse
 from dbfunctions.connect import db

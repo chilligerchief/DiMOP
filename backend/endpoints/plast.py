@@ -1,7 +1,9 @@
-# author: topr
-# last updated: -
-# currently used: yes
-# description: endpoints for plast table that contains all plastics
+"""
+author: topr
+last updated: -
+currently used: yes
+description: endpoints for plast table that contains all plastics
+"""
 
 from flask_restful import Resource, reqparse
 from Models.plast import PlastModel

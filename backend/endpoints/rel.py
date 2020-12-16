@@ -1,7 +1,9 @@
-# author: topr
-# last updated: 04.12.2020
-# currently used: yes
-# description: used to save relations of siblings
+"""
+author: topr
+last updated: 16.12.2020
+currently used: yes
+description: used to save relations of siblings
+"""
 
 from Models.rel import RelModel
 from flask_restful import Resource, reqparse
@@ -43,12 +45,14 @@ class Rel(Resource):
         m2_id = data['m2_id']
         rel_type = data['rel_type']
 
+        # If there is no relation with the combinations m1_id to m2_id or m2_id to m1_id for the parent p_id, create relation
         if(len(rel.loc[(rel["p_id"] == p_id) & ((((rel["m1_id"] == m1_id) & (rel["m2_id"] == m2_id))) | (((rel["m1_id"] == m2_id) & (rel["m2_id"] == m1_id))))]) == 0):
             rel = RelModel(**data)
             rel.save_to_db()
 
             return {"rel": "entry created successfully."}, 201
 
+        # If there is already a relation, update rel_type
         else:
             rel_id = rel.loc[(rel["p_id"] == p_id) & ((((rel["m1_id"] == m1_id) & (rel["m2_id"] == m2_id))) | (
                 ((rel["m1_id"] == m2_id) & (rel["m2_id"] == m1_id))))]["id"].tolist()[0]

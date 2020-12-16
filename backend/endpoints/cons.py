@@ -1,7 +1,9 @@
-# author: topr
-# last updated: 02.12.2020
-# currently used: yes
-# description: used to get, add and delete constructions
+"""
+author: topr
+last updated: 02.12.2020
+currently used: yes
+description: used to get, add and delete constructions
+"""
 
 from flask_restful import Resource, reqparse
 from Models.cons import ConsModel
