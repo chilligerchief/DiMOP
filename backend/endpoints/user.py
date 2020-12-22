@@ -10,11 +10,11 @@ class UserPost(Resource):
                         required=True,
                         help="This field is optional, but a real Name should be used ;)."
                         )
-    parser.add_argument('surname',
-                        type=str,
-                        required=True,
-                        help="This field is optional, but a real Name should be used ;)."
-                        )
+    #parser.add_argument('surname',
+     #                   type=str,
+      #                  required=True,
+       #                 help="This field is optional, but a real Name should be used ;)."
+        #                )
     parser.add_argument('t_function_id',
                         type=int,
                         required=True,
@@ -88,16 +88,18 @@ class User(Resource):
                         help="Please enter your Company :)"
                         )
 
+
+
     def put(self, _id):
         data = User.parser.parse_args()
         user = UserModel.find_by_id(_id)
 
         if user:
-          user.firstname = data['firstname']
-          user.surname = data['surname']
-          user.orga_id = data['orga_id']
-          user.t_function_id = data['t_function_id']
-          user.e_mail = data['e_mail']
+            user.firstname = data['firstname']
+            user.surname = data['surname']
+            user.orga_id = data['orga_id']
+            user.t_function_id = data['t_function_id']
+            user.e_mail = data['e_mail']
 
         user.save_to_db()
         return {'User': 'User updated successfully'}
@@ -108,7 +110,58 @@ class User(Resource):
             user.delete_from_db()
         return {'user': 'User deleted'}
 
-class UserGet(Resource):
+class UserRegister(Resource):
+    parser = reqparse.RequestParser()
+    parser.add_argument('firstname',
+                        type=str,
+                        required=True,
+                        help="This field is optional, but a real Name should be used ;)."
+                        )
+    parser.add_argument('e_mail',
+                        type=str,
+                        required=True,
+                        help="ID field cannot be blank."
+                        )
+    parser.add_argument('password',
+                        type=str,
+                        required=True,
+                        help="Please enter a password :)"
+                        )
+    parser.add_argument('orga_id',
+                        type=int,
+                        required=True,
+                        help="This field is optional, but a real Name should be used ;)."
+                        )
+    parser.add_argument('t_function_id',
+                        type=int,
+                        required=True,
+                        help="This field is optional, but a real Name should be used ;)."
+                        )
+    parser.add_argument('del_kz',
+                        type=int,
+                        required=True,
+                        help="This field is optional, but a real Name should be used ;)."
+                        )
+    def post(self):
+        data = UserRegister.parser.parse_args()
+
+        password = data["password"]
+
+        salt = uuid.uuid4().hex
+        hashed_password = hashlib.sha512(password.encode('utf-8') + salt.encode('utf-8')).hexdigest()
+
+        data["password"]  = hashed_password
+        data["pw_salt"] = salt
+
+        if UserModel.find_by_e_mail(data["e_mail"]):
+            return {"message": "A user with that e_mail already exists"}, 400
+
+        user = UserModel(**data) #(data["e_mail"], data["password"])
+        user.save_to_db()
+
+        return {"message": "User created successfully."}, 201
+
+class UserGET(Resource):
     def get(self, _id):
         user = UserModel.find_by_id(_id)
         my_list = []

@@ -5,7 +5,7 @@ from flask_restful import Api
 from security import authenticate, identity
 
 ###ENDPOINTS (Resource)
-from endpoints.user import UserPost, User, UserGet, Users, ChangePassword
+from endpoints.user import UserPost, User, UserRegister, UserGET, Users, ChangePassword
 from endpoints.function import FunctionGet
 from endpoints.reltyp import ReltypGet
 from endpoints.branch import BranchGet
@@ -24,7 +24,7 @@ from endpoints.comp import CompGet, CompPost, Comp
 from endpoints.origin import OriginGet
 from endpoints.tabletree import Tabletree
 from endpoints.bom import Bom, BomAlter
-from endpoints.topsis import TopsisTobi
+#from endpoints.topsis import TopsisTobi
 from endpoints.rel import Rel
 
 #from Topsis_Milena.topsis_endpoint import Topsis
@@ -59,7 +59,7 @@ api.add_resource(FunctionGet, '/functions')  # Alle Funktionen
 # tabletree
 api.add_resource(Tabletree, '/tree/<int:mat_id>')
 # topsis
-api.add_resource(TopsisTobi, '/topsis')
+#api.add_resource(TopsisTobi, '/topsis')
 # t_reltype
 api.add_resource(ReltypGet, '/reltyps')  # Alle Reltyps
 # t_branch
@@ -69,7 +69,8 @@ api.add_resource(OriginGet, '/origins')  # Alle Origings der Comp-values
 # User
 api.add_resource(UserPost, '/user')  # Post (Registrierung)
 api.add_resource(User, '/user/<string:_id>')  # Put & Delete (ein User)
-api.add_resource(UserGet, '/user/<string:_id>')  # Get (ein User)
+api.add_resource(UserRegister, '/register')  # Registrieren (ein User)
+api.add_resource(UserGET, '/user/<string:_id>')  # Get (ein User)
 api.add_resource(Users, '/users')  # Get (alle User)
 api.add_resource(ChangePassword, '/password/<string:_id>')  # Put User-Passwort
 # Perp
