@@ -1,0 +1,47 @@
+{
+    "data": [
+        {
+            "id": 5,
+            "kons_title": "Rohrbeispiel Erweitert Endprodukt",
+            "kons_desc": "Rohr_Erw Prototyp St\u00fcckliste 2020 05 22 Endprodukt",
+            "orga_id": 1,
+            "orga_name": "Please change Organisation after Registration",
+            "mara_id": 25,
+            "mara_nr": "Fertigprodukt Rohr",
+            "mat_desc": "Rohr FERT",
+            "del_kz": 0
+        },
+        {
+            "id": 6,
+            "kons_title": "Rohrbeispiel Erweitert Baugruppe",
+            "kons_desc": "Rohr_Erw Prototyp St\u00fcckliste 2020 05 22 Baugruppe",
+            "orga_id": 4,
+            "orga_name": "Kundengmbh",
+            "mara_id": 23,
+            "mara_nr": "Au\u00dfenschicht Baugruppe",
+            "mat_desc": "Baugruppe Rohr erweitert",
+            "del_kz": 0
+        },
+        {
+            "id": 6,
+            "kons_title": "Zahnbürste",
+            "kons_desc": "Zahnbürste Baugruppe",
+            "orga_id": 4,
+            "orga_name": "Kundengmbh",
+            "mara_id": 23,
+            "mara_nr": "",
+            "mat_desc": "",
+            "del_kz": 0
+        }
+    ],
+    "columns": [
+        { "col_id": "id", "label": "Id" },
+        { "col_id": "kons_title", "label": "Name" },
+        { "col_id": "kons_desc", "label": "Beschreibung" },
+        { "col_id": "orga_name", "label": "Organisation" },
+        { "col_id": "mara_id", "label": "Material" },
+        { "col_id": "created_at", "label": "Erstellungsdatum" },
+        { "col_id": "created_from", "label": "Ersteller" },
+        { "col_id": "updated_at", "label": "Änderungsdatum" }
+    ]
+}

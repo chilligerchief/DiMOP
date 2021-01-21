@@ -1,0 +1,79 @@
+{
+  "Table_Projekt_Team_Data": [
+    {
+      "id": 3,
+      "user_id": 3,
+      "firstname": "Tobias",
+      "surname": "Pr\u00e4tori",
+      "e_mail": "tobias.praetori@uni-wuerzburg.de",
+      "orga_id": 3,
+      "orga_name": "Universit\u00e4t W\u00fcrzburg",
+      "t_function_id": 2,
+      "function": "IT-Mitarbeiter",
+      "auth_read": 1,
+      "auth_write": 0,
+      "auth_delete": 0,
+      "del_kz": 0
+    },
+    {
+      "id": 4,
+      "user_id": 4,
+      "firstname": "Norman",
+      "surname": "Pytel",
+      "e_mail": "norman.pytel@uni-wuerzburg.de",
+      "orga_id": 3,
+      "orga_name": "Universit\u00e4t W\u00fcrzburg",
+      "t_function_id": 2,
+      "function": "IT-Mitarbeiter",
+      "auth_read": 1,
+      "auth_write": 0,
+      "auth_delete": 0,
+      "del_kz": 0
+    },
+    {
+      "id": 5,
+      "user_id": 6,
+      "firstname": "Max",
+      "surname": "Mustermann",
+      "e_mail": "max.m@dimop.de",
+      "orga_id": 4,
+      "orga_name": "Kundengmbh",
+      "t_function_id": 8,
+      "function": "Sonstige Funktion",
+      "auth_read": 1,
+      "auth_write": 0,
+      "auth_delete": 0,
+      "del_kz": 0
+    },
+    {
+      "id": 6,
+      "user_id": 7,
+      "firstname": "Tim",
+      "surname": "Toll",
+      "e_mail": "email tim toll",
+      "orga_id": 5,
+      "orga_name": "ALLOD",
+      "t_function_id": 7,
+      "function": "Konstrukteur",
+      "auth_read": 1,
+      "auth_write": 0,
+      "auth_delete": 1,
+      "del_kz": 0
+    }
+  ],
+  "Table_Projekt_Team_Columns": [
+    { "col_id": "name", "label": "Name" },
+    { "col_id": "funktion", "label": "Funktion" },
+    {
+      "col_id": "organisation",
+      "label": "Organisation"
+    },
+    {
+      "col_id": "email",
+      "label": "E-Mail"
+    },
+    { "col_id": "user_read", "label": "Lesen" },
+    { "col_id": "user_write", "label": "Schreiben" },
+    { "col_id": "user_delete", "label": "Löschen" }
+  ]
+}

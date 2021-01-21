@@ -18,7 +18,8 @@ Verbindung mit Datenbank herstellen:
 2. in Backend ordner wechslen mit ```cd backend```
 3. Abhängigkeiten installieren mit ```pipenv install```
 4. in pipenv wechseln mit ```pipenv shell```
-5. Backend starten mit ```python main.py```
+5. (optional bei veränderung des Frontends) ```cd frontend && yarn build && cd ..```
+6. Backend starten mit ```python main.py```
 
 #Working with git
 #(git status)

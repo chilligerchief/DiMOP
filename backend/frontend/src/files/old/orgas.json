@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "orga_nr": "Initial",
+    "orga_name": "Please change Organisation after Registration LOCAL",
+    "t_branch_id": 1
+  },
+  {
+    "id": 2,
+    "orga_nr": "SKZ002",
+    "orga_name": "SKZ GmbH",
+    "t_branch_id": 2
+  },
+  {
+    "id": 3,
+    "orga_nr": "Uni001",
+    "orga_name": "Universit\u00e4t W\u00fcrzburg",
+    "t_branch_id": 1
+  },
+  {
+    "id": 4,
+    "orga_nr": "Kun001",
+    "orga_name": "Kundengmbh",
+    "t_branch_id": 6
+  },
+  {
+    "id": 5,
+    "orga_nr": "All001",
+    "orga_name": "ALLOD",
+    "t_branch_id": 4
+  },
+  {
+    "id": 6,
+    "orga_nr": "Mai001",
+    "orga_name": "Maincor",
+    "t_branch_id": 5
+  }
+]

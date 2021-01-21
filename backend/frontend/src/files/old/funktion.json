@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "function": "Kunststoffberatung LOCAL"
+  },
+  {
+    "id": 2,
+    "function": "IT-Mitarbeiter"
+  },
+  {
+    "id": 3,
+    "function": "Kunde"
+  },
+  {
+    "id": 4,
+    "function": "Einkauf"
+  },
+  {
+    "id": 5,
+    "function": "Produktionsplanung"
+  },
+  {
+    "id": 6,
+    "function": "Designer"
+  },
+  {
+    "id": 7,
+    "function": "Konstrukteur"
+  },
+  {
+    "id": 8,
+    "function": "Sonstige Funktion"
+  }
+]

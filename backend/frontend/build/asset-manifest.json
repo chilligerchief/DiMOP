@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/static/css/main.789974f3.chunk.css",
+    "main.js": "/static/js/main.c1ed2fdf.chunk.js",
+    "main.js.map": "/static/js/main.c1ed2fdf.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.d0ca82e3.js",
+    "runtime-main.js.map": "/static/js/runtime-main.d0ca82e3.js.map",
+    "static/js/2.c282a28f.chunk.js": "/static/js/2.c282a28f.chunk.js",
+    "static/js/2.c282a28f.chunk.js.map": "/static/js/2.c282a28f.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.a81736651f809e7fb99a06fc9ced01b6.js": "/precache-manifest.a81736651f809e7fb99a06fc9ced01b6.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.789974f3.chunk.css.map": "/static/css/main.789974f3.chunk.css.map",
+    "static/js/2.c282a28f.chunk.js.LICENSE.txt": "/static/js/2.c282a28f.chunk.js.LICENSE.txt",
+    "static/media/Universität_Würzburg_Logo.svg": "/static/media/Universität_Würzburg_Logo.3c8fe00d.svg",
+    "static/media/forcycle2.png": "/static/media/forcycle2.6d93023d.png",
+    "static/media/header_dimop.svg": "/static/media/header_dimop.ec064c47.svg",
+    "static/media/norman_pytel.jpg": "/static/media/norman_pytel.78bcabb7.jpg",
+    "static/media/skz_logo.png": "/static/media/skz_logo.7d7b3783.png",
+    "static/media/solution.jpg": "/static/media/solution.6346d15a.jpg",
+    "static/media/stami.png": "/static/media/stami.fcdc1553.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d0ca82e3.js",
+    "static/js/2.c282a28f.chunk.js",
+    "static/css/main.789974f3.chunk.css",
+    "static/js/main.c1ed2fdf.chunk.js"
+  ]
+}

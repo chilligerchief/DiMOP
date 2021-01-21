@@ -1,0 +1,246 @@
+{
+  "ConstructionInfoAllUser": [
+    {
+      "id": 1,
+      "firstname": "LOCAL",
+      "surname": "LOCALES",
+      "e_mail": "J.Werner1@skz.de",
+      "orga_id": 1,
+      "orga_name": "Please change Organisation after Registration",
+      "t_function_id": 1,
+      "function": "Kunststoffberatung",
+      "del_kz": 0
+    },
+    {
+      "id": 2,
+      "firstname": "Lars",
+      "surname": "Hellinger",
+      "e_mail": "L.Helmlinger@skz.de",
+      "orga_id": 2,
+      "orga_name": "SKZ GmbH",
+      "t_function_id": 1,
+      "function": "Kunststoffberatung",
+      "del_kz": 1
+    },
+    {
+      "id": 3,
+      "firstname": "Tobias",
+      "surname": "Pr\u00e4tori",
+      "e_mail": "tobias.praetori@uni-wuerzburg.de",
+      "orga_id": 3,
+      "orga_name": "Universit\u00e4t W\u00fcrzburg",
+      "t_function_id": 2,
+      "function": "IT-Mitarbeiter",
+      "del_kz": 0
+    },
+    {
+      "id": 4,
+      "firstname": "Norman",
+      "surname": "Pytel",
+      "e_mail": "norman.pytel@uni-wuerzburg.de",
+      "orga_id": 3,
+      "orga_name": "Universit\u00e4t W\u00fcrzburg",
+      "t_function_id": 2,
+      "function": "IT-Mitarbeiter",
+      "del_kz": 0
+    },
+    {
+      "id": 5,
+      "firstname": "Milena",
+      "surname": "Hofmann",
+      "e_mail": "milena.hofmann@kundenmail.de",
+      "orga_id": 4,
+      "orga_name": "Kundengmbh",
+      "t_function_id": 3,
+      "function": "Kunde",
+      "del_kz": 0
+    },
+    {
+      "id": 6,
+      "firstname": "Max",
+      "surname": "Mustermann",
+      "e_mail": "max.m@dimop.de",
+      "orga_id": 5,
+      "orga_name": "ALLOD",
+      "t_function_id": 8,
+      "function": "Sonstige Funktion",
+      "del_kz": 0
+    },
+    {
+      "id": 7,
+      "firstname": "Tim",
+      "surname": "Toll",
+      "e_mail": "email tim toll",
+      "orga_id": 6,
+      "orga_name": "Maincor",
+      "t_function_id": 7,
+      "function": "Konstrukteur",
+      "del_kz": 0
+    },
+    {
+      "id": 8,
+      "firstname": null,
+      "surname": null,
+      "e_mail": "normanmilena@postman.de",
+      "orga_id": null,
+      "orga_name": null,
+      "t_function_id": null,
+      "function": null,
+      "del_kz": null
+    },
+    {
+      "id": 9,
+      "firstname": null,
+      "surname": null,
+      "e_mail": "normanmilena2@postman.de",
+      "orga_id": null,
+      "orga_name": null,
+      "t_function_id": null,
+      "function": null,
+      "del_kz": null
+    },
+    {
+      "id": 10,
+      "firstname": "milena",
+      "surname": null,
+      "e_mail": "normanmilena3@postman.de",
+      "orga_id": null,
+      "orga_name": null,
+      "t_function_id": null,
+      "function": null,
+      "del_kz": null
+    },
+    {
+      "id": 11,
+      "firstname": "milena",
+      "surname": null,
+      "e_mail": "normanmilena4@postman.de",
+      "orga_id": null,
+      "orga_name": null,
+      "t_function_id": null,
+      "function": null,
+      "del_kz": null
+    },
+    {
+      "id": 12,
+      "firstname": "",
+      "surname": null,
+      "e_mail": "normanmilena5@postman.de",
+      "orga_id": null,
+      "orga_name": null,
+      "t_function_id": null,
+      "function": null,
+      "del_kz": null
+    },
+    {
+      "id": 13,
+      "firstname": "Norman",
+      "surname": null,
+      "e_mail": "normanmilena6@postman.de",
+      "orga_id": null,
+      "orga_name": null,
+      "t_function_id": null,
+      "function": null,
+      "del_kz": null
+    },
+    {
+      "id": 14,
+      "firstname": "",
+      "surname": null,
+      "e_mail": "normanmilena7@postman.de",
+      "orga_id": null,
+      "orga_name": null,
+      "t_function_id": null,
+      "function": null,
+      "del_kz": null
+    },
+    {
+      "id": 15,
+      "firstname": "123",
+      "surname": null,
+      "e_mail": "normanmilena9@postman.de",
+      "orga_id": null,
+      "orga_name": null,
+      "t_function_id": null,
+      "function": null,
+      "del_kz": null
+    },
+    {
+      "id": 17,
+      "firstname": "123",
+      "surname": "norman",
+      "e_mail": "normanmilena10@postman.de",
+      "orga_id": 1,
+      "orga_name": "Please change Organisation after Registration",
+      "t_function_id": 1,
+      "function": "Kunststoffberatung",
+      "del_kz": null
+    },
+    {
+      "id": 21,
+      "firstname": "123",
+      "surname": "norman",
+      "e_mail": "normanmilena11@postman.de",
+      "orga_id": null,
+      "orga_name": null,
+      "t_function_id": 1,
+      "function": "Kunststoffberatung",
+      "del_kz": null
+    },
+    {
+      "id": 30,
+      "firstname": "123",
+      "surname": "norman",
+      "e_mail": "normanmilena12@postman.de",
+      "orga_id": null,
+      "orga_name": null,
+      "t_function_id": 1,
+      "function": "Kunststoffberatung",
+      "del_kz": null
+    },
+    {
+      "id": 31,
+      "firstname": "123",
+      "surname": "norman",
+      "e_mail": "normanmilena13@postman.de",
+      "orga_id": null,
+      "orga_name": null,
+      "t_function_id": 1,
+      "function": "Kunststoffberatung",
+      "del_kz": null
+    },
+    {
+      "id": 32,
+      "firstname": "Pytel",
+      "surname": "1",
+      "e_mail": "31",
+      "orga_id": 546,
+      "orga_name": null,
+      "t_function_id": 1,
+      "function": "Kunststoffberatung",
+      "del_kz": null
+    },
+    {
+      "id": 34,
+      "firstname": "Norman",
+      "surname": "Pytel",
+      "e_mail": "testpasswort postman",
+      "orga_id": null,
+      "orga_name": null,
+      "t_function_id": 1,
+      "function": "Kunststoffberatung",
+      "del_kz": null
+    },
+    {
+      "id": 36,
+      "firstname": "Test2",
+      "surname": "Versuch2",
+      "e_mail": "test.mail2@uni-wuerzburg.de",
+      "orga_id": 3,
+      "orga_name": "Universit\u00e4t W\u00fcrzburg",
+      "t_function_id": 2,
+      "function": "IT-Mitarbeiter",
+      "del_kz": 0
+    }
+  ]
+}

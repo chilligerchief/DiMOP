@@ -34,7 +34,7 @@ from endpoints.search import Search
 from endpoints.search import Results
 
 # SETUP STEP
-app = Flask(__name__)
+app = Flask(__name__, static_folder="frontend/build/static", template_folder="frontend/build")
 CORS(app)
 
 #####Norman Input#####
@@ -139,6 +139,12 @@ api.add_resource(Results, '/results')
 api.add_resource(Test, "/test")
 
 
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def index(path):
+    return render_template('index.html')
+
+    
 if __name__ == '__main__':
     from dbfunctions.connect import db
     db.init_app(app)

@@ -1,0 +1,43 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "bom_desc": "Rohr LOCAL",
+            "bom_al": 1,
+            "bom_al_desc": "Rohrst\u00fcckliste Jan LOCAL",
+            "mara_id": 1,
+            "mara_nr": "A4711",
+            "mat_desc": "Rohr LOCAL",
+            "fav": 0,
+            "cad_nr": 0,
+            "del_kz": 0,
+            "user_id": 1,
+            "firstname": "Jan",
+            "surname": "Werner"
+        },
+        {
+            "id": 2,
+            "bom_desc": "Rohr",
+            "bom_al": 2,
+            "bom_al_desc": "Rohrst\u00fcckliste Lars (ohne Komponenten)",
+            "mara_id": 1,
+            "mara_nr": "A4711",
+            "mat_desc": "Rohr",
+            "fav": 0,
+            "cad_nr": 0,
+            "del_kz": 0,
+            "user_id": 2,
+            "firstname": "Lars",
+            "surname": "Hellinger"
+        }
+    ],
+    "columns": [
+        { "col_id": "mara_nr", "label": "Materialnummer" },
+        { "col_id": "mat_desc", "label": "Materialbezeichnung" },
+        { "col_id": "bom_al", "label": "Alternative" },
+        { "col_id": "creator", "label": "Ersteller" },
+        { "col_id": "created_at", "label": "Erstelldatum" },
+        { "col_id": "updated_at", "label": "Änderungsdatum" },
+        { "col_id": "cad_nr", "label": "CAD-Zeichnung" }
+    ]
+}
