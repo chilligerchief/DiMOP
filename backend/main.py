@@ -38,7 +38,9 @@ app = Flask(__name__)
 CORS(app)
 
 #####Norman Input#####
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://milena:ALAQsM8W@132.187.102.201/dimop'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://milena:ALAQsM8W@132.187.102.201/dimop'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///DIMOP_DATENBANK.db'
+
 # 'mysql+pymysql://milena:ALAQsM8W@132.187.102.201/dimop'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False

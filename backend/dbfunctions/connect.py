@@ -1,9 +1,8 @@
-from sqlalchemy import create_engine
+import sqlite3
 from flask_sqlalchemy import SQLAlchemy
 
 def connect_db():
-    db_connection_str = 'mysql+pymysql://milena:ALAQsM8W@132.187.102.201/dimop'
-    db_connection = create_engine(db_connection_str)
+    db_connection = sqlite3.connect("DIMOP_DATENBANK.db")
     
     return db_connection
 

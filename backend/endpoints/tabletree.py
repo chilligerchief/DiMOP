@@ -9,7 +9,7 @@ Needs more description of what is going on.
 """
 
 from flask_restful import Resource, reqparse
-from dbfunctions.connect import db
+from dbfunctions.connect import connect_db
 from sqlalchemy import create_engine, MetaData, text
 from flask_sqlalchemy import SQLAlchemy
 import pandas as pd
@@ -20,10 +20,9 @@ class Tabletree(Resource):
 
     # main function that assembles table tree of a given mat_id
     def get(self, mat_id):
-
         db = connect_db()
-        mat = pd.read_sql_table('mat', db)
-        bom = pd.read_sql_table('bom', db)
+        mat = pd.read_sql_query('SELECT * FROM mat', db)
+        bom = pd.read_sql_query('SELECT * FROM bom', db)
 
         result_list = []
         result = [None, 1, None]
@@ -105,11 +104,11 @@ class Tabletree(Resource):
 # connects to database
 
 
-def connect_db():
-    db_connection_str = 'mysql+pymysql://milena:ALAQsM8W@132.187.102.201/dimop'
-    db_connection = create_engine(db_connection_str)
+# def connect_db():
+#     db_connection_str = 'mysql+pymysql://milena:ALAQsM8W@132.187.102.201/dimop'
+#     db_connection = create_engine(db_connection_str)
 
-    return db_connection
+#     return db_connection
 
 # adds result (tuple) to result list
 
