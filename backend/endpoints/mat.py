@@ -8,7 +8,7 @@ description: is used to manage materials (parts that either can have components 
 
 from Models.mat import MatModel
 from flask_restful import Resource, reqparse, request
-from dbfunctions.connect import db
+from dbfunctions.connect import connect_db
 from sqlalchemy import create_engine, MetaData, text
 from flask_sqlalchemy import SQLAlchemy
 import pandas as pd
@@ -148,10 +148,8 @@ class MatGet(Resource):
 
 class MatGetNew(Resource):
     def get(self):
-        db_connection_str = 'mysql+pymysql://milena:ALAQsM8W@132.187.102.201/dimop'
-        db = create_engine(db_connection_str)
-
-        mat = pd.read_sql_table('mat', db)
+        db = connect_db()
+        mat = pd.read_sql_query('SELECT * FROM mat', db)
 
         newest_mat = mat["id"][mat.shape[0]-1]
 

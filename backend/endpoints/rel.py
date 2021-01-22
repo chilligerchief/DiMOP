@@ -7,7 +7,7 @@ description: used to save relations of siblings
 
 from Models.rel import RelModel
 from flask_restful import Resource, reqparse
-from dbfunctions.connect import db
+from dbfunctions.connect import connect_db
 from sqlalchemy import create_engine, MetaData, text
 from flask_sqlalchemy import SQLAlchemy
 import pandas as pd
@@ -36,9 +36,8 @@ class Rel(Resource):
 
         data = Rel.parser.parse_args()
 
-        db_connection_str = 'mysql+pymysql://milena:ALAQsM8W@132.187.102.201/dimop'
-        db = create_engine(db_connection_str)
-        rel = pd.read_sql_table('rel', db)
+        db = connect_db()
+        rel = pd.read_sql_query('SELECT * FROM rel', db)
 
         p_id = data['p_id']
         m1_id = data['m1_id']
