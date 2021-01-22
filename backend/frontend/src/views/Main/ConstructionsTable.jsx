@@ -74,7 +74,7 @@ const ConstructionTable = () => {
   const [constructionsUpdated, setConstructionsUpdate] = constructions_updated;
 
   useEffect(() => {
-    fetch("http://localhost:5000/cons/" + orgaId)
+    fetch("/cons/" + orgaId)
       .then((res) => {
         return res.json();
       })

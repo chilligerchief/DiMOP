@@ -117,7 +117,7 @@ function TableTest() {
     const [tableData, setTableData] = useState(TreeData);
 
     // async function fetchData() {
-    //     const res = await fetch("http://localhost:5000/bomitem/4");
+    //     const res = await fetch("/bomitem/4");
     //     res.json()
     //         .then((res) => setTableData(res))
     //         .then((r) => setLoading(false))

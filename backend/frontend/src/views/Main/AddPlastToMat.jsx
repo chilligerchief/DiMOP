@@ -70,7 +70,7 @@ const AddPlastToMat = () => {
     };
 
     fetch(
-      "http://localhost:5000/mat/" +
+      "/mat/" +
         parentMaterial +
         "?mara_plast_id=" +
         newPlast.mara_plast_id,

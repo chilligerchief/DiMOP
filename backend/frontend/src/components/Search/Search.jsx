@@ -114,7 +114,7 @@ const Result = (props) => {
       }),
     };
 
-    fetch("http://127.0.0.1:5000/results", req)
+    fetch("/results", req)
       .then((res) => res.json())
       .then((json) => console.log(json));
   };
@@ -243,7 +243,7 @@ const Filter = (props) => {
 
   useEffect(() => {
     // get dropdown options and slider range
-    fetch(`http://127.0.0.1:5000/search/${props.suffix.toLowerCase()}`)
+    fetch(`/search/${props.suffix.toLowerCase()}`)
       .then((res) => res.json())
       .then((json) => {
         setDropdownKeys(Object.keys(json).map((elem) => elem));
@@ -344,7 +344,7 @@ export const Search = () => {
   const [resultData, setResultData] = useState([]);
 
   const handleSearch = () => {
-    // searchurl: http://127.0.0.1:5000/search?id=123&mat_desc=najksd&...&...&...&..&..&..
+    // searchurl: /search?id=123&mat_desc=najksd&...&...&...&..&..&..
     // concatenate all params
     let params = [`search=${filter.search}`];
 
@@ -356,7 +356,7 @@ export const Search = () => {
       }
     }
 
-    fetch("http://127.0.0.1:5000/results?" + params.join(""))
+    fetch("/results?" + params.join(""))
       .then((res) => res.json())
       .then((json) => {
         console.log(json);

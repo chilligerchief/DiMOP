@@ -276,7 +276,7 @@ const TableTree = () => {
 
   useEffect(() => {
     if (selectedConstructionTitle !== "Bitte auswaehlen") {
-      fetch("http://localhost:5000/tree/" + bomMaterialId)
+      fetch("/tree/" + bomMaterialId)
         .then((res) => {
           return res.json();
         })
@@ -293,7 +293,7 @@ const TableTree = () => {
 
   useEffect(() => {
     if (selectedConstructionTitle !== "Bitte auswaehlen") {
-      fetch("http://localhost:5000/mat?cons_id=" + selectedConstructionId)
+      fetch("/mat?cons_id=" + selectedConstructionId)
         .then((res) => {
           return res.json();
         })

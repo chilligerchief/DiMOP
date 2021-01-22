@@ -75,7 +75,7 @@ const MatFertTable = () => {
   const [addComponentMode, setAddComponentMode] = add_component_mode;
 
   useEffect(() => {
-    fetch("http://localhost:5000/mat?orga_id=" + orgaId)
+    fetch("/mat?orga_id=" + orgaId)
       .then((res) => {
         return res.json();
       })

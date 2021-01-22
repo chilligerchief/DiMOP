@@ -69,7 +69,7 @@ const DeleteConstructionDialog = () => {
       method: "DELETE",
       redirect: "follow",
     };
-    fetch("http://localhost:5000/cons/" + consId, requestOptions)
+    fetch("/cons/" + consId, requestOptions)
       .then((response) => response.text())
       .then((result) => console.log(result))
       .catch((error) => console.log("error", error));

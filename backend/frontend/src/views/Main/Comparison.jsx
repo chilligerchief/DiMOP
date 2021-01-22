@@ -150,7 +150,7 @@ const Comparison = () => {
 
   useEffect(() => {
     if (selectedConstructionTitle !== "Bitte auswaehlen") {
-      fetch("http://localhost:5000/mat?cons_id=" + selectedConstructionId)
+      fetch("/mat?cons_id=" + selectedConstructionId)
         .then((res) => {
           return res.json();
         })
@@ -233,7 +233,7 @@ const Comparison = () => {
           topsis_weights: weights,
         }),
       };
-      fetch("http://localhost:5000/topsis", requestOptions, { mode: "no-cors" })
+      fetch("/topsis", requestOptions, { mode: "no-cors" })
         .then((res) => {
           res.json();
           console.log(res);

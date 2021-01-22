@@ -62,7 +62,7 @@ const DeleteMaterialDialog = () => {
       method: "DELETE",
       redirect: "follow",
     };
-    fetch("http://localhost:5000/bom/" + compId, requestOptions)
+    fetch("/bom/" + compId, requestOptions)
       .then((response) => response.text())
       .then((result) => console.log(result))
       .catch((error) => console.log("error", error));

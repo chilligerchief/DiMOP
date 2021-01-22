@@ -22,7 +22,7 @@ function login(username, password) {
     body: JSON.stringify({ username, password }),
   };
 
-  return fetch(`http://127.0.0.1:5000/auth`, requestOptions)
+  return fetch(`/auth`, requestOptions)
     .then(handleResponse)
     .then((user) => {
       // store user details and jwt token in local storage to keep user logged in between page refreshes

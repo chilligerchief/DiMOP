@@ -139,7 +139,7 @@ const AddMaterialDialog = () => {
 
   useEffect(() => {
     if (addComponentMode === "new") {
-      fetch("http://localhost:5000/mat/newest")
+      fetch("/mat/newest")
         .then((res) => {
           return res.json();
         })
@@ -179,7 +179,7 @@ const AddMaterialDialog = () => {
             redirect: "follow",
           };
 
-          fetch("http://localhost:5000/rel", requestOptionsRel)
+          fetch("/rel", requestOptionsRel)
             .then((response) => response.text())
             .then((result) => console.log(result))
             .catch((error) => console.log("error", error));
@@ -198,7 +198,7 @@ const AddMaterialDialog = () => {
           redirect: "follow",
         };
 
-        fetch("http://localhost:5000/bom", requestOptionsBom)
+        fetch("/bom", requestOptionsBom)
           .then((response) => response.text())
           .then((result) => console.log(result))
           .catch((error) => console.log("error", error));
