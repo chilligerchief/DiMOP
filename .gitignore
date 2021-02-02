@@ -750,3 +750,4 @@ backend/frontend/build/service-worker.js
 backend/frontend/build/static/js/main.c1ed2fdf.chunk.js
 backend/frontend/build/static/js/main.c1ed2fdf.chunk.js.map
 backend/frontend/build/static/js/main.c1ed2fdf.chunk.js
+.DS_Store
