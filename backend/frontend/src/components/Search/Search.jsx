@@ -352,7 +352,7 @@ export const Search = () => {
     console.log(params)
     for (let e in filter) {
       if (filter[e].dropdown) {
-        params.push(`&${filter[e].dropdown},${filter[e].min},${filter[e].max}`);
+        params.push(`&${filter[e].dropdown}=${filter[e].min},${filter[e].max}`);
       }
     }
 
