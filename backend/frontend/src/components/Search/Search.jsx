@@ -327,8 +327,8 @@ export const Search = () => {
 
   const [data, setData] = useState(materialData);
 
-  // const [filterActive, setFilterActive] = useState(false);
-  // const [searchInput, setSearchInput] = useState("");
+  const [filterActive, setFilterActive] = useState(false);
+  const [searchInput, setSearchInput] = useState("");
   const [sliderIdValue, setSliderIdValue] = useState(10);
   const [sliderFamValue, setSliderFamValue] = useState(10);
 
@@ -346,13 +346,13 @@ export const Search = () => {
   const handleSearch = () => {
     // searchurl: /search?id=123&mat_desc=najksd&...&...&...&..&..&..
     // concatenate all params
-    let params = [`search=${filter.search}`];
-
+    let params = [`producer=${filter.producer}`];
+    params.push(`&mat_desc=${filter.mat_desc}`)
+    params.push(`&campus_fam=${filter.campus_fam}`)
+    console.log(params)
     for (let e in filter) {
-      if (e == "search") {
-        continue;
-      } else {
-        params.push(`&${filter[e].dropdown},${filter[e].min},${filter[e].max}`);
+      if (filter[e].dropdown) {
+        params.push(`&${filter[e].dropdown}=${filter[e].min},${filter[e].max}`);
       }
     }
 
@@ -366,6 +366,23 @@ export const Search = () => {
         setResultData(json);
       });
   };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   const resetFilter = () => {
     // define default values/object for reset
