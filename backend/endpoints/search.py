@@ -18,40 +18,58 @@ class Search(Resource):
 
         if (criteria.lower() == "zugmodul"):
             return {
-                "Zugmodul_MPa_trocken": {"min": 0, "max": 8},
-                "Zugmodul_MPa_konditioniert": {"min": 0, "max": 10},
-                "Zugmodul_Kriech_1h_MPa_trocken": {"min": 0, "max": 20},
-                "Zugmodul_Kriech_1h_MPa_konditioniert": {"min": 0, "max": 12},
-                "Zugmodul_Kriech_1000h_MPa_trocken": {"min": 0, "max": 16},
-                "Zugmodul_Kriech_1000h_MPa_konditioniert": {"min": 0, "max": 14},
-                "Zugmodul_Parallel_MPa_trocken": {"min": 0, "max": 15},
-                "Zugmodul_Parallel_MPa_konditioniert": {"min": 0, "max": 13},
-                "Zugmodul_Senkrecht_MPa_trocken": {"min": 0, "max": 17},
-                "Zugmodul_Senkrecht_MPa_konditioniert": {"min": 0, "max": 9},
+                "Zugmodul_MPa_trocken": {"min": 0, "max": 47400.0},
+                "Zugmodul_MPa_konditioniert": {"min": 0, "max": 27400.0},
+                "Zugmodul_Kriech_1h_MPa_trocken": {"min": 0, "max": 21300.0},
+                "Zugmodul_Kriech_1h_MPa_konditioniert": {"min": 0, "max": 14200.0},
+                "Zugmodul_Kriech_1000h_MPa_trocken": {"min": 0, "max": 18600.0},
+                "Zugmodul_Kriech_1000h_MPa_konditioniert": {"min": 0, "max": 12000.0},
+                "Zugmodul_Parallel_MPa_trocken": {"min": 0, "max": 107064.0},
+                "Zugmodul_Parallel_MPa_konditioniert": {"min": 0, "max": 19000.0},
+                "Zugmodul_Senkrecht_MPa_trocken": {"min": 0, "max": 55000.0},
+                "Zugmodul_Senkrecht_MPa_konditioniert": {"min": 0, "max": 19000.0},
             }
         elif criteria.lower() == "bruchdehnung":
             return {
-                "Bruchdehnung_trocken": {"min": 0, "max": 8},
-                "Bruchdehnung_konditioniert": {"min": 0, "max": 10},
-                "Bruchdehnung_Nominell_trocken": {"min": 0, "max": 20},
-                "Bruchdehnung_Nominell_konditioniert": {"min": 0, "max": 12},
-                "Bruchdehnung_TPE_trocken": {"min": 0, "max": 16},
-                "Bruchdehnung_TPE_konditioniert": {"min": 0, "max": 14},
-                "Bruchdehnung_Parallel_trocken": {"min": 0, "max": 15},
-                "Bruchdehnung_Parallel_konditioniert": {"min": 0, "max": 13},
+                "Bruchdehnung_trocken": {"min": 0.3, "max": 46447.0},
+                "Bruchdehnung_konditioniert": {"min": 1.3, "max": 43.0},
+                "Bruchdehnung_Nominell_trocken": {"min": 2.9, "max": 45931.0},
+                "Bruchdehnung_Nominell_konditioniert": {"min": 5.5, "max": 50.0},
+                "Bruchdehnung_TPE_trocken": {"min": 7.0, "max": 300.0},
+                # "Bruchdehnung_TPE_konditioniert": {"min": 0, "max": 14},
+                "Bruchdehnung_Parallel_trocken": {"min": 1.1, "max": 36924.0},
+                "Bruchdehnung_Parallel_konditioniert": {"min": 2.3, "max": 2.3},
             }
-        else:  # placeholder for now
+        elif criteria.lower() == "bruchspannung":
             return {
-                "Zugmodul_MPa_trocken": {"min": 0, "max": 8},
-                "Zugmodul_MPa_konditioniert": {"min": 0, "max": 10},
-                "Zugmodul_Kriech_1h_MPa_trocken": {"min": 0, "max": 20},
-                "Zugmodul_Kriech_1h_MPa_konditioniert": {"min": 0, "max": 12},
-                "Zugmodul_Kriech_1000h_MPa_trocken": {"min": 0, "max": 16},
-                "Zugmodul_Kriech_1000h_MPa_konditioniert": {"min": 0, "max": 14},
-                "Zugmodul_Parallel_MPa_trocken": {"min": 0, "max": 15},
-                "Zugmodul_Parallel_MPa_konditioniert": {"min": 0, "max": 13},
-                "Zugmodul_Senkrecht_MPa_trocken": {"min": 0, "max": 17},
-                "Zugmodul_Senkrecht_MPa_konditioniert": {"min": 0, "max": 9},
+                "Bruchspannung_MPa_trocken": {"min": 6.0, "max": 321.0},
+                "Bruchspannung_MPa_konditioniert": {"min": 27.0, "max": 280.0},
+                "Bruchspannung_TPE_MPa_trocken": {"min": 8.5, "max": 115.0},
+                # "Bruchspannung_TPE_MPa_konditioniert": {"min": 0, "max": 12},
+                "Bruchspannung_Parallel_MPa_trocken": {"min": 310.0, "max": 1750.0},
+                "Bruchspannung_Parallel_MPa_konditioniert": {"min": 370.0, "max": 380.0},
+                "Bruchspannung_Senkrecht_MPa_trocken": {"min": 17.4, "max": 750.0},
+                "Bruchspannung_Senkrecht_MPa_konditioniert": {"min": 370.0, "max": 380.0},
+            }
+        elif criteria.lower() == "belastung":
+            return {
+                "Belastung_trocken": {"min": 1.2, "max": 21.6},
+                # "Belastung_konditioniert": {"min": 0, "max": 10},
+            }
+        elif criteria.lower() == "temperatur":
+            return {
+                "Temperatur_trocken": {"min": 160.0, "max": 400.0},
+                # "Temperatur_konditioniert": {"min": 0, "max": 10},
+            }
+        elif criteria.lower() == "dichte":
+            return {
+                "dichte_trocken": {"min": 700.0, "max": 3150.0},
+                "dichte_konditioniert": {"min": 1000.0, "max": 1570.0},
+            }
+        elif criteria.lower() == "mvr":
+            return {
+                "MVR_trocken": {"min": 0.1, "max": 290.0},
+                # "MVR_konditioniert": {"min": 0, "max": 10},
             }
 
 
