@@ -242,9 +242,6 @@ const Filter = (props) => {
   const [loaded, setLoaded] = useState(false);
 
 
-    {/* 
-    Fascha stuff start
-  
   useEffect(() => {
     // get dropdown options and slider range
     fetch(`/search/${props.suffix.toLowerCase()}`)
@@ -267,7 +264,7 @@ const Filter = (props) => {
       setSliderValue([data[dropdownSelection].min, data[dropdownSelection].max]);
     }
   }, [dropdownSelection]);
-    */}
+
 
   const handleDropdownChange = (e) => {
     setDropdownSelection(e.target.value);
@@ -339,7 +336,7 @@ export const Search = () => {
   const [sliderFamValue, setSliderFamValue] = useState(10);
 
   const INITIAL_FILTER = {
-    // search: "",
+    search: "",
     mat_desc: "",
     campus_fam: "",
     producer: "",
@@ -349,37 +346,6 @@ export const Search = () => {
 
   const [resultData, setResultData] = useState([]);
 
-  {/* 
-    Tobi stuff start
-  */}  
-  
-  const [zugmodul, setZugmodul] = useState({
-    type: "",
-    min: 0,
-    max: 1
-  });
-
-  const zugmodul_options = [
-    "Swagger",
-    "Zugmodul_MPa_trocken",
-    "Zugmodul_MPa_konditioniert",
-    "Zugmodul_Kriech_1h_MPa_trocken",
-    "Zugmodul_Kriech_1h_MPa_konditioniert",
-    "Zugmodul_Kriech_1000h_MPa_trocken",
-    "Zugmodul_Kriech_1000h_MPa_konditioniert",
-    "Zugmodul_Parallel_MPa_trocken",
-    "Zugmodul_Parallel_MPa_konditioniert",
-    "Zugmodul_Senkrecht_MPa_trocken",
-    "Zugmodul_Senkrecht_konditioniert",
-  ];
-
-
-
-
-
-  {/* 
-    Tobi stuff end
-  */}  
 
 
   const handleSearch = () => {
@@ -502,9 +468,6 @@ export const Search = () => {
             <Divider variant="fullWidth" orientation="horizontal" />
           </Grid>
 
-
-          {/* Fascha stuff
-           
           <Filter
             data={data}
             suffix="Zugmodul"
@@ -514,40 +477,7 @@ export const Search = () => {
               setFilter({ ...filter, zugmodul: { ...filter.zugmodul, min: val[0], max: val[1] } })
             }
           ></Filter>
-          */} 
-
-          {/* 
-          Tobi stuff start
-          */}  
-   
-
-          <FormControl className={classes.formControl}>
-              <Autocomplete
-                disableClearable
-                value={zugmodul.type}
-                onChange={
-                  setZugmodul({
-                    ...newComponent,
-                    [e.target.id]: e.target.value,
-                  })
-                }
-                options={zugmodul_options}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    value={zugmodul.type}
-                    margin="dense"
-                    className={classes.textfield}
-                  />
-                )}
-              />
-            </FormControl>
-
-
-          {/* 
-          Tobi stuff end
-          */}  
-
+    
 
           <Grid item xs={12}>
             <Divider variant="fullWidth" orientation="horizontal" />
