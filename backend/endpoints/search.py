@@ -86,9 +86,9 @@ class Results(Resource):
     #                     # help="This field cannot be blank."
     #
     # )
-
+    print("sgeht 1")
     parser = reqparse.RequestParser()
-
+    print("sgeht 2")
     parser.add_argument("id", type=int)
     parser.add_argument("mat_desc", type=str)
     parser.add_argument("mat_int_desc", type=str)
@@ -102,53 +102,79 @@ class Results(Resource):
     parser.add_argument("del_kz", type=str)
     parser.add_argument("producer", type=str)
     parser.add_argument("Verarbeitungsmethode", type=str)
-    parser.add_argument("dichte_trocken", type=int, action="append")
-    parser.add_argument("dichte_konditioniert", type=int, action="append")
-    parser.add_argument("Belastung_trocken", type=int, action="append")
-    parser.add_argument("Belastung_konditioniert", type=int, action="append")
-    parser.add_argument("Temperatur_trocken", type=int, action="append")
-    parser.add_argument("Temperatur_konditioniert", type=int, action="append")
-    parser.add_argument("MVR_trocken", type=int, action="append")
-    parser.add_argument("MVR_konditioniert", type=int, action="append")
-    parser.add_argument("Bruchdehnung_trocken", type=int, action="append")
-    parser.add_argument("Bruchdehnung_konditioniert", type=int, action="append")
-    parser.add_argument("Bruchdehnung_Nominell_trocken", type=int, action="append")
-    parser.add_argument("Bruchdehnung_Nominell_konditioniert", type=int, action="append")
-    parser.add_argument("Bruchdehnung_TPE_trocken", type=int, action="append")
-    parser.add_argument("Bruchdehnung_TPE_konditioniert", type=int, action="append")
-    parser.add_argument("Bruchdehnung_Parallel_trocken", type=int, action="append")
-    parser.add_argument("Bruchdehnung_Parallel_konditioniert", type=int, action="append")
-    parser.add_argument("Bruchspannung_MPa_trocken", type=int, action="append")
-    parser.add_argument("Bruchspannung_MPa_konditioniert", type=int, action="append")
-    parser.add_argument("Bruchspannung_TPE_MPa_trocken", type=int, action="append")
-    parser.add_argument("Bruchspannung_TPE_MPa_konditioniert", type=int, action="append")
-    parser.add_argument("Bruchspannung_Parallel_MPa_trocken", type=int, action="append")
-    parser.add_argument("Bruchspannung_Parallel_MPa_konditioniert", type=int, action="append")
-    parser.add_argument("Bruchspannung_Senkrecht_MPa_trocken", type=int, action="append")
-    parser.add_argument("Bruchspannung_Senkrecht_MPa_konditioniert", type=int, action="append")
-    parser.add_argument("Zugmodul_MPa_trocken", type=int, action="append")
-    parser.add_argument("Zugmodul_MPa_konditioniert", type=int, action="append")
-    parser.add_argument("Zugmodul_Kriech_1h_MPa_trocken", type=int, action="append")
-    parser.add_argument("Zugmodul_Kriech_1h_MPa_konditioniert", type=int, action="append")
-    parser.add_argument("Zugmodul_Kriech_1000h_MPa_trocken", type=int, action="append")
-    parser.add_argument("Zugmodul_Kriech_1000h_MPa_konditioniert", type=int, action="append")
-    parser.add_argument("Zugmodul_Parallel_MPa_trocken", type=int, action="append")
-    parser.add_argument("Zugmodul_Parallel_MPa_konditioniert", type=int, action="append")
-    parser.add_argument("Zugmodul_Senkrecht_MPa_trocken", type=int, action="append")
-    parser.add_argument("Zugmodul_Senkrecht_MPa_konditioniert", type=int, action="append")
+    parser.add_argument("dichte_trocken", type=float, action="append")
+    parser.add_argument("dichte_konditioniert", type=float, action="append")
+    parser.add_argument("Belastung_trocken", type=float, action="append")
+    parser.add_argument("Belastung_konditioniert", type=float, action="append")
+    parser.add_argument("Temperatur_trocken", type=float, action="append")
+    parser.add_argument("Temperatur_konditioniert",
+                        type=float, action="append")
+    parser.add_argument("MVR_trocken", type=float, action="append")
+    parser.add_argument("MVR_konditioniert", type=float, action="append")
+    parser.add_argument("Bruchdehnung_trocken", type=float, action="append")
+    parser.add_argument("Bruchdehnung_konditioniert",
+                        type=float, action="append")
+    parser.add_argument("Bruchdehnung_Nominell_trocken",
+                        type=float, action="append")
+    parser.add_argument("Bruchdehnung_Nominell_konditioniert",
+                        type=float, action="append")
+    parser.add_argument("Bruchdehnung_TPE_trocken",
+                        type=float, action="append")
+    parser.add_argument("Bruchdehnung_TPE_konditioniert",
+                        type=float, action="append")
+    parser.add_argument("Bruchdehnung_Parallel_trocken",
+                        type=float, action="append")
+    parser.add_argument("Bruchdehnung_Parallel_konditioniert",
+                        type=float, action="append")
+    parser.add_argument("Bruchspannung_MPa_trocken",
+                        type=float, action="append")
+    parser.add_argument("Bruchspannung_MPa_konditioniert",
+                        type=float, action="append")
+    parser.add_argument("Bruchspannung_TPE_MPa_trocken",
+                        type=float, action="append")
+    parser.add_argument("Bruchspannung_TPE_MPa_konditioniert",
+                        type=float, action="append")
+    parser.add_argument("Bruchspannung_Parallel_MPa_trocken",
+                        type=float, action="append")
+    parser.add_argument(
+        "Bruchspannung_Parallel_MPa_konditioniert", type=float, action="append")
+    parser.add_argument("Bruchspannung_Senkrecht_MPa_trocken",
+                        type=float, action="append")
+    parser.add_argument(
+        "Bruchspannung_Senkrecht_MPa_konditioniert", type=float, action="append")
+    parser.add_argument("Zugmodul_MPa_trocken", type=float, action="append")
+    parser.add_argument("Zugmodul_MPa_konditioniert",
+                        type=float, action="append")
+    parser.add_argument("Zugmodul_Kriech_1h_MPa_trocken",
+                        type=float, action="append")
+    parser.add_argument("Zugmodul_Kriech_1h_MPa_konditioniert",
+                        type=float, action="append")
+    parser.add_argument("Zugmodul_Kriech_1000h_MPa_trocken",
+                        type=float, action="append")
+    parser.add_argument(
+        "Zugmodul_Kriech_1000h_MPa_konditioniert", type=float, action="append")
+    parser.add_argument("Zugmodul_Parallel_MPa_trocken",
+                        type=float, action="append")
+    parser.add_argument("Zugmodul_Parallel_MPa_konditioniert",
+                        type=float, action="append")
+    parser.add_argument("Zugmodul_Senkrecht_MPa_trocken",
+                        type=float, action="append")
+    parser.add_argument("Zugmodul_Senkrecht_MPa_konditioniert",
+                        type=float, action="append")
 
     parser.add_argument("newMaterial", type=dict)
 
     def post(self):
-
+        print("sgeht 3")
         args = self.parser.parse_args()
-
+        print("sgeht 4")
         print("{}   ----    {}  ----    {}".format(args['newMaterial']['id'], args['newMaterial']
                                                    ['mat_desc'], args['newMaterial']['campus_fam']))
 
     def get(self):
         args = self.parser.parse_args()
-        args = {arg:args[arg] for arg in args if (args[arg] != '' and args[arg] != None)}
+        args = {arg: args[arg] for arg in args if (
+            args[arg] != '' and args[arg] != None)}
         print(args)
 
         return [
