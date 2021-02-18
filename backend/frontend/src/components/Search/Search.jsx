@@ -233,9 +233,6 @@ const SearchField = (props) => {
   );
 };
 
-{/* 
-    Fascha stuff start
-
 const Filter = (props) => {
   const [dropdownKeys, setDropdownKeys] = useState([]);
   const [sliderValue, setSliderValue] = useState([0, 10]);
@@ -245,8 +242,6 @@ const Filter = (props) => {
   const [loaded, setLoaded] = useState(false);
 
 
-    
-  
   useEffect(() => {
     // get dropdown options and slider range
     fetch(`/search/${props.suffix.toLowerCase()}`)
@@ -269,7 +264,7 @@ const Filter = (props) => {
       setSliderValue([data[dropdownSelection].min, data[dropdownSelection].max]);
     }
   }, [dropdownSelection]);
- 
+
 
   const handleDropdownChange = (e) => {
     setDropdownSelection(e.target.value);
@@ -329,8 +324,6 @@ const Filter = (props) => {
   );
 };
 
-   */}
-
 export const Search = () => {
 
   const classes = useStyles();
@@ -343,46 +336,16 @@ export const Search = () => {
   const [sliderFamValue, setSliderFamValue] = useState(10);
 
   const INITIAL_FILTER = {
-    // search: "",
+    search: "",
     mat_desc: "",
     campus_fam: "",
     producer: "",
     verarbeitungsmethode: "",
   };
   const [filter, setFilter] = useState(INITIAL_FILTER);
+
   const [resultData, setResultData] = useState([]);
 
-  {/* 
-    Tobi stuff start
-  */}  
-  
-  const [zugmodul, setZugmodul] = useState({
-    type: "",
-    min: 0,
-    max: 1
-  });
-
-  const zugmodul_options = [
-    "Swagger",
-    "Zugmodul_MPa_trocken",
-    "Zugmodul_MPa_konditioniert",
-    "Zugmodul_Kriech_1h_MPa_trocken",
-    "Zugmodul_Kriech_1h_MPa_konditioniert",
-    "Zugmodul_Kriech_1000h_MPa_trocken",
-    "Zugmodul_Kriech_1000h_MPa_konditioniert",
-    "Zugmodul_Parallel_MPa_trocken",
-    "Zugmodul_Parallel_MPa_konditioniert",
-    "Zugmodul_Senkrecht_MPa_trocken",
-    "Zugmodul_Senkrecht_konditioniert",
-  ];
-
-
-
-
-
-  {/* 
-    Tobi stuff end
-  */}  
 
 
   const handleSearch = () => {
@@ -432,6 +395,11 @@ export const Search = () => {
     setFilter(INITIAL_FILTER);
   };
 
+  // real time updating resulting in huge performance issues
+  // useEffect(() => {
+  //   getResultData();
+  // }, [filter]);
+
   useEffect(() => {
     console.log("Result Data updated");
     console.log(filter);
@@ -455,6 +423,7 @@ export const Search = () => {
             onChange={(newValue) => setFilter({ ...filter, mat_desc: newValue })}
             placeholder={"Materialbezeichnung"}
           />
+
           <SearchField
             options={autocompleteData.campus_fam}
             value={filter.campus_fam}
@@ -499,9 +468,6 @@ export const Search = () => {
             <Divider variant="fullWidth" orientation="horizontal" />
           </Grid>
 
-
-          {/* Fascha stuff
-           
           <Filter
             data={data}
             suffix="Zugmodul"
@@ -511,41 +477,87 @@ export const Search = () => {
               setFilter({ ...filter, zugmodul: { ...filter.zugmodul, min: val[0], max: val[1] } })
             }
           ></Filter>
-          */} 
+    
 
-          {/* 
-          Tobi stuff start
-          */}  
-   
-
-          <FormControl className={classes.formControl}>
-              <Autocomplete
-                disableClearable
-                value={zugmodul.type}
-                onChange={
-                  setZugmodul({
-                    ...newComponent,
-                    [e.target.id]: e.target.value,
-                  })
-                }
-                options={zugmodul_options}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    value={zugmodul.type}
-                    margin="dense"
-                    className={classes.textfield}
-                  />
-                )}
-              />
-            </FormControl>
-
-
-          {/* 
-          Tobi stuff end
-          */}  
-
-
+          <Grid item xs={12}>
+            <Divider variant="fullWidth" orientation="horizontal" />
+          </Grid>
+          <Filter
+            data={data}
+            suffix="Bruchdehnung"
+            value={filter.bruchdehnung}
+            handleDropdownChange={(val) =>
+              setFilter({ ...filter, bruchdehnung: { ...filter.bruchdehnung, dropdown: val } })
+            }
+            handleSliderChange={(val) =>
+              setFilter({ ...filter, bruchdehnung: { ...filter.bruchdehnung, min: val[0], max: val[1] } })
+            }
+          ></Filter>{" "}
+          <Grid item xs={12}>
+            <Divider variant="fullWidth" orientation="horizontal" />
+          </Grid>
+          <Filter
+            data={data}
+            suffix="Bruchspannung"
+            value={filter.bruchspannung}
+            handleDropdownChange={(val) =>
+              setFilter({ ...filter, bruchspannung: { ...filter.bruchspannung, dropdown: val } })
+            }
+            handleSliderChange={(val) =>
+              setFilter({ ...filter, bruchspannung: { ...filter.bruchspannung, min: val[0], max: val[1] } })
+            }
+          ></Filter>{" "}
+          <Grid item xs={12}>
+            <Divider variant="fullWidth" orientation="horizontal" />
+          </Grid>
+          <Filter
+            data={data}
+            suffix="Belastung"
+            value={filter.belastung}
+            handleDropdownChange={(val) => setFilter({ ...filter, belastung: { ...filter.belastung, dropdown: val } })}
+            handleSliderChange={(val) =>
+              setFilter({ ...filter, belastung: { ...filter.belastung, min: val[0], max: val[1] } })
+            }
+          ></Filter>{" "}
+          <Grid item xs={12}>
+            <Divider variant="fullWidth" orientation="horizontal" />
+          </Grid>
+          <Filter
+            data={data}
+            suffix="Temperatur"
+            value={filter.temperatur}
+            handleDropdownChange={(val) =>
+              setFilter({ ...filter, temperatur: { ...filter.temperatur, dropdown: val } })
+            }
+            handleSliderChange={(val) =>
+              setFilter({ ...filter, temperatur: { ...filter.temperatur, min: val[0], max: val[1] } })
+            }
+          ></Filter>{" "}
+          <Grid item xs={12}>
+            <Divider variant="fullWidth" orientation="horizontal" />
+          </Grid>
+          <Filter
+            data={data}
+            value={filter.dichte}
+            suffix="Dichte"
+            handleDropdownChange={(val) => setFilter({ ...filter, dichte: { ...filter.dichte, dropdown: val } })}
+            handleSliderChange={(val) =>
+              setFilter({ ...filter, dichte: { ...filter.dichte, min: val[0], max: val[1] } })
+            }
+          ></Filter>{" "}
+          <Grid item xs={12}>
+            <Divider variant="fullWidth" orientation="horizontal" />
+          </Grid>
+          <Filter
+            data={data}
+            value={filter.MVR}
+            suffix="MVR"
+            handleDropdownChange={(val) => setFilter({ ...filter, MVR: { ...filter.MVR, dropdown: val } })}
+            handleSliderChange={(val) => setFilter({ ...filter, MVR: { ...filter.MVR, min: val[0], max: val[1] } })}
+          ></Filter>{" "}
+          <Grid item xs={12}>
+            <Divider variant="fullWidth" orientation="horizontal" />
+          </Grid>
         </Grid>
       </Grid>
 
