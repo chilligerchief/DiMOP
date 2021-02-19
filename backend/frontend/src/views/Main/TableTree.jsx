@@ -35,7 +35,7 @@ import { MainContext } from "./MainContext.jsx";
 import MenuItem from "@material-ui/core/MenuItem";
 import PolymerIcon from "@material-ui/icons/Polymer";
 import React from "react";
-import { SearchDialog } from "../../components/Search/SearchDialog.jsx";
+import { SearchDialog } from "../../views/Main/SearchDialog.jsx";
 import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
 import Tooltip from "@material-ui/core/Tooltip";
