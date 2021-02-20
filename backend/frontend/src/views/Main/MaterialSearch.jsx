@@ -26,6 +26,11 @@ const useStyles = makeStyles((theme) => ({
     height: 60,
     width: 120,
   },
+  textfield: { margin: 0, padding: 0, background: "white" },
+  root_card: {
+    marginTop: 15,
+    marginBottom: 0,
+  },
 }));
 
 const MaterialSearch = () => {
@@ -60,6 +65,8 @@ const MaterialSearch = () => {
               id="mat_desc"
               options={materials}
               onChange={handleNewFilterInputs}
+              disableClearable
+              value={filter.mat_desc}
               renderInput={(params) => <TextField {...params} 
               value={filter.mat_desc}
               label="Materialbeschreibung" margin="normal" />}
