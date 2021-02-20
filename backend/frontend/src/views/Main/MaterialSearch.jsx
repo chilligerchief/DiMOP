@@ -35,22 +35,21 @@ const useStyles = makeStyles((theme) => ({
 const MaterialSearch = () => {
   const classes = useStyles();
 
-  const initial_filter = {
-    mat_desc: "default",
-    campus_fam: "default",
-    producer: "default",
-    verarbeitungsmethode: "default",
-  };
+  const [matDesc, setMatDesc] = useState("");
+  const [campusFam, setCampusFam] = useState("");
+  const [producer, setProducer] = useState("");
+  const [method, setMethod] = useState("");
 
-  const [filter, setFilter] = useState(initial_filter);
+  const initiateSearch = () => {
+    const filter = {
+      mat_desc: matDesc,
+      campus_fam: campusFam,
+      producer: producer,
+      verarbeitungsmethode: method,
+    };
 
-  const materials = ["swaggy", "lordy", "deluxe"];
-
-  const [mat_desc, setMatDesc] = useState("");
-
-  const handleNewFilterInputs = (event) => {
-    setFilter({ ...filter, [event.target.id]: event.target.textContent });
-  };
+    console.log(filter)
+  }
 
   return (
     <div>
@@ -64,7 +63,7 @@ const MaterialSearch = () => {
               (event) =>
               setMatDesc(event.target.textContent)
             }
-            value={mat_desc}
+            value={matDesc}
             renderInput={(params) => (
               <TextField
                 {...params}
@@ -74,13 +73,64 @@ const MaterialSearch = () => {
               />
             )}
           />
+          <Autocomplete
+            id="mat_desc"
+            options={autocompleteData.campus_fam}
+            getOptionLabel={(option) => option}
+            onChange={
+              (event) =>
+              setCampusFam(event.target.textContent)
+            }
+            value={campusFam}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                className={classes.textfield}
+                label="Kunststofffamilie"
+                margin="normal"
+              />
+            )}
+          />
+          <Autocomplete
+            id="producer"
+            options={autocompleteData.producer}
+            getOptionLabel={(option) => option}
+            onChange={
+              (event) =>
+              setProducer(event.target.textContent)
+            }
+            value={producer}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                className={classes.textfield}
+                label="Hersteller"
+                margin="normal"
+              />
+            )}
+          />
+          <Autocomplete
+            id="producer"
+            options={autocompleteData.verarbeitungsmethode}
+            getOptionLabel={(option) => option}
+            onChange={
+              (event) =>
+              setMethod(event.target.textContent)
+            }
+            value={method}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                className={classes.textfield}
+                label="Verarbeitungsmethode"
+                margin="normal"
+              />
+            )}
+          />
           <Button
-            onClick={() => {
-              console.log(mat_desc);
-              console.log(typeof mat_desc);
-            }}
+            onClick={initiateSearch}
           >
-            Print
+            Suchen
           </Button>
         </Grid>
         <Grid item xs={6}></Grid>
