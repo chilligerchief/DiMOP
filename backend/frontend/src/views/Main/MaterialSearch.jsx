@@ -8,7 +8,8 @@ import {Button} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 
 // Data
-import autocompleteData from "../../files/search_plast_data.json";
+//import autocompleteData from "../../files/search_plast_data.json";
+import autocompleteData from "../../files/autocomplete.json.json";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -47,32 +48,13 @@ const MaterialSearch = () => {
         <Grid item xs={6}>
           <Autocomplete
               id="mat_desc"
-              options={autocompleteData.mat_desc}
-              getOptionLabel={(option) => option}
-              onChange={(newValue) => setFilter({ ...filter, [mat_desc]: newValue })}
+              options={autocompleteData}
+              getOptionLabel={(option) => option.mat_desc}
+              onChange={(newValue) => setFilter({ ...filter, mat_desc: newValue })}
               renderInput={(params) => <TextField {...params} label="Materialbeschreibung" margin="normal" />}
             />
-          <Autocomplete
-              id="campus_fam"
-              options={autocompleteData.campus_fam}
-              getOptionLabel={(option) => option}
-              onChange={(newValue) => setFilter({ ...filter, campus_fam: newValue })}
-              renderInput={(params) => <TextField {...params} label="Plastikfamilie" margin="normal" />}
-            />
-          <Autocomplete
-              id="producer"
-              options={autocompleteData.producer}
-              getOptionLabel={(option) => option}
-              onChange={(newValue) => setFilter({ ...filter, producer: newValue })}
-              renderInput={(params) => <TextField {...params} label="Hersteller" margin="normal" />}
-            />
-          <Autocomplete
-              id="verarbeitungsmethode"
-              options={autocompleteData.verarbeitungsmethode}
-              getOptionLabel={(option) => option}
-              onChange={(newValue) => setFilter({ ...filter, verarbeitungsmethode: newValue })}
-              renderInput={(params) => <TextField {...params} label="Verarbeitungsmethode" margin="normal"/>}
-            />
+
+
           <Button
           onClick={ () => {
             console.log(filter);
