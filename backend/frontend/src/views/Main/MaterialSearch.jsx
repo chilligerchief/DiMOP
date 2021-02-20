@@ -3,7 +3,7 @@ import React, { Fragment, useEffect, useState } from "react";
 //Material UI
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import Autocomplete from "@material-ui/core/TextField";
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import {Button} from "@material-ui/core";
 
 // Data
