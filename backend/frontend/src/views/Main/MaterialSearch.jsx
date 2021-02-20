@@ -153,115 +153,115 @@ const MaterialSearch = () => {
             </Button>
           </Grid>
         </Grid>
-        <Grid item xs={2}></Grid>
+      </Grid>
+      <Grid item xs={2}></Grid>
 
-        <Grid item xs={6}>
-          <Autocomplete
-            id="zugmodul"
-            options={autocompleteData.zugmodul}
-            getOptionLabel={(option) => option}
-            onChange={(event) => setMethod(event.target.textContent)}
-            value={zugmodul}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                className={classes.textfield}
-                label="Zugmodul"
-                margin="normal"
-              />
-            )}
-          />
-          <Autocomplete
-            id="bruchspannung"
-            options={autocompleteData.bruchspannung}
-            getOptionLabel={(option) => option}
-            onChange={(event) => setMethod(event.target.textContent)}
-            value={bruchspannung}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                className={classes.textfield}
-                label="Bruchspannung"
-                margin="normal"
-              />
-            )}
-          />
-          <Autocomplete
-            id="bruchdehnung"
-            options={autocompleteData.bruchdehnung}
-            getOptionLabel={(option) => option}
-            onChange={(event) => setMethod(event.target.textContent)}
-            value={bruchdehnung}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                className={classes.textfield}
-                label="Bruchdehnung"
-                margin="normal"
-              />
-            )}
-          />
-          <Autocomplete
-            id="mvr"
-            options={autocompleteData.mvr}
-            getOptionLabel={(option) => option}
-            onChange={(event) => setMethod(event.target.textContent)}
-            value={mvr}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                className={classes.textfield}
-                label="MVR"
-                margin="normal"
-              />
-            )}
-          />
-          <Autocomplete
-            id="dichte"
-            options={autocompleteData.dichte}
-            getOptionLabel={(option) => option}
-            onChange={(event) => setMethod(event.target.textContent)}
-            value={dichte}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                className={classes.textfield}
-                label="Dichte"
-                margin="normal"
-              />
-            )}
-          />
-          <Autocomplete
-            id="belastung"
-            options={autocompleteData.belastung}
-            getOptionLabel={(option) => option}
-            onChange={(event) => setMethod(event.target.textContent)}
-            value={belastung}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                className={classes.textfield}
-                label="Belastung"
-                margin="normal"
-              />
-            )}
-          />
-          <Autocomplete
-            id="temperatur"
-            options={autocompleteData.temperatur}
-            getOptionLabel={(option) => option}
-            onChange={(event) => setMethod(event.target.textContent)}
-            value={temperatur}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                className={classes.textfield}
-                label="Temperatur"
-                margin="normal"
-              />
-            )}
-          />
-        </Grid>
+      <Grid item xs={6}>
+        <Autocomplete
+          id="zugmodul"
+          options={autocompleteData.zugmodul}
+          getOptionLabel={(option) => option}
+          onChange={(event) => setZugmodul(event.target.textContent)}
+          value={zugmodul}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              className={classes.textfield}
+              label="Zugmodul"
+              margin="normal"
+            />
+          )}
+        />
+        <Autocomplete
+          id="bruchspannung"
+          options={autocompleteData.bruchspannung}
+          getOptionLabel={(option) => option}
+          onChange={(event) => setBruchspannung(event.target.textContent)}
+          value={bruchspannung}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              className={classes.textfield}
+              label="Bruchspannung"
+              margin="normal"
+            />
+          )}
+        />
+        <Autocomplete
+          id="bruchdehnung"
+          options={autocompleteData.bruchdehnung}
+          getOptionLabel={(option) => option}
+          onChange={(event) => setBruchdehnung(event.target.textContent)}
+          value={bruchdehnung}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              className={classes.textfield}
+              label="Bruchdehnung"
+              margin="normal"
+            />
+          )}
+        />
+        <Autocomplete
+          id="mvr"
+          options={autocompleteData.mvr}
+          getOptionLabel={(option) => option}
+          onChange={(event) => setMvr(event.target.textContent)}
+          value={mvr}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              className={classes.textfield}
+              label="MVR"
+              margin="normal"
+            />
+          )}
+        />
+        <Autocomplete
+          id="dichte"
+          options={autocompleteData.dichte}
+          getOptionLabel={(option) => option}
+          onChange={(event) => setDichte(event.target.textContent)}
+          value={dichte}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              className={classes.textfield}
+              label="Dichte"
+              margin="normal"
+            />
+          )}
+        />
+        <Autocomplete
+          id="belastung"
+          options={autocompleteData.belastung}
+          getOptionLabel={(option) => option}
+          onChange={(event) => setBelastung(event.target.textContent)}
+          value={belastung}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              className={classes.textfield}
+              label="Belastung"
+              margin="normal"
+            />
+          )}
+        />
+        <Autocomplete
+          id="temperatur"
+          options={autocompleteData.temperatur}
+          getOptionLabel={(option) => option}
+          onChange={(event) => setTemperatur(event.target.textContent)}
+          value={temperatur}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              className={classes.textfield}
+              label="Temperatur"
+              margin="normal"
+            />
+          )}
+        />
       </Grid>
     </div>
   );
