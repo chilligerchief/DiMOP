@@ -44,14 +44,22 @@ const MaterialSearch = () => {
     setFilter({ ...filter, [event.target.id]: event.target.value });
   };
 
+  const materials = [
+    { title: 'The Shawshank Redemption', year: 1994 },
+    { title: 'The Godfather', year: 1972 },
+    { title: 'The Godfather: Part II', year: 1974 },
+    { title: 'The Dark Knight', year: 2008 }
+  ]
+
+
   return (
     <div>
       <form className={classes.root} noValidate autoComplete="off">
       <Autocomplete
           id="mat_desc"
           label="Materialbeschreibung"
-          options={autocompleteData.mat_desc}
-          getOptionLabel={option}
+          options={materials}
+          getOptionLabel={(option) => option.title}
           onChange={handleFilterInputs}
           renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
         />
