@@ -68,7 +68,7 @@ const MaterialSearch = () => {
               disableClearable
               value={filter.mat_desc}
               renderInput={(params) => <TextField {...params} 
-              value={filter.mat_desc}
+              className={classes.textfield}
               label="Materialbeschreibung" margin="normal" />}
             />
           <Button
