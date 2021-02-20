@@ -49,7 +49,7 @@ const MaterialSearch = () => {
   ]
 
   const handleNewFilterInputs = (event) => {
-    setFilter({ ...filter, [event.target.id]: event.target.value });
+    setFilter({ ...filter, [event.target.id]: event.target.textContent });
   };
 
   return (
