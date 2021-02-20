@@ -9,7 +9,7 @@ import {
 import React, { useContext, useEffect, useRef, useState } from "react";
 //Components
 import { MainContext } from "../../views/Main/MainContext.jsx";
-import { MaterialSearch } from "../../views/Main/MaterialSearch.jsx";
+import MaterialSearch from "../../views/Main/MaterialSearch.jsx";
 import Slide from "@material-ui/core/Slide";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
