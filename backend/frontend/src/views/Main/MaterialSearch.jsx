@@ -74,7 +74,12 @@ const MaterialSearch = () => {
               renderInput={(params) => <TextField {...params} label="Verarbeitungsmethode" margin="normal"/>}
             />
           <Button
-          onClick={console.log(filter)}
+          onClick={ () => {
+            console.log(filter);
+            console.log(filter.mat_desc);
+            console.log(type(filter.mat_desc));
+            }
+          }
           >
             Print
             </Button>
