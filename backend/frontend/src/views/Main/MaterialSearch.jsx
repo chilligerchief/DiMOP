@@ -65,7 +65,13 @@ const MaterialSearch = () => {
               id="mat_desc"
               options={materials}
               getOptionLabel={(option) => option}
-              onChange={handleNewFilterInputs}
+              onChange={
+                (newValue) => setFilter({...filter, mat_desc: newValue})
+              }
+
+
+
+
               value={filter.mat_desc}
               renderInput={(params) => <TextField {...params} 
               className={classes.textfield}
