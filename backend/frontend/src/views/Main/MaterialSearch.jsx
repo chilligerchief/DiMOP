@@ -49,7 +49,7 @@ const MaterialSearch = () => {
               id="mat_desc"
               options={autocompleteData.mat_desc}
               getOptionLabel={(option) => option}
-              onChange={(newValue) => setFilter({ ...filter, mat_desc: newValue })}
+              onChange={(newValue) => setFilter({ ...filter, [mat_desc]: newValue })}
               renderInput={(params) => <TextField {...params} label="Materialbeschreibung" margin="normal" />}
             />
           <Autocomplete
@@ -77,7 +77,7 @@ const MaterialSearch = () => {
           onClick={ () => {
             console.log(filter);
             console.log(filter.mat_desc);
-            console.log(type(filter.mat_desc));
+            console.log(typeof filter.mat_desc);
             }
           }
           >
