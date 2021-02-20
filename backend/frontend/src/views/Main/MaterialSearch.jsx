@@ -64,8 +64,8 @@ const MaterialSearch = () => {
           <Autocomplete
               id="mat_desc"
               options={materials}
+              getOptionLabel={(option) => option}
               onChange={handleNewFilterInputs}
-              disableClearable
               value={filter.mat_desc}
               renderInput={(params) => <TextField {...params} 
               className={classes.textfield}
