@@ -1,4 +1,8 @@
 import React, { Fragment, useEffect, useState } from "react";
+
+//Material UI
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/core/TextField";
 
 
@@ -39,6 +43,10 @@ const MaterialSearch = () => {
     "Drei"
   ]
 
+  const handleFilterInputs = (event) => {
+    setFilter({ ...filter, [event.target.id]: event.target.value });
+  };
+
   return (
     <div>
       <form className={classes.root} noValidate autoComplete="off">
@@ -47,6 +55,7 @@ const MaterialSearch = () => {
           label="Materialbeschreibung"
           options={materials}
           value={initial_filter.mat_desc}
+          onChange={}
           margin="normal"
           renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
         />
