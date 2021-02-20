@@ -77,7 +77,7 @@ const MaterialSearch = () => {
   return (
     <div>
       <Grid container item xs={12}>
-        <Grid item xs={4}>
+        <Grid item xs={3}>
           <Autocomplete
             id="mat_desc"
             options={autocompleteData.mat_desc}
@@ -138,15 +138,17 @@ const MaterialSearch = () => {
               />
             )}
           />
-          <Button className={classes.buttons} onClick={resetSearch}>
-            Zurücksetzen
-          </Button>
-          <Button className={classes.buttons} onClick={initiateSearch}>
-            Suche starten
-          </Button>
+          <Grid container item xs={12} justify="center">
+            <Button className={classes.buttons} onClick={resetSearch}>
+              Zurücksetzen
+            </Button>
+            <Button className={classes.buttons} onClick={initiateSearch}>
+              Suche starten
+            </Button>
+          </Grid>
         </Grid>
         <Grid item xs={1}></Grid>
-        <Grid item xs={7}>
+        <Grid item xs={3}>
           <Autocomplete
             id="zugmodul"
             options={autocompleteData.zugmodul}
@@ -252,6 +254,9 @@ const MaterialSearch = () => {
               />
             )}
           />
+        </Grid>
+        <Grid item xs={5}>
+          <p>Hier ist noch Platz für Spaß!</p>
         </Grid>
       </Grid>
     </div>
