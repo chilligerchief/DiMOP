@@ -1550,3 +1550,5 @@ backend/frontend/build/service-worker.js
 backend/frontend/build/precache-manifest.4d89aa92d915cf8785654cf7e0df2301.js
 backend/frontend/build/index.html
 backend/frontend/build/asset-manifest.json
+backend/frontend/build/static/js/main.8d2e95c4.chunk.js
+*.js
