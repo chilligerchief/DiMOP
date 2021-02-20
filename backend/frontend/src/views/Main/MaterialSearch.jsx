@@ -4,6 +4,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/core/TextField";
+import Button from "@material-ui/core";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -28,14 +29,13 @@ const MaterialSearch = () => {
 
 
   const initial_filter = {
-    mat_desc: "",
-    campus_fam: "",
-    producer: "",
-    verarbeitungsmethode: "",
+    mat_desc: "default",
+    campus_fam: "default",
+    producer: "default",
+    verarbeitungsmethode: "default",
   };
   
   const [filter, setFilter] = useState(initial_filter);
-
 
   const materials = [
     "Eins", 
@@ -54,16 +54,18 @@ const MaterialSearch = () => {
           id="mat_desc"
           label="Materialbeschreibung"
           options={materials}
-          getOptionLabel={materials}
-          // value={initial_filter.mat_desc}
-          // onChange={handleFilterInputs}
+          onChange={
+          }
+          onChange={handleFilterInputs}
           margin="normal"
           renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
         />
       </form>
-      <p>
-        Swaggger.
-      </p>
+      <Button
+      onClick={console.log(filter)}
+      >
+        Print
+        </Button>
     </div>
   );
 };
