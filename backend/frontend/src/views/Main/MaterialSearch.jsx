@@ -45,17 +45,16 @@ const MaterialSearch = () => {
       mat_desc: matDesc,
       campus_fam: campusFam,
       producer: producer,
-      verarbeitungsmethode: method,
-    };
+      verarbeitungsmethode: method
+    }
     console.log(filter);
   };
 
-  const initiateSearch = () => {
-    setMatDesc("");
-    setCampusFam("");
-    setProducer("");
-    setMethod("");
-    console.log(filter);
+  const resetSearch = () => {
+    setMatDesc();
+    setCampusFam();
+    setProducer();
+    setMethod();
   };
 
   return (
