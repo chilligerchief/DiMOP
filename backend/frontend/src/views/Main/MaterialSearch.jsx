@@ -54,16 +54,13 @@ const MaterialSearch = () => {
 
   return (
     <div>
-      <form className={classes.root} noValidate autoComplete="off">
       <Autocomplete
           id="mat_desc"
-          label="Materialbeschreibung"
           options={materials}
           getOptionLabel={(option) => option.title}
           onChange={handleFilterInputs}
-          renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
+          renderInput={(params) => <TextField {...params} label="Materialbeschreibung" variant="outlined" />}
         />
-      </form>
       <Button
       onClick={console.log(filter)}
       >
