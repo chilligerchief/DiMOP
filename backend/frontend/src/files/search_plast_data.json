@@ -7769,5 +7769,42 @@
     "Spritzgießen, übrige Extrusion, Thermoformen",
     "Plattenextrusion, übrige Extrusion, Blasformen",
     "Spritzgießen, Folienextrusion, Profilextrusion, Plattenextrusion, übrige Extrusion, Beschichten, Blasformen"
-  ]
+  ],
+
+  "zugmodul": [
+    "Zugmodul_MPa_trocken",
+    "Zugmodul_MPa_konditioniert",
+    "Zugmodul_Kriech_1h_MPa_trocken",
+    "Zugmodul_Kriech_1h_MPa_konditioniert",
+    "Zugmodul_Kriech_1000h_MPa_trocken",
+    "Zugmodul_Kriech_1000h_MPa_konditioniert",
+    "Zugmodul_Parallel_MPa_trocken",
+    "Zugmodul_Parallel_MPa_konditioniert",
+    "Zugmodul_Senkrecht_MPa_trocken",
+    "Zugmodul_Senkrecht_MPa_konditioniert"
+  ],
+  "bruchspannung": [
+    "Bruchspannung_MPa_trocken",
+    "Bruchspannung_MPa_konditioniert",
+    "Bruchspannung_TPE_MPa_trocken",
+    "Bruchspannung_TPE_MPa_konditioniert",
+    "Bruchspannung_Parallel_MPa_trocken",
+    "Bruchspannung_Parallel_MPa_konditioniert",
+    "Bruchspannung_Senkrecht_MPa_trocken",
+    "Bruchspannung_Senkrecht_MPa_konditioniert"
+  ],
+  "bruchdehnung": [
+    "Bruchdehnung_trocken",
+    "Bruchdehnung_konditioniert",
+    "Bruchdehnung_Nominell_trocken",
+    "Bruchdehnung_Nominell_konditioniert",
+    "Bruchdehnung_TPE_trocken",
+    "Bruchdehnung_TPE_konditioniert",
+    "Bruchdehnung_Parallel_trocken",
+    "Bruchdehnung_Parallel_konditioniert"
+  ],
+  "mvr": ["MVR_trocken", "MVR_konditioniert"],
+  "dichte": ["dichte_trocken", "dichte_konditioniert"],
+  "belastung": ["Belastung_trocken", "Belastung_konditioniert"],
+  "temperatur": ["Temperatur_trocken", "Temperatur_konditioniert"]
 }

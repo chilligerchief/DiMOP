@@ -25,11 +25,7 @@ const useStyles = makeStyles((theme) => ({
     height: 60,
     width: 120,
   },
-  textfield: { margin: 0, padding: 0, background: "white" },
-  root_card: {
-    marginTop: 15,
-    marginBottom: 0,
-  },
+  textfield: { margin: 10, padding: 0, background: "white" },
 }));
 
 const MaterialSearch = () => {
@@ -39,22 +35,43 @@ const MaterialSearch = () => {
   const [campusFam, setCampusFam] = useState("");
   const [producer, setProducer] = useState("");
   const [method, setMethod] = useState("");
+  const [zugmodul, setZugmodul] = useState("");
+  const [bruchspannung, setBruchspannung] = useState("");
+  const [bruchdehnung, setBruchdehnung] = useState("");
+  const [mvr, setMvr] = useState("");
+  const [dichte, setDichte] = useState("");
+  const [belastung, setBelastung] = useState("");
+  const [temperatur, setTemperatur] = useState("");
 
   const initiateSearch = () => {
     const filter = {
       mat_desc: matDesc,
       campus_fam: campusFam,
       producer: producer,
-      verarbeitungsmethode: method
-    }
+      verarbeitungsmethode: method,
+      zugmodul: zugmodul,
+      bruchspannung: bruchspannung,
+      bruchdehnung: bruchdehnung,
+      mvr: mvr,
+      dichte: dichte,
+      belastung: belastung,
+      temperatur: temperatur,
+    };
     console.log(filter);
   };
 
   const resetSearch = () => {
-    setMatDesc();
-    setCampusFam();
-    setProducer();
-    setMethod();
+    setMatDesc("");
+    setCampusFam("");
+    setProducer("");
+    setMethod("");
+    setZugmodul("");
+    setBruchspannung("");
+    setBruchdehnung("");
+    setMvr("");
+    setDichte("");
+    setBelastung("");
+    setTemperatur("");
   };
 
   return (
@@ -122,15 +139,136 @@ const MaterialSearch = () => {
             )}
           />
         </Grid>
-        <Grid item xs={6}></Grid>
+        <Grid item xs={6}>
+
+
+
+
+
+      
+
+
+
+        <Autocomplete
+            id="zugmodul"
+            options={autocompleteData.zugmodul}
+            getOptionLabel={(option) => option}
+            onChange={(event) => setMethod(event.target.textContent)}
+            value={zugmodul}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                className={classes.textfield}
+                label="Zugmodul"
+                margin="normal"
+              />
+            )}
+          />
+          <Autocomplete
+            id="bruchspannung"
+            options={autocompleteData.bruchspannung}
+            getOptionLabel={(option) => option}
+            onChange={(event) => setMethod(event.target.textContent)}
+            value={bruchspannung}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                className={classes.textfield}
+                label="Bruchspannung"
+                margin="normal"
+              />
+            )}
+          />
+          <Autocomplete
+            id="bruchdehnung"
+            options={autocompleteData.bruchdehnung}
+            getOptionLabel={(option) => option}
+            onChange={(event) => setMethod(event.target.textContent)}
+            value={bruchdehnung}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                className={classes.textfield}
+                label="Bruchdehnung"
+                margin="normal"
+              />
+            )}
+          />
+          <Autocomplete
+            id="mvr"
+            options={autocompleteData.mvr}
+            getOptionLabel={(option) => option}
+            onChange={(event) => setMethod(event.target.textContent)}
+            value={mvr}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                className={classes.textfield}
+                label="MVR"
+                margin="normal"
+              />
+            )}
+          />
+          <Autocomplete
+            id="dichte"
+            options={autocompleteData.dichte}
+            getOptionLabel={(option) => option}
+            onChange={(event) => setMethod(event.target.textContent)}
+            value={dichte}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                className={classes.textfield}
+                label="Dichte"
+                margin="normal"
+              />
+            )}
+          />
+          <Autocomplete
+            id="belastung"
+            options={autocompleteData.belastung}
+            getOptionLabel={(option) => option}
+            onChange={(event) => setMethod(event.target.textContent)}
+            value={Belastung}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                className={classes.textfield}
+                label="Belastung"
+                margin="normal"
+              />
+            )}
+          />
+          <Autocomplete
+            id="temperatur"
+            options={autocompleteData.temperatur}
+            getOptionLabel={(option) => option}
+            onChange={(event) => setMethod(event.target.textContent)}
+            value={temperatur}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                className={classes.textfield}
+                label="Temperatur"
+                margin="normal"
+              />
+            )}
+          />
+        </Grid>
       </Grid>
-      <Grid container item xs={12}>
-        <Button className={classes.buttons} onClick={initiateSearch}>
-          Suchen
-        </Button>
-        <Button className={classes.buttons} onClick={resetSearch}>
-          Reset
-        </Button>
+      <Grid container item xs={12} justify="center">
+        <Grid item xs={4}>
+          <Button className={classes.buttons} onClick={resetSearch}>
+            Zurücksetzen
+          </Button>
+        </Grid>
+        <Grid item xs={4}></Grid>
+
+        <Grid item xs={4}>
+          <Button className={classes.buttons} onClick={initiateSearch}>
+            Suche starten
+          </Button>
+        </Grid>
       </Grid>
     </div>
   );
