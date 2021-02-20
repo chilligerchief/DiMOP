@@ -56,8 +56,8 @@ const MaterialSearch = () => {
     <div>
       <Autocomplete
           id="mat_desc"
-          options={materials}
-          getOptionLabel={(option) => option.title}
+          options={autocompleteData}
+          getOptionLabel={(option) => option.mat_desc}
           onChange={handleFilterInputs}
           renderInput={(params) => <TextField {...params} label="Materialbeschreibung" variant="outlined" />}
         />
