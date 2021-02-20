@@ -9,7 +9,7 @@ import Grid from "@material-ui/core/Grid";
 
 // Data
 //import autocompleteData from "../../files/search_plast_data.json";
-import autocompleteData from "../../files/autocomplete.json.json";
+import autocompleteData from "../../files/autocomplete.json";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -42,14 +42,21 @@ const MaterialSearch = () => {
   
   const [filter, setFilter] = useState(initial_filter);
 
+
+  materials = [
+    "swaggy",
+    "lordy",
+    "deluxe"
+  ]
+
   return (
     <div>
       <Grid container item xs={12}>
         <Grid item xs={6}>
           <Autocomplete
               id="mat_desc"
-              options={autocompleteData}
-              getOptionLabel={(option) => option.mat_desc}
+              options={materials}
+              getOptionLabel={(option) => option}
               onChange={(newValue) => setFilter({ ...filter, mat_desc: newValue })}
               renderInput={(params) => <TextField {...params} label="Materialbeschreibung" margin="normal" />}
             />
