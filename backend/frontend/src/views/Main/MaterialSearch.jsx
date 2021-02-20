@@ -40,10 +40,6 @@ const MaterialSearch = () => {
   
   const [filter, setFilter] = useState(initial_filter);
 
-  const handleFilterInputs = (event) => {
-    setFilter({ ...filter, [event.target.id]: event.target.value });
-  };
-
   const materials = [
     { title: 'The Shawshank Redemption', year: 1994 },
     { title: 'The Godfather', year: 1972 },
@@ -56,9 +52,9 @@ const MaterialSearch = () => {
     <div>
       <Autocomplete
           id="mat_desc"
-          options={autocompleteData}
-          getOptionLabel={(option) => option.mat_desc}
-          onChange={handleFilterInputs}
+          options={autocompleteData.mat_desc}
+          getOptionLabel={(option) => option}
+          onChange={(newValue) => setFilter({ ...filter, mat_desc: newValue })}
           renderInput={(params) => <TextField {...params} label="Materialbeschreibung" variant="outlined" />}
         />
       <Button
