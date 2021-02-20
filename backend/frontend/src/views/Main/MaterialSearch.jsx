@@ -60,10 +60,11 @@ const MaterialSearch = () => {
             id="mat_desc"
             options={materials}
             getOptionLabel={(option) => option}
-            onChange={(event) =>
-              setFilter({ ...filter, [event.target.id]: event.target.value })
+            onChange={
+              (event) =>
+              setMatDesc(event.target.textContent)
             }
-            value={filter.mat_desc}
+            value={mat_desc}
             renderInput={(params) => (
               <TextField
                 {...params}
