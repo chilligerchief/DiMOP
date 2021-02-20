@@ -47,9 +47,16 @@ const MaterialSearch = () => {
       producer: producer,
       verarbeitungsmethode: method,
     };
+    console.log(filter);
+  };
 
-    console.log(filter)
-  }
+  const initiateSearch = () => {
+    setMatDesc("");
+    setCampusFam("");
+    setProducer("");
+    setMethod("");
+    console.log(filter);
+  };
 
   return (
     <div>
@@ -59,10 +66,7 @@ const MaterialSearch = () => {
             id="mat_desc"
             options={autocompleteData.mat_desc}
             getOptionLabel={(option) => option}
-            onChange={
-              (event) =>
-              setMatDesc(event.target.textContent)
-            }
+            onChange={(event) => setMatDesc(event.target.textContent)}
             value={matDesc}
             renderInput={(params) => (
               <TextField
@@ -77,10 +81,7 @@ const MaterialSearch = () => {
             id="mat_desc"
             options={autocompleteData.campus_fam}
             getOptionLabel={(option) => option}
-            onChange={
-              (event) =>
-              setCampusFam(event.target.textContent)
-            }
+            onChange={(event) => setCampusFam(event.target.textContent)}
             value={campusFam}
             renderInput={(params) => (
               <TextField
@@ -95,10 +96,7 @@ const MaterialSearch = () => {
             id="producer"
             options={autocompleteData.producer}
             getOptionLabel={(option) => option}
-            onChange={
-              (event) =>
-              setProducer(event.target.textContent)
-            }
+            onChange={(event) => setProducer(event.target.textContent)}
             value={producer}
             renderInput={(params) => (
               <TextField
@@ -113,10 +111,7 @@ const MaterialSearch = () => {
             id="producer"
             options={autocompleteData.verarbeitungsmethode}
             getOptionLabel={(option) => option}
-            onChange={
-              (event) =>
-              setMethod(event.target.textContent)
-            }
+            onChange={(event) => setMethod(event.target.textContent)}
             value={method}
             renderInput={(params) => (
               <TextField
@@ -127,13 +122,16 @@ const MaterialSearch = () => {
               />
             )}
           />
-          <Button
-            onClick={initiateSearch}
-          >
-            Suchen
-          </Button>
         </Grid>
         <Grid item xs={6}></Grid>
+      </Grid>
+      <Grid container item xs={12}>
+        <Button className={classes.buttons} onClick={initiateSearch}>
+          Suchen
+        </Button>
+        <Button className={classes.buttons} onClick={resetSearch}>
+          Reset
+        </Button>
       </Grid>
     </div>
   );
