@@ -1644,3 +1644,15 @@ backend/frontend/build/service-worker.js
 backend/frontend/build/precache-manifest.4d89aa92d915cf8785654cf7e0df2301.js
 backend/frontend/build/index.html
 backend/frontend/build/asset-manifest.json
+backend/frontend/node_modules/.cache/terser-webpack-plugin/index-v5/5d/02/3d329eb1455f5ddee6c92ae23ee7b9c04d3b372697e83fee70a54b42fc58
+backend/frontend/node_modules/.cache/terser-webpack-plugin/content-v2/sha512/c9/5a/b11385f25c7d289fe74b72aff0f389f0242a1ab424e0c827afb88426a22c9f48bb5528ca5b5aa38aff34b0b68a8580f7a2cd7ae876c7427b37f672d88818
+backend/frontend/node_modules/.cache/eslint-loader/5b6e0b042bdb0095662d28be841f2318a86560b1.json.gz
+backend/frontend/build/static/js/main.8d2e95c4.chunk.js.map
+backend/frontend/build/static/js/main.8d2e95c4.chunk.js
+backend/frontend/build/static/js/2.c282a28f.chunk.js.map
+backend/frontend/build/static/js/2.c282a28f.chunk.js.LICENSE.txt
+backend/frontend/build/static/js/2.c282a28f.chunk.js
+backend/frontend/build/service-worker.js
+backend/frontend/build/precache-manifest.4d89aa92d915cf8785654cf7e0df2301.js
+backend/frontend/build/index.html
+backend/frontend/build/asset-manifest.json

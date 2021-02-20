@@ -6,6 +6,9 @@ import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/core/TextField";
 import {Button} from "@material-ui/core";
 
+// Data
+import autocompleteData from "../../files/search_plast_data.json";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,8 +56,8 @@ const MaterialSearch = () => {
       <Autocomplete
           id="mat_desc"
           label="Materialbeschreibung"
-          options={materials}
-          getOptionLabel={materials}
+          options={autocompleteData}
+          getOptionLabel={(option) => option.mat_desc}
           onChange={handleFilterInputs}
           margin="normal"
           renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
