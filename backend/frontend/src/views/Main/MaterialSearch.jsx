@@ -40,23 +40,40 @@ const MaterialSearch = () => {
   
   const [filter, setFilter] = useState(initial_filter);
 
-  const materials = [
-    { title: 'The Shawshank Redemption', year: 1994 },
-    { title: 'The Godfather', year: 1972 },
-    { title: 'The Godfather: Part II', year: 1974 },
-    { title: 'The Dark Knight', year: 2008 }
-  ]
-
-
   return (
     <div>
       <Autocomplete
           id="mat_desc"
           options={autocompleteData.mat_desc}
           getOptionLabel={(option) => option}
+          value={filter.mat_desc}
           onChange={(newValue) => setFilter({ ...filter, mat_desc: newValue })}
           renderInput={(params) => <TextField {...params} label="Materialbeschreibung" variant="outlined" />}
         />
+      <Autocomplete
+          id="campus_fam"
+          options={autocompleteData.campus_fam}
+          getOptionLabel={(option) => option}
+          onChange={(newValue) => setFilter({ ...filter, campus_fam: newValue })}
+          renderInput={(params) => <TextField {...params} label="Plastikfamilie" variant="outlined" />}
+        />
+      <Autocomplete
+          id="producer"
+          options={autocompleteData.producer}
+          getOptionLabel={(option) => option}
+          onChange={(newValue) => setFilter({ ...filter, producer: newValue })}
+          renderInput={(params) => <TextField {...params} label="Hersteller" variant="outlined" />}
+        />
+      <Autocomplete
+          id="verarbeitungsmethode"
+          options={autocompleteData.verarbeitungsmethode}
+          getOptionLabel={(option) => option}
+          onChange={(newValue) => setFilter({ ...filter, verarbeitungsmethode: newValue })}
+          renderInput={(params) => <TextField {...params} label="Verarbeitungsmethode" variant="outlined" />}
+        />
+
+
+
       <Button
       onClick={console.log(filter)}
       >
