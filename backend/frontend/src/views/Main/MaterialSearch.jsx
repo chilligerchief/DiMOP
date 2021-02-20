@@ -54,8 +54,9 @@ const MaterialSearch = () => {
           id="mat_desc"
           label="Materialbeschreibung"
           options={materials}
-          value={initial_filter.mat_desc}
-          onChange={}
+          getOptionLabel={materials}
+          // value={initial_filter.mat_desc}
+          // onChange={handleFilterInputs}
           margin="normal"
           renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
         />
