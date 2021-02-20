@@ -40,12 +40,6 @@ const MaterialSearch = () => {
   
   const [filter, setFilter] = useState(initial_filter);
 
-  const materials = [
-    "Eins", 
-    "Zwei",
-    "Drei"
-  ]
-
   const handleFilterInputs = (event) => {
     setFilter({ ...filter, [event.target.id]: event.target.value });
   };
@@ -56,10 +50,9 @@ const MaterialSearch = () => {
       <Autocomplete
           id="mat_desc"
           label="Materialbeschreibung"
-          options={autocompleteData}
-          getOptionLabel={(option) => option.mat_desc}
+          options={autocompleteData.mat_desc}
+          getOptionLabel={option}
           onChange={handleFilterInputs}
-          margin="normal"
           renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
         />
       </form>
