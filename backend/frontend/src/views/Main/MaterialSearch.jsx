@@ -58,7 +58,7 @@ const MaterialSearch = () => {
         <Grid item xs={6}>
           <Autocomplete
             id="mat_desc"
-            options={materials}
+            options={autocompleteData.mat_desc}
             getOptionLabel={(option) => option}
             onChange={
               (event) =>
@@ -76,9 +76,8 @@ const MaterialSearch = () => {
           />
           <Button
             onClick={() => {
-              console.log(filter);
-              console.log(filter.mat_desc);
-              console.log(typeof filter.mat_desc);
+              console.log(mat_desc);
+              console.log(typeof mat_desc);
             }}
           >
             Print
