@@ -77,7 +77,7 @@ const MaterialSearch = () => {
   return (
     <div>
       <Grid container item xs={12}>
-        <Grid item xs={6}>
+        <Grid item xs={4}>
           <Autocomplete
             id="mat_desc"
             options={autocompleteData.mat_desc}
@@ -139,17 +139,24 @@ const MaterialSearch = () => {
             )}
           />
         </Grid>
+        <Grid container item xs={12} justify="center">
+          <Grid item xs={4}>
+            <Button className={classes.buttons} onClick={resetSearch}>
+              Zurücksetzen
+            </Button>
+          </Grid>
+          <Grid item xs={4}></Grid>
+
+          <Grid item xs={4}>
+            <Button className={classes.buttons} onClick={initiateSearch}>
+              Suche starten
+            </Button>
+          </Grid>
+        </Grid>
+        <Grid item xs={2}></Grid>
+
         <Grid item xs={6}>
-
-
-
-
-
-      
-
-
-
-        <Autocomplete
+          <Autocomplete
             id="zugmodul"
             options={autocompleteData.zugmodul}
             getOptionLabel={(option) => option}
@@ -229,7 +236,7 @@ const MaterialSearch = () => {
             options={autocompleteData.belastung}
             getOptionLabel={(option) => option}
             onChange={(event) => setMethod(event.target.textContent)}
-            value={Belastung}
+            value={belastung}
             renderInput={(params) => (
               <TextField
                 {...params}
@@ -254,20 +261,6 @@ const MaterialSearch = () => {
               />
             )}
           />
-        </Grid>
-      </Grid>
-      <Grid container item xs={12} justify="center">
-        <Grid item xs={4}>
-          <Button className={classes.buttons} onClick={resetSearch}>
-            Zurücksetzen
-          </Button>
-        </Grid>
-        <Grid item xs={4}></Grid>
-
-        <Grid item xs={4}>
-          <Button className={classes.buttons} onClick={initiateSearch}>
-            Suche starten
-          </Button>
         </Grid>
       </Grid>
     </div>
