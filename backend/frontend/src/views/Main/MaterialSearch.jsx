@@ -8,8 +8,7 @@ import {Button} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 
 // Data
-//import autocompleteData from "../../files/search_plast_data.json";
-import autocompleteData from "../../files/autocomplete.json";
+import autocompleteData from "../../files/search_plast_data.json";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -43,11 +42,15 @@ const MaterialSearch = () => {
   const [filter, setFilter] = useState(initial_filter);
 
 
-  materials = [
+  const materials = [
     "swaggy",
     "lordy",
     "deluxe"
   ]
+
+  const handleNewFilterInputs = (event) => {
+    setFilter({ ...filter, [event.target.id]: event.target.value });
+  };
 
   return (
     <div>
@@ -56,12 +59,11 @@ const MaterialSearch = () => {
           <Autocomplete
               id="mat_desc"
               options={materials}
-              getOptionLabel={(option) => option}
-              onChange={(newValue) => setFilter({ ...filter, mat_desc: newValue })}
-              renderInput={(params) => <TextField {...params} label="Materialbeschreibung" margin="normal" />}
+              onChange={handleNewFilterInputs}
+              renderInput={(params) => <TextField {...params} 
+              value={filter.mat_desc}
+              label="Materialbeschreibung" margin="normal" />}
             />
-
-
           <Button
           onClick={ () => {
             console.log(filter);
