@@ -4,7 +4,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/core/TextField";
-import Button from "@material-ui/core";
+import {Button} from "@material-ui/core";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -54,8 +54,7 @@ const MaterialSearch = () => {
           id="mat_desc"
           label="Materialbeschreibung"
           options={materials}
-          onChange={
-          }
+          getOptionLabel={materials}
           onChange={handleFilterInputs}
           margin="normal"
           renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
