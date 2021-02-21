@@ -176,6 +176,7 @@ const MaterialSearch = () => {
               />
             </Grid>
             <Grid item xs={6}>
+              <Typography gutterBottom>Zugmodul</Typography>
               <Slider
                 value={zugmodulSliderValue}
                 onChange={(event) => setZugmodulSliderValue(event.target.value)}
