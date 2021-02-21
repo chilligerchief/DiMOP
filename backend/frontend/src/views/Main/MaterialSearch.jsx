@@ -79,8 +79,7 @@ const MaterialSearch = () => {
     setDichte("");
     setBelastung("");
     setTemperatur("");
-    setZugmodulMin(0);
-    setZugmodulMax(110000);
+    setZugmodulSliderValue([zugmodulMin, zugmodulMax])
   };
 
   return (
