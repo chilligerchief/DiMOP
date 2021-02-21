@@ -6,6 +6,7 @@ import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { Button, Slider } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
+import Typography from '@material-ui/core/Typography';
 
 // Data
 import autocompleteData from "../../files/search_plast_data.json";
@@ -80,6 +81,11 @@ const MaterialSearch = () => {
     setTemperatur("");
   };
 
+  const handleZugmodulChange = (event) => {
+    setZugmodul(event.target.textContent)
+
+  };
+
   return (
     <div>
       <Grid container item xs={12}>
@@ -133,7 +139,7 @@ const MaterialSearch = () => {
             id="method"
             options={autocompleteData.verarbeitungsmethode}
             getOptionLabel={(option) => option}
-            onChange={(event) => setMethod(event.target.textContent)}
+            onChange={handleZugmodulChange}
             value={method}
             renderInput={(params) => (
               <TextField
@@ -165,7 +171,9 @@ const MaterialSearch = () => {
                 id="zugmodul"
                 options={autocompleteData.zugmodul}
                 getOptionLabel={(option) => option}
-                onChange={(event) => setZugmodul(event.target.textContent)}
+                onChange={
+
+                }
                 value={zugmodul}
                 renderInput={(params) => (
                   <TextField
@@ -179,6 +187,9 @@ const MaterialSearch = () => {
             </Grid>
             <Grid item xs={1}></Grid>
             <Grid item xs={6} alignContent="flex-end" alignItems="flex-end">
+              <Typography id="range-slider" gutterBottom>
+                Zugmodul
+              </Typography>
               <Slider
                 value={zugmodulSliderValue}
                 onChange={(event, newValue) => {
