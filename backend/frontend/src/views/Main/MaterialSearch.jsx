@@ -83,41 +83,47 @@ const MaterialSearch = () => {
 
   const handleZugmodulChange = (event) => {
     setZugmodul(event.target.textContent)
-    switch (zugmodul) {
-      case "Zugmodul_MPa_trocken":
-        setZugModulMin(0);
-        setZugModulMax();
-      case "Zugmodul_MPa_konditioniert":
-        setZugModulMin(0);
-        setZugModulMax();
-      case "Zugmodul_Kriech_1h_MPa_trocken":
-        setZugModulMin(0);
-        setZugModulMax(21300.0);
-                "Zugmodul_Kriech_1h_MPa_konditioniert": {"min": 0, "max": 14200.0},
-      case "Zugmodul_Kriech_1h_MPa_konditioniert":
-        setZugModulMin(0);
-        setZugModulMax(14200.0);
-      case "Zugmodul_Kriech_1000h_MPa_trocken":
-        setZugModulMin(0);
-        setZugModulMax(18600.0);
-      case "Zugmodul_Kriech_1000h_MPa_konditioniert":
-        setZugModulMin(0);
-        setZugModulMax(12000.0);
-      case "Zugmodul_Parallel_MPa_trocken":
-        setZugModulMin(0);
-        setZugModulMax(107064.0);
-      case "Zugmodul_Parallel_MPa_konditioniert":
-        setZugModulMin(0);
-        setZugModulMax(19000.0);
-      case "Zugmodul_Senkrecht_MPa_trocken":
-        setZugModulMin(0);
-        setZugModulMax(55000.0);
-      case "Zugmodul_Senkrecht_MPa_konditioniert":
-        setZugModulMin(0);
-        setZugModulMax(19000.0);
+    if(zugmodul == "Zugmodul_MPa_trocken") {
+      setZugModulMin(0);
+      setZugModulMax(47400.0);
     }
-    setZugmodulSliderValue([zugModulMin, zugModulMax]);
- 
+    else if(zugmodul == "Zugmodul_MPa_konditioniert") {
+      setZugModulMin(0);
+      setZugModulMax(27400.0);
+    }
+    else if(zugmodul == "Zugmodul_Kriech_1h_MPa_trocken") {
+      setZugModulMin(0);
+      setZugModulMax(21300.0);
+    }
+    else if(zugmodul == "Zugmodul_Kriech_1h_MPa_konditioniert") {
+      setZugModulMin(0);
+      setZugModulMax(14200.0);
+    }
+    else if(zugmodul == "Zugmodul_Kriech_1000h_MPa_trocken") {
+      setZugModulMin(0);
+      setZugModulMax(18600.0);
+    }
+    else if(zugmodul == "Zugmodul_Kriech_1000h_MPa_konditioniert") {
+      setZugModulMin(0);
+      setZugModulMax(12000.0);
+    }
+    else if(zugmodul == "Zugmodul_Parallel_MPa_trocken") {
+      setZugModulMin(0);
+      setZugModulMax(107064.0);
+    }
+    else if(zugmodul == "Zugmodul_Parallel_MPa_konditioniert") {
+      setZugModulMin(0);
+      setZugModulMax(19000.0);
+    }
+    else if(zugmodul == "Zugmodul_Senkrecht_MPa_trocken") {
+      setZugModulMin(0);
+      setZugModulMax(55000.0);
+    }
+    else if(zugmodul == "Zugmodul_Senkrecht_MPa_konditioniert") {
+      setZugModulMin(0);
+      setZugModulMax(19000.0);
+    }
+    setZugmodulSliderValue([zugmodulMin, zugmodulMax]);
   };
 
   return (
