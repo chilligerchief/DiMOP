@@ -35,13 +35,19 @@ const MaterialSearch = () => {
   const [campusFam, setCampusFam] = useState("");
   const [producer, setProducer] = useState("");
   const [method, setMethod] = useState("");
+
   const [zugmodul, setZugmodul] = useState("");
+  const [zugmodulSliderRange, setZugmodulSliderRange] = useState([0, 10]);
+  const [zugmodulSliderValue, setZugmodulSliderValue] = useState([0, 10]);
+
   const [bruchspannung, setBruchspannung] = useState("");
   const [bruchdehnung, setBruchdehnung] = useState("");
   const [mvr, setMvr] = useState("");
   const [dichte, setDichte] = useState("");
   const [belastung, setBelastung] = useState("");
   const [temperatur, setTemperatur] = useState("");
+
+
 
   const initiateSearch = () => {
     const filter = {
@@ -260,7 +266,15 @@ const MaterialSearch = () => {
           />
         </Grid>
         <Grid item xs={4}>
-          <p>Hier ist noch Platz für Spaß!</p>
+        <Slider
+          value={zugmodulSliderValue}
+          onChange={(event) => setZugmodulSliderValue(event.target.value)}
+          min={zugmodulSliderRange[0]} //getMin
+          max={zugmodulSliderRange[1]} //getMax
+          step={1}
+          marks
+          valueLabelDisplay="auto"
+        ></Slider>
         </Grid>
       </Grid>
     </div>
