@@ -11,6 +11,24 @@ import Typography from "@material-ui/core/Typography";
 // Data
 import autocompleteData from "../../files/search_plast_data.json";
 
+// devexpress
+import {
+  SelectionState,
+  FilteringState,
+  IntegratedFiltering,
+} from "@devexpress/dx-react-grid";
+
+import {
+  Grid as GridDevExpress,
+  Table,
+  TableSelection,
+  TableColumnVisibility,
+  ColumnChooser,
+  TableHeaderRow,
+  TableFilterRow,
+  Toolbar,
+} from "@devexpress/dx-react-grid-material-ui";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -155,6 +173,17 @@ const MaterialSearch = () => {
       temperaturSliderRange[1],
     ]);
   };
+
+  const [resultData, setResultData] = useState([]);
+
+  const [selection, setSelection] = useState([]);
+
+  const [resultColumns] = useState([
+    { name: "id", title: "Konstr.Nr." },
+    { name: "cons_title", title: "Konstr.Titel." },
+    { name: "cons_desc", title: "Konstr.Beschr." },
+    { name: "del_kz", title: "Lösch.Kennz." },
+  ]);
 
   return (
     <div>
@@ -492,6 +521,23 @@ const MaterialSearch = () => {
             </Grid>
           </Grid>
         </Grid>
+      </Grid>
+      <Grid container item xs={12}>
+        <GridDevExpress rows={resultData} columns={resultColumns}>
+          <SelectionState
+            selection={selection}
+            onSelectionChange={setSelection}
+          />
+          <FilteringState defaultFilters={[]} />
+          <IntegratedFiltering />
+          <Table />
+          <TableSelection />
+          <TableColumnVisibility />
+          <Toolbar />
+          <ColumnChooser />
+          <TableFilterRow />
+          <TableHeaderRow />
+        </GridDevExpress>
       </Grid>
     </div>
   );
