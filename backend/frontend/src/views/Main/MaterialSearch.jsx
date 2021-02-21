@@ -157,33 +157,36 @@ const MaterialSearch = () => {
         </Grid>
         <Grid item xs={1}></Grid>
         <Grid item xs={8}>
-          <Grid item xs={12} direction="column">
-            <Autocomplete
-              id="zugmodul"
-              options={autocompleteData.zugmodul}
-              getOptionLabel={(option) => option}
-              onChange={(event) => setZugmodul(event.target.textContent)}
-              value={zugmodul}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  className={classes.textfield}
-                  label="Zugmodul"
-                  margin="normal"
-                />
-              )}
-            />
-            <Slider
-              value={zugmodulSliderValue}
-              onChange={(event) => setZugmodulSliderValue(event.target.value)}
-              min={zugmodulSliderRange[0]} //getMin
-              max={zugmodulSliderRange[1]} //getMax
-              step={1}
-              marks
-              valueLabelDisplay="auto"
-            ></Slider>
+          <Grid item xs={12}>
+            <Grid item xs={6}>
+              <Autocomplete
+                id="zugmodul"
+                options={autocompleteData.zugmodul}
+                getOptionLabel={(option) => option}
+                onChange={(event) => setZugmodul(event.target.textContent)}
+                value={zugmodul}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    className={classes.textfield}
+                    label="Zugmodul"
+                    margin="normal"
+                  />
+                )}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <Slider
+                value={zugmodulSliderValue}
+                onChange={(event) => setZugmodulSliderValue(event.target.value)}
+                min={zugmodulSliderRange[0]} //getMin
+                max={zugmodulSliderRange[1]} //getMax
+                step={1}
+                marks
+                valueLabelDisplay="auto"
+              ></Slider>
+            </Grid>
           </Grid>
-
           <Autocomplete
             id="bruchspannung"
             options={autocompleteData.bruchspannung}
