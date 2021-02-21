@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     height: 60,
     width: 120,
   },
-  textfield: { margin: 15, padding: 0, background: "white" },
+  textfield: { margin: 10, padding: 0, background: "white" },
 }));
 
 const MaterialSearch = () => {
@@ -37,8 +37,8 @@ const MaterialSearch = () => {
   const [method, setMethod] = useState("");
 
   const [zugmodul, setZugmodul] = useState("");
-  const [zugmodulSliderRange, setZugmodulSliderRange] = useState([0, 10]);
-  const [zugmodulSliderValue, setZugmodulSliderValue] = useState([0, 10]);
+  const [zugmodulSliderRange, setZugmodulSliderRange] = useState([0, 10000]);
+  const [zugmodulSliderValue, setZugmodulSliderValue] = useState([0, 10000]);
 
   const [bruchspannung, setBruchspannung] = useState("");
   const [bruchdehnung, setBruchdehnung] = useState("");
@@ -177,7 +177,7 @@ const MaterialSearch = () => {
               />
             </Grid>
             <Grid item xs={1}></Grid>
-            <Grid item xs={6}>
+            <Grid item xs={6} alignContent="flex-end" alignItems="baseline">
               <Slider
                 value={zugmodulSliderValue}
                 onChange={(event, newValue) => {
