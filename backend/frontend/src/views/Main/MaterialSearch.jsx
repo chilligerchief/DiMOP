@@ -6,7 +6,6 @@ import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { Button, Slider } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
 
 // Data
 import autocompleteData from "../../files/search_plast_data.json";
@@ -26,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     height: 60,
     width: 120,
   },
-  textfield: { margin: 10, padding: 0, background: "white" },
+  textfield: { margin: 15, padding: 0, background: "white" },
 }));
 
 const MaterialSearch = () => {
@@ -180,7 +179,6 @@ const MaterialSearch = () => {
             <Grid item xs={1}></Grid>
             <Grid item xs={6}>
               <Slider
-                style={{ topMargin: 15 }}
                 value={zugmodulSliderValue}
                 onChange={(event, newValue) => {
                   setZugmodulSliderValue(newValue);
