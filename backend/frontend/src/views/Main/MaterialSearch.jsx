@@ -37,7 +37,8 @@ const MaterialSearch = () => {
   const [method, setMethod] = useState("");
 
   const [zugmodul, setZugmodul] = useState("");
-  const [zugmodulSliderRange, setZugmodulSliderRange] = useState([0, 10000]);
+  const [zugmodulMin, setZugModulMin] = useState(0);
+  const [zugmodulMax, setZugModulMax] = useState(10000);
   const [zugmodulSliderValue, setZugmodulSliderValue] = useState([0, 10000]);
 
   const [bruchspannung, setBruchspannung] = useState("");
@@ -177,14 +178,14 @@ const MaterialSearch = () => {
               />
             </Grid>
             <Grid item xs={1}></Grid>
-            <Grid item xs={6} alignContent="flex-end" alignItems="baseline">
+            <Grid item xs={6} alignContent="flex-end" alignItems="flex-end">
               <Slider
                 value={zugmodulSliderValue}
                 onChange={(event, newValue) => {
                   setZugmodulSliderValue(newValue);
                 }}
-                min={zugmodulSliderRange.min}
-                max={zugmodulSliderRange.max}
+                min={zugmodulMin}
+                max={zugmodulMax}
                 step={1}
                 marks
                 valueLabelDisplay="auto"
