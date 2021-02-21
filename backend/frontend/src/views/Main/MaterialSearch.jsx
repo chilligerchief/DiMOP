@@ -4,7 +4,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import { Button } from "@material-ui/core";
+import { Button, Slider } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 
 // Data
@@ -46,8 +46,6 @@ const MaterialSearch = () => {
   const [dichte, setDichte] = useState("");
   const [belastung, setBelastung] = useState("");
   const [temperatur, setTemperatur] = useState("");
-
-
 
   const initiateSearch = () => {
     const filter = {
@@ -100,7 +98,7 @@ const MaterialSearch = () => {
             )}
           />
           <Autocomplete
-            id="mat_desc"
+            id="campus_fam"
             options={autocompleteData.campus_fam}
             getOptionLabel={(option) => option}
             onChange={(event) => setCampusFam(event.target.textContent)}
@@ -158,22 +156,34 @@ const MaterialSearch = () => {
           </Grid>
         </Grid>
         <Grid item xs={1}></Grid>
-        <Grid item xs={4}>
-          <Autocomplete
-            id="zugmodul"
-            options={autocompleteData.zugmodul}
-            getOptionLabel={(option) => option}
-            onChange={(event) => setZugmodul(event.target.textContent)}
-            value={zugmodul}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                className={classes.textfield}
-                label="Zugmodul"
-                margin="normal"
-              />
-            )}
-          />
+        <Grid item xs={8}>
+          <Grid item xs={12} direction="row">
+            <Autocomplete
+              id="zugmodul"
+              options={autocompleteData.zugmodul}
+              getOptionLabel={(option) => option}
+              onChange={(event) => setZugmodul(event.target.textContent)}
+              value={zugmodul}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  className={classes.textfield}
+                  label="Zugmodul"
+                  margin="normal"
+                />
+              )}
+            />
+            <Slider
+              value={zugmodulSliderValue}
+              onChange={(event) => setZugmodulSliderValue(event.target.value)}
+              min={zugmodulSliderRange[0]} //getMin
+              max={zugmodulSliderRange[1]} //getMax
+              step={1}
+              marks
+              valueLabelDisplay="auto"
+            ></Slider>
+          </Grid>
+
           <Autocomplete
             id="bruchspannung"
             options={autocompleteData.bruchspannung}
@@ -264,17 +274,6 @@ const MaterialSearch = () => {
               />
             )}
           />
-        </Grid>
-        <Grid item xs={4}>
-        <Slider
-          value={zugmodulSliderValue}
-          onChange={(event) => setZugmodulSliderValue(event.target.value)}
-          min={zugmodulSliderRange[0]} //getMin
-          max={zugmodulSliderRange[1]} //getMax
-          step={1}
-          marks
-          valueLabelDisplay="auto"
-        ></Slider>
         </Grid>
       </Grid>
     </div>
