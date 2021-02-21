@@ -124,7 +124,7 @@ const MaterialSearch = () => {
             )}
           />
           <Autocomplete
-            id="producer"
+            id="method"
             options={autocompleteData.verarbeitungsmethode}
             getOptionLabel={(option) => option}
             onChange={(event) => setMethod(event.target.textContent)}
