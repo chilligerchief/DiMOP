@@ -39,6 +39,8 @@ const MaterialSearch = () => {
 
   const [zugmodul, setZugmodul] = useState("");
   const [zugmodulSliderValue, setZugmodulSliderValue] = useState([0, 110000]);
+  const [zugmodulMin, setZugmodulMin] = useState(0);
+  const [zugmodulMax, setZugmodulMax] = useState(110000);
 
   const [bruchspannung, setBruchspannung] = useState("");
   const [bruchdehnung, setBruchdehnung] = useState("");
@@ -77,6 +79,8 @@ const MaterialSearch = () => {
     setDichte("");
     setBelastung("");
     setTemperatur("");
+    setZugmodulMin(0);
+    setZugmodulMax(110000);
   };
 
   return (
@@ -188,10 +192,9 @@ const MaterialSearch = () => {
                 onChange={(event, newValue) => {
                   setZugmodulSliderValue(newValue);
                 }}
-                min={0}
-                max={110000}
-                step={1}
-                marks
+                min={zugmodulMin}
+                max={zugmodulMax}
+                step={10}
                 valueLabelDisplay="auto"
               ></Slider>
             </Grid>
