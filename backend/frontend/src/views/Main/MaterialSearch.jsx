@@ -157,7 +157,7 @@ const MaterialSearch = () => {
         </Grid>
         <Grid item xs={1}></Grid>
         <Grid item xs={8}>
-          <Grid item xs={12} direction="row">
+          <Grid item xs={12} direction="column">
             <Autocomplete
               id="zugmodul"
               options={autocompleteData.zugmodul}
