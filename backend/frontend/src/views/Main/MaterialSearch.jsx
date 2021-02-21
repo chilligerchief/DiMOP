@@ -38,9 +38,7 @@ const MaterialSearch = () => {
   const [method, setMethod] = useState("");
 
   const [zugmodul, setZugmodul] = useState("");
-  const [zugmodulMin, setZugModulMin] = useState(0);
-  const [zugmodulMax, setZugModulMax] = useState(10000);
-  const [zugmodulSliderValue, setZugmodulSliderValue] = useState([0, 10000]);
+  const [zugmodulSliderValue, setZugmodulSliderValue] = useState([0, 110000]);
 
   const [bruchspannung, setBruchspannung] = useState("");
   const [bruchdehnung, setBruchdehnung] = useState("");
@@ -79,51 +77,6 @@ const MaterialSearch = () => {
     setDichte("");
     setBelastung("");
     setTemperatur("");
-  };
-
-  const handleZugmodulChange = (event) => {
-    setZugmodul(event.target.textContent)
-    if(zugmodul == "Zugmodul_MPa_trocken") {
-      setZugModulMin(0);
-      setZugModulMax(47400.0);
-    }
-    else if(zugmodul == "Zugmodul_MPa_konditioniert") {
-      setZugModulMin(0);
-      setZugModulMax(27400.0);
-    }
-    else if(zugmodul == "Zugmodul_Kriech_1h_MPa_trocken") {
-      setZugModulMin(0);
-      setZugModulMax(21300.0);
-    }
-    else if(zugmodul == "Zugmodul_Kriech_1h_MPa_konditioniert") {
-      setZugModulMin(0);
-      setZugModulMax(14200.0);
-    }
-    else if(zugmodul == "Zugmodul_Kriech_1000h_MPa_trocken") {
-      setZugModulMin(0);
-      setZugModulMax(18600.0);
-    }
-    else if(zugmodul == "Zugmodul_Kriech_1000h_MPa_konditioniert") {
-      setZugModulMin(0);
-      setZugModulMax(12000.0);
-    }
-    else if(zugmodul == "Zugmodul_Parallel_MPa_trocken") {
-      setZugModulMin(0);
-      setZugModulMax(107064.0);
-    }
-    else if(zugmodul == "Zugmodul_Parallel_MPa_konditioniert") {
-      setZugModulMin(0);
-      setZugModulMax(19000.0);
-    }
-    else if(zugmodul == "Zugmodul_Senkrecht_MPa_trocken") {
-      setZugModulMin(0);
-      setZugModulMax(55000.0);
-    }
-    else if(zugmodul == "Zugmodul_Senkrecht_MPa_konditioniert") {
-      setZugModulMin(0);
-      setZugModulMax(19000.0);
-    }
-    setZugmodulSliderValue([zugmodulMin, zugmodulMax]);
   };
 
   return (
@@ -212,7 +165,7 @@ const MaterialSearch = () => {
                 options={autocompleteData.zugmodul}
                 getOptionLabel={(option) => option}
                 onChange={
-                  handleZugmodulChange
+                  (event) => {setZugmodul(event.target.textContent)}
                 }
                 value={zugmodul}
                 renderInput={(params) => (
@@ -235,8 +188,8 @@ const MaterialSearch = () => {
                 onChange={(event, newValue) => {
                   setZugmodulSliderValue(newValue);
                 }}
-                min={zugmodulMin}
-                max={zugmodulMax}
+                min={0}
+                max={110000}
                 step={1}
                 marks
                 valueLabelDisplay="auto"
