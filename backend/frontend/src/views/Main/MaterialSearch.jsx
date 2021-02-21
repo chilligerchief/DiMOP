@@ -6,6 +6,7 @@ import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { Button, Slider } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 
 // Data
 import autocompleteData from "../../files/search_plast_data.json";
@@ -62,6 +63,7 @@ const MaterialSearch = () => {
       temperatur: temperatur,
     };
     console.log(filter);
+    console.log(zugmodulSliderValue);
   };
 
   const resetSearch = () => {
@@ -158,7 +160,7 @@ const MaterialSearch = () => {
         <Grid item xs={1}></Grid>
         <Grid item xs={8}>
           <Grid container item xs={12}>
-            <Grid item xs={6}>
+            <Grid item xs={5}>
               <Autocomplete
                 id="zugmodul"
                 options={autocompleteData.zugmodul}
@@ -175,13 +177,16 @@ const MaterialSearch = () => {
                 )}
               />
             </Grid>
+            <Grid item xs={1}></Grid>
             <Grid item xs={6}>
-              <Typography gutterBottom>Zugmodul</Typography>
               <Slider
+                style={{ topMargin: 15 }}
                 value={zugmodulSliderValue}
-                onChange={(event) => setZugmodulSliderValue(event.target.value)}
-                min={zugmodulSliderRange[0]} //getMin
-                max={zugmodulSliderRange[1]} //getMax
+                onChange={(event, newValue) => {
+                  setZugmodulSliderValue(newValue);
+                }}
+                min={zugmodulSliderRange.min}
+                max={zugmodulSliderRange.max}
                 step={1}
                 marks
                 valueLabelDisplay="auto"
