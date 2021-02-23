@@ -8,8 +8,6 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import { Button, Slider } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
 
 // Data
 import autocompleteData from "../../files/search_plast_data.json";
@@ -130,25 +128,25 @@ const MaterialSearch = () => {
 
   const [selectedPlastId, setSelectedPlastId] = useState();
 
-  const onClickSelect = () => {
-    if (selection.length == 1) {
-      setSelectedPlastId(resultData[selection].id);
-    }
-  };
-
-
   const addPlast = () => {
-    var requestOptions = {
-      method: "PUT",
-      redirect: "follow",
-    };
+    if (selection.length == 1) {
+      var requestOptions = {
+        method: "PUT",
+        redirect: "follow",
+      };
 
-    fetch("/mat/" + parentMaterial + "?mara_plast_id=" + resultData[selection].id, requestOptions)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.log("error", error));
+      fetch(
+        "/mat/" + parentMaterial + "?mara_plast_id=" + resultData[selection].id,
+        requestOptions
+      )
+        .then((response) => response.text())
+        .then((result) => console.log(result))
+        .catch((error) => console.log("error", error));
 
-    setBomUpdated(true);
+      setBomUpdated(true);
+    } else {
+      console.log("Nope");
+    }
   };
 
   const handleClickPlastClose = () => {
@@ -326,23 +324,6 @@ const MaterialSearch = () => {
   return (
     <div>
       <Grid container item xs={12}>
-      <Card className={classes.root_card} variant="outlined">
-              <CardContent>
-                <Typography
-                  className={classes.title}
-                  color="textSecondary"
-                  gutterBottom
-                  align="center"
-                >
-                  Ausgewählter Kunststoff:
-                </Typography>
-                <Typography variant="h5" component="h2" align="center">
-                  {selectedPlastId}
-                </Typography>
-              </CardContent>
-            </Card>
-      </Grid>
-      <Grid container item xs={12}>
         <Grid item xs={3}>
           <Autocomplete
             id="mat_desc"
@@ -405,42 +386,22 @@ const MaterialSearch = () => {
             )}
           />
           <Grid container item xs={12} justify="center">
-            <Grid item xs={6}>
-              {" "}
-              <Button className={classes.buttons} onClick={resetSearch}>
-                Zurücksetzen
-              </Button>
-            </Grid>
-            <Grid item xs={6}>
-              {" "}
-              <Button className={classes.buttons} onClick={initiateSearch}>
-                Suche starten
-              </Button>{" "}
-            </Grid>
-            <Grid container item xs={12} justify="center">
-              <Grid item xs={6}>
-                {" "}
-                <Button
-                  className={classes.buttons}
-                  onClick={() => {
-                    onClickSelect();
-                  }}
-                >
-                  Auswählen
-                </Button>
-              </Grid>
-              <Grid item xs={6}>
-                <Button
-                  className={classes.buttons}
-                  onClick={() => {
-                    addPlast();
-                    handleClickPlastClose();
-                  }}
-                >
-                  Zuweisen
-                </Button>
-              </Grid>
-            </Grid>
+            {" "}
+            <Button className={classes.buttons} onClick={resetSearch}>
+              Zurücksetzen
+            </Button>{" "}
+            <Button className={classes.buttons} onClick={initiateSearch}>
+              Suche starten
+            </Button>{" "}
+            <Button
+              className={classes.buttons}
+              onClick={() => {
+                addPlast();
+                handleClickPlastClose();
+              }}
+            >
+              Zuweisen
+            </Button>
           </Grid>
         </Grid>
         <Grid item xs={1}></Grid>
