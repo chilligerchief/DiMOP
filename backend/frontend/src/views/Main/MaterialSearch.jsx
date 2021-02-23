@@ -1,4 +1,5 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
+import { MainContext } from "./MainContext.jsx";
 
 //Material UI
 import { makeStyles } from "@material-ui/core/styles";
@@ -50,8 +51,11 @@ const useStyles = makeStyles((theme) => ({
 const MaterialSearch = () => {
   const classes = useStyles();
 
-  const { parent_material, bom_updated } = useContext(MainContext);
+  const { add_plast_open, parent_material, bom_updated } = useContext(
+    MainContext
+  );
 
+  const [addPlastOpen, setAddPlastOpen] = add_plast_open;
   const [parentMaterial, setParentMaterial] = parent_material;
   const [bomUpdated, setBomUpdated] = bom_updated;
 
@@ -128,7 +132,7 @@ const MaterialSearch = () => {
     if (selection.length == 1) {
       setSelectedPlastId(resultData[selection].id);
     }
-    print(selectedPlastId);
+    console.log(selectedPlastId);
 
     var requestOptions = {
       method: "PUT",
@@ -144,6 +148,10 @@ const MaterialSearch = () => {
       .catch((error) => console.log("error", error));
 
     setBomUpdated(true);
+  };
+
+  const handleClickPlastClose = () => {
+    setAddPlastOpen(false);
   };
 
   const initiateSearch = () => {
@@ -669,7 +677,13 @@ const MaterialSearch = () => {
         </GridDevExpress>
       </Grid>
       <Grid container item xs={12}>
-        <Button className={classes.buttons} onClick={onClickSelect}>
+        <Button
+          className={classes.buttons}
+          onClick={() => {
+            addPlast();
+            handleClickPlastClose();
+          }}
+        >
           Zuweisen
         </Button>
       </Grid>

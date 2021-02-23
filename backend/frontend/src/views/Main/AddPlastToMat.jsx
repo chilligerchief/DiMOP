@@ -1,3 +1,4 @@
+// Nicht in Nutzung
 import React from "react";
 import { useContext, useState, useEffect } from "react";
 
@@ -70,10 +71,7 @@ const AddPlastToMat = () => {
     };
 
     fetch(
-      "/mat/" +
-        parentMaterial +
-        "?mara_plast_id=" +
-        newPlast.mara_plast_id,
+      "/mat/" + parentMaterial + "?mara_plast_id=" + newPlast.mara_plast_id,
       requestOptions
     )
       .then((response) => response.text())
@@ -85,10 +83,7 @@ const AddPlastToMat = () => {
 
   return (
     <div>
-      <Button
-        className={classes.buttons}
-        onClick={handleClickPlastOpen}
-      >
+      <Button className={classes.buttons} onClick={handleClickPlastOpen}>
         Neuen Kunststoff zuordnen
       </Button>
 
