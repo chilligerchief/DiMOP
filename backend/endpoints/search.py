@@ -187,17 +187,18 @@ class Search(Resource):
 
         db = connect_db()
 
-        query = "SELECT * FROM plast WHERE"
+        query = "SELECT * FROM plast"
 
         print(df)
 
         for i in range(0, df.shape[0]):
+
             key = df["key"][i]
             value = df["value"][i]
 
-            if(query == "SELECT * FROM plast WHERE"):
+            if(query == "SELECT * FROM plast"):
                 if(key in ["mat_desc", "campus_fam", "producer", "verarbeitungsmethode"]):
-                    query = f"{query} {key}='{value}'"
+                    query = f"{query} WHERE {key}='{value}'"
 
                 elif(key in ["zugmodul", "bruchspannung", "bruchdehnung", "mvr",
                              "dichte", "belastung", "temperatur"]):
@@ -205,7 +206,7 @@ class Search(Resource):
                         0]
                     maximum = df.loc[df["key"] == f"{key}_max"]["value"].tolist()[
                         0]
-                    query = f"{query} {value} BETWEEN {minimum} AND {maximum}"
+                    query = f"{query} WHERE {value} BETWEEN {minimum} AND {maximum}"
 
             else:
                 if(key in ["mat_desc", "campus_fam", "producer", "verarbeitungsmethode"]):
@@ -224,3 +225,7 @@ class Search(Resource):
         result = pd.read_sql_query(query, db)
 
         print(result)
+
+        result_json = result.to_dict(orient="records")
+
+        return result_json

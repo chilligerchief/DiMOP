@@ -113,6 +113,10 @@ const MaterialSearch = () => {
     temperaturSliderRange[1],
   ]);
 
+  const [resultData, setResultData] = useState([]);
+
+  const [selection, setSelection] = useState([]);
+
   const initiateSearch = () => {
 
     const requestOptions = {
@@ -151,12 +155,13 @@ const MaterialSearch = () => {
       redirect: "follow",
     };
 
-
-    // ????
     fetch("/search", requestOptions)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.log("error", error));
+    .then((res) => {
+      return res.json();
+    })
+    .then((d) => {
+      setResultData(d);
+    });
   };
 
   const resetSearch = () => {
@@ -187,11 +192,8 @@ const MaterialSearch = () => {
       temperaturSliderRange[0],
       temperaturSliderRange[1],
     ]);
+    setResultData([]);
   };
-
-  const [resultData, setResultData] = useState([]);
-
-  const [selection, setSelection] = useState([]);
 
   const [resultColumns] = useState([
     { name: "id", title: "Konstr.Nr." },
