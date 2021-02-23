@@ -114,33 +114,57 @@ const MaterialSearch = () => {
   ]);
 
   const initiateSearch = () => {
-    const filter = {
-      mat_desc: matDesc,
-      campus_fam: campusFam,
-      producer: producer,
-      verarbeitungsmethode: method,
-      zugmodul: zugmodul,
-      zugmodul_min: zugmodulSliderValue[0],
-      zugmodul_max: zugmodulSliderValue[1],
-      bruchspannung: bruchspannung,
-      bruchspannung_min: bruchspannungSliderValue[0],
-      bruchspannung_max: bruchspannungSliderValue[1],
-      bruchdehnung: bruchdehnung,
-      bruchdehnung_min: bruchdehnungSliderValue[0],
-      bruchdehnung_max: bruchdehnungSliderValue[1],
-      mvr: mvr,
-      mvr_min: mvrSliderValue[0],
-      mvr_max: mvrSliderValue[1],
-      dichte: dichte,
-      dichte_min: dichteSliderValue[0],
-      dichte_max: dichteSliderValue[1],
-      belastung: belastung,
-      belastung_min: belastungSliderValue[0],
-      belastung_max: belastungSliderValue[1],
-      temperatur: temperatur,
-      temperatur_min: temperaturSliderValue[0],
-      temperatur_max: temperaturSliderValue[1],
+
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        mat_desc: matDesc,
+        campus_fam: campusFam,
+        producer: producer,
+        verarbeitungsmethode: method,
+        zugmodul: zugmodul,
+        zugmodul_min: zugmodulSliderValue[0],
+        zugmodul_max: zugmodulSliderValue[1],
+        bruchspannung: bruchspannung,
+        bruchspannung_min: bruchspannungSliderValue[0],
+        bruchspannung_max: bruchspannungSliderValue[1],
+        bruchdehnung: bruchdehnung,
+        bruchdehnung_min: bruchdehnungSliderValue[0],
+        bruchdehnung_max: bruchdehnungSliderValue[1],
+        mvr: mvr,
+        mvr_min: mvrSliderValue[0],
+        mvr_max: mvrSliderValue[1],
+        dichte: dichte,
+        dichte_min: dichteSliderValue[0],
+        dichte_max: dichteSliderValue[1],
+        belastung: belastung,
+        belastung_min: belastungSliderValue[0],
+        belastung_max: belastungSliderValue[1],
+        temperatur: temperatur,
+        temperatur_min: temperaturSliderValue[0],
+        temperatur_max: temperaturSliderValue[1],
+      }),
+      redirect: "follow",
     };
+
+
+    // ????
+    fetch("/search", requestOptions)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log("error", error));
+
+
+
+
+
+
+
+
     console.log(filter);
   };
 

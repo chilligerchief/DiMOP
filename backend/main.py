@@ -34,7 +34,8 @@ from endpoints.search import Search
 from endpoints.search import Results
 
 # SETUP STEP
-app = Flask(__name__, static_folder="frontend/build/static", template_folder="frontend/build")
+app = Flask(__name__, static_folder="frontend/build/static",
+            template_folder="frontend/build")
 CORS(app)
 
 #####Norman Input#####
@@ -133,7 +134,7 @@ api.add_resource(Rel, '/rel')  # Post
 api.add_resource(Bom, '/bom')
 api.add_resource(BomAlter, '/bom/<string:_id>')
 
-api.add_resource(Search, '/search/<string:criteria>')
+api.add_resource(Search, '/search')
 api.add_resource(Results, '/results')
 
 api.add_resource(Test, "/test")
@@ -144,7 +145,7 @@ api.add_resource(Test, "/test")
 def index(path):
     return render_template('index.html')
 
-    
+
 if __name__ == '__main__':
     from dbfunctions.connect import db
     db.init_app(app)
