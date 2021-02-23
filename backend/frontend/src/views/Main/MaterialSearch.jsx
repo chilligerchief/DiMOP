@@ -118,7 +118,6 @@ const MaterialSearch = () => {
   const [selection, setSelection] = useState([]);
 
   const initiateSearch = () => {
-
     const requestOptions = {
       method: "POST",
       headers: {
@@ -156,12 +155,12 @@ const MaterialSearch = () => {
     };
 
     fetch("/search", requestOptions)
-    .then((res) => {
-      return res.json();
-    })
-    .then((d) => {
-      setResultData(d);
-    });
+      .then((res) => {
+        return res.json();
+      })
+      .then((d) => {
+        setResultData(d);
+      });
   };
 
   const resetSearch = () => {
@@ -212,30 +211,78 @@ const MaterialSearch = () => {
     { name: "MVR_konditioniert", title: "MVR(kond.)" },
     { name: "Bruchdehnung_trocken", title: "Bruchdehn.(trocken)" },
     { name: "Bruchdehnung_konditioniert", title: "Bruchdehn.(kond.)" },
-    { name: "Bruchdehnung_Nominell_trocken", title: "Bruchdehnung.nomin.(trocken)" },
-    { name: "Bruchdehnung_Nominell_konditioniert", title: "Bruchdehn.nomin.(kond.)" },
+    {
+      name: "Bruchdehnung_Nominell_trocken",
+      title: "Bruchdehnung.nomin.(trocken)",
+    },
+    {
+      name: "Bruchdehnung_Nominell_konditioniert",
+      title: "Bruchdehn.nomin.(kond.)",
+    },
     { name: "Bruchdehnung_TPE_trocken", title: "Bruchdehn.TPE(trocken)" },
     { name: "Bruchdehnung_TPE_konditioniert", title: "Bruchdehn.TPE(kond.)" },
     { name: "Bruchdehnung_Parallel_trocken", title: "Bruchdehn.par.(trocken)" },
-    { name: "Bruchdehnung_Parallel_konditioniert", title: "Bruchdehn.par.(kond.)" },
+    {
+      name: "Bruchdehnung_Parallel_konditioniert",
+      title: "Bruchdehn.par.(kond.)",
+    },
     { name: "Bruchspannung_MPa_trocken", title: "Bruchsp.MPa(trocken)" },
     { name: "Bruchspannung_MPa_konditioniert", title: "Bruchsp.MPa(kond.)" },
-    { name: "Bruchspannung_TPE_MPa_trocken", title: "Bruchsp.TPE/MPa(trocken)" },
-    { name: "Bruchspannung_TPE_MPa_konditioniert", title: "Bruchsp.TPE/MPa(kond.)" },
-    { name: "Bruchspannung_Parallel_MPa_trocken", title: "Bruchsp.par.MPa(trocken)" },
-    { name: "Bruchspannung_Parallel_MPa_konditioniert", title: "Bruchsp.par.MPa(kond.)" },
-    { name: "Bruchspannung_Senkrecht_MPa_trocken", title: "Bruchsp.senk.MPa(trocken)" },
-    { name: "Bruchspannung_Senkrecht_MPa_konditioniert", title: "Bruchsp.senk.MPa(kond.)" },
+    {
+      name: "Bruchspannung_TPE_MPa_trocken",
+      title: "Bruchsp.TPE/MPa(trocken)",
+    },
+    {
+      name: "Bruchspannung_TPE_MPa_konditioniert",
+      title: "Bruchsp.TPE/MPa(kond.)",
+    },
+    {
+      name: "Bruchspannung_Parallel_MPa_trocken",
+      title: "Bruchsp.par.MPa(trocken)",
+    },
+    {
+      name: "Bruchspannung_Parallel_MPa_konditioniert",
+      title: "Bruchsp.par.MPa(kond.)",
+    },
+    {
+      name: "Bruchspannung_Senkrecht_MPa_trocken",
+      title: "Bruchsp.senk.MPa(trocken)",
+    },
+    {
+      name: "Bruchspannung_Senkrecht_MPa_konditioniert",
+      title: "Bruchsp.senk.MPa(kond.)",
+    },
     { name: "Zugmodul_MPa_trocken", title: "Zugmod.MPa(trocken)" },
     { name: "Zugmodul_MPa_konditioniert", title: "Zugmod.MPa(kond.)" },
-    { name: "Zugmodul_Kriech_1h_MPa_trocken", title: "Zugmod.Kriech.1h.MPa(trocken)" },
-    { name: "Zugmodul_Kriech_1h_MPa_konditioniert", title: "Zugmod.Kriech.1h.MPa(kond.)" },
-    { name: "Zugmodul_Kriech_1000h_MPa_trocken", title: "Zugmod.Kriech.1000h.MPa(trocken)" },
-    { name: "Zugmodul_Kriech_1000h_MPa_konditioniert", title: "Zugmod.Kriech.1000h.MPa(kond.)" },
+    {
+      name: "Zugmodul_Kriech_1h_MPa_trocken",
+      title: "Zugmod.Kriech.1h.MPa(trocken)",
+    },
+    {
+      name: "Zugmodul_Kriech_1h_MPa_konditioniert",
+      title: "Zugmod.Kriech.1h.MPa(kond.)",
+    },
+    {
+      name: "Zugmodul_Kriech_1000h_MPa_trocken",
+      title: "Zugmod.Kriech.1000h.MPa(trocken)",
+    },
+    {
+      name: "Zugmodul_Kriech_1000h_MPa_konditioniert",
+      title: "Zugmod.Kriech.1000h.MPa(kond.)",
+    },
     { name: "Zugmodul_Parallel_MPa_trocken", title: "Zugmod.par.MPa(trocken)" },
-    { name: "Zugmodul_Parallel_MPa_konditioniert", title: "Zugmod.par.MPa(kond.)" },
-    { name: "Zugmodul_Senkrecht_MPa_trocken", title: "Zugmod.senk.MPa(trocken)" },
-    { name: "Zugmodul_Senkrecht_MPa_konditioniert", title: "Zugmod.senk.MPa(kond.)" },
+    {
+      name: "Zugmodul_Parallel_MPa_konditioniert",
+      title: "Zugmod.par.MPa(kond.)",
+    },
+    {
+      name: "Zugmodul_Senkrecht_MPa_trocken",
+      title: "Zugmod.senk.MPa(trocken)",
+    },
+    {
+      name: "Zugmodul_Senkrecht_MPa_konditioniert",
+      title: "Zugmod.senk.MPa(kond.)",
+    },
   ]);
 
   return (

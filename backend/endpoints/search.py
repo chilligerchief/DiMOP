@@ -224,7 +224,13 @@ class Search(Resource):
 
         result = pd.read_sql_query(query, db)
 
-        print(result)
+        # Fill nans to display data correctly
+        # Further data engineering could be useful later
+        for col in result.columns:
+            if(result[col].dtype == "float64"):
+                result[col] = result[col].fillna(0)
+            elif(result[col].dtype == "object"):
+                result[col] = result[col].fillna("")
 
         result_json = result.to_dict(orient="records")
 
