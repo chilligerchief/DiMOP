@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     borderColor: "#005000",
     color: "#005000",
     textTransform: "none",
-    margin: 20,
+    margin: 5,
     height: 60,
     width: 120,
   },
