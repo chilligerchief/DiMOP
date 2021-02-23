@@ -139,10 +139,7 @@ const MaterialSearch = () => {
       redirect: "follow",
     };
 
-    fetch(
-      "/mat/" + parentMaterial + "?mara_plast_id=" + 1,
-      requestOptions
-    )
+    fetch("/mat/" + parentMaterial + "?mara_plast_id=" + 1, requestOptions)
       .then((response) => response.text())
       .then((result) => console.log(result))
       .catch((error) => console.log("error", error));
@@ -387,27 +384,40 @@ const MaterialSearch = () => {
             )}
           />
           <Grid container item xs={12} justify="center">
-            <Grid xs={4}>
+            <Grid item xs={6}>
+              {" "}
               <Button className={classes.buttons} onClick={resetSearch}>
                 Zurücksetzen
               </Button>
             </Grid>
-            <Grid xs={4}>
+            <Grid item xs={6}>
+              {" "}
               <Button className={classes.buttons} onClick={initiateSearch}>
                 Suche starten
-              </Button>
+              </Button>{" "}
             </Grid>
-            <Grid xs={4}>
-              {" "}
-              <Button
-                className={classes.buttons}
-                onClick={() => {
-                  onClickSelect();
-                  handleClickPlastClose();
-                }}
-              >
-                Zuweisen
-              </Button>
+            <Grid container item xs={12} justify="center">
+              <Grid item xs={6}>
+                {" "}
+                <Button
+                  className={classes.buttons}
+                  onClick={() => {
+                    onClickSelect();
+                  }}
+                >
+                  Auswählen
+                </Button>
+              </Grid>
+              <Grid item xs={6}>
+                <Button
+                  className={classes.buttons}
+                  onClick={() => {
+                    handleClickPlastClose();
+                  }}
+                >
+                  Zuweisen
+                </Button>
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
