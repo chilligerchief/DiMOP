@@ -31,7 +31,7 @@ from endpoints.rel import Rel
 
 from endpoints.test import Test
 from endpoints.search import Search
-from endpoints.search import Results
+#from endpoints.search import Results
 
 # SETUP STEP
 app = Flask(__name__, static_folder="frontend/build/static",
@@ -135,7 +135,7 @@ api.add_resource(Bom, '/bom')
 api.add_resource(BomAlter, '/bom/<string:_id>')
 
 api.add_resource(Search, '/search')
-api.add_resource(Results, '/results')
+#api.add_resource(Results, '/results')
 
 api.add_resource(Test, "/test")
 

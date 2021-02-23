@@ -1,4 +1,7 @@
 from flask_restful import Resource, reqparse
+import pandas as pd
+import json
+from dbfunctions.connect import connect_db
 
 
 class Search(Resource):
@@ -129,8 +132,95 @@ class Search(Resource):
                         help="This field cannot be blank."
                         )
 
-    data = MatPost.parser.parse_args()
+    def post(self):
+        data = Search.parser.parse_args()
 
-    def get(self):
-        data = MatPost.parser.parse_args()
-        print(data)
+        data_list = []
+
+        for key in data:
+            data_list.append([key, data[key]])
+
+        df = pd.DataFrame(data_list, columns=['key', 'value'])
+
+        if(df.loc[df["key"] == "mat_desc"]["value"].tolist()[0] == ""):
+            df = df.drop(df.loc[df["key"].isin(["mat_desc"])].index)
+
+        if(df.loc[df["key"] == "campus_fam"]["value"].tolist()[0] == ""):
+            df = df.drop(df.loc[df["key"].isin(["campus_fam"])].index)
+
+        if(df.loc[df["key"] == "producer"]["value"].tolist()[0] == ""):
+            df = df.drop(df.loc[df["key"].isin(["producer"])].index)
+
+        if(df.loc[df["key"] == "verarbeitungsmethode"]["value"].tolist()[0] == ""):
+            df = df.drop(df.loc[df["key"].isin(
+                ["verarbeitungsmethode"])].index)
+
+        if(df.loc[df["key"] == "zugmodul"]["value"].tolist()[0] == ""):
+            df = df.drop(df.loc[df["key"].isin(
+                ["zugmodul", "zugmodul_min", "zugmodul_max"])].index)
+
+        if(df.loc[df["key"] == "bruchspannung"]["value"].tolist()[0] == ""):
+            df = df.drop(df.loc[df["key"].isin(
+                ["bruchspannung", "bruchspannung_min", "bruchspannung_max"])].index)
+
+        if(df.loc[df["key"] == "bruchdehnung"]["value"].tolist()[0] == ""):
+            df = df.drop(df.loc[df["key"].isin(
+                ["bruchdehnung", "bruchdehnung_min", "bruchdehnung_max"])].index)
+
+        if(df.loc[df["key"] == "mvr"]["value"].tolist()[0] == ""):
+            df = df.drop(df.loc[df["key"].isin(
+                ["mvr", "mvr_min", "mvr_max"])].index)
+
+        if(df.loc[df["key"] == "dichte"]["value"].tolist()[0] == ""):
+            df = df.drop(df.loc[df["key"].isin(
+                ["dichte", "dichte_min", "dichte_max"])].index)
+
+        if(df.loc[df["key"] == "belastung"]["value"].tolist()[0] == ""):
+            df = df.drop(df.loc[df["key"].isin(
+                ["belastung", "belastung_min", "belastung_max"])].index)
+
+        if(df.loc[df["key"] == "temperatur"]["value"].tolist()[0] == ""):
+            df = df.drop(df.loc[df["key"].isin(
+                ["temperatur", "temperatur_min", "temperatur_max"])].index)
+
+        df = df.reset_index()
+
+        db = connect_db()
+
+        query = "SELECT * FROM plast WHERE"
+
+        print(df)
+
+        for i in range(0, df.shape[0]):
+            key = df["key"][i]
+            value = df["value"][i]
+
+            if(query == "SELECT * FROM plast WHERE"):
+                if(key in ["mat_desc", "campus_fam", "producer", "verarbeitungsmethode"]):
+                    query = f"{query} {key}='{value}'"
+
+                elif(key in ["zugmodul", "bruchspannung", "bruchdehnung", "mvr",
+                             "dichte", "belastung", "temperatur"]):
+                    minimum = df.loc[df["key"] == f"{key}_min"]["value"].tolist()[
+                        0]
+                    maximum = df.loc[df["key"] == f"{key}_max"]["value"].tolist()[
+                        0]
+                    query = f"{query} {value} BETWEEN {minimum} AND {maximum}"
+
+            else:
+                if(key in ["mat_desc", "campus_fam", "producer", "verarbeitungsmethode"]):
+                    query = f"{query} AND {key}='{value}'"
+
+                elif(key in ["zugmodul", "bruchspannung", "bruchdehnung", "mvr",
+                             "dichte", "belastung", "temperatur"]):
+                    minimum = df.loc[df["key"] == f"{key}_min"]["value"].tolist()[
+                        0]
+                    maximum = df.loc[df["key"] == f"{key}_max"]["value"].tolist()[
+                        0]
+                    query = f"{query} AND {value} BETWEEN {minimum} AND {maximum}"
+
+        print(query)
+
+        result = pd.read_sql_query(query, db)
+
+        print(result)
