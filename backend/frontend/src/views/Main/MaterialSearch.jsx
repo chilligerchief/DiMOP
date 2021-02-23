@@ -8,6 +8,8 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import { Button, Slider } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
 
 // Data
 import autocompleteData from "../../files/search_plast_data.json";
@@ -132,14 +134,16 @@ const MaterialSearch = () => {
     if (selection.length == 1) {
       setSelectedPlastId(resultData[selection].id);
     }
-    console.log(selectedPlastId);
+  };
 
+
+  const addPlast = () => {
     var requestOptions = {
       method: "PUT",
       redirect: "follow",
     };
 
-    fetch("/mat/" + parentMaterial + "?mara_plast_id=" + 1, requestOptions)
+    fetch("/mat/" + parentMaterial + "?mara_plast_id=" + selectedPlastId, requestOptions)
       .then((response) => response.text())
       .then((result) => console.log(result))
       .catch((error) => console.log("error", error));
@@ -322,6 +326,23 @@ const MaterialSearch = () => {
   return (
     <div>
       <Grid container item xs={12}>
+      <Card className={classes.root_card} variant="outlined">
+              <CardContent>
+                <Typography
+                  className={classes.title}
+                  color="textSecondary"
+                  gutterBottom
+                  align="center"
+                >
+                  Ausgewählter Kunststoff:
+                </Typography>
+                <Typography variant="h5" component="h2" align="center">
+                  {selectedPlastId}
+                </Typography>
+              </CardContent>
+            </Card>
+      </Grid>
+      <Grid container item xs={12}>
         <Grid item xs={3}>
           <Autocomplete
             id="mat_desc"
@@ -412,6 +433,7 @@ const MaterialSearch = () => {
                 <Button
                   className={classes.buttons}
                   onClick={() => {
+                    addPlast();
                     handleClickPlastClose();
                   }}
                 >
