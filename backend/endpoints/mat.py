@@ -117,8 +117,16 @@ class MatPost(Resource):
 
 
 class Mat(Resource):
+    parser = reqparse.RequestParser()
+    parser.add_argument('mara_plast_id',
+                        type=int,
+                        required=True,
+                        help="This field cannot be blank."
+                        )
+
     def put(self, _id):
-        data = MatPost.parser.parse_args()
+        data = Mat.parser.parse_args()
+        print(data)
         mat = MatModel.find_by_id(_id).first()
         if mat:
             mat.mara_plast_id = data['mara_plast_id']

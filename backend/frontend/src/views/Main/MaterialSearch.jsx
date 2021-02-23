@@ -140,7 +140,7 @@ const MaterialSearch = () => {
     };
 
     fetch(
-      "/mat/" + parentMaterial + "?mara_plast_id=" + selectedPlastId,
+      "/mat/" + parentMaterial + "?mara_plast_id=" + 1,
       requestOptions
     )
       .then((response) => response.text())
@@ -387,14 +387,26 @@ const MaterialSearch = () => {
             )}
           />
           <Grid container item xs={12} justify="center">
-            <Grid xs={6}>
+            <Grid xs={4}>
               <Button className={classes.buttons} onClick={resetSearch}>
                 Zurücksetzen
               </Button>
             </Grid>
-            <Grid xs={6}>
+            <Grid xs={4}>
               <Button className={classes.buttons} onClick={initiateSearch}>
                 Suche starten
+              </Button>
+            </Grid>
+            <Grid xs={4}>
+              {" "}
+              <Button
+                className={classes.buttons}
+                onClick={() => {
+                  onClickSelect();
+                  handleClickPlastClose();
+                }}
+              >
+                Zuweisen
               </Button>
             </Grid>
           </Grid>
@@ -675,17 +687,6 @@ const MaterialSearch = () => {
           <TableFilterRow />
           <TableHeaderRow />
         </GridDevExpress>
-      </Grid>
-      <Grid container item xs={12}>
-        <Button
-          className={classes.buttons}
-          onClick={() => {
-            addPlast();
-            handleClickPlastClose();
-          }}
-        >
-          Zuweisen
-        </Button>
       </Grid>
     </div>
   );
