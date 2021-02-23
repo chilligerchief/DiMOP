@@ -50,6 +50,11 @@ const useStyles = makeStyles((theme) => ({
 const MaterialSearch = () => {
   const classes = useStyles();
 
+  const { parent_material, bom_updated } = useContext(MainContext);
+
+  const [parentMaterial, setParentMaterial] = parent_material;
+  const [bomUpdated, setBomUpdated] = bom_updated;
+
   const [matDesc, setMatDesc] = useState("");
   const [campusFam, setCampusFam] = useState("");
   const [producer, setProducer] = useState("");
@@ -116,6 +121,30 @@ const MaterialSearch = () => {
   const [resultData, setResultData] = useState([]);
 
   const [selection, setSelection] = useState([]);
+
+  const [selectedPlastId, setSelectedPlastId] = useState();
+
+  const onClickSelect = () => {
+    if (selection.length == 1) {
+      setSelectedPlastId(resultData[selection].id);
+    }
+    print(selectedPlastId);
+
+    var requestOptions = {
+      method: "PUT",
+      redirect: "follow",
+    };
+
+    fetch(
+      "/mat/" + parentMaterial + "?mara_plast_id=" + selectedPlastId,
+      requestOptions
+    )
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log("error", error));
+
+    setBomUpdated(true);
+  };
 
   const initiateSearch = () => {
     const requestOptions = {
@@ -638,6 +667,11 @@ const MaterialSearch = () => {
           <TableFilterRow />
           <TableHeaderRow />
         </GridDevExpress>
+      </Grid>
+      <Grid container item xs={12}>
+        <Button className={classes.buttons} onClick={onClickSelect}>
+          Zuweisen
+        </Button>
       </Grid>
     </div>
   );
