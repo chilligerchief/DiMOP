@@ -8,7 +8,9 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import { Button, Slider } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import WarningIcon from "@material-ui/icons/Warning";
+import PolymerIcon from "@material-ui/icons/Polymer";
+import SearchIcon from '@material-ui/icons/Search';
+import LoopIcon from '@material-ui/icons/Loop';
 
 // Data
 import autocompleteData from "../../files/search_plast_data.json";
@@ -124,7 +126,8 @@ const MaterialSearch = () => {
   ]);
 
   const [resultData, setResultData] = useState([]);
-  const [resultCount, setResultCount] = useState(1);
+  const [resultCount, setResultCount] = useState(0);
+  const [resultsReturned, setResultsReturned] = useState(false);
 
   const [selection, setSelection] = useState([]);
 
@@ -197,7 +200,7 @@ const MaterialSearch = () => {
       .then((d) => {
         setResultData(d);
         setResultCount(Object.keys(d).length);
-        console.log(resultCount);
+        setResultsReturned(true);
       });
   };
 
@@ -388,22 +391,32 @@ const MaterialSearch = () => {
             )}
           />
           <Grid container item xs={12} justify="center">
-            {" "}
-            <Button className={classes.buttons} onClick={resetSearch}>
-              Zurücksetzen
-            </Button>{" "}
-            <Button className={classes.buttons} onClick={initiateSearch}>
-              Suche starten
-            </Button>{" "}
-            <Button
-              className={classes.buttons}
-              onClick={() => {
-                addPlast();
-                handleClickPlastClose();
-              }}
-            >
-              Zuweisen
-            </Button>
+            <Grid item xs={12} justify="center">
+              <Button className={classes.buttons} onClick={resetSearch}>
+              <LoopIcon style={{ marginRight: 5 }}></LoopIcon>
+                Zurücksetzen
+              </Button>{" "}
+            </Grid>
+            <Grid item xs={12} justify="center">
+              <Button className={classes.buttons} onClick={initiateSearch}>
+        
+              <SearchIcon style={{ marginRight: 5 }}></SearchIcon>
+                Suche starten
+              </Button>{" "}
+            </Grid>
+            <Grid item xs={12} justify="center">
+              {" "}
+              <Button
+                className={classes.buttons}
+                onClick={() => {
+                  addPlast();
+                  handleClickPlastClose();
+                }}
+              >
+                <PolymerIcon style={{ marginRight: 5 }}></PolymerIcon>
+                Zuweisen
+              </Button>
+            </Grid>{" "}
           </Grid>
         </Grid>
         <Grid item xs={1}></Grid>
@@ -667,17 +680,15 @@ const MaterialSearch = () => {
         </Grid>
       </Grid>
       <Grid container item xs={12} justify="center">
-      {(resultCount == 0) ? (
-          <div style={{ color: "red", marginTop: 20}}>
-            <WarningIcon
-              style={{ fontSize: "small", marginRight: 10 }}
-            ></WarningIcon>{" "}
-            Es wurde keine Ergebnisse mit Ihren Spezifikationen gefunden.
-          </div>
+        {resultsReturned == false ? (
+          <div></div>
         ) : (
-          <div />
+          <div style={{ color: "black", marginTop: 25 }}>
+            {" "}
+            Es wurden {resultCount} Ergebnisse mit Ihren Spezifikationen
+            gefunden.
+          </div>
         )}
-
       </Grid>
       <Grid container item xs={12}>
         <GridDevExpress rows={resultData} columns={resultColumns}>
