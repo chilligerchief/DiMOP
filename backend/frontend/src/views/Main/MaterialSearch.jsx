@@ -332,13 +332,67 @@ const MaterialSearch = () => {
         Suchparameter
       </Grid>
       <Grid container item xs={12}>
-        Buttons
+        <Grid container item xs={12}>
+          <Grid item xs={4} justify="center" alignItems="center">
+            {" "}
+            <Button className={classes.buttons} onClick={resetSearch}>
+              <LoopIcon style={{ marginRight: 5 }}></LoopIcon>
+              Zurücksetzen
+            </Button>{" "}
+          </Grid>
+          <Grid item xs={4} justify="center" alignItems="center">
+            {" "}
+            <Button className={classes.buttons} onClick={initiateSearch}>
+              <SearchIcon style={{ marginRight: 5 }}></SearchIcon>
+              Suche starten
+            </Button>{" "}
+          </Grid>
+          <Grid item xs={4} justify="center" alignItems="center">
+            {" "}
+            <Button
+              className={classes.buttons}
+              onClick={() => {
+                addPlast();
+                handleClickPlastClose();
+              }}
+            >
+              <PolymerIcon style={{ marginRight: 5 }}></PolymerIcon>
+              Zuweisen
+            </Button>
+          </Grid>
+        </Grid>
       </Grid>
       <Grid container item xs={12}>
-        Fehlermeldung
+        <Grid container item xs={12}>
+          {resultsReturned == false ? (
+            <div></div>
+          ) : (
+            <div style={{ color: "black", marginTop: 25 }}>
+              {" "}
+              Es wurden {resultCount} Ergebnisse mit Ihren Spezifikationen
+              gefunden.
+            </div>
+          )}
+        </Grid>
       </Grid>
       <Grid container item xs={12}>
-        Table
+        <Grid container item xs={12}>
+          <GridDevExpress rows={resultData} columns={resultColumns}>
+            <SelectionState
+              selection={selection}
+              onSelectionChange={setSelection}
+            />
+            <FilteringState defaultFilters={[]} />
+            <IntegratedFiltering />
+            <Table />
+            <TableSelection />
+            <TableColumnVisibility />
+            <Toolbar />
+            <ColumnChooser />
+            <TableFilterRow />
+            <TableHeaderRow />
+          </GridDevExpress>
+        </Grid>
       </Grid>
     </div>
   );
