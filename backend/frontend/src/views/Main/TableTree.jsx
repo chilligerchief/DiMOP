@@ -249,6 +249,7 @@ const TableTree = () => {
     highest_level_id,
     new_bom_created,
     selection_atomic,
+    search_dialog_open,
   } = useContext(MainContext);
 
   const [evaluationOpen, setEvaluationOpen] = evaluation_open;
@@ -272,6 +273,7 @@ const TableTree = () => {
   const [highestLevelId, setHighestLevelId] = highest_level_id;
   const [newBomCreated, setNewBomCreated] = new_bom_created;
   const [selectionAtomic, setSelectionAtomic] = selection_atomic;
+  const [searchDialogOpen, setSearchDialogOpen] = search_dialog_open;
 
   useEffect(() => {
     if (selectedConstructionTitle !== "Bitte auswaehlen") {
@@ -379,8 +381,6 @@ const TableTree = () => {
       setDeleteMaterial(dataBackend[rowSelection].bom_id);
     }
   };
-
-  const [searchDialogOpen, setSearchDialogOpen] = useState(false);
 
   const handleSearchDialogClose = () => {
     setSearchDialogOpen(false);
@@ -551,9 +551,6 @@ const TableTree = () => {
               <PolymerIcon style={{ marginRight: 5 }}></PolymerIcon>
               Zuordnen
             </Button>
-            <div onClick={setParent}>
-              <MaterialSearchDialog></MaterialSearchDialog>
-            </div>
           </Tooltip>
         </Grid>
       </Grid>

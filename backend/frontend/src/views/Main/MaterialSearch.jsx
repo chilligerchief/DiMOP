@@ -51,11 +51,11 @@ const useStyles = makeStyles((theme) => ({
 const MaterialSearch = () => {
   const classes = useStyles();
 
-  const { add_plast_open, parent_material, bom_updated } = useContext(
+  const { search_dialog_open, parent_material, bom_updated } = useContext(
     MainContext
   );
 
-  const [addPlastOpen, setAddPlastOpen] = add_plast_open;
+  const [searchDialogOpen, setSearchDialogOpen] = search_dialog_open;
   const [parentMaterial, setParentMaterial] = parent_material;
   const [bomUpdated, setBomUpdated] = bom_updated;
 
@@ -126,8 +126,6 @@ const MaterialSearch = () => {
 
   const [selection, setSelection] = useState([]);
 
-  const [selectedPlastId, setSelectedPlastId] = useState();
-
   const addPlast = () => {
     if (selection.length == 1) {
       var requestOptions = {
@@ -150,7 +148,7 @@ const MaterialSearch = () => {
   };
 
   const handleClickPlastClose = () => {
-    setAddPlastOpen(false);
+    setSearchDialogOpen(false);
   };
 
   const initiateSearch = () => {

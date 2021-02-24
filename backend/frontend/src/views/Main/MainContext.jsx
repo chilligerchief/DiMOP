@@ -51,6 +51,7 @@ export const MainProvider = (props) => {
   const [selection_atomic, setSelectionAtomic] = useState([]);
   const [material_created, setMaterialCreated] = useState(false);
   const [csv_upload_open, setCsvUploadOpen] = useState(false);
+  const [search_dialog_open, setSearchDialogOpen] = useState(false);
 
   return (
     <MainContext.Provider
@@ -91,6 +92,7 @@ export const MainProvider = (props) => {
         selection_atomic: [selection_atomic, setSelectionAtomic],
         material_created: [material_created, setMaterialCreated],
         csv_upload_open: [csv_upload_open, setCsvUploadOpen],
+        search_dialog_open: [search_dialog_open, setSearchDialogOpen],
       }}
     >
       {props.children}
