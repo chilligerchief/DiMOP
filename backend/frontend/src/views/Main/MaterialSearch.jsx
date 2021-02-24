@@ -651,7 +651,7 @@ const MaterialSearch = () => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid container item xs={12}>
+      <Grid container item xs={12} style={{marginTop:25}}>
         <Grid
           container
           item
@@ -689,7 +689,7 @@ const MaterialSearch = () => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid container item xs={12}>
+      <Grid container item xs={12} justify="center" alignItems="center" alignContent="center">
         {resultsReturned == false ? (
           <div></div>
         ) : (
