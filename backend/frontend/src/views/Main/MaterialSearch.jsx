@@ -9,8 +9,8 @@ import { Button, Slider } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import PolymerIcon from "@material-ui/icons/Polymer";
-import SearchIcon from '@material-ui/icons/Search';
-import LoopIcon from '@material-ui/icons/Loop';
+import SearchIcon from "@material-ui/icons/Search";
+import LoopIcon from "@material-ui/icons/Loop";
 
 // Data
 import autocompleteData from "../../files/search_plast_data.json";
@@ -391,32 +391,24 @@ const MaterialSearch = () => {
             )}
           />
           <Grid container item xs={12} justify="center">
-            <Grid item xs={12} justify="center">
-              <Button className={classes.buttons} onClick={resetSearch}>
+            <Button className={classes.buttons} onClick={resetSearch}>
               <LoopIcon style={{ marginRight: 5 }}></LoopIcon>
-                Zurücksetzen
-              </Button>{" "}
-            </Grid>
-            <Grid item xs={12} justify="center">
-              <Button className={classes.buttons} onClick={initiateSearch}>
-        
+              Zurücksetzen
+            </Button>{" "}
+            <Button className={classes.buttons} onClick={initiateSearch}>
               <SearchIcon style={{ marginRight: 5 }}></SearchIcon>
-                Suche starten
-              </Button>{" "}
-            </Grid>
-            <Grid item xs={12} justify="center">
-              {" "}
-              <Button
-                className={classes.buttons}
-                onClick={() => {
-                  addPlast();
-                  handleClickPlastClose();
-                }}
-              >
-                <PolymerIcon style={{ marginRight: 5 }}></PolymerIcon>
-                Zuweisen
-              </Button>
-            </Grid>{" "}
+              Suche starten
+            </Button>{" "}
+            <Button
+              className={classes.buttons}
+              onClick={() => {
+                addPlast();
+                handleClickPlastClose();
+              }}
+            >
+              <PolymerIcon style={{ marginRight: 5 }}></PolymerIcon>
+              Zuweisen
+            </Button>
           </Grid>
         </Grid>
         <Grid item xs={1}></Grid>
