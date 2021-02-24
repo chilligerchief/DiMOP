@@ -194,10 +194,8 @@ const MaterialSearch = () => {
       })
       .then((d) => {
         setResultData(d);
-
-        var count = Object.keys(resultData).length;
+        var count = Object.keys(d).length;
         console.log(d);
-        console.log(resultData);
         console.log(count);
       });
   };
