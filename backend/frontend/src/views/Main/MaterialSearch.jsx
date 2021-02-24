@@ -651,7 +651,7 @@ const MaterialSearch = () => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid container item xs={12} style={{marginTop:25}}>
+      <Grid container item xs={12} style={{ marginTop: 40 }}>
         <Grid
           container
           item
@@ -660,36 +660,34 @@ const MaterialSearch = () => {
           alignContent="center"
           alignItems="center"
         >
-          <Grid item xs={4}>
-            {" "}
-            <Button className={classes.buttons} onClick={resetSearch}>
-              <LoopIcon style={{ marginRight: 5 }}></LoopIcon>
-              Zurücksetzen
-            </Button>{" "}
-          </Grid>
-          <Grid item xs={4}>
-            {" "}
-            <Button className={classes.buttons} onClick={initiateSearch}>
-              <SearchIcon style={{ marginRight: 5 }}></SearchIcon>
-              Suche starten
-            </Button>{" "}
-          </Grid>
-          <Grid item xs={4}>
-            {" "}
-            <Button
-              className={classes.buttons}
-              onClick={() => {
-                addPlast();
-                handleClickPlastClose();
-              }}
-            >
-              <PolymerIcon style={{ marginRight: 5 }}></PolymerIcon>
-              Zuweisen
-            </Button>
-          </Grid>
+          <Button className={classes.buttons} onClick={resetSearch}>
+            <LoopIcon style={{ marginRight: 5 }}></LoopIcon>
+            Zurücksetzen
+          </Button>{" "}
+          <Button className={classes.buttons} onClick={initiateSearch}>
+            <SearchIcon style={{ marginRight: 5 }}></SearchIcon>
+            Suche starten
+          </Button>{" "}
+          <Button
+            className={classes.buttons}
+            onClick={() => {
+              addPlast();
+              handleClickPlastClose();
+            }}
+          >
+            <PolymerIcon style={{ marginRight: 5 }}></PolymerIcon>
+            Zuweisen
+          </Button>
         </Grid>
       </Grid>
-      <Grid container item xs={12} justify="center" alignItems="center" alignContent="center">
+      <Grid
+        container
+        item
+        xs={12}
+        justify="center"
+        alignItems="center"
+        alignContent="center"
+      >
         {resultsReturned == false ? (
           <div></div>
         ) : (
