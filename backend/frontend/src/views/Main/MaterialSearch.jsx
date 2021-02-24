@@ -660,7 +660,7 @@ const MaterialSearch = () => {
           alignContent="center"
           alignItems="center"
         >
-          <Button className={classes.buttons} onClick={resetSearch}>
+          <Button className={classes.buttons} style={{ marginRight: 30 }} onClick={resetSearch}>
             <LoopIcon style={{ marginRight: 5 }}></LoopIcon>
             Zurücksetzen
           </Button>{" "}
@@ -670,6 +670,7 @@ const MaterialSearch = () => {
           </Button>{" "}
           <Button
             className={classes.buttons}
+            style={{ marginLeft: 30 }}
             onClick={() => {
               addPlast();
               handleClickPlastClose();
