@@ -390,7 +390,7 @@ const MaterialSearch = () => {
               />
             )}
           />
-          <Grid container item xs={12} justify="center">
+          <Grid container item xs={12} justify="center" direction="column" alignItems="center">
             <Button className={classes.buttons} onClick={resetSearch}>
               <LoopIcon style={{ marginRight: 5 }}></LoopIcon>
               Zurücksetzen
