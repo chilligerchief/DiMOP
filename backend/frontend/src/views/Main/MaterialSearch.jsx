@@ -329,7 +329,70 @@ const MaterialSearch = () => {
   return (
     <div>
       <Grid container item xs={12}>
-        Suchparameter
+        <Grid item xs={3}>
+          <Autocomplete
+            id="mat_desc"
+            options={autocompleteData.mat_desc}
+            getOptionLabel={(option) => option}
+            onChange={(event) => setMatDesc(event.target.textContent)}
+            value={matDesc}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                className={classes.textfield}
+                label="Materialbeschreibung"
+                margin="normal"
+              />
+            )}
+          />
+          <Autocomplete
+            id="campus_fam"
+            options={autocompleteData.campus_fam}
+            getOptionLabel={(option) => option}
+            onChange={(event) => setCampusFam(event.target.textContent)}
+            value={campusFam}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                className={classes.textfield}
+                label="Kunststofffamilie"
+                margin="normal"
+              />
+            )}
+          />
+          <Autocomplete
+            id="producer"
+            options={autocompleteData.producer}
+            getOptionLabel={(option) => option}
+            onChange={(event) => setProducer(event.target.textContent)}
+            value={producer}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                className={classes.textfield}
+                label="Hersteller"
+                margin="normal"
+              />
+            )}
+          />
+          <Autocomplete
+            id="method"
+            options={autocompleteData.verarbeitungsmethode}
+            getOptionLabel={(option) => option}
+            onChange={(event) => setMethod(event.target.textContent)}
+            value={method}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                className={classes.textfield}
+                label="Verarbeitungsmethode"
+                margin="normal"
+              />
+            )}
+          />
+        </Grid>
+        <Grid item xs={1}></Grid>
+        <Grid item xs={8}></Grid>
       </Grid>
       <Grid container item xs={12}>
         <Grid
