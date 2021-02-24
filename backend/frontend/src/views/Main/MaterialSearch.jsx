@@ -668,7 +668,7 @@ const MaterialSearch = () => {
       </Grid>
       <Grid container item xs={12} justify="center">
       {(resultCount == 0) ? (
-          <div style={{ color: "red", marginTop: 20, marginBottom: 20 }}>
+          <div style={{ color: "red", marginTop: 20}}>
             <WarningIcon
               style={{ fontSize: "small", marginRight: 10 }}
             ></WarningIcon>{" "}
