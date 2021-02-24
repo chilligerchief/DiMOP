@@ -330,24 +330,44 @@ const MaterialSearch = () => {
     <div>
       <Grid container item xs={12}>
         Suchparameter
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
       </Grid>
       <Grid container item xs={12}>
         <Grid container item xs={12}>
-          <Grid item xs={4} justify="center" alignItems="center">
+          <Grid item xs={4} justify="center" alignContent="center">
             {" "}
             <Button className={classes.buttons} onClick={resetSearch}>
               <LoopIcon style={{ marginRight: 5 }}></LoopIcon>
               Zurücksetzen
             </Button>{" "}
           </Grid>
-          <Grid item xs={4} justify="center" alignItems="center">
+          <Grid item xs={4} justify="center" alignContent="center">
             {" "}
             <Button className={classes.buttons} onClick={initiateSearch}>
               <SearchIcon style={{ marginRight: 5 }}></SearchIcon>
               Suche starten
             </Button>{" "}
           </Grid>
-          <Grid item xs={4} justify="center" alignItems="center">
+          <Grid item xs={4} justify="center" alignContent="center">
             {" "}
             <Button
               className={classes.buttons}
