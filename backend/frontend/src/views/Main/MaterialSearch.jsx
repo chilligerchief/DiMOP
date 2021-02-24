@@ -8,6 +8,7 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import { Button, Slider } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
+import WarningIcon from "@material-ui/icons/Warning";
 
 // Data
 import autocompleteData from "../../files/search_plast_data.json";
@@ -194,9 +195,8 @@ const MaterialSearch = () => {
       })
       .then((d) => {
         setResultData(d);
-        var count = Object.keys(d).length;
-        console.log(d);
-        console.log(count);
+        var resultCount = Object.keys(d).length;
+        console.log(resultCount);
       });
   };
 
@@ -664,6 +664,19 @@ const MaterialSearch = () => {
             </Grid>
           </Grid>
         </Grid>
+      </Grid>
+      <Grid container item xs={12}>
+      {(resultCount == 0) ? (
+          <div style={{ color: "red", marginTop: 20, marginBottom: 20 }}>
+            <WarningIcon
+              style={{ fontSize: "small", marginRight: 10 }}
+            ></WarningIcon>{" "}
+            Es wurde keine Ergebnisse mit Ihren Spezifikationen gefunden.
+          </div>
+        ) : (
+          <div />
+        )}
+
       </Grid>
       <Grid container item xs={12}>
         <GridDevExpress rows={resultData} columns={resultColumns}>
