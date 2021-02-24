@@ -20,23 +20,22 @@ import { useContext, useEffect, useState } from "react";
 import EvaluationDialog from "./EvaluationDialog.jsx";
 import AddBomDialog from "./AddBomDialog.jsx";
 import AddMaterialDialog from "./AddMaterialDialog.jsx";
-import AddPlastToMat from "./AddPlastToMat.jsx";
+import MaterialSearchDialog from "./MaterialSearchDialog.jsx";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
+
 import DeleteMaterialDialog from "./DeleteMaterialDialog.jsx";
 import CsvUploadDialog from "./CsvUploadDialog.jsx";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import { FormControl } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
-import Input from "@material-ui/core/Input";
+
 import { MainContext } from "./MainContext.jsx";
-import MenuItem from "@material-ui/core/MenuItem";
+
 import PolymerIcon from "@material-ui/icons/Polymer";
 import React from "react";
-import { SearchDialog } from "../../views/Main/SearchDialog.jsx";
-import Select from "@material-ui/core/Select";
+// import { SearchDialog } from "../../views/Main/SearchDialog.jsx";
+
 import TextField from "@material-ui/core/TextField";
 import Tooltip from "@material-ui/core/Tooltip";
 import Typography from "@material-ui/core/Typography";
@@ -552,9 +551,9 @@ const TableTree = () => {
               <PolymerIcon style={{ marginRight: 5 }}></PolymerIcon>
               Zuordnen
             </Button>
-            {/* <div onClick={setParent}>
-              <AddPlastToMat></AddPlastToMat>
-            </div> */}
+            <div onClick={setParent}>
+              <MaterialSearchDialog></MaterialSearchDialog>
+            </div>
           </Tooltip>
         </Grid>
       </Grid>
