@@ -20,7 +20,7 @@ import { useContext, useEffect, useState } from "react";
 import EvaluationDialog from "./EvaluationDialog.jsx";
 import AddBomDialog from "./AddBomDialog.jsx";
 import AddMaterialDialog from "./AddMaterialDialog.jsx";
-import MaterialSearchDialog from "./MaterialSearchDialog.jsx";
+
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import Button from "@material-ui/core/Button";
 
@@ -34,7 +34,7 @@ import { MainContext } from "./MainContext.jsx";
 
 import PolymerIcon from "@material-ui/icons/Polymer";
 import React from "react";
-// import { SearchDialog } from "../../views/Main/SearchDialog.jsx";
+import { SearchDialog } from "../../views/Main/SearchDialog.jsx";
 
 import TextField from "@material-ui/core/TextField";
 import Tooltip from "@material-ui/core/Tooltip";
