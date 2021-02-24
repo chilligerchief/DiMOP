@@ -124,6 +124,7 @@ const MaterialSearch = () => {
   ]);
 
   const [resultData, setResultData] = useState([]);
+  const [resultCount, setResultCount] = useState(1);
 
   const [selection, setSelection] = useState([]);
 
@@ -195,7 +196,7 @@ const MaterialSearch = () => {
       })
       .then((d) => {
         setResultData(d);
-        var resultCount = Object.keys(d).length;
+        setResultCount(Object.keys(d).length);
         console.log(resultCount);
       });
   };
@@ -665,7 +666,7 @@ const MaterialSearch = () => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid container item xs={12}>
+      <Grid container item xs={12} justify="center">
       {(resultCount == 0) ? (
           <div style={{ color: "red", marginTop: 20, marginBottom: 20 }}>
             <WarningIcon
