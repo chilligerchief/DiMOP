@@ -233,6 +233,7 @@ const MaterialSearch = () => {
       temperaturSliderRange[1],
     ]);
     setResultData([]);
+    setResultsReturned(false);
   };
 
   const [resultColumns] = useState([
@@ -692,7 +693,7 @@ const MaterialSearch = () => {
         {resultsReturned == false ? (
           <div></div>
         ) : (
-          <div style={{ color: "black", marginTop: 30 }}>
+          <div style={{ color: "black", marginTop: 35 }}>
             {" "}
             Es wurden {resultCount} Ergebnisse mit Ihren Spezifikationen
             gefunden.
