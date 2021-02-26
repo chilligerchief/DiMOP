@@ -159,6 +159,6 @@ class MatGetNew(Resource):
         db = connect_db()
         mat = pd.read_sql_query('SELECT * FROM mat', db)
 
-        newest_mat = mat["id"][mat.shape[0]-1]
+        newest_mat = mat["id"].tolist()[mat.shape[0]-1]
 
         return newest_mat
