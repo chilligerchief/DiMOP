@@ -58,9 +58,8 @@ class Rel(Resource):
             rel_id = rel.loc[(rel["p_id"] == p_id) & ((((rel["m1_id"] == m1_id) & (rel["m2_id"] == m2_id))) | (
                 ((rel["m1_id"] == m2_id) & (rel["m2_id"] == m1_id))))]["id"].tolist()[0]
 
-            sql = text(
+            result = db.execute(
                 F"UPDATE rel SET rel_type={rel_type} WHERE id={rel_id}")
-            result = db.execute(sql)
 
             return {"rel": "entry already exists. But rel_type was set to new value."}, 201
 
