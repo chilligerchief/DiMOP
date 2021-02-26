@@ -36,6 +36,8 @@ class Rel(Resource):
 
         data = Rel.parser.parse_args()
 
+        print(data)
+
         db = connect_db()
         rel = pd.read_sql_query('SELECT * FROM rel', db)
 

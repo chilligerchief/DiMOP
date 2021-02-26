@@ -27,7 +27,7 @@ class Bom(Resource):
 
     def post(self):
         data = Bom.parser.parse_args()
-
+        print(data)
         bom = BomModel(**data)
         bom.save_to_db()
 
