@@ -97,7 +97,7 @@ class Tabletree(Resource):
 
         df_merged = df_merged.fillna(np.nan).replace([np.nan], [None])
 
-        #df_merged.to_csv("bom.csv", index=False)
+        df_merged.to_csv("bom.csv", index=False)
 
         result_json = df_merged.to_dict(orient="records")
 
