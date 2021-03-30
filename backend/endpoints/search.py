@@ -232,6 +232,8 @@ class Search(Resource):
             elif(result[col].dtype == "object"):
                 result[col] = result[col].fillna("")
 
+        result = result.loc[result["del_kz"] == 1]
+
         result_json = result.to_dict(orient="records")
 
         return result_json
