@@ -96,6 +96,7 @@ const getChildRows = (row, rootRows) => {
   return childRows.length ? childRows : null;
 };
 
+// Wird aktuell nicht benutzt
 const RecyclingTypeProviderFormatter = ({ value, row }) => {
   if (value > 0.9 && value <= 1)
     return (
