@@ -312,7 +312,7 @@ const TableTree = () => {
     { name: "bom_id", title: "Id. BOM Eintrag" },
     { name: "mat_desc", title: "Mat.Bez." },
     { name: "level", title: "Ebene" },
-    { name: "mat_rw", title: "Recycl." },
+    //{ name: "mat_rw", title: "Recycl." },
     { name: "mat_id_int", title: "ERP Mat.Nr." },
     { name: "mat_desc_int", title: "ERP Bez." },
     { name: "cad_id", title: "CAD Nr." },
