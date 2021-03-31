@@ -108,7 +108,7 @@ const EvaluationDialog = () => {
         return (
           <div className={classes.stepdiv}>
             <Grid container item xs={12}>
-              Bitte beantworten Sie die nachfolgenden Fragen zu Ihrem geplanten
+              Bitte beantworten Sie die nachfolgende Frage zu Ihrem geplanten
               Produkt.{" "}
             </Grid>
           </div>
@@ -146,29 +146,7 @@ const EvaluationDialog = () => {
         return (
           <div className={classes.stepdiv}>
             <Grid container item xs={12}>
-              Ist ein Rücknahmesystem für Ihre verwendeten Kunststoffe
-              vorhanden?
-            </Grid>
-            <Grid container item xs={12}>
-              <FormControl component="fieldset">
-                <FormLabel component="legend"></FormLabel>
-                <RadioGroup
-                  aria-label="is-dangerous"
-                  value={hasTakebackSystem}
-                  onChange={handleChangeTakebackSystem}
-                >
-                  <FormControlLabel
-                    value="1"
-                    control={<GreenRadio />}
-                    label="Ja"
-                  />
-                  <FormControlLabel
-                    value="0"
-                    control={<GreenRadio />}
-                    label="Nein"
-                  />
-                </RadioGroup>
-              </FormControl>
+              Was geht?
             </Grid>
           </div>
         );

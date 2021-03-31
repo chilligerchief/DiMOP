@@ -1,7 +1,9 @@
-from flask_restful import Resource, reqparse
-import pandas as pd
-import json
-from dbfunctions.connect import connect_db
+"""
+author: topr
+last updated: 31.03.2021
+currently used: yes
+description: used to calculate recycling value
+"""
 
 
 class Search(Resource):
