@@ -90,6 +90,7 @@ const EvaluationDialog = () => {
   const { evaluation_open, data_backend } = useContext(MainContext);
 
   const [dataBackend, setDataBackend] = data_backend;
+  const [evaluationOpen, setEvaluationOpen] = evaluation_open;
   const [evaluationData, setEvaluationData] = useState(0);
   const [isDangerous, setIsDangerous] = useState(0);
 
@@ -181,9 +182,6 @@ const EvaluationDialog = () => {
         );
     }
   }
-
-  const { evaluation_open } = useContext(MainContext);
-  const [evaluationOpen, setEvaluationOpen] = evaluation_open;
 
   const handleClickOpen = () => {
     setEvaluationOpen(true);
