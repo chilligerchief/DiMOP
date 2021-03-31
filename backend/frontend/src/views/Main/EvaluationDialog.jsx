@@ -87,15 +87,36 @@ const GreenRadio = withStyles({
 const EvaluationDialog = () => {
   const classes = useStyles();
 
+  const { evaluation_open, data_backend } = useContext(MainContext);
+
+  const [dataBackend, setDataBackend] = data_backend;
+  const [evaluationData, setEvaluationData] = useState(0);
   const [isDangerous, setIsDangerous] = useState(0);
-  const [hasTakebackSystem, setHasTakebackSystem] = useState(0);
+
+  const initiateEvaluation = () => {
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        dataBackend,
+      }),
+      redirect: "follow",
+    };
+
+    fetch("/evaluation", requestOptions)
+      .then((res) => {
+        return res.json();
+      })
+      .then((d) => {
+        setEvaluationData(1);
+      });
+  };
 
   const handleChangeDangerous = (event) => {
     setIsDangerous(event.target.value);
-  };
-
-  const handleChangeTakebackSystem = (event) => {
-    setHasTakebackSystem(event.target.value);
   };
 
   function getSteps() {
@@ -146,7 +167,9 @@ const EvaluationDialog = () => {
         return (
           <div className={classes.stepdiv}>
             <Grid container item xs={12}>
-              Was geht?
+              <Button onClick={initiateEvaluation} className={classes.buttons2}>
+                Click here to check if it worked or if it sucks.
+              </Button>
             </Grid>
           </div>
         );
@@ -225,8 +248,8 @@ const EvaluationDialog = () => {
                 {activeStep === steps.length ? (
                   <div>
                     <Typography className={classes.instructions}>
-                      Vielen Dank für Ihre Eingaben. Sie können den Dialog jetzt
-                      schließen.
+                      Vielen Dank für Ihre Eingaben. Sie können Ihre Ergebnisse
+                      jetzt speichern, indem Sie die Bewertung "Abschließen".
                     </Typography>
 
                     <Grid container item xs={12} justify="center">

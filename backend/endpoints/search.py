@@ -5,6 +5,11 @@ currently used: yes
 description: used to calculate recycling value
 """
 
+from flask_restful import Resource, reqparse
+import pandas as pd
+import json
+from dbfunctions.connect import connect_db
+
 
 class Search(Resource):
     parser = reqparse.RequestParser()

@@ -118,3 +118,43 @@ class Evaluation(Resource):
                         required=False,
                         help="This field cannot be blank."
                         )
+
+    def post(self):
+        '''
+        Returns recyclability.
+
+        Args:
+        - dmg_env: 1.0 if material damages environment
+        - g: ?
+        - h: ?
+
+        Returns:
+        - RV: Value for recyclability between 0.0 and 1.0
+        '''
+        data = Search.parser.parse_args()
+
+        print("Test:")
+        print(data)
+
+        #data_list = []
+
+        # for key in data:
+        #    data_list.append([key, data[key]])
+
+        #table_tree = pd.DataFrame(data_list, columns=['key', 'value'])
+        #temp = table_tree.loc[table_tree["is_atomic"] == 1]
+
+        #compability = pd.read_sql_query('SELECT * FROM compability', db_connection)
+        #plast = pd.read_sql_query('SELECT * FROM plast', db_connection)
+        #rel = pd.read_sql_query('SELECT * FROM rel', db_connection)
+
+        #f1 = calculate_f1()
+        #f2 = calculate_f2(temp)
+        #f3 = calculate_f3(temp, rel, table_tree)
+        #f4 = calculate_f4(temp, compability)
+
+        # RV = f2 * f3 * f4 # * f1
+
+        # print(RV)
+
+        return {'evaluation': 'evaluation is working!'}

@@ -26,6 +26,7 @@ from endpoints.tabletree import Tabletree
 from endpoints.bom import Bom, BomAlter
 #from endpoints.topsis import TopsisTobi
 from endpoints.rel import Rel
+from endpoints.evaluation import Evaluation
 
 #from Topsis_Milena.topsis_endpoint import Topsis
 
@@ -133,9 +134,10 @@ api.add_resource(Rel, '/rel')  # Post
 # Bom
 api.add_resource(Bom, '/bom')
 api.add_resource(BomAlter, '/bom/<string:_id>')
-
+# Search
 api.add_resource(Search, '/search')
-#api.add_resource(Results, '/results')
+# Evaluation
+api.add_resource(Evaluation, '/evaluation')
 
 api.add_resource(Test, "/test")
 
