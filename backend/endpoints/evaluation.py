@@ -26,14 +26,10 @@ class Evaluation(Resource):
 
         data = []
 
-        print(float(json_data["isDangerous"]))
-
-        if(json_data["isDangerous"] == 0):
+        if(int(json_data["isDangerous"]) == 0):
             f1 = 1.0
         else:
             f1 = 0.0
-
-        print(f1)
 
         for element in json_data["dataBackend"]:
             print(element["result_id"])
@@ -61,7 +57,7 @@ class Evaluation(Resource):
 
         print(RV)
 
-        return RV
+        return 0.5 * f1
 
 
 def calculate_f2(temp):
