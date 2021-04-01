@@ -28,6 +28,8 @@ import {
   createMuiTheme,
 } from "@material-ui/core/styles";
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
 
 // css theme
 const useStyles = makeStyles((theme) => ({
@@ -102,7 +104,8 @@ const EvaluationDialog = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        dataBackend,
+        isDangerous,
+        dataBackend
       }),
       redirect: "follow",
     };
@@ -112,7 +115,7 @@ const EvaluationDialog = () => {
         return res.json();
       })
       .then((d) => {
-        setEvaluationData(1);
+        setEvaluationData(d);
       });
   };
 
@@ -169,8 +172,26 @@ const EvaluationDialog = () => {
           <div className={classes.stepdiv}>
             <Grid container item xs={12}>
               <Button onClick={initiateEvaluation} className={classes.buttons2}>
-                Click here to check if it worked or if it sucks.
+                Send to backend
               </Button>
+              <Card className={classes.root_card} variant="outlined">
+              <CardContent>
+                <Typography
+                  className={classes.title}
+                  color="textSecondary"
+                  gutterBottom
+                  align="center"
+                >
+                  Recyclingwert:
+                </Typography>
+                <Typography variant="h5" component="h2" align="center">
+                  {evaluationData}
+                </Typography>
+              </CardContent>
+            </Card>
+
+
+
             </Grid>
           </div>
         );

@@ -24,6 +24,9 @@ class Evaluation(Resource):
 
         json_data = request.get_json(force=True)
 
+        print(json_data)
+
+        '''
         data = []
 
         for element in json_data["dataBackend"]:
@@ -52,8 +55,9 @@ class Evaluation(Resource):
         RV = f2 * f3 * f4
 
         print(RV)
+        '''
 
-        return {'evaluation': 'evaluation is working!'}
+        return 0.5
 
 
 def calculate_f2(temp):
