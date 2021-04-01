@@ -24,10 +24,16 @@ class Evaluation(Resource):
 
         json_data = request.get_json(force=True)
 
-        print(json_data)
-
-        '''
         data = []
+
+        print(float(json_data["isDangerous"]))
+
+        if(json_data["isDangerous"] == 0):
+            f1 = 1.0
+        else:
+            f1 = 0.0
+
+        print(f1)
 
         for element in json_data["dataBackend"]:
             print(element["result_id"])
@@ -51,13 +57,11 @@ class Evaluation(Resource):
         f3 = calculate_f3(temp, rel, table_tree)
         f4 = calculate_f4(temp, compability)
 
-        # f1 will be multiplied in the frontend
-        RV = f2 * f3 * f4
+        RV = f1 * f2 * f3 * f4
 
         print(RV)
-        '''
 
-        return 0.5
+        return RV
 
 
 def calculate_f2(temp):

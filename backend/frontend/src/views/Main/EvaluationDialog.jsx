@@ -93,7 +93,7 @@ const EvaluationDialog = () => {
 
   const [dataBackend, setDataBackend] = data_backend;
   const [evaluationOpen, setEvaluationOpen] = evaluation_open;
-  const [evaluationData, setEvaluationData] = useState(0);
+  const [evaluationData, setEvaluationData] = useState(1.0);
   const [isDangerous, setIsDangerous] = useState(0);
 
   const initiateEvaluation = () => {
