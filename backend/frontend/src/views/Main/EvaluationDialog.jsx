@@ -55,7 +55,11 @@ const useStyles = makeStyles((theme) => ({
     width: 120,
   },
   stepdiv: {
-    height: 800,
+    height: 150,
+    width: 400,
+  },
+  stepdiv2: {
+    height: 400,
     width: 400,
   },
 }));
@@ -95,6 +99,7 @@ const EvaluationDialog = () => {
   const [evaluationOpen, setEvaluationOpen] = evaluation_open;
   const [evaluationData, setEvaluationData] = useState([]);
   const [isDangerous, setIsDangerous] = useState(0);
+  const [isImpure, setIsImpure] = useState(0);
 
   const initiateEvaluation = () => {
     const requestOptions = {
@@ -123,6 +128,10 @@ const EvaluationDialog = () => {
 
   const handleChangeDangerous = (event) => {
     setIsDangerous(event.target.value);
+  };
+
+  const handleChangeImpurity = (event) => {
+    setIsImpure(event.target.value);
   };
 
   function getSteps() {
@@ -169,9 +178,39 @@ const EvaluationDialog = () => {
             </Grid>
           </div>
         );
-      case 2:
+    case 2:
+      return (
+        <div>
+               <Grid container item xs={12}>
+              Enthält Ihr Produkt Störstoffe?
+            </Grid>
+            <Grid container item xs={12}>
+              <FormControl component="fieldset">
+                <FormLabel component="legend"></FormLabel>
+                <RadioGroup
+                  aria-label="is-impurity"
+                  value={isDangerous}
+                  onChange={handleChangeImpurity}
+                >
+                  <FormControlLabel
+                    value="1"
+                    control={<GreenRadio />}
+                    label="Ja"
+                  />
+                  <FormControlLabel
+                    value="0"
+                    control={<GreenRadio />}
+                    label="Nein"
+                  />
+                </RadioGroup>
+              </FormControl>
+            </Grid>
+
+        </div>
+      );
+    case 3:
         return (
-          <div className={classes.stepdiv}>
+          <div className={classes.stepdiv2}>
             <Grid container item xs={12}>
               <Button onClick={initiateEvaluation} className={classes.buttons2}>
                 Bewerten
