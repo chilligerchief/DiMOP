@@ -93,7 +93,7 @@ const EvaluationDialog = () => {
 
   const [dataBackend, setDataBackend] = data_backend;
   const [evaluationOpen, setEvaluationOpen] = evaluation_open;
-  const [evaluationData, setEvaluationData] = useState(1.0);
+  const [evaluationData, setEvaluationData] = useState([]);
   const [isDangerous, setIsDangerous] = useState(0);
 
   const initiateEvaluation = () => {
@@ -115,7 +115,9 @@ const EvaluationDialog = () => {
         return res.json();
       })
       .then((d) => {
+        print(d)
         setEvaluationData(d);
+        print(evaluationData)
       });
   };
 
@@ -182,10 +184,10 @@ const EvaluationDialog = () => {
                   gutterBottom
                   align="center"
                 >
-                  Recyclingwert:
+                  Note:
                 </Typography>
                 <Typography variant="h5" component="h2" align="center">
-                  {evaluationData}
+                  {evaluationData.Grade}
                 </Typography>
               </CardContent>
             </Card>

@@ -49,15 +49,26 @@ class Evaluation(Resource):
 
         rel = pd.read_sql_query('SELECT * FROM rel', db_connection)
 
+        sys_sort = pd.read_sql_query('SELECT * FROM sys_sort', db_connection)
+        merged = temp.merge(sys_sort, left_on='plast_fam', right_on='Eintrag')
+
+        evaluation = dict()
+
+        evaluation["GWP"] = np.dot(merged["weight"], merged["GWP"])/1000
+        evaluation["ADPf"] = np.dot(merged["weight"], merged["ADPf"])/1000
+        evaluation["Price"] = np.dot(merged["weight"], merged["Preis"])/1000
+
         f2 = calculate_f2(temp)
         f3 = calculate_f3(temp, rel, table_tree)
         f4 = calculate_f4(temp, compability)
 
-        RV = f1 * f2 * f3 * f4
+        rv = f1 * f2 * f3 * f4
+        evaluation["RV"] = rv
 
-        print(RV)
+        grade = get_grade(rv)
+        evaluation["Grade"] = grade
 
-        return 0.5 * f1
+        return evaluation
 
 
 def calculate_f2(temp):
@@ -250,3 +261,18 @@ def get_can_be_sorted(mara_plast_id):
         print(f"No entry for material {mara_plast_id} found.")
 
     return sort_ab
+
+
+def get_grade(rv):
+    if(rv > 0.95):
+        return "A"
+    elif(rv > 0.85):
+        return "B"
+    elif(rv > 0.7):
+        return "C"
+    elif (rv > 0.5):
+        return "D"
+    elif (rv > 0.3):
+        return "E"
+    else:
+        return "F"
