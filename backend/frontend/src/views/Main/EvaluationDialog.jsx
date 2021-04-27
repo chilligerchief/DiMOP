@@ -135,7 +135,7 @@ const EvaluationDialog = () => {
   };
 
   function getSteps() {
-    return ["", "", ""];
+    return ["", "", "", ""];
   }
 
   function getStepContent(step) {
@@ -180,7 +180,7 @@ const EvaluationDialog = () => {
         );
     case 2:
       return (
-        <div>
+        <div className={classes.stepdiv}>
                <Grid container item xs={12}>
               Enthält Ihr Produkt Störstoffe?
             </Grid>
