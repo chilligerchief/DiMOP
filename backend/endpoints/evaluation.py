@@ -92,6 +92,7 @@ def calculate_f2(temp):
     temp["sys_ab"] = temp["mara_plast_id"].apply(get_has_system_ability)
 
     sys_abs = np.array(temp["sys_ab"])
+    print(f"sys_abs: {sys_abs}")
     masses = np.array(temp["weight"])
     mass_sum = np.sum(masses)
 
@@ -231,8 +232,11 @@ def get_has_system_ability(mara_plast_id):
     try:
         fam = plast.loc[plast["id"] == float(
             mara_plast_id)]["campus_fam"].values[0]
+
+        print(f"fam: {fam}")
+
         sys_ab = sys_sort.loc[sys_sort["Eintrag"] ==
-                              fam]["Systemfähig (0 - nein, 1 - potentiell, 2 - ja)"].values[0]
+                              fam]["Systemfaehig (0 - nein, 1 - potentiell, 2 - ja)"].values[0]
         print(f"{mara_plast_id} successful.")
 
     except:

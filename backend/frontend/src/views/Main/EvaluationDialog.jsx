@@ -189,7 +189,7 @@ const EvaluationDialog = () => {
                 <FormLabel component="legend"></FormLabel>
                 <RadioGroup
                   aria-label="is-impurity"
-                  value={isDangerous}
+                  value={isImpure}
                   onChange={handleChangeImpurity}
                 >
                   <FormControlLabel
