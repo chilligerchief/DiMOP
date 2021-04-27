@@ -60,7 +60,13 @@ class Evaluation(Resource):
 
         f2 = calculate_f2(temp)
         f3 = calculate_f3(temp, rel, table_tree)
+
         f4 = calculate_f4(temp, compability)
+
+        print(f"f1: {f1}")
+        print(f"f2: {f2}")
+        print(f"f3: {f3}")
+        print(f"f4: {f4}")
 
         rv = f1 * f2 * f3 * f4
         evaluation["RV"] = rv
@@ -85,7 +91,7 @@ def calculate_f2(temp):
 
     temp["sys_ab"] = temp["mara_plast_id"].apply(get_has_system_ability)
 
-    sys_abs = np.array(temp["sys_ab"])-1
+    sys_abs = np.array(temp["sys_ab"])
     masses = np.array(temp["weight"])
     mass_sum = np.sum(masses)
 

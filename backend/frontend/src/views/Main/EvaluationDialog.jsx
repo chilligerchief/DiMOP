@@ -144,7 +144,7 @@ const EvaluationDialog = () => {
         return (
           <div className={classes.stepdiv}>
             <Grid container item xs={12}>
-              Bitte beantworten Sie die nachfolgende Frage zu Ihrem geplanten
+              Bitte beantworten Sie die nachfolgenden Fragen zu Ihrem geplanten
               Produkt.{" "}
             </Grid>
           </div>
@@ -314,6 +314,7 @@ const EvaluationDialog = () => {
 
   const handleClose = () => {
     setEvaluationOpen(false);
+    setEvaluationData([]);
   };
 
   const [activeStep, setActiveStep] = useState(0);
