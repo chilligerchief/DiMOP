@@ -105,7 +105,7 @@ const EvaluationDialog = () => {
       },
       body: JSON.stringify({
         isDangerous,
-        dataBackend
+        dataBackend,
       }),
       redirect: "follow",
     };
@@ -115,9 +115,9 @@ const EvaluationDialog = () => {
         return res.json();
       })
       .then((d) => {
-        print(d)
+        console.log(d);
         setEvaluationData(d);
-        print(evaluationData)
+        console.log(evaluationData);
       });
   };
 
@@ -174,26 +174,89 @@ const EvaluationDialog = () => {
           <div className={classes.stepdiv}>
             <Grid container item xs={12}>
               <Button onClick={initiateEvaluation} className={classes.buttons2}>
-                Send to backend
+                Bewerten
               </Button>
+            </Grid>
+            <Grid container item xs={12}>
               <Card className={classes.root_card} variant="outlined">
-              <CardContent>
-                <Typography
-                  className={classes.title}
-                  color="textSecondary"
-                  gutterBottom
-                  align="center"
-                >
-                  Note:
-                </Typography>
-                <Typography variant="h5" component="h2" align="center">
-                  {evaluationData.Grade}
-                </Typography>
-              </CardContent>
-            </Card>
+                <CardContent>
+                  <Typography
+                    className={classes.title}
+                    color="textSecondary"
+                    gutterBottom
+                    align="center"
+                  >
+                    Recyclingbewertung:
+                  </Typography>
+                  <Typography variant="h5" component="h2" align="center">
+                    {evaluationData.Grade}
+                  </Typography>
+                </CardContent>
+              </Card>
 
+              <Card className={classes.root_card} variant="outlined">
+                <CardContent>
+                  <Typography
+                    className={classes.title}
+                    color="textSecondary"
+                    gutterBottom
+                    align="center"
+                  >
+                    Recyclingwert:
+                  </Typography>
+                  <Typography variant="h5" component="h2" align="center">
+                    {evaluationData.RV}
+                  </Typography>
+                </CardContent>
+              </Card>
 
+              <Card className={classes.root_card} variant="outlined">
+                <CardContent>
+                  <Typography
+                    className={classes.title}
+                    color="textSecondary"
+                    gutterBottom
+                    align="center"
+                  >
+                    Globales Erwärmungspotenzial (GWP-fossil):
+                  </Typography>
+                  <Typography variant="h5" component="h2" align="center">
+                    {evaluationData.GWP}
+                  </Typography>
+                </CardContent>
+              </Card>
 
+              <Card className={classes.root_card} variant="outlined">
+                <CardContent>
+                  <Typography
+                    className={classes.title}
+                    color="textSecondary"
+                    gutterBottom
+                    align="center"
+                  >
+                    Ressourcenverbrauch (ADP):
+                  </Typography>
+                  <Typography variant="h5" component="h2" align="center">
+                    {evaluationData.ADPf}
+                  </Typography>
+                </CardContent>
+              </Card>
+
+              <Card className={classes.root_card} variant="outlined">
+                <CardContent>
+                  <Typography
+                    className={classes.title}
+                    color="textSecondary"
+                    gutterBottom
+                    align="center"
+                  >
+                    Preis:
+                  </Typography>
+                  <Typography variant="h5" component="h2" align="center">
+                    {evaluationData.Price}
+                  </Typography>
+                </CardContent>
+              </Card>
             </Grid>
           </div>
         );
