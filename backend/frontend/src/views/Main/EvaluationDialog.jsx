@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
     width: 120,
   },
   stepdiv: {
-    height: 150,
+    height: 800,
     width: 400,
   },
 }));
