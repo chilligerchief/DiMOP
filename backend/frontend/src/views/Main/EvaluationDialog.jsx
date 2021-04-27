@@ -315,6 +315,7 @@ const EvaluationDialog = () => {
   const handleClose = () => {
     setEvaluationOpen(false);
     setEvaluationData([]);
+    setActiveStep(0);
   };
 
   const [activeStep, setActiveStep] = useState(0);

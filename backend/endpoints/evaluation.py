@@ -60,19 +60,19 @@ class Evaluation(Resource):
 
         f2 = calculate_f2(temp)
         f3 = calculate_f3(temp, rel, table_tree)
-
         f4 = calculate_f4(temp, compability)
-
-        print(f"f1: {f1}")
-        print(f"f2: {f2}")
-        print(f"f3: {f3}")
-        print(f"f4: {f4}")
 
         rv = f1 * f2 * f3 * f4
         evaluation["RV"] = rv
 
         grade = get_grade(rv)
         evaluation["Grade"] = grade
+
+        print(f"f1: {f1}")
+        print(f"f2: {f2}")
+        print(f"f3: {f3}")
+        print(f"f4: {f4}")
+        print(evaluation)
 
         return evaluation
 
@@ -92,9 +92,12 @@ def calculate_f2(temp):
     temp["sys_ab"] = temp["mara_plast_id"].apply(get_has_system_ability)
 
     sys_abs = np.array(temp["sys_ab"])
-    print(f"sys_abs: {sys_abs}")
     masses = np.array(temp["weight"])
     mass_sum = np.sum(masses)
+
+    ##################################
+    # How shall 2s vs. 1s be handled???
+    ##################################
 
     return np.dot(sys_abs, masses)/mass_sum
 
@@ -232,8 +235,6 @@ def get_has_system_ability(mara_plast_id):
     try:
         fam = plast.loc[plast["id"] == float(
             mara_plast_id)]["campus_fam"].values[0]
-
-        print(f"fam: {fam}")
 
         sys_ab = sys_sort.loc[sys_sort["Eintrag"] ==
                               fam]["Systemfaehig (0 - nein, 1 - potentiell, 2 - ja)"].values[0]
