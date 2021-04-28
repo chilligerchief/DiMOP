@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#005000",
     textTransform: "none",
     margin: 20,
-    height: 80,
+    height: 60,
     width: 140,
   },
   stepdiv: {
@@ -357,7 +357,7 @@ const EvaluationDialog = () => {
               alignItems="center"
               justify="center"
             >
-              <Button onClick={initiateEvaluation} className={classes.buttons2}>
+              <Button onClick={initiateEvaluation} className={classes.buttons}>
                 <PlayCircleOutlineIcon
                   style={{ marginRight: 5 }}
                 ></PlayCircleOutlineIcon>
@@ -482,13 +482,13 @@ const EvaluationDialog = () => {
                         <Button
                           disabled={activeStep === 0}
                           onClick={handleBack}
-                          className={classes.buttons2}
+                          className={classes.buttons}
                         >
                           Zurück
                         </Button>
                         <Button
                           onClick={handleNext}
-                          className={classes.buttons2}
+                          className={classes.buttons}
                         >
                           Weiter
                         </Button>
