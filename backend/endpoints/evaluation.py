@@ -47,31 +47,27 @@ class Evaluation(Resource):
             'SELECT * FROM compability', db_connection)
 
         plast = pd.read_sql_query('SELECT * FROM plast', db_connection)
-
         rel = pd.read_sql_query('SELECT * FROM rel', db_connection)
-
         sys_sort = pd.read_sql_query('SELECT * FROM sys_sort', db_connection)
         merged = temp.merge(sys_sort, left_on='plast_fam', right_on='Eintrag')
 
+        f2 = calculate_f2(temp)
+        f3 = calculate_f3(temp, rel, table_tree)
+        f4 = calculate_f4(temp, compability)
+        rv = f1 * f2 * f3 * f4
+        grade = get_grade(rv)
+
         evaluation = dict()
 
+        evaluation["mat_id"] = data[0][2]
         evaluation["mat_desc"] = data[0][3]
-
         evaluation["GWP"] = round(
             np.dot(merged["weight"], merged["GWP"])/1000, 2)
         evaluation["ADPf"] = round(
             np.dot(merged["weight"], merged["ADPf"])/1000, 2)
         evaluation["Price"] = round(
             np.dot(merged["weight"], merged["Preis"])/1000, 2)
-
-        f2 = calculate_f2(temp)
-        f3 = calculate_f3(temp, rel, table_tree)
-        f4 = calculate_f4(temp, compability)
-
-        rv = f1 * f2 * f3 * f4
         evaluation["RV"] = rv
-
-        grade = get_grade(rv)
         evaluation["Grade"] = grade
 
         print(f"f1: {f1}")

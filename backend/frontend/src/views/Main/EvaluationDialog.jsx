@@ -126,6 +126,38 @@ const EvaluationDialog = () => {
       });
   };
 
+
+
+  const saveEvaluationResults = () => {
+    var requestOptions = {
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        mat_rw: evaluationData.RV,
+        price: evaluationData.Price,
+        co2_value: evaluationData.GWP,
+        resource_use: evaluationData.ADPf,
+        recycling_cat: evaluationData.Grade,
+      }),
+      redirect: "follow",
+    };
+
+    fetch(
+      "/mat_eval/" + evaluationData.mat_id,
+      requestOptions
+    )
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log("error", error));
+
+    setBomUpdated(true);
+
+  };
+
+
   const handleChangeDangerous = (event) => {
     setIsDangerous(event.target.value);
   };
@@ -338,7 +370,17 @@ const EvaluationDialog = () => {
                         }}
                         className={classes.buttons2}
                       >
-                        Abschließen
+                        Abbrechen
+                      </Button>
+                      <Button
+                        onClick={() => {
+                          saveEvaluationResults();
+                          handleReset();
+                          handleClose();
+                        }}
+                        className={classes.buttons2}
+                      >
+                        Evaluationsergebnisse speichern
                       </Button>
                     </Grid>
                   </div>

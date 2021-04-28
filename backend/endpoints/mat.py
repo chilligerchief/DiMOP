@@ -1,6 +1,6 @@
 """
 author: topr
-last updated: 02.12.2020
+last updated: 28.04.2021
 currently used: yes
 description: is used to manage materials (parts that either can have components below
 (if is_atomic == false) or plastics (if is_atomic == true))
@@ -12,6 +12,48 @@ from dbfunctions.connect import connect_db
 from sqlalchemy import create_engine, MetaData, text
 from flask_sqlalchemy import SQLAlchemy
 import pandas as pd
+
+
+class MatEval(Resource):
+    parser = reqparse.RequestParser()
+    parser.add_argument('mat_rw',
+                        type=float,
+                        required=True,
+                        help="This field cannot be blank."
+                        )
+    parser.add_argument('price',
+                        type=float,
+                        required=True,
+                        help="This field cannot be blank."
+                        )
+    parser.add_argument('co2_value',
+                        type=float,
+                        required=True,
+                        help="This field cannot be blank."
+                        )
+    parser.add_argument('resource_use',
+                        type=float,
+                        required=True,
+                        help="This field cannot be blank."
+                        )
+    parser.add_argument('recycling_cat',
+                        type=str,
+                        required=True,
+                        help="This field cannot be blank."
+                        )
+
+    def put(self, _id):
+        data = MatEval.parser.parse_args()
+        print(data)
+        mat = MatModel.find_by_id(_id).first()
+        if mat:
+            mat.mat_rw = data['mat_rw']
+            mat.price = data['price']
+            mat.co2_value = data['co2_value']
+            mat.resource_use = data['resource_use']
+            mat.recycling_cat = data['recycling_cat']
+            mat.save_to_db()
+        return {'mat': 'mat updated successfully'}
 
 
 class MatPost(Resource):
@@ -118,6 +160,11 @@ class MatPost(Resource):
                         )
     parser.add_argument('resource_use',
                         type=float,
+                        required=False,
+                        help="This field cannot be blank."
+                        )
+    parser.add_argument('recycling_cat',
+                        type=str,
                         required=False,
                         help="This field cannot be blank."
                         )
