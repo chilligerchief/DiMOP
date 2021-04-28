@@ -77,6 +77,13 @@ class MatModel(db.Model):
         return result.fetchall()
 
     @classmethod
+    def find_by_cons_id_evaluation(cls, cons_id):
+        sql = text(
+            "SELECT * FROM mat WHERE cons_id=:cons_id AND is_atomic=0 AND del_kz=0 AND evaluated=1")
+        result = db.session.execute(sql, params={"cons_id": cons_id})
+        return result.fetchall()
+
+    @classmethod
     def find_by_id(cls, _id):
         return cls.query.filter_by(id=_id)
 

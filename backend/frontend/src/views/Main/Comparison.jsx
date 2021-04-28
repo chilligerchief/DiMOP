@@ -104,6 +104,32 @@ const Comparison = () => {
 
   const [weightsSet, setWeightsSet] = useState(false);
   const [comparisionDone, setComparisonDone] = useState(false);
+  const [alternatives, setAlternatives] = useState([]);
+  const [selection, setSelection] = useState([]);
+  const [resultData, setResultData] = useState([]);
+  const [comparisonData, setComparisionData] = useState([]);
+
+  const [columns] = useState([
+    { name: "mat_id", title: "Mat.Nr."},
+    { name: "mat_desc", title: "Mat.Bez."},
+    { name: "recycling_cat", title: "Rec.Kat."},
+    { name: "mat_rw", title: "Rec.Fäh."},
+    { name: "price", title: "Preis"},
+    { name: "co2_value", title: "GWP"},
+    { name: "resource_use", title: "ADPf"},
+  ]);
+
+  const [tableColumnExtensions] = useState([
+    { columnName: "mat_id", width: 75 },
+    { columnName: "mat_desc", width: 250 },
+    { columnName: "recycling_cat", width: 75 },
+    { columnName: "mat_rw", width: 75 },
+    { columnName: "price", width: 75 },
+    { columnName: "co2_value", width: 75 },
+    { columnName: "resource_use", width: 75 },
+  ]);
+
+  const [rowSelection, setRowSelection] = useState([]);
 
   const [evaluationRatings, setEvaluationRatings] = useState({
     recycling: 2,
@@ -136,33 +162,6 @@ const Comparison = () => {
           evaluationRatings.co2 +
           evaluationRatings.recycling),
     });
-  };
-
-  const [alternatives, setAlternatives] = useState([]);
-  const [listDropdownData, setListDropdownData] = useState([]);
-
-  const transformDropdownData = (data) => {
-    if (data !== null && data.length !== 0) {
-      const source = data.map((item) => item.id + " " + item.mat_desc);
-      setListDropdownData(source);
-    } else setListDropdownData([]);
-  };
-
-  useEffect(() => {
-    if (selectedConstructionTitle !== "Bitte auswaehlen") {
-      fetch("/mat?cons_id=" + selectedConstructionId)
-        .then((res) => {
-          return res.json();
-        })
-        .then((d) => {
-          transformDropdownData(d);
-        });
-    } else {
-    }
-  }, [selectedConstructionId]);
-
-  const handleDropdownChange = (event) => {
-    setAlternatives(event.target.value);
   };
 
   const [topsisData, setTopsisData] = useState([
@@ -204,9 +203,6 @@ const Comparison = () => {
     { name: "recycling", title: "Recyclingwert" },
   ]);
 
-  const [selection, setSelection] = useState([]);
-  const [resultData, setResultData] = useState([]);
-
   const [tableColumnExtensions] = useState([
     { columnName: "id", width: 100 },
     { columnName: "mat_desc", width: 350 },
@@ -221,34 +217,47 @@ const Comparison = () => {
   };
 
   useEffect(() => {
-    if (setWeightsSet) {
-      const requestOptions = {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          topsis_data: topsisData,
-          topsis_weights: weights,
-        }),
-      };
-      fetch("/topsis", requestOptions, { mode: "no-cors" })
+      fetch("/mat_eval/" + selectedConstructionId)
         .then((res) => {
-          res.json();
-          console.log(res);
+          return res.json();
         })
-        .then((data) => {
-          setResultData(data);
-          setComparisonDone(true);
-          setWeightsSet(false);
+        .then((d) => {
+          setComparisionData(d);;
         });
-    } else {
-    }
-  }, [weightsSet]);
+  });
 
   return (
     <div>
+      <Grid
+        container
+        item
+        xs={12}
+        style={{
+          marginTop: 25,
+          textAlign: "center",
+        }}
+      >
+        <GridDevExpress rows={comparisonData} columns={columns}>
+          <SelectionState
+            selection={rowSelection}
+            onSelectionChange={setRowSelection}
+          />
+          <IntegratedSorting />
+          <Table columnExtensions={tableColumnExtensions} />
+          <TableHeaderRow showSortingControls />
+          <TableTreeColumn for="mat_id" showSelectionControls />
+          <Toolbar />
+        </GridDevExpress>
+      </Grid>
+
+
+
+
+
+
+
+
+
       <Grid
         container
         item

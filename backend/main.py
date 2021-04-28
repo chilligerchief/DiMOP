@@ -106,6 +106,9 @@ api.add_resource(MatPost, '/mat')  # Post
 api.add_resource(Mat, '/mat/<string:_id>')  # Put & Delete
 api.add_resource(MatGetNew, '/mat/newest')  # Get
 api.add_resource(MatEval, '/mat_eval/<string:_id>')  # Put Evaluation Results
+# Get Evaluated Materials
+api.add_resource(MatEval, '/mat_eval/<string:kons_id>')
+
 # BomAl
 api.add_resource(BomAlGet, '/bomal/<string:kons_id>')  # Get
 api.add_resource(BomAl, '/bomal/<string:_id>')  # Put & Delete

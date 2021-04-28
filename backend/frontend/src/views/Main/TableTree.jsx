@@ -380,7 +380,6 @@ const TableTree = () => {
           <SortingState />
           <CustomTreeData getChildRows={getChildRows} />
           <IntegratedSorting />
-          <RecyclingTypeProvider for={["mat_rw"]} />
           <PlasticTypeProvider for={["is_atomic"]} />
           <Table columnExtensions={tableColumnExtensions} />
           <TableColumnVisibility
