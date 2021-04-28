@@ -211,7 +211,7 @@ const EvaluationDialog = () => {
     case 3:
         return (
           <div className={classes.stepdiv2}>
-            <Grid container item xs={12}>
+            <Grid container item xs={12} alignContent="center" alignItems="center" justify="center">
               <Button onClick={initiateEvaluation} className={classes.buttons2}>
                 Bewerten
               </Button>
@@ -239,7 +239,7 @@ const EvaluationDialog = () => {
                   <td>{evaluationData.ADPf}</td>
                 </tr>
                 <tr>
-                  <td><b>Preis: </b></td>
+                  <td><b>Preis (Euro): </b></td>
                   <td>{evaluationData.Price}</td>
                 </tr>
               </table>

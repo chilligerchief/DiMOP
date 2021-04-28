@@ -31,16 +31,15 @@ class Evaluation(Resource):
         else:
             f1 = 0.0
 
-        mat_desc = json_data["dataBackend"]["mat_desc"][0]
+        descriptions = []
 
         for element in json_data["dataBackend"]:
-            print(element["result_id"])
 
-            data.append([element["result_id"], element["parent_id"], element["mat_id"], element["plast_fam"],
+            data.append([element["result_id"], element["parent_id"], element["mat_id"], element["mat_desc"], element["plast_fam"],
                          element["mara_plast_id"], element["weight"], element["is_atomic"]])
 
         table_tree = pd.DataFrame(data, columns=[
-            "result_id", "parent_id", "mat_id", "plast_fam", "mara_plast_id", "weight", "is_atomic"])
+            "result_id", "parent_id", "mat_id", "mat_desc", "plast_fam", "mara_plast_id", "weight", "is_atomic"])
 
         temp = table_tree.loc[table_tree["is_atomic"] == 1]
 
@@ -56,7 +55,7 @@ class Evaluation(Resource):
 
         evaluation = dict()
 
-        evaluation["mat_desc"] = mat_desc
+        evaluation["mat_desc"] = data[0][3]
 
         evaluation["GWP"] = round(
             np.dot(merged["weight"], merged["GWP"])/1000, 2)
