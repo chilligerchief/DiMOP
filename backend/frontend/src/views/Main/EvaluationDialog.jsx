@@ -148,7 +148,19 @@ const EvaluationDialog = () => {
       .catch((error) => console.log("error", error));
   };
 
-  const visualRecyclingClassifiction = () => {
+  const handleChangeDangerous = (event) => {
+    setIsDangerous(event.target.value);
+  };
+
+  const handleChangeImpurity = (event) => {
+    setIsImpure(event.target.value);
+  };
+
+  const getSteps = () => {
+    return ["", "", "", ""];
+  };
+
+  const renderVisualRecyclingValue = () => {
     if (evaluationData.Grade == "A")
       return (
         <span>
@@ -159,50 +171,50 @@ const EvaluationDialog = () => {
         </span>
       );
     else if (evaluationData.Grade == "B")
-    return (
-      <span>
-        <FiberManualRecordIcon
-          style={{ color: "#c8ff00" }}
-          fontSize="large"
-        ></FiberManualRecordIcon>
-      </span>
-    );
+      return (
+        <span>
+          <FiberManualRecordIcon
+            style={{ color: "#c8ff00" }}
+            fontSize="large"
+          ></FiberManualRecordIcon>
+        </span>
+      );
     else if (evaluationData.Grade == "C")
-    return (
-      <span>
-        <FiberManualRecordIcon
-          style={{ color: "#eaff00" }}
-          fontSize="large"
-        ></FiberManualRecordIcon>
-      </span>
-    );
+      return (
+        <span>
+          <FiberManualRecordIcon
+            style={{ color: "#eaff00" }}
+            fontSize="large"
+          ></FiberManualRecordIcon>
+        </span>
+      );
     else if (evaluationData.Grade == "D")
-    return (
-      <span>
-        <FiberManualRecordIcon
-          style={{ color: "#ffdd00" }}
-          fontSize="large"
-        ></FiberManualRecordIcon>
-      </span>
-    );
+      return (
+        <span>
+          <FiberManualRecordIcon
+            style={{ color: "#ffdd00" }}
+            fontSize="large"
+          ></FiberManualRecordIcon>
+        </span>
+      );
     else if (evaluationData.Grade == "E")
-    return (
-      <span>
-        <FiberManualRecordIcon
-          style={{ color: "#ff9d00" }}
-          fontSize="large"
-        ></FiberManualRecordIcon>
-      </span>
-    );
+      return (
+        <span>
+          <FiberManualRecordIcon
+            style={{ color: "#ff9d00" }}
+            fontSize="large"
+          ></FiberManualRecordIcon>
+        </span>
+      );
     else if (evaluationData.Grade == "F")
-    return (
-      <span>
-        <FiberManualRecordIcon
-          style={{ color: "#ff1100" }}
-          fontSize="large"
-        ></FiberManualRecordIcon>
-      </span>
-    );
+      return (
+        <span>
+          <FiberManualRecordIcon
+            style={{ color: "#ff1100" }}
+            fontSize="large"
+          ></FiberManualRecordIcon>
+        </span>
+      );
     return (
       <span>
         <FiberManualRecordIcon
@@ -212,18 +224,6 @@ const EvaluationDialog = () => {
       </span>
     );
   };
-
-  const handleChangeDangerous = (event) => {
-    setIsDangerous(event.target.value);
-  };
-
-  const handleChangeImpurity = (event) => {
-    setIsImpure(event.target.value);
-  };
-
-  function getSteps() {
-    return ["", "", "", ""];
-  }
 
   function getStepContent(step) {
     switch (step) {
@@ -305,7 +305,7 @@ const EvaluationDialog = () => {
               alignItems="center"
               justify="center"
             >
-              <visualRecyclingClassifiction />
+              {renderVisualRecyclingValue()}
             </Grid>
             <Grid container item xs={12}>
               <table>
