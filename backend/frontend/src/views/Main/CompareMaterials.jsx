@@ -115,15 +115,15 @@ const CompareMaterials = () => {
   const [rowSelection, setRowSelection] = useState([]);
 
   useEffect(() => {
-    fetch("/mat?cons_id=" + selectedConstructionId)
+    fetch("/mat?cons_id_eval=" + selectedConstructionId)
       .then((res) => {
         return res.json();
       })
       .then((d) => {
-        console.log(selectedConstructionId)
-        console.log(d)
-        setComparisionData(d.filter((d) => d.evaluated === 1));
-        console.log(comparisonData)
+        console.log(selectedConstructionId);
+        console.log(d);
+        setComparisionData(d);
+        console.log(comparisonData);
       });
   }, []);
 
@@ -138,8 +138,16 @@ const CompareMaterials = () => {
           textAlign: "center",
         }}
       >
-        Hier komm ein Table rein lol.
-
+        <GridDevExpress rows={comparisonData} columns={columnsComparison}>
+          <SelectionState
+            selection={rowSelection}
+            onSelectionChange={setRowSelection}
+          />
+          <IntegratedSorting />
+          <Table columnExtensions={tableColumnExtensionsComparison} />
+          <TableHeaderRow showSortingControls />
+          <Toolbar />
+        </GridDevExpress>
       </Grid>
     </div>
   );

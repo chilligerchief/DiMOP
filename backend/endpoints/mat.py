@@ -221,6 +221,8 @@ class MatGet(Resource):
             mat = MatModel.find_by_orga_id(args["orga_id"])
         elif "cons_id" in args:
             mat = MatModel.find_by_cons_id(args["cons_id"])
+        elif "cons_id_eval" in args:
+            mat = MatModel.find_by_cons_id_evaluation(args["cons_id"])
         my_list = []
         for x in mat:
             my_list.append(dict(x))
