@@ -28,8 +28,7 @@ import {
   createMuiTheme,
 } from "@material-ui/core/styles";
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
+import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 
 // css theme
 const useStyles = makeStyles((theme) => ({
@@ -51,16 +50,16 @@ const useStyles = makeStyles((theme) => ({
     color: "#005000",
     textTransform: "none",
     margin: 20,
-    height: 30,
-    width: 120,
+    height: 80,
+    width: 140,
   },
   stepdiv: {
     height: 150,
-    width: 500,
+    width: 600,
   },
   stepdiv2: {
     height: 300,
-    width: 500,
+    width: 600,
   },
 }));
 
@@ -126,8 +125,6 @@ const EvaluationDialog = () => {
       });
   };
 
-
-
   const saveEvaluationResults = () => {
     var requestOptions = {
       method: "PUT",
@@ -145,18 +142,38 @@ const EvaluationDialog = () => {
       redirect: "follow",
     };
 
-    fetch(
-      "/mat_eval/" + evaluationData.mat_id,
-      requestOptions
-    )
+    fetch("/mat_eval/" + evaluationData.mat_id, requestOptions)
       .then((response) => response.text())
       .then((result) => console.log(result))
       .catch((error) => console.log("error", error));
-
-    setBomUpdated(true);
-
   };
 
+  const RecyclingTypeProviderFormatter = ({ value, row }) => {
+    if (evaluationData == "A")
+      return (
+        <span>
+          <FiberManualRecordIcon
+            style={{ color: "green" }}
+            fontSize="large"
+          ></FiberManualRecordIcon>
+        </span>
+      );
+    return (
+      <span>
+        <FiberManualRecordIcon
+          style={{ color: "grey" }}
+          fontSize="large"
+        ></FiberManualRecordIcon>
+      </span>
+    );
+  };
+
+  const RecyclingTypeProvider = (props) => (
+    <DataTypeProvider
+      formatterComponent={RecyclingTypeProviderFormatter}
+      {...props}
+    />
+  );
 
   const handleChangeDangerous = (event) => {
     setIsDangerous(event.target.value);
@@ -210,10 +227,10 @@ const EvaluationDialog = () => {
             </Grid>
           </div>
         );
-    case 2:
-      return (
-        <div className={classes.stepdiv}>
-               <Grid container item xs={12}>
+      case 2:
+        return (
+          <div className={classes.stepdiv}>
+            <Grid container item xs={12}>
               Enthält Ihr Produkt Störstoffe?
             </Grid>
             <Grid container item xs={12}>
@@ -237,41 +254,69 @@ const EvaluationDialog = () => {
                 </RadioGroup>
               </FormControl>
             </Grid>
-
-        </div>
-      );
-    case 3:
+          </div>
+        );
+      case 3:
         return (
           <div className={classes.stepdiv2}>
-            <Grid container item xs={12} alignContent="center" alignItems="center" justify="center">
+            <Grid
+              container
+              item
+              xs={12}
+              alignContent="center"
+              alignItems="center"
+              justify="center"
+            >
               <Button onClick={initiateEvaluation} className={classes.buttons2}>
                 Bewerten
               </Button>
             </Grid>
+            <Grid
+              container
+              item
+              xs={12}
+              alignContent="center"
+              alignItems="center"
+              justify="center"
+            >
+              <RecyclingTypeProvider />
+            </Grid>
             <Grid container item xs={12}>
               <table>
                 <tr>
-                  <td><b>Produkt: </b></td>
+                  <td>
+                    <b>Produkt: </b>
+                  </td>
                   <td>{evaluationData.mat_desc}</td>
                 </tr>
                 <tr>
-                  <td><b>Recyclingwert: </b></td>
+                  <td>
+                    <b>Recyclingwert: </b>
+                  </td>
                   <td>{evaluationData.RV}</td>
                 </tr>
                 <tr>
-                  <td><b>Recyclingklassifikation (A-F): </b></td>
+                  <td>
+                    <b>Recyclingklassifikation (A-F): </b>
+                  </td>
                   <td>{evaluationData.Grade}</td>
                 </tr>
                 <tr>
-                  <td><b>Globales Erwärmungspotential (GWP): </b></td>
+                  <td>
+                    <b>Globales Erwärmungspotential (GWP): </b>
+                  </td>
                   <td>{evaluationData.GWP}</td>
                 </tr>
                 <tr>
-                  <td><b>Abiotischer-Ressourcen-Verbrauch (ADP): </b></td>
+                  <td>
+                    <b>Abiotischer-Ressourcen-Verbrauch (ADP): </b>
+                  </td>
                   <td>{evaluationData.ADPf}</td>
                 </tr>
                 <tr>
-                  <td><b>Preis (Euro): </b></td>
+                  <td>
+                    <b>Preis (Euro): </b>
+                  </td>
                   <td>{evaluationData.Price}</td>
                 </tr>
               </table>
