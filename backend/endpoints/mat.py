@@ -62,16 +62,6 @@ class MatEval(Resource):
         return {'mat': 'mat updated successfully'}
 
 
-class MatGetEval(Resource):
-    def get(self, kons_id):
-        mat = MatModel.find_by_cons_id_evaluation(kons_id)
-        my_list = []
-        for x in mat:
-            my_list.append(dict(x))
-        print(my_list)
-        return my_list
-
-
 class MatPost(Resource):
     parser = reqparse.RequestParser()
     parser.add_argument('mat_desc',

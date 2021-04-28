@@ -115,14 +115,14 @@ const CompareMaterials = () => {
   const [rowSelection, setRowSelection] = useState([]);
 
   useEffect(() => {
-    fetch("/mat_eval/" + selectedConstructionId)
+    fetch("/mat?cons_id=" + orgaId)
       .then((res) => {
         return res.json();
       })
       .then((d) => {
-        setComparisionData(d);
+        setComparisionData(d.filter((d) => d.evaluated === 1));
       });
-  });
+  }, []);
 
   return (
     <div>
@@ -150,4 +150,4 @@ const CompareMaterials = () => {
   );
 };
 
-export default Comparison;
+export default CompareMaterials;
