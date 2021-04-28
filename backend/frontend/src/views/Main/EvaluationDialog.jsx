@@ -165,7 +165,7 @@ const EvaluationDialog = () => {
       return (
         <span>
           <FiberManualRecordIcon
-            style={{ color: "#3cff00" }}
+            style={{ color: "#50d100" }}
             fontSize="large"
           ></FiberManualRecordIcon>
         </span>
@@ -174,7 +174,7 @@ const EvaluationDialog = () => {
       return (
         <span>
           <FiberManualRecordIcon
-            style={{ color: "#c8ff00" }}
+            style={{ color: "#a0d100" }}
             fontSize="large"
           ></FiberManualRecordIcon>
         </span>
@@ -183,7 +183,7 @@ const EvaluationDialog = () => {
       return (
         <span>
           <FiberManualRecordIcon
-            style={{ color: "#eaff00" }}
+            style={{ color: "#d1d100" }}
             fontSize="large"
           ></FiberManualRecordIcon>
         </span>
@@ -192,7 +192,7 @@ const EvaluationDialog = () => {
       return (
         <span>
           <FiberManualRecordIcon
-            style={{ color: "#ffdd00" }}
+            style={{ color: "#d1a400" }}
             fontSize="large"
           ></FiberManualRecordIcon>
         </span>
@@ -201,7 +201,7 @@ const EvaluationDialog = () => {
       return (
         <span>
           <FiberManualRecordIcon
-            style={{ color: "#ff9d00" }}
+            style={{ color: "#f73100" }}
             fontSize="large"
           ></FiberManualRecordIcon>
         </span>
@@ -210,7 +210,7 @@ const EvaluationDialog = () => {
       return (
         <span>
           <FiberManualRecordIcon
-            style={{ color: "#ff1100" }}
+            style={{ color: "#a10000" }}
             fontSize="large"
           ></FiberManualRecordIcon>
         </span>
@@ -305,7 +305,9 @@ const EvaluationDialog = () => {
               alignItems="center"
               justify="center"
             >
-              {renderVisualRecyclingValue()}
+              <div style={{marginTop: 30, marginBottom: 30}}>
+                {renderVisualRecyclingValue()}
+              </div>
             </Grid>
             <Grid container item xs={12}>
               <table>
