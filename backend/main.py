@@ -15,7 +15,7 @@ from endpoints.cons import Cons, ConsPost, ConsAlter
 from endpoints.mara import MaraGet, MaraPost, Mara
 from endpoints.plast import PlastGet, Plast
 from endpoints.BomItem import BomItemGet, BomItem, BomItemPost
-from endpoints.mat import MatGet, Mat, MatPost, MatGetNew, MatEval
+from endpoints.mat import MatGet, Mat, MatPost, MatGetNew, MatEval, MatEvalGet
 from endpoints.BomAl import BomAlGet, BomAl, BomAlPost
 from endpoints.orga import Orgas, Orga, OrgaPost
 from endpoints.family import FamilyPost, Family, Families
@@ -106,6 +106,8 @@ api.add_resource(MatPost, '/mat')  # Post
 api.add_resource(Mat, '/mat/<string:_id>')  # Put & Delete
 api.add_resource(MatGetNew, '/mat/newest')  # Get
 api.add_resource(MatEval, '/mat_eval/<string:_id>')  # Put Evaluation Results
+# Get Evaluated Materials
+api.add_resource(MatEvalGet, '/mat_eval_get/<string:kons_id>')
 
 
 # BomAl
