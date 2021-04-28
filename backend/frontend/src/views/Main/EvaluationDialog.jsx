@@ -55,11 +55,11 @@ const useStyles = makeStyles((theme) => ({
   },
   stepdiv: {
     height: 150,
-    width: 600,
+    width: 500,
   },
   stepdiv2: {
     height: 300,
-    width: 600,
+    width: 500,
   },
 }));
 
@@ -138,6 +138,7 @@ const EvaluationDialog = () => {
         co2_value: evaluationData.GWP,
         resource_use: evaluationData.ADPf,
         recycling_cat: evaluationData.Grade,
+        evaluated: 1
       }),
       redirect: "follow",
     };

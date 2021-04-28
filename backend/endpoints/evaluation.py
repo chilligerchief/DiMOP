@@ -70,9 +70,6 @@ class Evaluation(Resource):
         evaluation["RV"] = rv
         evaluation["Grade"] = grade
 
-        print(temp)
-        print(merged)
-
         print(f"f1: {f1}")
         print(f"f2: {f2}")
         print(f"f3: {f3}")

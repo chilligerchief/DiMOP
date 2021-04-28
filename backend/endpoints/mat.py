@@ -41,6 +41,11 @@ class MatEval(Resource):
                         required=True,
                         help="This field cannot be blank."
                         )
+    parser.add_argument('evaluated',
+                        type=int,
+                        required=True,
+                        help="This field cannot be blank."
+                        )
 
     def put(self, _id):
         data = MatEval.parser.parse_args()
@@ -52,6 +57,7 @@ class MatEval(Resource):
             mat.co2_value = data['co2_value']
             mat.resource_use = data['resource_use']
             mat.recycling_cat = data['recycling_cat']
+            mat.evaluated = data['evaluated']
             mat.save_to_db()
         return {'mat': 'mat updated successfully'}
 
@@ -165,6 +171,11 @@ class MatPost(Resource):
                         )
     parser.add_argument('recycling_cat',
                         type=str,
+                        required=False,
+                        help="This field cannot be blank."
+                        )
+    parser.add_argument('evaluated',
+                        type=int,
                         required=False,
                         help="This field cannot be blank."
                         )
