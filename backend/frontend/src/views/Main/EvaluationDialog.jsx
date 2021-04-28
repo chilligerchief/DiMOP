@@ -148,32 +148,70 @@ const EvaluationDialog = () => {
       .catch((error) => console.log("error", error));
   };
 
-  const RecyclingTypeProviderFormatter = ({ value, row }) => {
-    if (evaluationData == "A")
+  const visualRecyclingClassifiction = () => {
+    if (evaluationData.Grade == "A")
       return (
         <span>
           <FiberManualRecordIcon
-            style={{ color: "green" }}
+            style={{ color: "#3cff00" }}
             fontSize="large"
           ></FiberManualRecordIcon>
         </span>
       );
+    else if (evaluationData.Grade == "B")
     return (
       <span>
         <FiberManualRecordIcon
-          style={{ color: "grey" }}
+          style={{ color: "#c8ff00" }}
+          fontSize="large"
+        ></FiberManualRecordIcon>
+      </span>
+    );
+    else if (evaluationData.Grade == "C")
+    return (
+      <span>
+        <FiberManualRecordIcon
+          style={{ color: "#eaff00" }}
+          fontSize="large"
+        ></FiberManualRecordIcon>
+      </span>
+    );
+    else if (evaluationData.Grade == "D")
+    return (
+      <span>
+        <FiberManualRecordIcon
+          style={{ color: "#ffdd00" }}
+          fontSize="large"
+        ></FiberManualRecordIcon>
+      </span>
+    );
+    else if (evaluationData.Grade == "E")
+    return (
+      <span>
+        <FiberManualRecordIcon
+          style={{ color: "#ff9d00" }}
+          fontSize="large"
+        ></FiberManualRecordIcon>
+      </span>
+    );
+    else if (evaluationData.Grade == "F")
+    return (
+      <span>
+        <FiberManualRecordIcon
+          style={{ color: "#ff1100" }}
+          fontSize="large"
+        ></FiberManualRecordIcon>
+      </span>
+    );
+    return (
+      <span>
+        <FiberManualRecordIcon
+          style={{ color: "#d1d1d1" }}
           fontSize="large"
         ></FiberManualRecordIcon>
       </span>
     );
   };
-
-  const RecyclingTypeProvider = (props) => (
-    <DataTypeProvider
-      formatterComponent={RecyclingTypeProviderFormatter}
-      {...props}
-    />
-  );
 
   const handleChangeDangerous = (event) => {
     setIsDangerous(event.target.value);
@@ -267,19 +305,7 @@ const EvaluationDialog = () => {
               alignItems="center"
               justify="center"
             >
-              <Button onClick={initiateEvaluation} className={classes.buttons2}>
-                Bewerten
-              </Button>
-            </Grid>
-            <Grid
-              container
-              item
-              xs={12}
-              alignContent="center"
-              alignItems="center"
-              justify="center"
-            >
-              <RecyclingTypeProvider />
+              <visualRecyclingClassifiction />
             </Grid>
             <Grid container item xs={12}>
               <table>
@@ -320,6 +346,18 @@ const EvaluationDialog = () => {
                   <td>{evaluationData.Price}</td>
                 </tr>
               </table>
+            </Grid>
+            <Grid
+              container
+              item
+              xs={12}
+              alignContent="center"
+              alignItems="center"
+              justify="center"
+            >
+              <Button onClick={initiateEvaluation} className={classes.buttons2}>
+                Bewerten
+              </Button>
             </Grid>
           </div>
         );
