@@ -121,6 +121,7 @@ const CompareMaterials = () => {
       })
       .then((d) => {
         setComparisionData(d.filter((d) => d.evaluated === 1));
+        console.log(comparisonData)
       });
   }, []);
 
