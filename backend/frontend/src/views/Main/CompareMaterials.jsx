@@ -120,6 +120,8 @@ const CompareMaterials = () => {
         return res.json();
       })
       .then((d) => {
+        console.log(selectedConstructionId)
+        console.log(d)
         setComparisionData(d.filter((d) => d.evaluated === 1));
         console.log(comparisonData)
       });
@@ -136,6 +138,7 @@ const CompareMaterials = () => {
           textAlign: "center",
         }}
       >
+        Hier komm ein Table rein lol.
 
       </Grid>
     </div>
