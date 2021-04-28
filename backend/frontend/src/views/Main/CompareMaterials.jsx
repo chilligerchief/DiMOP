@@ -115,7 +115,7 @@ const CompareMaterials = () => {
   const [rowSelection, setRowSelection] = useState([]);
 
   useEffect(() => {
-    fetch("/mat?cons_id_eval=" + selectedConstructionId)
+    fetch("/mat_eval_get/" + selectedConstructionId)
       .then((res) => {
         return res.json();
       })
