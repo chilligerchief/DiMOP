@@ -115,7 +115,7 @@ const CompareMaterials = () => {
   const [rowSelection, setRowSelection] = useState([]);
 
   useEffect(() => {
-    fetch("/mat?cons_id=" + orgaId)
+    fetch("/mat?cons_id=" + selectedConstructionId)
       .then((res) => {
         return res.json();
       })
@@ -135,16 +135,7 @@ const CompareMaterials = () => {
           textAlign: "center",
         }}
       >
-        <GridDevExpress rows={comparisonData} columns={columnsComparison}>
-          <SelectionState
-            selection={rowSelection}
-            onSelectionChange={setRowSelection}
-          />
-          <IntegratedSorting />
-          <Table columnExtensions={tableColumnExtensionsComparison} />
-          <TableHeaderRow showSortingControls />
-          <Toolbar />
-        </GridDevExpress>
+
       </Grid>
     </div>
   );
