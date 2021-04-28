@@ -56,11 +56,11 @@ const useStyles = makeStyles((theme) => ({
   },
   stepdiv: {
     height: 150,
-    width: 400,
+    width: 500,
   },
   stepdiv2: {
-    height: 400,
-    width: 400,
+    height: 300,
+    width: 500,
   },
 }));
 
@@ -217,85 +217,32 @@ const EvaluationDialog = () => {
               </Button>
             </Grid>
             <Grid container item xs={12}>
-              <Card className={classes.root_card} variant="outlined">
-                <CardContent>
-                  <Typography
-                    className={classes.title}
-                    color="textSecondary"
-                    gutterBottom
-                    align="center"
-                  >
-                    Recyclingbewertung:
-                  </Typography>
-                  <Typography variant="h5" component="h2" align="center">
-                    {evaluationData.Grade}
-                  </Typography>
-                </CardContent>
-              </Card>
-
-              <Card className={classes.root_card} variant="outlined">
-                <CardContent>
-                  <Typography
-                    className={classes.title}
-                    color="textSecondary"
-                    gutterBottom
-                    align="center"
-                  >
-                    Recyclingwert:
-                  </Typography>
-                  <Typography variant="h5" component="h2" align="center">
-                    {evaluationData.RV}
-                  </Typography>
-                </CardContent>
-              </Card>
-
-              <Card className={classes.root_card} variant="outlined">
-                <CardContent>
-                  <Typography
-                    className={classes.title}
-                    color="textSecondary"
-                    gutterBottom
-                    align="center"
-                  >
-                    Globales Erwärmungspotenzial (GWP-fossil):
-                  </Typography>
-                  <Typography variant="h5" component="h2" align="center">
-                    {evaluationData.GWP}
-                  </Typography>
-                </CardContent>
-              </Card>
-
-              <Card className={classes.root_card} variant="outlined">
-                <CardContent>
-                  <Typography
-                    className={classes.title}
-                    color="textSecondary"
-                    gutterBottom
-                    align="center"
-                  >
-                    Ressourcenverbrauch (ADP):
-                  </Typography>
-                  <Typography variant="h5" component="h2" align="center">
-                    {evaluationData.ADPf}
-                  </Typography>
-                </CardContent>
-              </Card>
-
-              <Card className={classes.root_card} variant="outlined">
-                <CardContent>
-                  <Typography
-                    className={classes.title}
-                    color="textSecondary"
-                    gutterBottom
-                    align="center"
-                  >
-                    Preis:
-                  </Typography>
-                  <Typography variant="h5" component="h2" align="center">
-                    {evaluationData.Price}
-                  </Typography>
-                </CardContent>
-              </Card>
+              <table>
+                <tr>
+                  <td><b>Produkt: </b></td>
+                  <td>{dataBackend.mat_desc}</td>
+                </tr>
+                <tr>
+                  <td><b>Recyclingwert: </b></td>
+                  <td>{evaluationData.RV}</td>
+                </tr>
+                <tr>
+                  <td><b>Recyclingklassifikation (A-F): </b></td>
+                  <td>{evaluationData.Grade}</td>
+                </tr>
+                <tr>
+                  <td><b>Globales Erwärmungspotential (GWP): </b></td>
+                  <td>{evaluationData.GWP}</td>
+                </tr>
+                <tr>
+                  <td><b>Abiotischer-Ressourcen-Verbrauch (ADP): </b></td>
+                  <td>{evaluationData.ADPf}</td>
+                </tr>
+                <tr>
+                  <td><b>Preis: </b></td>
+                  <td>{evaluationData.Preis}</td>
+                </tr>
+              </table>
             </Grid>
           </div>
         );
