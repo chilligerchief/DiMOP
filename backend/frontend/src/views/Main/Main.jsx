@@ -7,7 +7,7 @@ import PartnerLogos from "../../components/PartnerLogos/PartnerLogos";
 import NavBar from "../../components/NavBar/NavBar";
 import TableTree from "./TableTree.jsx";
 import ConstructionsTable from "./ConstructionsTable.jsx";
-import Comparison from "./Comparison.jsx";
+import CompareMaterials from "./CompareMaterials.jsx";
 import { MainContext } from "./MainContext.jsx";
 
 //Material UI
@@ -169,7 +169,7 @@ const Main = () => {
             ) : contentNum === 2 ? (
               <TableTree></TableTree>
             ) : contentNum === 3 ? (
-              <Comparison></Comparison>
+              <CompareMaterials></CompareMaterials>
             ) : (
               <div></div>
             )}

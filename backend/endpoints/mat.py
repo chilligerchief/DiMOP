@@ -61,6 +61,8 @@ class MatEval(Resource):
             mat.save_to_db()
         return {'mat': 'mat updated successfully'}
 
+
+class MatGetEval(Resource):
     def get(self, kons_id):
         mat = MatModel.find_by_cons_id_evaluation(kons_id)
         my_list = []

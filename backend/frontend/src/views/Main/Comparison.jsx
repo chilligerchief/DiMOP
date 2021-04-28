@@ -1,6 +1,6 @@
 // author: topr
 // last updated: 11.11.2020
-// currently used: yes
+// currently used: no
 // description: includes topsis method
 
 import React from "react";
@@ -109,7 +109,7 @@ const Comparison = () => {
   const [resultData, setResultData] = useState([]);
   const [comparisonData, setComparisionData] = useState([]);
 
-  const [columns] = useState([
+  const [columnsComparison] = useState([
     { name: "mat_id", title: "Mat.Nr."},
     { name: "mat_desc", title: "Mat.Bez."},
     { name: "recycling_cat", title: "Rec.Kat."},
@@ -119,7 +119,7 @@ const Comparison = () => {
     { name: "resource_use", title: "ADPf"},
   ]);
 
-  const [tableColumnExtensions] = useState([
+  const [tableColumnExtensionsComparison] = useState([
     { columnName: "mat_id", width: 75 },
     { columnName: "mat_desc", width: 250 },
     { columnName: "recycling_cat", width: 75 },
@@ -237,15 +237,14 @@ const Comparison = () => {
           textAlign: "center",
         }}
       >
-        <GridDevExpress rows={comparisonData} columns={columns}>
+        <GridDevExpress rows={comparisonData} columns={columnsComparison}>
           <SelectionState
             selection={rowSelection}
             onSelectionChange={setRowSelection}
           />
           <IntegratedSorting />
-          <Table columnExtensions={tableColumnExtensions} />
+          <Table columnExtensions={tableColumnExtensionsComparison} />
           <TableHeaderRow showSortingControls />
-          <TableTreeColumn for="mat_id" showSelectionControls />
           <Toolbar />
         </GridDevExpress>
       </Grid>
@@ -394,75 +393,7 @@ const Comparison = () => {
                 </CardContent>
               </Card>
             </Grid>
-            <Grid
-              container
-              item
-              xs={12}
-              style={{
-                marginTop: 25,
-                marginLeft: 50,
-                textAlign: "left",
-              }}
-            >
-              <Grid xd={6}>
-                <Typography>
-                  Bitte wählen Sie zwei oder mehr Stücklisten aus.
-                </Typography>
-                <FormControl className={classes.formControl}>
-                  <InputLabel id="demo-mutiple-checkbox-label">
-                    Stücklisten
-                  </InputLabel>
-                  <Select
-                    labelId="demo-mutiple-checkbox-label"
-                    id="demo-mutiple-checkbox"
-                    multiple
-                    value={alternatives}
-                    onChange={handleDropdownChange}
-                    input={<Input />}
-                    renderValue={(selected) => selected.join(", ")}
-                  >
-                    {listDropdownData.map((name) => (
-                      <MenuItem key={name} value={name}>
-                        <Checkbox checked={alternatives.indexOf(name) > -1} />
-                        <ListItemText primary={name} />
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              </Grid>
-              <Grid
-                xd={3}
-                style={{
-                  textAlign: "right",
-                }}
-              >
-                <Button
-                  className={classes.buttons}
-                  onClick={() => {
-                    compareAlternatives();
-                    console.log(weights);
-                  }}
-                >
-                  Vergleich durchführen
-                </Button>
-                <Grid
-                  xd={3}
-                  style={{
-                    textAlign: "right",
-                  }}
-                >
-                  <Button
-                    className={classes.buttons}
-                    variant="outlined"
-                    onClick={() => {
-                      console.log(resultData);
-                    }}
-                  >
-                    Print Ergebnis
-                  </Button>
-                </Grid>
-              </Grid>
-            </Grid>
+
           </Grid>
         </Grid>
       </Grid>
