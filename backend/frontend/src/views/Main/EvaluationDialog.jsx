@@ -220,7 +220,7 @@ const EvaluationDialog = () => {
               <table>
                 <tr>
                   <td><b>Produkt: </b></td>
-                  <td>{dataBackend.mat_desc}</td>
+                  <td>{evaluationData.mat_desc}</td>
                 </tr>
                 <tr>
                   <td><b>Recyclingwert: </b></td>
@@ -240,7 +240,7 @@ const EvaluationDialog = () => {
                 </tr>
                 <tr>
                   <td><b>Preis: </b></td>
-                  <td>{evaluationData.Preis}</td>
+                  <td>{evaluationData.Price}</td>
                 </tr>
               </table>
             </Grid>

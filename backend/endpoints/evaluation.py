@@ -31,6 +31,8 @@ class Evaluation(Resource):
         else:
             f1 = 0.0
 
+        mat_desc = json_data["dataBackend"]["mat_desc"][0]
+
         for element in json_data["dataBackend"]:
             print(element["result_id"])
 
@@ -54,9 +56,14 @@ class Evaluation(Resource):
 
         evaluation = dict()
 
-        evaluation["GWP"] = np.dot(merged["weight"], merged["GWP"])/1000
-        evaluation["ADPf"] = np.dot(merged["weight"], merged["ADPf"])/1000
-        evaluation["Price"] = np.dot(merged["weight"], merged["Preis"])/1000
+        evaluation["mat_desc"] = mat_desc
+
+        evaluation["GWP"] = round(
+            np.dot(merged["weight"], merged["GWP"])/1000, 2)
+        evaluation["ADPf"] = round(
+            np.dot(merged["weight"], merged["ADPf"])/1000, 2)
+        evaluation["Price"] = round(
+            np.dot(merged["weight"], merged["Preis"])/1000, 2)
 
         f2 = calculate_f2(temp)
         f3 = calculate_f3(temp, rel, table_tree)
