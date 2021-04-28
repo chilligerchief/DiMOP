@@ -205,6 +205,7 @@ const AddMaterialDialog = () => {
 
         setBomUpdated(true);
         setActiveStep(steps.length);
+        setRelationError(false)
       } else {
         setRelationError(true);
       }
