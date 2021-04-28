@@ -305,7 +305,7 @@ const EvaluationDialog = () => {
               alignItems="center"
               justify="center"
             >
-              <div style={{marginTop: 30, marginBottom: 30}}>
+              <div style={{ marginTop: 30, marginBottom: 30 }}>
                 {renderVisualRecyclingValue()}
               </div>
             </Grid>
@@ -358,6 +358,9 @@ const EvaluationDialog = () => {
               justify="center"
             >
               <Button onClick={initiateEvaluation} className={classes.buttons2}>
+                <PlayCircleOutlineIcon
+                  style={{ marginRight: 5 }}
+                ></PlayCircleOutlineIcon>
                 Bewerten
               </Button>
             </Grid>
