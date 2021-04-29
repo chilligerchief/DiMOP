@@ -83,12 +83,21 @@ const StyledRating = withStyles({
 const CompareMaterials = () => {
   const classes = useStyles();
 
-  const { selected_construction_id, comparison_data } = useContext(MainContext);
+  const {
+    selected_construction_id,
+    selected_construction_title,
+    comparison_data,
+  } = useContext(MainContext);
 
   const [
     selectedConstructionId,
     setSelectedConstructionId,
   ] = selected_construction_id;
+
+  const [
+    selectedConstructionTitle,
+    setSelectedConstructionTitle,
+  ] = selected_construction_title;
 
   const [comparisonData, setComparisionData] = comparison_data;
 
@@ -114,21 +123,20 @@ const CompareMaterials = () => {
 
   const [rowSelection, setRowSelection] = useState([]);
 
-  useEffect(  () => {
-    fetch("/mat_eval_get/" + selectedConstructionId)
-      .then((res) => {
-        return res.json();
-      })
-      .then((d) => {
-        console.log(selectedConstructionId);
-        console.log(d);
-        setComparisionData(d);
-        const timer = setTimeout(() => {
-          // console.log('This will run after 5 seconds!')
+  useEffect(() => {
+    if (selectedConstructionTitle !== "Bitte auswaehlen") {
+      fetch("/mat_eval_get/" + selectedConstructionId)
+        .then((res) => {
+          return res.json();
+        })
+        .then((d) => {
+          console.log(selectedConstructionId);
+          console.log(d);
+          //setComparisionData(d);
           console.log(comparisonData);
-      }, 5000);
-      return () => clearTimeout(timer);
-      });
+        });
+    } else {
+    }
   }, []);
 
   return (
@@ -142,8 +150,6 @@ const CompareMaterials = () => {
           textAlign: "center",
         }}
       >
-        {/*
-      
         <GridDevExpress rows={comparisonData} columns={columnsComparison}>
           <SelectionState
             selection={rowSelection}
@@ -154,7 +160,6 @@ const CompareMaterials = () => {
           <TableHeaderRow showSortingControls />
           <Toolbar />
         </GridDevExpress>
-        */}
       </Grid>
     </div>
   );
