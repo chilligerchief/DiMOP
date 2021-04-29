@@ -189,44 +189,6 @@ const CompareMaterials = () => {
     });
   };
 
-  const calcWeights2 = () => {
-    const [recycling] = useState(
-      Number(
-        (evaluationRatings.recycling * 100) /
-          (evaluationRatings.price +
-            evaluationRatings.co2 +
-            evaluationRatings.recycling +
-            evaluationRatings.adpf)
-      ).toFixed(2)
-    );
-    const [price] = useState(
-      Number(
-        (evaluationRatings.price * 100) /
-          (evaluationRatings.price +
-            evaluationRatings.co2 +
-            evaluationRatings.recycling +
-            evaluationRatings.adpf)
-      ).toFixed(2)
-    );
-    const [co2] = useState(
-      Number(
-        (evaluationRatings.co2 * 100) /
-          (evaluationRatings.price +
-            evaluationRatings.co2 +
-            evaluationRatings.recycling +
-            evaluationRatings.adpf)
-      ).toFixed(2)
-    );
-    const [adpf] = useState(
-      Number(
-        (evaluationRatings.adpf * 100) /
-          (evaluationRatings.price +
-            evaluationRatings.co2 +
-            evaluationRatings.recycling +
-            evaluationRatings.adpf)
-      ).toFixed(2)
-    );
-  };
 
   return (
     <div>
@@ -442,11 +404,42 @@ const CompareMaterials = () => {
 
                     console.log(rowSelection);
                     console.log(weights);
-                    console.log(recycling);
-                    console.log(co2);
-                    console.log(price);
-                    console.log(adpf);
-
+                    console.log(
+                      Number(
+                        (evaluationRatings.recycling * 100) /
+                          (evaluationRatings.price +
+                            evaluationRatings.co2 +
+                            evaluationRatings.recycling +
+                            evaluationRatings.adpf)
+                      ).toFixed(2)
+                    );
+                    console.log(
+                      Number(
+                        (evaluationRatings.co2 * 100) /
+                          (evaluationRatings.price +
+                            evaluationRatings.co2 +
+                            evaluationRatings.recycling +
+                            evaluationRatings.adpf)
+                      ).toFixed(2)
+                    );
+                    console.log(
+                      Number(
+                        (evaluationRatings.adpf * 100) /
+                          (evaluationRatings.price +
+                            evaluationRatings.co2 +
+                            evaluationRatings.recycling +
+                            evaluationRatings.adpf)
+                      ).toFixed(2)
+                    );
+                    console.log(
+                      Number(
+                        (evaluationRatings.price * 100) /
+                          (evaluationRatings.price +
+                            evaluationRatings.co2 +
+                            evaluationRatings.recycling +
+                            evaluationRatings.adpf)
+                      ).toFixed(2)
+                    );
                   }}
                   className={classes.buttons}
                 >
