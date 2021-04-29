@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: 5,
     marginTop: 20,
     marginBottom: 20,
-    height: 100,
+    height: 200,
     width: 200,
   },
 }));
@@ -298,102 +298,117 @@ const CompareMaterials = () => {
               textAlign: "center",
             }}
           >
-            <Grid item xs={3}>
-              <Card className={classes.root_card} variant="outlined">
-                <CardContent>
-                  <Typography
-                    className={classes.title}
-                    color="textSecondary"
-                    gutterBottom
-                    align="center"
-                  >
-                    Gewichtung Recyclingwert
-                  </Typography>
-                  <Typography variant="h5" component="h2" align="center">
-                    {Number(
-                      (evaluationRatings.recycling * 100) /
-                        (evaluationRatings.price +
-                          evaluationRatings.co2 +
-                          evaluationRatings.recycling +
-                          evaluationRatings.adpf)
-                    ).toFixed(2)}{" "}
-                    %
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid item xs={3}>
-              {" "}
-              <Card className={classes.root_card} variant="outlined">
-                <CardContent>
-                  <Typography
-                    className={classes.title}
-                    color="textSecondary"
-                    gutterBottom
-                    align="center"
-                  >
-                    Gewichtung Preis
-                  </Typography>
-                  <Typography variant="h5" component="h2" align="center">
-                    {Number(
-                      (evaluationRatings.price * 100) /
-                        (evaluationRatings.price +
-                          evaluationRatings.co2 +
-                          evaluationRatings.recycling +
-                          evaluationRatings.adpf)
-                    ).toFixed(2)}{" "}
-                    %
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid item xs={3}>
-              <Card className={classes.root_card} variant="outlined">
-                <CardContent>
-                  <Typography
-                    className={classes.title}
-                    color="textSecondary"
-                    gutterBottom
-                    align="center"
-                  >
-                    Gewichtung Globales Erwärmungspotential (GWP)
-                  </Typography>
-                  <Typography variant="h5" component="h2" align="center">
-                    {Number(
-                      (evaluationRatings.co2 * 100) /
-                        (evaluationRatings.price +
-                          evaluationRatings.co2 +
-                          evaluationRatings.recycling +
-                          evaluationRatings.adpf)
-                    ).toFixed(2)}{" "}
-                    %
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid item xs={3}>
-              <Card className={classes.root_card} variant="outlined">
-                <CardContent>
-                  <Typography
-                    className={classes.title}
-                    color="textSecondary"
-                    gutterBottom
-                    align="center"
-                  >
-                    Gewichtung Abiotischer-Ressourcen-Verbrauch (ADPf)
-                  </Typography>
-                  <Typography variant="h5" component="h2" align="center">
-                    {Number(
-                      (evaluationRatings.adpf * 100) /
-                        (evaluationRatings.price +
-                          evaluationRatings.co2 +
-                          evaluationRatings.recycling +
-                          evaluationRatings.adpf)
-                    ).toFixed(2)}{" "}
-                    %
-                  </Typography>
-                </CardContent>
-              </Card>
+            <Grid container item xs={12} direction="column">
+              <Grid item xs={10}>
+                <Grid item xs={3}>
+                  <Card className={classes.root_card} variant="outlined">
+                    <CardContent>
+                      <Typography
+                        className={classes.title}
+                        color="textSecondary"
+                        gutterBottom
+                        align="center"
+                      >
+                        Gewichtung Recyclingwert
+                      </Typography>
+                      <Typography variant="h5" component="h2" align="center">
+                        {Number(
+                          (evaluationRatings.recycling * 100) /
+                            (evaluationRatings.price +
+                              evaluationRatings.co2 +
+                              evaluationRatings.recycling +
+                              evaluationRatings.adpf)
+                        ).toFixed(2)}{" "}
+                        %
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+                <Grid item xs={3}>
+                  {" "}
+                  <Card className={classes.root_card} variant="outlined">
+                    <CardContent>
+                      <Typography
+                        className={classes.title}
+                        color="textSecondary"
+                        gutterBottom
+                        align="center"
+                      >
+                        Gewichtung Preis
+                      </Typography>
+                      <Typography variant="h5" component="h2" align="center">
+                        {Number(
+                          (evaluationRatings.price * 100) /
+                            (evaluationRatings.price +
+                              evaluationRatings.co2 +
+                              evaluationRatings.recycling +
+                              evaluationRatings.adpf)
+                        ).toFixed(2)}{" "}
+                        %
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+                <Grid item xs={3}>
+                  <Card className={classes.root_card} variant="outlined">
+                    <CardContent>
+                      <Typography
+                        className={classes.title}
+                        color="textSecondary"
+                        gutterBottom
+                        align="center"
+                      >
+                        Gewichtung Globales Erwärmungspotential (GWP)
+                      </Typography>
+                      <Typography variant="h5" component="h2" align="center">
+                        {Number(
+                          (evaluationRatings.co2 * 100) /
+                            (evaluationRatings.price +
+                              evaluationRatings.co2 +
+                              evaluationRatings.recycling +
+                              evaluationRatings.adpf)
+                        ).toFixed(2)}{" "}
+                        %
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+                <Grid item xs={3}>
+                  <Card className={classes.root_card} variant="outlined">
+                    <CardContent>
+                      <Typography
+                        className={classes.title}
+                        color="textSecondary"
+                        gutterBottom
+                        align="center"
+                      >
+                        Gewichtung Abiotischer-Ressourcen-Verbrauch (ADPf)
+                      </Typography>
+                      <Typography variant="h5" component="h2" align="center">
+                        {Number(
+                          (evaluationRatings.adpf * 100) /
+                            (evaluationRatings.price +
+                              evaluationRatings.co2 +
+                              evaluationRatings.recycling +
+                              evaluationRatings.adpf)
+                        ).toFixed(2)}{" "}
+                        %
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              </Grid>
+              <Grid item xs={2}>
+                <Button
+                  onClick={() => {
+                    console.log(rowSelection);
+                    console.log(weights);
+                  }}
+                  className={classes.buttons}
+                >
+                  Vergleichen
+                </Button>
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
