@@ -52,6 +52,7 @@ export const MainProvider = (props) => {
   const [material_created, setMaterialCreated] = useState(false);
   const [csv_upload_open, setCsvUploadOpen] = useState(false);
   const [search_dialog_open, setSearchDialogOpen] = useState(false);
+  const [comparison_data, setComparisonData] = useState([]);
 
   return (
     <MainContext.Provider
@@ -93,6 +94,7 @@ export const MainProvider = (props) => {
         material_created: [material_created, setMaterialCreated],
         csv_upload_open: [csv_upload_open, setCsvUploadOpen],
         search_dialog_open: [search_dialog_open, setSearchDialogOpen],
+        comparison_data: [comparison_data, setComparisonData],
       }}
     >
       {props.children}

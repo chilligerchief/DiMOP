@@ -83,14 +83,14 @@ const StyledRating = withStyles({
 const CompareMaterials = () => {
   const classes = useStyles();
 
-  const { selected_construction_id } = useContext(MainContext);
+  const { selected_construction_id, comparison_data } = useContext(MainContext);
 
   const [
     selectedConstructionId,
     setSelectedConstructionId,
   ] = selected_construction_id;
 
-  const [comparisonData, setComparisionData] = useState([]);
+  const [comparisonData, setComparisionData] = comparison_data;
 
   const [columnsComparison] = useState([
     { name: "mat_id", title: "Mat.Nr." },
