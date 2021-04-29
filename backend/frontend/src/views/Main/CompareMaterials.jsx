@@ -101,6 +101,7 @@ const CompareMaterials = () => {
   ] = selected_construction_title;
 
   const [comparisonData, setComparisionData] = comparison_data;
+  const [weightsSet, setWeightsSet] = useState(false);
 
   const [columnsComparison] = useState([
     { name: "id", title: "Mat.Nr." },
@@ -140,6 +141,39 @@ const CompareMaterials = () => {
     }
   }, []);
 
+  const [evaluationRatings, setEvaluationRatings] = useState({
+    recycling: 2,
+    co2: 2,
+    price: 2,
+  });
+
+  const [weights, setWeights] = useState({
+    price: 0.33,
+    co2: 0.33,
+    recycling: 0.33,
+  });
+
+  const calcWeights = () => {
+    setWeights({
+      ...weights,
+      ["recycling"]:
+        evaluationRatings.recycling /
+        (evaluationRatings.price +
+          evaluationRatings.co2 +
+          evaluationRatings.recycling),
+      ["co2"]:
+        evaluationRatings.co2 /
+        (evaluationRatings.price +
+          evaluationRatings.co2 +
+          evaluationRatings.recycling),
+      ["price"]:
+        evaluationRatings.price /
+        (evaluationRatings.price +
+          evaluationRatings.co2 +
+          evaluationRatings.recycling),
+    });
+  };
+
   return (
     <div>
       <Grid
@@ -165,6 +199,146 @@ const CompareMaterials = () => {
             <TableHeaderRow showSortingControls />
           </GridDevExpress>
         </div>
+      </Grid>
+
+      <Grid
+        container
+        item
+        xs={12}
+        style={{
+          marginTop: 25,
+          textAlign: "center",
+        }}
+      >
+        <Grid item xs={4} style={{ marginTop: 30 }}>
+          <Box component="fieldset" mb={3} borderColor="transparent">
+            <Typography component="legend">Recyclingwert</Typography>
+            <StyledRating
+              name="recycling"
+              value={evaluationRatings.recycling}
+              max={10}
+              onChange={(event, newValue) => {
+                setEvaluationRatings({
+                  ...evaluationRatings,
+                  ["recycling"]: newValue,
+                });
+              }}
+              icon={<FiberManualRecordIcon fontSize="inherit" />}
+            />
+          </Box>
+          <Box component="fieldset" mb={3} borderColor="transparent">
+            <Typography component="legend">Preis</Typography>
+            <StyledRating
+              name="price"
+              value={evaluationRatings.price}
+              max={10}
+              onChange={(event, newValue) => {
+                setEvaluationRatings({
+                  ...evaluationRatings,
+                  ["price"]: newValue,
+                });
+              }}
+              icon={<FiberManualRecordIcon fontSize="inherit" />}
+            />
+          </Box>
+          <Box component="fieldset" mb={3} borderColor="transparent">
+            <Typography component="legend">CO2-Wert</Typography>
+            <StyledRating
+              name="co2"
+              value={evaluationRatings.co2}
+              max={10}
+              onChange={(event, newValue) => {
+                setEvaluationRatings({
+                  ...evaluationRatings,
+                  ["co2"]: newValue,
+                });
+              }}
+              icon={<FiberManualRecordIcon fontSize="inherit" />}
+            />
+          </Box>
+        </Grid>
+        <Grid item xs={8}>
+          <Grid
+            container
+            item
+            xs={12}
+            style={{
+              marginTop: 25,
+              textAlign: "center",
+            }}
+          >
+            <Grid item xs={4}>
+              <Card className={classes.root_card} variant="outlined">
+                <CardContent>
+                  <Typography
+                    className={classes.title}
+                    color="textSecondary"
+                    gutterBottom
+                    align="center"
+                  >
+                    Gewichtung Recyclingwert
+                  </Typography>
+                  <Typography variant="h5" component="h2" align="center">
+                    {Number(
+                      (evaluationRatings.recycling * 100) /
+                        (evaluationRatings.price +
+                          evaluationRatings.co2 +
+                          evaluationRatings.recycling)
+                    ).toFixed(2)}{" "}
+                    %
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+            <Grid item xs={4}>
+              {" "}
+              <Card className={classes.root_card} variant="outlined">
+                <CardContent>
+                  <Typography
+                    className={classes.title}
+                    color="textSecondary"
+                    gutterBottom
+                    align="center"
+                  >
+                    Gewichtung Preis
+                  </Typography>
+                  <Typography variant="h5" component="h2" align="center">
+                    {Number(
+                      (evaluationRatings.price * 100) /
+                        (evaluationRatings.price +
+                          evaluationRatings.co2 +
+                          evaluationRatings.recycling)
+                    ).toFixed(2)}{" "}
+                    %
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+            <Grid item xs={4}>
+              <Card className={classes.root_card} variant="outlined">
+                <CardContent>
+                  <Typography
+                    className={classes.title}
+                    color="textSecondary"
+                    gutterBottom
+                    align="center"
+                  >
+                    Gewichtung C02-Wert
+                  </Typography>
+                  <Typography variant="h5" component="h2" align="center">
+                    {Number(
+                      (evaluationRatings.co2 * 100) /
+                        (evaluationRatings.price +
+                          evaluationRatings.co2 +
+                          evaluationRatings.recycling)
+                    ).toFixed(2)}{" "}
+                    %
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+          </Grid>
+        </Grid>
       </Grid>
     </div>
   );
