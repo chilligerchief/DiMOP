@@ -26,6 +26,7 @@ import {
   SelectionState,
   IntegratedSorting,
   SortingState,
+  TreeDataState,
 } from "@devexpress/dx-react-grid";
 import {
   Grid as GridDevExpress,
@@ -121,6 +122,7 @@ const CompareMaterials = () => {
   ]);
 
   const [rowSelection, setRowSelection] = useState([]);
+  const [defaultHiddenColumnNames] = useState([]);
 
   useEffect(() => {
     if (selectedConstructionTitle !== "Bitte auswaehlen") {
@@ -155,13 +157,16 @@ const CompareMaterials = () => {
               selection={rowSelection}
               onSelectionChange={setRowSelection}
             />
-            <TreeDataState />
-            <SortingState />
-            <IntegratedSorting />
+            <IntegratedFiltering />
             <Table columnExtensions={tableColumnExtensionsComparison} />
-            <TableHeaderRow showSortingControls />
-            <TableTreeColumn for="id" showSelectionControls />
+            <TableSelection />
+            <TableColumnVisibility
+              defaultHiddenColumnNames={defaultHiddenColumnNames}
+            />
             <Toolbar />
+            <ColumnChooser />
+            <TableFilterRow />
+            <TableHeaderRow />
           </GridDevExpress>
         </div>
       </Grid>
