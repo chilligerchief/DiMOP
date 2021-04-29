@@ -110,13 +110,13 @@ const CompareMaterials = () => {
   ]);
 
   const [tableColumnExtensionsComparison] = useState([
-    { columnName: "id", width: 75 },
+    { columnName: "id", width: 150 },
     { columnName: "mat_desc", width: 250 },
-    { columnName: "recycling_cat", width: 75 },
-    { columnName: "mat_rw", width: 75 },
-    { columnName: "price", width: 75 },
-    { columnName: "co2_value", width: 75 },
-    { columnName: "resource_use", width: 75 },
+    { columnName: "recycling_cat", width: 150 },
+    { columnName: "mat_rw", width: 150 },
+    { columnName: "price", width: 150 },
+    { columnName: "co2_value", width: 150 },
+    { columnName: "resource_use", width: 150 },
   ]);
 
   const [rowSelection, setRowSelection] = useState([]);
@@ -158,6 +158,7 @@ const CompareMaterials = () => {
             <IntegratedSorting />
             <Table columnExtensions={tableColumnExtensionsComparison} />
             <TableHeaderRow showSortingControls />
+            <TableTreeColumn for="id" showSelectionControls />
             <Toolbar />
           </GridDevExpress>
         </div>
