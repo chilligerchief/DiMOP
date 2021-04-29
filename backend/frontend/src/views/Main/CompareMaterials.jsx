@@ -123,7 +123,6 @@ const CompareMaterials = () => {
   ]);
 
   const [rowSelection, setRowSelection] = useState([]);
-  const [defaultHiddenColumnNames] = useState([]);
 
   useEffect(() => {
     if (selectedConstructionTitle !== "Bitte auswaehlen") {
@@ -158,9 +157,12 @@ const CompareMaterials = () => {
               selection={rowSelection}
               onSelectionChange={setRowSelection}
             />
-            <Table columnExtensions={tableColumnExtensionsComparison} />
+            <FilteringState defaultFilters={[]} />
+        <IntegratedFiltering />
+            <Table />
             <TableSelection />
             <Toolbar />
+            <TableFilterRow />
             <TableHeaderRow />
           </GridDevExpress>
         </div>
