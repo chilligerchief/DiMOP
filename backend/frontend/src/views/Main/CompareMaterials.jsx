@@ -24,15 +24,16 @@ import Checkbox from "@material-ui/core/Checkbox";
 //Devexpress
 import {
   SelectionState,
-  IntegratedSorting,
-  SortingState,
-  TreeDataState,
 } from "@devexpress/dx-react-grid";
+
 import {
   Grid as GridDevExpress,
   Table,
+  TableSelection,
+  TableColumnVisibility,
+  ColumnChooser,
   TableHeaderRow,
-  TableTreeColumn,
+  TableFilterRow,
   Toolbar,
 } from "@devexpress/dx-react-grid-material-ui";
 
@@ -157,15 +158,9 @@ const CompareMaterials = () => {
               selection={rowSelection}
               onSelectionChange={setRowSelection}
             />
-            <IntegratedFiltering />
             <Table columnExtensions={tableColumnExtensionsComparison} />
             <TableSelection />
-            <TableColumnVisibility
-              defaultHiddenColumnNames={defaultHiddenColumnNames}
-            />
             <Toolbar />
-            <ColumnChooser />
-            <TableFilterRow />
             <TableHeaderRow />
           </GridDevExpress>
         </div>
