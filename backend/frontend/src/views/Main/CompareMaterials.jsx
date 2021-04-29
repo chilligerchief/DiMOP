@@ -31,6 +31,7 @@ import {
   Grid as GridDevExpress,
   Table,
   TableHeaderRow,
+  TableTreeColumn,
   Toolbar,
 } from "@devexpress/dx-react-grid-material-ui";
 
@@ -154,6 +155,7 @@ const CompareMaterials = () => {
               selection={rowSelection}
               onSelectionChange={setRowSelection}
             />
+            <TreeDataState />
             <SortingState />
             <IntegratedSorting />
             <Table columnExtensions={tableColumnExtensionsComparison} />
