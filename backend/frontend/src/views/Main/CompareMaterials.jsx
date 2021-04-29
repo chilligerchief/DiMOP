@@ -146,49 +146,46 @@ const CompareMaterials = () => {
     adpf: 2,
   });
 
-  const [weights, setWeights] = useState({
-    price: 0.25,
-    co2: 0.25,
-    recycling: 0.25,
-    adpf: 0.25,
-  });
+  const initiateComparison = () => {
+    console.log(dataComparison[rowSelection].mat_id);
 
-  const calcWeights = () => {
-    setWeights({
-      ...weights,
-      ["recycling"]:
-        evaluationRatings.recycling /
-        (evaluationRatings.price +
-          evaluationRatings.co2 +
-          evaluationRatings.recycling +
-          evaluationRatings.adpf),
-      ["co2"]:
-        evaluationRatings.co2 /
-        (evaluationRatings.price +
-          evaluationRatings.co2 +
-          evaluationRatings.recycling +
-          evaluationRatings.adpf),
-      ["price"]:
-        evaluationRatings.price /
-        (evaluationRatings.price +
-          evaluationRatings.co2 +
-          evaluationRatings.recycling +
-          evaluationRatings.adpf),
-      ["co2"]:
-        evaluationRatings.co2 /
-        (evaluationRatings.price +
-          evaluationRatings.co2 +
-          evaluationRatings.recycling +
-          evaluationRatings.adpf),
-      ["adpf"]:
-        evaluationRatings.adpf /
-        (evaluationRatings.price +
-          evaluationRatings.co2 +
-          evaluationRatings.recycling +
-          evaluationRatings.adpf),
-    });
+    console.log(
+      Number(
+        (evaluationRatings.recycling * 100) /
+          (evaluationRatings.price +
+            evaluationRatings.co2 +
+            evaluationRatings.recycling +
+            evaluationRatings.adpf)
+      ).toFixed(2)
+    );
+    console.log(
+      Number(
+        (evaluationRatings.co2 * 100) /
+          (evaluationRatings.price +
+            evaluationRatings.co2 +
+            evaluationRatings.recycling +
+            evaluationRatings.adpf)
+      ).toFixed(2)
+    );
+    console.log(
+      Number(
+        (evaluationRatings.adpf * 100) /
+          (evaluationRatings.price +
+            evaluationRatings.co2 +
+            evaluationRatings.recycling +
+            evaluationRatings.adpf)
+      ).toFixed(2)
+    );
+    console.log(
+      Number(
+        (evaluationRatings.price * 100) /
+          (evaluationRatings.price +
+            evaluationRatings.co2 +
+            evaluationRatings.recycling +
+            evaluationRatings.adpf)
+      ).toFixed(2)
+    );
   };
-
 
   return (
     <div>
@@ -398,49 +395,7 @@ const CompareMaterials = () => {
               </Grid>
               <Grid container item xs={12} justify="center">
                 <Button
-                  onClick={() => {
-                    calcWeights();
-                    calcWeights2();
-
-                    console.log(rowSelection);
-                    console.log(weights);
-                    console.log(
-                      Number(
-                        (evaluationRatings.recycling * 100) /
-                          (evaluationRatings.price +
-                            evaluationRatings.co2 +
-                            evaluationRatings.recycling +
-                            evaluationRatings.adpf)
-                      ).toFixed(2)
-                    );
-                    console.log(
-                      Number(
-                        (evaluationRatings.co2 * 100) /
-                          (evaluationRatings.price +
-                            evaluationRatings.co2 +
-                            evaluationRatings.recycling +
-                            evaluationRatings.adpf)
-                      ).toFixed(2)
-                    );
-                    console.log(
-                      Number(
-                        (evaluationRatings.adpf * 100) /
-                          (evaluationRatings.price +
-                            evaluationRatings.co2 +
-                            evaluationRatings.recycling +
-                            evaluationRatings.adpf)
-                      ).toFixed(2)
-                    );
-                    console.log(
-                      Number(
-                        (evaluationRatings.price * 100) /
-                          (evaluationRatings.price +
-                            evaluationRatings.co2 +
-                            evaluationRatings.recycling +
-                            evaluationRatings.adpf)
-                      ).toFixed(2)
-                    );
-                  }}
+                  onClick={initiateComparison}
                   className={classes.buttons}
                 >
                   Vergleich durchführen
