@@ -138,6 +138,8 @@ const CompareMaterials = () => {
           textAlign: "center",
         }}
       >
+        {/*
+      
         <GridDevExpress rows={comparisonData} columns={columnsComparison}>
           <SelectionState
             selection={rowSelection}
@@ -148,6 +150,7 @@ const CompareMaterials = () => {
           <TableHeaderRow showSortingControls />
           <Toolbar />
         </GridDevExpress>
+        */}
       </Grid>
     </div>
   );
