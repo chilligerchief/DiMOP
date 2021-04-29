@@ -162,7 +162,6 @@ const CompareMaterials = () => {
             <Table />
             <TableSelection />
             <Toolbar />
-            <TableFilterRow />
             <TableHeaderRow showSortingControls />
           </GridDevExpress>
         </div>
