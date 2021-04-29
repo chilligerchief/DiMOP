@@ -47,8 +47,8 @@ const useStyles = makeStyles((theme) => ({
     color: "#005000",
     textTransform: "none",
     margin: 20,
-    height: 60,
-    width: 120,
+    height: 100,
+    width: 200,
   },
   textfield: { margin: 0, padding: 0, background: "white" },
   title: {
@@ -187,6 +187,45 @@ const CompareMaterials = () => {
           evaluationRatings.recycling +
           evaluationRatings.adpf),
     });
+  };
+
+  const calcWeights2 = () => {
+    const [recycling] = useState(
+      Number(
+        (evaluationRatings.recycling * 100) /
+          (evaluationRatings.price +
+            evaluationRatings.co2 +
+            evaluationRatings.recycling +
+            evaluationRatings.adpf)
+      ).toFixed(2)
+    );
+    const [price] = useState(
+      Number(
+        (evaluationRatings.price * 100) /
+          (evaluationRatings.price +
+            evaluationRatings.co2 +
+            evaluationRatings.recycling +
+            evaluationRatings.adpf)
+      ).toFixed(2)
+    );
+    const [co2] = useState(
+      Number(
+        (evaluationRatings.co2 * 100) /
+          (evaluationRatings.price +
+            evaluationRatings.co2 +
+            evaluationRatings.recycling +
+            evaluationRatings.adpf)
+      ).toFixed(2)
+    );
+    const [adpf] = useState(
+      Number(
+        (evaluationRatings.adpf * 100) /
+          (evaluationRatings.price +
+            evaluationRatings.co2 +
+            evaluationRatings.recycling +
+            evaluationRatings.adpf)
+      ).toFixed(2)
+    );
   };
 
   return (
@@ -399,11 +438,15 @@ const CompareMaterials = () => {
                 <Button
                   onClick={() => {
                     calcWeights();
-                    const timer = setTimeout(() => {
-                      // console.log('This will run after 3 second!')
-                      console.log(rowSelection);
-                      console.log(weights);
-                    }, 3000);
+                    calcWeights2();
+
+                    console.log(rowSelection);
+                    console.log(weights);
+                    console.log(recycling);
+                    console.log(co2);
+                    console.log(price);
+                    console.log(adpf);
+
                   }}
                   className={classes.buttons}
                 >
