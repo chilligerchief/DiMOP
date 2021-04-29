@@ -395,17 +395,19 @@ const CompareMaterials = () => {
                   </CardContent>
                 </Card>
               </Grid>
-              <Grid container item xs={12}>
+              <Grid container item xs={12} justify="center">
                 <Button
                   onClick={() => {
                     calcWeights();
-                    calcWeights();
-                    console.log(rowSelection);
-                    console.log(weights);
+                    const timer = setTimeout(() => {
+                      // console.log('This will run after 3 second!')
+                      console.log(rowSelection);
+                      console.log(weights);
+                    }, 3000);
                   }}
                   className={classes.buttons}
                 >
-                  Vergleichen
+                  Vergleich durchführen
                 </Button>
               </Grid>
             </Grid>
