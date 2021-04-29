@@ -92,8 +92,6 @@ const CompareMaterials = () => {
 
   const [comparisonData, setComparisionData] = comparison_data;
 
-  const delay = ms => new Promise(res => setTimeout(res, ms));
-
   const [columnsComparison] = useState([
     { name: "mat_id", title: "Mat.Nr." },
     { name: "mat_desc", title: "Mat.Bez." },
@@ -116,7 +114,7 @@ const CompareMaterials = () => {
 
   const [rowSelection, setRowSelection] = useState([]);
 
-  useEffect(() => {
+  useEffect(  () => {
     fetch("/mat_eval_get/" + selectedConstructionId)
       .then((res) => {
         return res.json();
@@ -125,8 +123,11 @@ const CompareMaterials = () => {
         console.log(selectedConstructionId);
         console.log(d);
         setComparisionData(d);
-        await delay(5000);
-        console.log(comparisonData);
+        const timer = setTimeout(() => {
+          // console.log('This will run after 5 seconds!')
+          console.log(comparisonData);
+      }, 5000);
+      return () => clearTimeout(timer);
       });
   }, []);
 
