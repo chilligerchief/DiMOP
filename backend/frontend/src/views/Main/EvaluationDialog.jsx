@@ -338,7 +338,7 @@ const EvaluationDialog = () => {
                 </tr>
                 <tr>
                   <td>
-                    <b>Abiotischer-Ressourcen-Verbrauch (ADP): </b>
+                    <b>Abiotischer-Ressourcen-Verbrauch (ADPf): </b>
                   </td>
                   <td>{evaluationData.ADPf}</td>
                 </tr>

@@ -63,8 +63,8 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 325,
   },
   root_card: {
-    marginLeft: 50,
-    marginRight: 50,
+    marginLeft: 5,
+    marginRight: 5,
     marginTop: 20,
     marginBottom: 20,
     height: 100,
@@ -145,12 +145,14 @@ const CompareMaterials = () => {
     recycling: 2,
     co2: 2,
     price: 2,
+    adpf: 2,
   });
 
   const [weights, setWeights] = useState({
-    price: 0.33,
-    co2: 0.33,
-    recycling: 0.33,
+    price: 0.25,
+    co2: 0.25,
+    recycling: 0.25,
+    adpf: 0.25,
   });
 
   const calcWeights = () => {
@@ -160,17 +162,31 @@ const CompareMaterials = () => {
         evaluationRatings.recycling /
         (evaluationRatings.price +
           evaluationRatings.co2 +
-          evaluationRatings.recycling),
+          evaluationRatings.recycling +
+          evaluationRatings.adpf),
+      ["co2"]:
+        evaluationRatings.co2 /
+        (evaluationRatings.price +
+          evaluationRatings.co2 +
+          evaluationRatings.recycling +
+          evaluationRatings.adpf),
+      ["price"]:
+        evaluationRatings.price /
+        (evaluationRatings.price +
+          evaluationRatings.co2 +
+          evaluationRatings.recycling +
+          evaluationRatings.adpf),
       ["co2"]:
         evaluationRatings.co2 /
         (evaluationRatings.price +
           evaluationRatings.co2 +
           evaluationRatings.recycling),
-      ["price"]:
-        evaluationRatings.price /
+      ["adpf"]:
+        evaluationRatings.adpf /
         (evaluationRatings.price +
           evaluationRatings.co2 +
-          evaluationRatings.recycling),
+          evaluationRatings.recycling +
+          evaluationRatings.adpf),
     });
   };
 
@@ -212,7 +228,7 @@ const CompareMaterials = () => {
       >
         <Grid item xs={4} style={{ marginTop: 30 }}>
           <Box component="fieldset" mb={3} borderColor="transparent">
-            <Typography component="legend">Recyclingwert</Typography>
+            <Typography component="legend">Recyclingfähigkeit</Typography>
             <StyledRating
               name="recycling"
               value={evaluationRatings.recycling}
@@ -242,7 +258,7 @@ const CompareMaterials = () => {
             />
           </Box>
           <Box component="fieldset" mb={3} borderColor="transparent">
-            <Typography component="legend">CO2-Wert</Typography>
+            <Typography component="legend">GWP</Typography>
             <StyledRating
               name="co2"
               value={evaluationRatings.co2}
@@ -251,6 +267,21 @@ const CompareMaterials = () => {
                 setEvaluationRatings({
                   ...evaluationRatings,
                   ["co2"]: newValue,
+                });
+              }}
+              icon={<FiberManualRecordIcon fontSize="inherit" />}
+            />
+          </Box>
+          <Box component="fieldset" mb={3} borderColor="transparent">
+            <Typography component="legend">ADPf</Typography>
+            <StyledRating
+              name="adpf"
+              value={evaluationRatings.adpf}
+              max={10}
+              onChange={(event, newValue) => {
+                setEvaluationRatings({
+                  ...evaluationRatings,
+                  ["adpf"]: newValue,
                 });
               }}
               icon={<FiberManualRecordIcon fontSize="inherit" />}
@@ -267,7 +298,7 @@ const CompareMaterials = () => {
               textAlign: "center",
             }}
           >
-            <Grid item xs={4}>
+            <Grid item xs={3}>
               <Card className={classes.root_card} variant="outlined">
                 <CardContent>
                   <Typography
@@ -283,14 +314,15 @@ const CompareMaterials = () => {
                       (evaluationRatings.recycling * 100) /
                         (evaluationRatings.price +
                           evaluationRatings.co2 +
-                          evaluationRatings.recycling)
+                          evaluationRatings.recycling +
+                          evaluationRatings.adpf)
                     ).toFixed(2)}{" "}
                     %
                   </Typography>
                 </CardContent>
               </Card>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={3}>
               {" "}
               <Card className={classes.root_card} variant="outlined">
                 <CardContent>
@@ -307,14 +339,15 @@ const CompareMaterials = () => {
                       (evaluationRatings.price * 100) /
                         (evaluationRatings.price +
                           evaluationRatings.co2 +
-                          evaluationRatings.recycling)
+                          evaluationRatings.recycling +
+                          evaluationRatings.adpf)
                     ).toFixed(2)}{" "}
                     %
                   </Typography>
                 </CardContent>
               </Card>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={3}>
               <Card className={classes.root_card} variant="outlined">
                 <CardContent>
                   <Typography
@@ -323,14 +356,39 @@ const CompareMaterials = () => {
                     gutterBottom
                     align="center"
                   >
-                    Gewichtung C02-Wert
+                    Gewichtung Globales Erwärmungspotential (GWP)
                   </Typography>
                   <Typography variant="h5" component="h2" align="center">
                     {Number(
                       (evaluationRatings.co2 * 100) /
                         (evaluationRatings.price +
                           evaluationRatings.co2 +
-                          evaluationRatings.recycling)
+                          evaluationRatings.recycling +
+                          evaluationRatings.adpf)
+                    ).toFixed(2)}{" "}
+                    %
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+            <Grid item xs={3}>
+              <Card className={classes.root_card} variant="outlined">
+                <CardContent>
+                  <Typography
+                    className={classes.title}
+                    color="textSecondary"
+                    gutterBottom
+                    align="center"
+                  >
+                    Gewichtung Abiotischer-Ressourcen-Verbrauch (ADPf)
+                  </Typography>
+                  <Typography variant="h5" component="h2" align="center">
+                    {Number(
+                      (evaluationRatings.adpf * 100) /
+                        (evaluationRatings.price +
+                          evaluationRatings.co2 +
+                          evaluationRatings.recycling +
+                          evaluationRatings.adpf)
                     ).toFixed(2)}{" "}
                     %
                   </Typography>
