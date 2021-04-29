@@ -102,7 +102,7 @@ const CompareMaterials = () => {
   const [comparisonData, setComparisionData] = comparison_data;
 
   const [columnsComparison] = useState([
-    { name: "mat_id", title: "Mat.Nr." },
+    { name: "id", title: "Mat.Nr." },
     { name: "mat_desc", title: "Mat.Bez." },
     { name: "recycling_cat", title: "Rec.Kat." },
     { name: "mat_rw", title: "Rec.Fäh." },
@@ -112,7 +112,7 @@ const CompareMaterials = () => {
   ]);
 
   const [tableColumnExtensionsComparison] = useState([
-    { columnName: "mat_id", width: 75 },
+    { columnName: "id", width: 75 },
     { columnName: "mat_desc", width: 250 },
     { columnName: "recycling_cat", width: 75 },
     { columnName: "mat_rw", width: 75 },
