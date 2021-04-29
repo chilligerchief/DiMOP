@@ -138,7 +138,16 @@ const CompareMaterials = () => {
           textAlign: "center",
         }}
       >
-        Table hier.
+        <GridDevExpress rows={comparisonData} columns={columnsComparison}>
+          <SelectionState
+            selection={rowSelection}
+            onSelectionChange={setRowSelection}
+          />
+          <IntegratedSorting />
+          <Table columnExtensions={tableColumnExtensionsComparison} />
+          <TableHeaderRow showSortingControls />
+          <Toolbar />
+        </GridDevExpress>
       </Grid>
     </div>
   );

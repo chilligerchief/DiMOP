@@ -12,6 +12,7 @@ from dbfunctions.connect import connect_db
 from sqlalchemy import create_engine, MetaData, text
 from flask_sqlalchemy import SQLAlchemy
 import pandas as pd
+import numpy as np
 
 
 class MatEval(Resource):
@@ -215,12 +216,16 @@ class Mat(Resource):
 
 
 class MatEvalGet(Resource):
-    def get(self, cons_id):
-        mat = MatModel.find_by_cons_id_evaluation(cons_id)
-        my_list = []
-        for x in cons:
-            my_list.append(dict(x))
-        return my_list
+    def get(self, kons_id):
+
+        db = connect_db()
+
+        mat = pd.read_sql_query('SELECT * FROM mat WHERE evaluated=1', db)
+
+        mat_json = mat.fillna(np.nan).replace(
+            [np.nan], [None]).to_dict(orient="records")
+
+        return mat_json
 
 
 class MatGet(Resource):
