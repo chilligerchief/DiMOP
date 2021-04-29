@@ -178,7 +178,8 @@ const CompareMaterials = () => {
         evaluationRatings.co2 /
         (evaluationRatings.price +
           evaluationRatings.co2 +
-          evaluationRatings.recycling),
+          evaluationRatings.recycling +
+          evaluationRatings.adpf),
       ["adpf"]:
         evaluationRatings.adpf /
         (evaluationRatings.price +
@@ -296,8 +297,8 @@ const CompareMaterials = () => {
               textAlign: "center",
             }}
           >
-            <Grid container item xs={12} direction="column">
-              <Grid item xs={10} direction="row">
+            <Grid container item xs={12} >
+              <Grid item xs={10}>
                 <Grid item xs={3}>
                   <Card className={classes.root_card} variant="outlined">
                     <CardContent>
@@ -399,6 +400,7 @@ const CompareMaterials = () => {
               <Grid item xs={2}>
                 <Button
                   onClick={() => {
+                    calcWeights();
                     calcWeights();
                     console.log(rowSelection);
                     console.log(weights);
