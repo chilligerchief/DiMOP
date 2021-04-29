@@ -30,8 +30,6 @@ import {
 import {
   Grid as GridDevExpress,
   Table,
-  TableSelection,
-  TableColumnVisibility,
   TableHeaderRow,
   Toolbar,
 } from "@devexpress/dx-react-grid-material-ui";
@@ -132,7 +130,7 @@ const CompareMaterials = () => {
         .then((d) => {
           console.log(selectedConstructionId);
           console.log(d);
-          //setComparisionData(d);
+          setComparisionData(d);
           console.log(comparisonData);
         });
     } else {
