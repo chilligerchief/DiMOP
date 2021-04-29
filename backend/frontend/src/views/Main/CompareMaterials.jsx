@@ -19,7 +19,6 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import Checkbox from "@material-ui/core/Checkbox";
 
 //Devexpress
 import {
@@ -33,7 +32,6 @@ import {
   Table,
   TableSelection,
   TableHeaderRow,
-  TableFilterRow,
   Toolbar,
 } from "@devexpress/dx-react-grid-material-ui";
 
@@ -299,7 +297,7 @@ const CompareMaterials = () => {
             }}
           >
             <Grid container item xs={12} direction="column">
-              <Grid item xs={10}>
+              <Grid item xs={10} direction="row">
                 <Grid item xs={3}>
                   <Card className={classes.root_card} variant="outlined">
                     <CardContent>
@@ -401,6 +399,7 @@ const CompareMaterials = () => {
               <Grid item xs={2}>
                 <Button
                   onClick={() => {
+                    calcWeights();
                     console.log(rowSelection);
                     console.log(weights);
                   }}
