@@ -151,28 +151,28 @@ const CompareMaterials = () => {
       body: JSON.stringify({
         selectedIds: rowSelection.map((row) => comparisonData[row].id),
         recyclingWeight:    Number(
-          (evaluationRatings.recycling * 100) /
+          (evaluationRatings.recycling ) /
             (evaluationRatings.price +
               evaluationRatings.co2 +
               evaluationRatings.recycling +
               evaluationRatings.adpf)
         ).toFixed(2),
         priceWeight: Number(
-          (evaluationRatings.price * 100) /
+          (evaluationRatings.price ) /
             (evaluationRatings.price +
               evaluationRatings.co2 +
               evaluationRatings.recycling +
               evaluationRatings.adpf)
         ).toFixed(2),
         co2Weight:   Number(
-          (evaluationRatings.co2 * 100) /
+          (evaluationRatings.co2 ) /
             (evaluationRatings.price +
               evaluationRatings.co2 +
               evaluationRatings.recycling +
               evaluationRatings.adpf)
         ).toFixed(2),
         adpfWeight: Number(
-          (evaluationRatings.adpf * 100) /
+          (evaluationRatings.adpf ) /
             (evaluationRatings.price +
               evaluationRatings.co2 +
               evaluationRatings.recycling +
@@ -322,7 +322,7 @@ const CompareMaterials = () => {
                     </Typography>
                     <Typography variant="h5" component="h2" align="center">
                       {Number(
-                        (evaluationRatings.recycling ) /
+                        (evaluationRatings.recycling * 100) /
                           (evaluationRatings.price +
                             evaluationRatings.co2 +
                             evaluationRatings.recycling +
@@ -347,7 +347,7 @@ const CompareMaterials = () => {
                     </Typography>
                     <Typography variant="h5" component="h2" align="center">
                       {Number(
-                        (evaluationRatings.price ) /
+                        (evaluationRatings.price * 100) /
                           (evaluationRatings.price +
                             evaluationRatings.co2 +
                             evaluationRatings.recycling +
@@ -371,7 +371,7 @@ const CompareMaterials = () => {
                     </Typography>
                     <Typography variant="h5" component="h2" align="center">
                       {Number(
-                        (evaluationRatings.co2 ) /
+                        (evaluationRatings.co2 * 100) /
                           (evaluationRatings.price +
                             evaluationRatings.co2 +
                             evaluationRatings.recycling +
@@ -395,7 +395,7 @@ const CompareMaterials = () => {
                     </Typography>
                     <Typography variant="h5" component="h2" align="center">
                       {Number(
-                        (evaluationRatings.adpf ) /
+                        (evaluationRatings.adpf * 100) /
                           (evaluationRatings.price +
                             evaluationRatings.co2 +
                             evaluationRatings.recycling +
