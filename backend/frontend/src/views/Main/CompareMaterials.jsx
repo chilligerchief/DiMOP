@@ -20,6 +20,8 @@ import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import WarningIcon from "@material-ui/icons/Warning";
+import CompareArrowsIcon from "@material-ui/icons/CompareArrows";
+import Typography from "@material-ui/core/Typography";
 
 //Devexpress
 import {
@@ -48,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#005000",
     textTransform: "none",
     margin: 20,
-    height: 100,
+    height: 60,
     width: 200,
   },
   textfield: { margin: 0, padding: 0, background: "white" },
@@ -112,7 +114,7 @@ const CompareMaterials = () => {
     { name: "co2_value", title: "GWP" },
     { name: "resource_use", title: "ADPf" },
   ]);
-  
+
   const [columnsResult] = useState([
     { name: "id", title: "Mat.Nr." },
     { name: "mat_desc", title: "Mat.Bez." },
@@ -123,7 +125,7 @@ const CompareMaterials = () => {
     { name: "co2_value", title: "GWP" },
     { name: "resource_use", title: "ADPf" },
   ]);
-  
+
   const [rowSelection, setRowSelection] = useState([]);
 
   useEffect(() => {
@@ -142,8 +144,6 @@ const CompareMaterials = () => {
     }
   }, []);
 
-
-
   const [evaluationRatings, setEvaluationRatings] = useState({
     recycling: 2,
     co2: 2,
@@ -152,7 +152,6 @@ const CompareMaterials = () => {
   });
 
   const initiateComparison = () => {
-
     const requestOptions = {
       method: "POST",
       headers: {
@@ -161,35 +160,34 @@ const CompareMaterials = () => {
       },
       body: JSON.stringify({
         selectedIds: rowSelection.map((row) => comparisonData[row].id),
-        recyclingWeight:    Number(
-          (evaluationRatings.recycling ) /
+        recyclingWeight: Number(
+          evaluationRatings.recycling /
             (evaluationRatings.price +
               evaluationRatings.co2 +
               evaluationRatings.recycling +
               evaluationRatings.adpf)
         ).toFixed(2),
         priceWeight: Number(
-          (evaluationRatings.price ) /
+          evaluationRatings.price /
             (evaluationRatings.price +
               evaluationRatings.co2 +
               evaluationRatings.recycling +
               evaluationRatings.adpf)
         ).toFixed(2),
-        co2Weight:   Number(
-          (evaluationRatings.co2 ) /
+        co2Weight: Number(
+          evaluationRatings.co2 /
             (evaluationRatings.price +
               evaluationRatings.co2 +
               evaluationRatings.recycling +
               evaluationRatings.adpf)
         ).toFixed(2),
         adpfWeight: Number(
-          (evaluationRatings.adpf ) /
+          evaluationRatings.adpf /
             (evaluationRatings.price +
               evaluationRatings.co2 +
               evaluationRatings.recycling +
               evaluationRatings.adpf)
         ).toFixed(2),
-
       }),
       redirect: "follow",
     };
@@ -203,12 +201,6 @@ const CompareMaterials = () => {
         setResultData(d);
         console.log(resultData);
       });
-
-
-
-
-
-
   };
 
   return (
@@ -238,7 +230,7 @@ const CompareMaterials = () => {
         </div>
       </Grid>
       <Grid container item xs={12} justify="center">
-        {(rowSelection.length >= 2) == false ? (
+        {rowSelection.length >= 2 == false ? (
           <div style={{ color: "red", marginTop: 20, marginBottom: 20 }}>
             <WarningIcon
               style={{ fontSize: "small", marginRight: 10 }}
@@ -249,7 +241,7 @@ const CompareMaterials = () => {
           <div />
         )}
       </Grid>
-      
+
       <Grid
         container
         item
@@ -430,21 +422,29 @@ const CompareMaterials = () => {
                 </Card>
               </Grid>
               <Grid container item xs={12} justify="center">
-                <Button
-                  onClick={initiateComparison}
-                  className={classes.buttons}
+                <Tooltip
+                  title={
+                    <Typography variant="body1">
+                      Hiermit können Sie ausgewählte Materialien miteinander
+                      vergleichen.
+                    </Typography>
+                  }
                 >
-                  Vergleich durchführen
-                </Button>
+                  <Button
+                    className={classes.buttons}
+                    onClick={initiateComparison}
+                  >
+                    <CompareArrowsIcon
+                      style={{ marginRight: 5 }}
+                    ></CompareArrowsIcon>
+                    Vergleich durchführen
+                  </Button>
+                </Tooltip>
               </Grid>
             </Grid>
           </Grid>
         </Grid>
       </Grid>
-
-
-
-
 
       <Grid
         container
@@ -452,6 +452,7 @@ const CompareMaterials = () => {
         xs={12}
         style={{
           marginTop: 25,
+          marginBottom: 25,
           textAlign: "center",
         }}
       >
@@ -465,8 +466,6 @@ const CompareMaterials = () => {
           </GridDevExpress>
         </div>
       </Grid>
- 
-
     </div>
   );
 };

@@ -39,7 +39,7 @@ class Comparison(Resource):
             [sorted(scores, reverse=True).index(x)+1 for x in scores])
 
         result_data["id"] = json_data["selectedIds"]
-        result_data["mat_desc"] = at.loc[mat["id"].isin(
+        result_data["mat_desc"] = mat.loc[mat["id"].isin(
             json_data["selectedIds"])]["mat_desc"]
         result_data["score"] = scores
         result_data["ranks"] = ranks
