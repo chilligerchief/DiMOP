@@ -116,7 +116,7 @@ const CompareMaterials = () => {
   const [columnsResult] = useState([
     { name: "id", title: "Mat.Nr." },
     { name: "mat_desc", title: "Mat.Bez." },
-    { name: "rank", title: "Rang" },
+    { name: "ranks", title: "Rang" },
     { name: "score", title: "Score" },
     { name: "mat_rw", title: "Rec.Fäh." },
     { name: "price", title: "Preis" },

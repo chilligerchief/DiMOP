@@ -34,11 +34,13 @@ class Comparison(Resource):
 
         result = topsis(alternatives, weights, directions)
         result.calc()
-        scores = np.array(result.C)
+        scores = np.round(np.array(result.C), 3)
         ranks = np.array(
             [sorted(scores, reverse=True).index(x)+1 for x in scores])
 
         result_data["id"] = json_data["selectedIds"]
+        result_data["mat_desc"] = at.loc[mat["id"].isin(
+            json_data["selectedIds"])]["mat_desc"]
         result_data["score"] = scores
         result_data["ranks"] = ranks
 
