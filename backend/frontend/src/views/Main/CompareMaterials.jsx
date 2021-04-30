@@ -137,7 +137,7 @@ const CompareMaterials = () => {
   });
 
   const initiateComparison = () => {
-    console.log(comparisonData.id);
+    console.log(comparisonData[rowSelection].id);
 
     console.log(
       Number(
