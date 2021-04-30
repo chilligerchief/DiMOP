@@ -112,7 +112,18 @@ const CompareMaterials = () => {
     { name: "co2_value", title: "GWP" },
     { name: "resource_use", title: "ADPf" },
   ]);
-
+  
+  const [columnsResult] = useState([
+    { name: "id", title: "Mat.Nr." },
+    { name: "mat_desc", title: "Mat.Bez." },
+    { name: "rank", title: "Rang" },
+    { name: "score", title: "Score" },
+    { name: "mat_rw", title: "Rec.Fäh." },
+    { name: "price", title: "Preis" },
+    { name: "co2_value", title: "GWP" },
+    { name: "resource_use", title: "ADPf" },
+  ]);
+  
   const [rowSelection, setRowSelection] = useState([]);
 
   useEffect(() => {
@@ -225,6 +236,18 @@ const CompareMaterials = () => {
             <TableHeaderRow showSortingControls />
           </GridDevExpress>
         </div>
+      </Grid>
+      <Grid container item xs={12} justify="center">
+        {(rowSelection.length >= 2) == false ? (
+          <div style={{ color: "red", marginTop: 20, marginBottom: 20 }}>
+            <WarningIcon
+              style={{ fontSize: "small", marginRight: 10 }}
+            ></WarningIcon>{" "}
+            Bitte wählen Sie mindestens 2 Materialien.
+          </div>
+        ) : (
+          <div />
+        )}
       </Grid>
       
       <Grid
@@ -418,18 +441,31 @@ const CompareMaterials = () => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid container item xs={12} justify="center">
-        {(rowSelection.length >= 2) == false ? (
-          <div style={{ color: "red"}}>
-            <WarningIcon
-              style={{ fontSize: "small", marginRight: 10 }}
-            ></WarningIcon>{" "}
-            Bitte wählen Sie mindestens 2 Materialien.
-          </div>
-        ) : (
-          <div />
-        )}
+
+
+
+
+
+      <Grid
+        container
+        item
+        xs={12}
+        style={{
+          marginTop: 25,
+          textAlign: "center",
+        }}
+      >
+        <div>
+          <GridDevExpress rows={resultData} columns={columnsResult}>
+            <SortingState />
+            <IntegratedSorting />
+            <Table />
+            <Toolbar />
+            <TableHeaderRow showSortingControls />
+          </GridDevExpress>
+        </div>
       </Grid>
+ 
 
     </div>
   );

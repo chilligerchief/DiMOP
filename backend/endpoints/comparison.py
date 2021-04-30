@@ -18,27 +18,32 @@ class Comparison(Resource):
     def post(self):
         json_data = request.get_json(force=True)
 
-        selected_ids = json_data["selectedIds"]
-        recycling_weight = json_data["recyclingWeight"]
-        price_weight = json_data["priceWeight"]
-        co2_weight = json_data["co2Weight"]
-        adpf_weight = json_data["adpfWeight"]
-
-        print(selected_ids)
-        print(recycling_weight)
-        print(price_weight)
-        print(co2_weight)
-        print(adpf_weight)
-
         db_connection = connect_db()
-        mat = pd.read_sql_query('SELECT * FROM mat', db_connection)
-        alternatives = np.array(mat.loc[mat["id"].isin(selected_ids)][[
-            "mat_rw", "price", "co2_value", "resource_use"]])
-        weights = np.array([recycling_weight, price_weight,
-                            co2_weight, adpf_weight])
-        directions = [1, 0, 0, 0]  # 0 = minimize, 1 = maximize
-        #result = topsis(alternatives, weights, directions)
-        print(weights)
-        print(alternatives)
 
-        return 1
+        mat = pd.read_sql_query('SELECT * FROM mat', db_connection)
+
+        result_data = mat.loc[mat["id"].isin(json_data["selectedIds"])][[
+            "mat_rw", "price", "co2_value", "resource_use"]]
+
+        alternatives = np.array(result_data)
+
+        weights = np.array([float(json_data["recyclingWeight"]), float(json_data["priceWeight"]),
+                            float(json_data["co2Weight"]), float(json_data["adpfWeight"])])
+
+        directions = [1, 0, 0, 0]  # 0 = minimize, 1 = maximize
+
+        result = topsis(alternatives, weights, directions)
+        result.calc()
+        scores = np.array(result.C)
+        ranks = np.array(
+            [sorted(scores, reverse=True).index(x)+1 for x in scores])
+
+        result_data["id"] = json_data["selectedIds"]
+        result_data["score"] = scores
+        result_data["ranks"] = ranks
+
+        print(result_data)
+
+        result_json = result_data.to_dict(orient="records")
+
+        return result_json
