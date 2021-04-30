@@ -322,7 +322,7 @@ const CompareMaterials = () => {
                     </Typography>
                     <Typography variant="h5" component="h2" align="center">
                       {Number(
-                        (evaluationRatings.recycling * 100) /
+                        (evaluationRatings.recycling ) /
                           (evaluationRatings.price +
                             evaluationRatings.co2 +
                             evaluationRatings.recycling +
@@ -347,7 +347,7 @@ const CompareMaterials = () => {
                     </Typography>
                     <Typography variant="h5" component="h2" align="center">
                       {Number(
-                        (evaluationRatings.price * 100) /
+                        (evaluationRatings.price ) /
                           (evaluationRatings.price +
                             evaluationRatings.co2 +
                             evaluationRatings.recycling +
@@ -371,7 +371,7 @@ const CompareMaterials = () => {
                     </Typography>
                     <Typography variant="h5" component="h2" align="center">
                       {Number(
-                        (evaluationRatings.co2 * 100) /
+                        (evaluationRatings.co2 ) /
                           (evaluationRatings.price +
                             evaluationRatings.co2 +
                             evaluationRatings.recycling +
@@ -395,7 +395,7 @@ const CompareMaterials = () => {
                     </Typography>
                     <Typography variant="h5" component="h2" align="center">
                       {Number(
-                        (evaluationRatings.adpf * 100) /
+                        (evaluationRatings.adpf ) /
                           (evaluationRatings.price +
                             evaluationRatings.co2 +
                             evaluationRatings.recycling +
@@ -420,7 +420,7 @@ const CompareMaterials = () => {
       </Grid>
       <Grid container item xs={12} justify="center">
         {(rowSelection.length >= 2) == false ? (
-          <div style={{ color: "red", marginTop: 20, marginBottom: 20 }}>
+          <div style={{ color: "red"}}>
             <WarningIcon
               style={{ fontSize: "small", marginRight: 10 }}
             ></WarningIcon>{" "}
