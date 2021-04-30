@@ -226,19 +226,7 @@ const CompareMaterials = () => {
           </GridDevExpress>
         </div>
       </Grid>
-      <Grid container item xs={12} justify="center">
-        {(rowSelection.length >= 2) == false ? (
-          <div style={{ color: "red", marginTop: 20, marginBottom: 20 }}>
-            <WarningIcon
-              style={{ fontSize: "small", marginRight: 10 }}
-            ></WarningIcon>{" "}
-            Bitte wählen Sie mindestens 2 Materialien.
-          </div>
-        ) : (
-          <div />
-        )}
-      </Grid>
-
+      
       <Grid
         container
         item
@@ -430,6 +418,19 @@ const CompareMaterials = () => {
           </Grid>
         </Grid>
       </Grid>
+      <Grid container item xs={12} justify="center">
+        {(rowSelection.length >= 2) == false ? (
+          <div style={{ color: "red", marginTop: 20, marginBottom: 20 }}>
+            <WarningIcon
+              style={{ fontSize: "small", marginRight: 10 }}
+            ></WarningIcon>{" "}
+            Bitte wählen Sie mindestens 2 Materialien.
+          </div>
+        ) : (
+          <div />
+        )}
+      </Grid>
+
     </div>
   );
 };

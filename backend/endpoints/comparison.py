@@ -10,7 +10,7 @@ import pandas as pd
 import numpy as np
 import json
 from dbfunctions.connect import connect_db
-from itertools import product
+from topsis import topsis
 
 
 class Comparison(Resource):
@@ -29,5 +29,16 @@ class Comparison(Resource):
         print(price_weight)
         print(co2_weight)
         print(adpf_weight)
+
+        db_connection = connect_db()
+        mat = pd.read_sql_query('SELECT * FROM mat', db_connection)
+        alternatives = np.array(mat.loc[mat["id"].isin(selected_ids)][[
+            "mat_rw", "price", "co2_value", "resource_use"]])
+        weights = np.array([recycling_weight, price_weight,
+                            co2_weight, adpf_weight])
+        directions = [1, 0, 0, 0]  # 0 = minimize, 1 = maximize
+        #result = topsis(alternatives, weights, directions)
+        print(weights)
+        print(alternatives)
 
         return 1
