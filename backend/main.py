@@ -27,6 +27,7 @@ from endpoints.bom import Bom, BomAlter
 #from endpoints.topsis import TopsisTobi
 from endpoints.rel import Rel
 from endpoints.evaluation import Evaluation
+from endpoints.comparison import Comparison
 
 #from Topsis_Milena.topsis_endpoint import Topsis
 
@@ -127,9 +128,9 @@ api.add_resource(MacoGet, '/maco/<string:stpo_id>')  # Get
 api.add_resource(MacoPost, '/maco')  # Post
 api.add_resource(Maco, '/maco/<string:_id>')  # Put & Deleste
 # Comp
-api.add_resource(CompGet, '/comp/<string:t_fam_id>')  # Get
-api.add_resource(CompPost, '/comp')  # Post
-api.add_resource(Comp, '/comp/<string:_id>')  # Put & Deleste
+# api.add_resource(CompGet, '/comp/<string:t_fam_id>')  # Get
+# api.add_resource(CompPost, '/comp')  # Post
+# api.add_resource(Comp, '/comp/<string:_id>')  # Put & Deleste
 # Rel
 api.add_resource(Rel, '/rel')  # Post
 # api.add_resource(RelAlter, '/rel/<string:_id>')  # Delete
@@ -141,8 +142,8 @@ api.add_resource(BomAlter, '/bom/<string:_id>')
 api.add_resource(Search, '/search')
 # Evaluation
 api.add_resource(Evaluation, '/evaluation')
-
-api.add_resource(Test, "/test")
+# Comparison
+api.add_resource(Comparison, '/comparison')
 
 
 @app.route('/', defaults={'path': ''})

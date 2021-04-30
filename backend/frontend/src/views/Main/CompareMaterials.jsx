@@ -99,7 +99,8 @@ const CompareMaterials = () => {
   ] = selected_construction_title;
 
   const [comparisonData, setComparisionData] = comparison_data;
-  const [weightsSet, setWeightsSet] = useState(false);
+
+  const [resultData, setResultData] = useState([]);
 
   const [columnsComparison] = useState([
     { name: "id", title: "Mat.Nr." },
@@ -129,6 +130,8 @@ const CompareMaterials = () => {
     }
   }, []);
 
+
+
   const [evaluationRatings, setEvaluationRatings] = useState({
     recycling: 2,
     co2: 2,
@@ -137,46 +140,63 @@ const CompareMaterials = () => {
   });
 
   const initiateComparison = () => {
-    console.log(rowSelection);
 
-    console.log(rowSelection.map((row) => comparisonData[row].id));
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        selectedIds: rowSelection.map((row) => comparisonData[row].id),
+        recyclingWeight:    Number(
+          (evaluationRatings.recycling * 100) /
+            (evaluationRatings.price +
+              evaluationRatings.co2 +
+              evaluationRatings.recycling +
+              evaluationRatings.adpf)
+        ).toFixed(2),
+        priceWeight: Number(
+          (evaluationRatings.price * 100) /
+            (evaluationRatings.price +
+              evaluationRatings.co2 +
+              evaluationRatings.recycling +
+              evaluationRatings.adpf)
+        ).toFixed(2),
+        co2Weight:   Number(
+          (evaluationRatings.co2 * 100) /
+            (evaluationRatings.price +
+              evaluationRatings.co2 +
+              evaluationRatings.recycling +
+              evaluationRatings.adpf)
+        ).toFixed(2),
+        adpfWeight: Number(
+          (evaluationRatings.adpf * 100) /
+            (evaluationRatings.price +
+              evaluationRatings.co2 +
+              evaluationRatings.recycling +
+              evaluationRatings.adpf)
+        ).toFixed(2),
 
-    console.log(
-      Number(
-        (evaluationRatings.recycling * 100) /
-          (evaluationRatings.price +
-            evaluationRatings.co2 +
-            evaluationRatings.recycling +
-            evaluationRatings.adpf)
-      ).toFixed(2)
-    );
-    console.log(
-      Number(
-        (evaluationRatings.co2 * 100) /
-          (evaluationRatings.price +
-            evaluationRatings.co2 +
-            evaluationRatings.recycling +
-            evaluationRatings.adpf)
-      ).toFixed(2)
-    );
-    console.log(
-      Number(
-        (evaluationRatings.adpf * 100) /
-          (evaluationRatings.price +
-            evaluationRatings.co2 +
-            evaluationRatings.recycling +
-            evaluationRatings.adpf)
-      ).toFixed(2)
-    );
-    console.log(
-      Number(
-        (evaluationRatings.price * 100) /
-          (evaluationRatings.price +
-            evaluationRatings.co2 +
-            evaluationRatings.recycling +
-            evaluationRatings.adpf)
-      ).toFixed(2)
-    );
+      }),
+      redirect: "follow",
+    };
+
+    fetch("/comparison", requestOptions)
+      .then((res) => {
+        return res.json();
+      })
+      .then((d) => {
+        console.log(d);
+        setResultData(d);
+        console.log(resultData);
+      });
+
+
+
+
+
+
   };
 
   return (
