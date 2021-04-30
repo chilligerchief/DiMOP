@@ -22,6 +22,7 @@ import CardContent from "@material-ui/core/CardContent";
 import WarningIcon from "@material-ui/icons/Warning";
 import CompareArrowsIcon from "@material-ui/icons/CompareArrows";
 import Tooltip from "@material-ui/core/Tooltip";
+import GetAppIcon from "@material-ui/icons/GetApp";
 
 //Devexpress
 import {
@@ -51,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
     textTransform: "none",
     margin: 20,
     height: 60,
-    width: 200,
+    width: 240,
   },
   textfield: { margin: 0, padding: 0, background: "white" },
   title: {
@@ -465,6 +466,29 @@ const CompareMaterials = () => {
             <TableHeaderRow showSortingControls />
           </GridDevExpress>
         </div>
+      </Grid>
+      <Grid
+        container
+        item
+        xs={12}
+        style={{
+          marginTop: 25,
+          marginBottom: 25,
+          textAlign: "center",
+        }}
+      >
+        <Tooltip
+          title={
+            <Typography variant="body1">
+              Hiermit können Sie die am besten bewertete Stückliste als csv-Datei exportieren.
+            </Typography>
+          }
+        >
+          <Button className={classes.buttons}>
+            <GetAppIcon style={{ marginRight: 5 }}></GetAppIcon>
+            Download Stückliste
+          </Button>
+        </Tooltip>
       </Grid>
     </div>
   );
