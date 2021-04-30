@@ -121,6 +121,7 @@ const CompareMaterials = () => {
     { name: "mat_desc", title: "Mat.Bez." },
     { name: "ranks", title: "Rang" },
     { name: "score", title: "Score" },
+    { name: "recycling_cat", title: "Rec.Kat." },
     { name: "mat_rw", title: "Rec.Fäh." },
     { name: "price", title: "Preis" },
     { name: "co2_value", title: "GWP" },
