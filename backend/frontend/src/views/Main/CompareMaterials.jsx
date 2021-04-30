@@ -21,7 +21,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import WarningIcon from "@material-ui/icons/Warning";
 import CompareArrowsIcon from "@material-ui/icons/CompareArrows";
-import Typography from "@material-ui/core/Typography";
+import Tooltip from "@material-ui/core/Tooltip";
 
 //Devexpress
 import {

@@ -359,9 +359,6 @@ const EvaluationDialog = () => {
               justify="center"
             >
               <Button onClick={initiateEvaluation} className={classes.buttons}>
-                <PlayCircleOutlineIcon
-                  style={{ marginRight: 5 }}
-                ></PlayCircleOutlineIcon>
                 Bewerten
               </Button>
             </Grid>
