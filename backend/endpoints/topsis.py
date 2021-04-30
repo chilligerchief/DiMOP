@@ -1,7 +1,7 @@
 """
 author: topr
 last updated: 11.11.2020
-currently used: yes
+currently used: no
 description: includes topsis function
 """
 

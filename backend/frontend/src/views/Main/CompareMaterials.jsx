@@ -19,6 +19,7 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
+import WarningIcon from "@material-ui/icons/Warning";
 
 //Devexpress
 import {
@@ -224,6 +225,18 @@ const CompareMaterials = () => {
             <TableHeaderRow showSortingControls />
           </GridDevExpress>
         </div>
+      </Grid>
+      <Grid container item xs={12} justify="center">
+        {(rowSelection.length >= 1) == false ? (
+          <div style={{ color: "red", marginTop: 20, marginBottom: 20 }}>
+            <WarningIcon
+              style={{ fontSize: "small", marginRight: 10 }}
+            ></WarningIcon>{" "}
+            Bitte wählen Sie mindestens 2 Materialien.
+          </div>
+        ) : (
+          <div />
+        )}
       </Grid>
 
       <Grid

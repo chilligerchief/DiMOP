@@ -18,10 +18,16 @@ class Comparison(Resource):
     def post(self):
         json_data = request.get_json(force=True)
 
-        print(json_data["selectedIds"])
-        print(json_data["recyclingWeight"])
-        print(json_data["priceWeight"])
-        print(json_data["co2Weight"])
-        print(json_data["adpfWeight"])
+        selected_ids = json_data["selectedIds"]
+        recycling_weight = json_data["recyclingWeight"]
+        price_weight = json_data["priceWeight"]
+        co2_weight = json_data["co2Weight"]
+        adpf_weight = json_data["adpfWeight"]
+
+        print(selected_ids)
+        print(recycling_weight)
+        print(price_weight)
+        print(co2_weight)
+        print(adpf_weight)
 
         return 1
