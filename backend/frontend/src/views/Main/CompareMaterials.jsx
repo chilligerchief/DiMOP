@@ -476,6 +476,7 @@ const CompareMaterials = () => {
           marginBottom: 25,
           textAlign: "center",
         }}
+        justify="center"
       >
         <Tooltip
           title={
