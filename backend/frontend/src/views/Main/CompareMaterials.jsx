@@ -141,8 +141,6 @@ const CompareMaterials = () => {
 
     console.log(rowSelection.map((row) => comparisonData[row].id));
 
-    console.log(comparisonData[rowSelection].id);
-
     console.log(
       Number(
         (evaluationRatings.recycling * 100) /
