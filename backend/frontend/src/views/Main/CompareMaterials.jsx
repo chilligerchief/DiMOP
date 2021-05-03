@@ -133,8 +133,15 @@ const CompareMaterials = () => {
   ]);
 
   const [tableColumnExtensions] = useState([
+    { columnName: "id", width: 70 },
+    { columnName: "mat_desc", width: 150 },
+    { columnName: "recycling_cat", width: 70 },
+    { columnName: "mat_rw", width: 70 },
+    { columnName: "price", width: 50 },
+    { columnName: "co2_value", width: 50 },
+    { columnName: "resource_use", width: 50 },
     { columnName: "impure", width: 150 },
-    { columnName: "dangerous", width: 150 },
+    { columnName: "dangerous", width: 170 },
   ]);
 
   const [rowSelection, setRowSelection] = useState([]);
