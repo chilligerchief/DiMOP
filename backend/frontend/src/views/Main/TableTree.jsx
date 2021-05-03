@@ -353,7 +353,10 @@ const TableTree = () => {
             <CsvDownload data={dataBackend}
             filename="dimop_bom.csv"
             style={{
-              borderColor: "white",
+              borderRight: "none",
+              borderBottom: "none",
+              borderLeft: "none",
+              borderTop: "none",
               color: "#005000",
               margin: 20,
               height: 30,
@@ -363,7 +366,7 @@ const TableTree = () => {
               fontSize:"12px",
               fontWeight:"bold",
               fontFamiliy: "Roboto",
-              //borderRadius:"6px",
+              borderRadius:"6px",
             }}>
               <GetAppIcon style={{ marginRight: 5 }}></GetAppIcon>
               Download
