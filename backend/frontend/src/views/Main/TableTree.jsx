@@ -308,7 +308,7 @@ const TableTree = () => {
           textAlign: "left",
         }}
       >
-        <Grid item xs={6}>
+        <Grid item xs={4}>
           <Typography>Bitte wählen Sie eine Stückliste aus.</Typography>
           <FormControl className={classes.formControl}>
             <Autocomplete
@@ -338,6 +338,20 @@ const TableTree = () => {
           >
             <div>
               <CsvUploadDialog></CsvUploadDialog>
+            </div>
+          </Tooltip>
+        </Grid>
+        <Grid item xs={2}>
+          <Tooltip
+            title={
+              <Typography variant="body1">
+                Hiermit können Sie eine Stückliste als csv-Datei
+                exportieren.
+              </Typography>
+            }
+          >
+            <div>
+            <CsvDownload data={dataBackend} />
             </div>
           </Tooltip>
         </Grid>
