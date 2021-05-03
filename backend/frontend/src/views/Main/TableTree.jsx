@@ -366,7 +366,10 @@ const TableTree = () => {
                   fontSize: "12px",
                   fontWeight: "bold",
                   fontFamiliy: "Roboto",
-                  textAlign: "center"
+                  textAlign: "center",
+                  "&:hover": {
+                    backgroundColor: "#f5f5f5",
+                  },
                 }}>
                 <GetAppIcon style={{ marginRight: 5 }}></GetAppIcon>
               Download
