@@ -350,28 +350,28 @@ const TableTree = () => {
             }
           >
             <div>
-            <CsvDownload data={dataBackend}
-            filename="dimop_bom.csv"
-            style={{
-              borderRight: "none",
-              borderBottom: "none",
-              borderLeft: "none",
-              borderTop: "none",
-              color: "#005000",
-              margin: 20,
-              height: 30,
-              width: 120,
-              backgroundColor:"white",
-              cursor: "pointer",
-              fontSize:"12px",
-              fontWeight:"bold",
-              fontFamiliy: "Roboto",
-              borderRadius:"6px",
-            }}>
-              <GetAppIcon style={{ marginRight: 5 }}></GetAppIcon>
+              <CsvDownload data={dataBackend}
+                filename="dimop_bom.csv"
+                style={{
+                  borderRight: "none",
+                  borderBottom: "none",
+                  borderLeft: "none",
+                  borderTop: "none",
+                  color: "#005000",
+                  margin: 20,
+                  height: 30,
+                  width: 120,
+                  backgroundColor: "white",
+                  cursor: "pointer",
+                  fontSize: "12px",
+                  fontWeight: "bold",
+                  fontFamiliy: "Roboto",
+                  textAlign: "center"
+                }}>
+                <GetAppIcon style={{ marginRight: 5 }}></GetAppIcon>
               Download
             </CsvDownload>
-        
+
             </div>
           </Tooltip>
         </Grid>
@@ -490,8 +490,8 @@ const TableTree = () => {
       </Grid>
       <Grid container item xs={12} justify="center">
         {(rowSelection.length == 1) == false &&
-        selectedConstructionTitle != "Bitte auswaehlen" &&
-        bomMaterialId != "" ? (
+          selectedConstructionTitle != "Bitte auswaehlen" &&
+          bomMaterialId != "" ? (
           <div style={{ color: "red", marginTop: 20, marginBottom: 20 }}>
             <WarningIcon
               style={{ fontSize: "small", marginRight: 10 }}
