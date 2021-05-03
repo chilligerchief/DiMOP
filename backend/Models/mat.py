@@ -29,8 +29,10 @@ class MatModel(db.Model):
     resource_use = db.Column(db.Float)
     recycling_cat = db.Column(db.String)
     evaluated = db.Column(db.Integer)
+    impure = db.Column(db.Integer)
+    dangerous = db.Column(db.Integer)
 
-    def __init__(self, mat_desc, mat_id_int, mat_desc_int, cad_id, mara_plast_id, mat_rw, height, width, depth, unit, weight, weight_unit, volume, volume_unit, is_atomic, orga_id, cons_id, del_kz, price, co2_value, resource_use, recycling_cat, evaluated):
+    def __init__(self, mat_desc, mat_id_int, mat_desc_int, cad_id, mara_plast_id, mat_rw, height, width, depth, unit, weight, weight_unit, volume, volume_unit, is_atomic, orga_id, cons_id, del_kz, price, co2_value, resource_use, recycling_cat, evaluated, impure, dangerous):
 
         self.mat_desc = mat_desc
         self.mat_id_int = mat_id_int
@@ -55,12 +57,14 @@ class MatModel(db.Model):
         self.resource_use = resource_use
         self.recycling_cat = recycling_cat
         self.evaluated = evaluated
+        self.impure = impure
+        self.dangerous = dangerous
 
     def json(self):
         return {'id': self.id,
                 'mat_desc': self.mat_desc, 'mat_id_int': self.mat_id_int, 'mat_desc_int': self.mat_desc_int, 'cad_id': self.cad_id, 'mara_plast_id': self.mara_plast_id, 'mat_rw': self.mat_rw, 'height': self.height, 'width': self.width, 'depth': self.depth,
                 'unit': self.unit, 'weight': self.weight, 'weight_unit': self.weight_unit, 'volume': self.volume, 'volume_unit': self.volume_unit, 'is_atomic': self.is_atomic, 'orga_id': self.orga_id, self.cons_id: cons_id, self.del_kz: del_kz,
-                self.price: price, self.co2_value: co2_value, self.resource_use: resource_use, self.recycling_cat: recycling_cat, self.evaluated: evaluated
+                self.price: price, self.co2_value: co2_value, self.resource_use: resource_use, self.recycling_cat: recycling_cat, self.evaluated: evaluated, self.impure: impure, self.dangerous: dangerous
                 }
 
     @classmethod

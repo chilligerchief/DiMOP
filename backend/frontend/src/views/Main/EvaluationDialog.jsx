@@ -138,7 +138,9 @@ const EvaluationDialog = () => {
         co2_value: evaluationData.GWP,
         resource_use: evaluationData.ADPf,
         recycling_cat: evaluationData.Grade,
-        evaluated: 1
+        evaluated: 1,
+        impure: isImpure,
+        dangerous: isDangerous
       }),
       redirect: "follow",
     };

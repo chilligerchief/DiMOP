@@ -114,6 +114,8 @@ const CompareMaterials = () => {
     { name: "price", title: "Preis" },
     { name: "co2_value", title: "GWP" },
     { name: "resource_use", title: "ADPf" },
+    { name: "impure", title: "Enthält Störstoffe" },
+    { name: "dangerous", title: "Enthält Gefahrenstoffe" },
   ]);
 
   const [columnsResult] = useState([
@@ -126,6 +128,13 @@ const CompareMaterials = () => {
     { name: "price", title: "Preis" },
     { name: "co2_value", title: "GWP" },
     { name: "resource_use", title: "ADPf" },
+    { name: "impure", title: "Enthält Störstoffe" },
+    { name: "dangerous", title: "Enthält Gefahrenstoffe" },
+  ]);
+
+  const [tableColumnExtensions] = useState([
+    { columnName: "impure", width: 150 },
+    { columnName: "dangerous", width: 150 },
   ]);
 
   const [rowSelection, setRowSelection] = useState([]);
@@ -224,7 +233,7 @@ const CompareMaterials = () => {
             />
             <SortingState />
             <IntegratedSorting />
-            <Table />
+            <Table columnExtensions={tableColumnExtensions} />
             <TableSelection />
             <Toolbar />
             <TableHeaderRow showSortingControls />
@@ -462,7 +471,7 @@ const CompareMaterials = () => {
           <GridDevExpress rows={resultData} columns={columnsResult}>
             <SortingState />
             <IntegratedSorting />
-            <Table />
+            <Table columnExtensions={tableColumnExtensions} />
             <Toolbar />
             <TableHeaderRow showSortingControls />
           </GridDevExpress>
@@ -482,7 +491,8 @@ const CompareMaterials = () => {
         <Tooltip
           title={
             <Typography variant="body1">
-              Hiermit können Sie die am besten bewertete Stückliste als csv-Datei exportieren.
+              Hiermit können Sie die am besten bewertete Stückliste als
+              csv-Datei exportieren.
             </Typography>
           }
         >

@@ -43,6 +43,10 @@ class Comparison(Resource):
             json_data["selectedIds"])]["mat_desc"]
         result_data["recycling_cat"] = mat.loc[mat["id"].isin(
             json_data["selectedIds"])]["recycling_cat"]
+        result_data["impure"] = mat.loc[mat["id"].isin(
+            json_data["selectedIds"])]["impure"]
+        result_data["dangerous"] = mat.loc[mat["id"].isin(
+            json_data["selectedIds"])]["dangerous"]
         result_data["score"] = scores
         result_data["ranks"] = ranks
 
