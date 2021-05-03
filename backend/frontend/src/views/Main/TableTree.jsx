@@ -364,7 +364,8 @@ const TableTree = () => {
               fontSize:"12px",
               fontWeight:"bold",
               fontFamiliy: "Roboto",
-              boxShadow: "inset 0px 0px 0px 0px #white",
+              boxShadow: "none",
+              textShadow:"none",
               borderRadius:"6px",
             }}>
               <GetAppIcon style={{ marginRight: 5 }}></GetAppIcon>
