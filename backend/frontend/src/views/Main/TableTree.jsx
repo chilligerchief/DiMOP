@@ -26,7 +26,7 @@ import Button from "@material-ui/core/Button";
 
 import DeleteMaterialDialog from "./DeleteMaterialDialog.jsx";
 import CsvUploadDialog from "./CsvUploadDialog.jsx";
-import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
+import GetAppIcon from "@material-ui/icons/GetApp";
 import { FormControl } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 
@@ -361,11 +361,16 @@ const TableTree = () => {
               width: 120,
               backgroundColor:"white",
               cursor: "pointer",
-              fontSize: 13,
+              fontSize:"12px",
+              fontWeight:"bold",
               fontFamiliy: "Roboto",
-              boxShadow: "none",
-            }}
-            />
+              boxShadow: "inset 0px 0px 0px 0px #white",
+              borderRadius:"6px",
+            }}>
+              <GetAppIcon style={{ marginRight: 5 }}></GetAppIcon>
+              Download
+            </CsvDownload>
+        
             </div>
           </Tooltip>
         </Grid>
