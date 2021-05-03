@@ -353,13 +353,15 @@ const TableTree = () => {
             <CsvDownload data={dataBackend}
             filename="dimop_bom.csv"
             style={{
-              borderColor: "#005000",
+              borderColor: "white",
               color: "#005000",
               textTransform: "none",
               margin: 20,
               height: 30,
               width: 120,
               backgroundColor:"white",
+              cursor: "pointer",
+              fontSize: 16,
             }}
             />
             </div>
