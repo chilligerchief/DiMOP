@@ -355,7 +355,6 @@ const TableTree = () => {
             style={{
               borderColor: "white",
               color: "#005000",
-              textTransform: "none",
               margin: 20,
               height: 30,
               width: 120,
@@ -364,9 +363,7 @@ const TableTree = () => {
               fontSize:"12px",
               fontWeight:"bold",
               fontFamiliy: "Roboto",
-              boxShadow: "none",
-              textShadow:"none",
-              borderRadius:"6px",
+              //borderRadius:"6px",
             }}>
               <GetAppIcon style={{ marginRight: 5 }}></GetAppIcon>
               Download
