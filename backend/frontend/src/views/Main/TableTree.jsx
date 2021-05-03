@@ -42,6 +42,8 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import WarningIcon from "@material-ui/icons/Warning";
 
+import CsvDownload from 'react-json-to-csv'
+
 const useStyles = makeStyles((theme) => ({
   mainwindow: {
     padding: 20,
@@ -213,7 +215,6 @@ const TableTree = () => {
     { name: "bom_id", title: "Id. BOM Eintrag" },
     { name: "mat_desc", title: "Mat.Bez." },
     { name: "level", title: "Ebene" },
-    //{ name: "mat_rw", title: "Recycl." },
     { name: "mat_id_int", title: "ERP Mat.Nr." },
     { name: "mat_desc_int", title: "ERP Bez." },
     { name: "cad_id", title: "CAD Nr." },
@@ -248,7 +249,6 @@ const TableTree = () => {
     "cad_id",
     "mara_plast_id",
     "orga_id",
-    //"bom_id",
   ]);
 
   const [rowSelection, setRowSelection] = useState([]);
@@ -296,7 +296,6 @@ const TableTree = () => {
       <SearchDialog
         open={searchDialogOpen}
         handleSearchDialogClose={handleSearchDialogClose}
-        // selectedId={[1,2,3,4,5]} // used to be able to make the post/update request within each search result
       />
       <Grid
         container
@@ -351,7 +350,18 @@ const TableTree = () => {
             }
           >
             <div>
-            <CsvDownload data={dataBackend} />
+            <CsvDownload data={dataBackend}
+            filename="dimop_bom.csv"
+            style={{
+              borderColor: "#005000",
+              color: "#005000",
+              textTransform: "none",
+              margin: 20,
+              height: 30,
+              width: 120,
+              backgroundColor:"white",
+            }}
+            />
             </div>
           </Tooltip>
         </Grid>
