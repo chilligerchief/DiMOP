@@ -361,7 +361,9 @@ const TableTree = () => {
               width: 120,
               backgroundColor:"white",
               cursor: "pointer",
-              fontSize: 16,
+              fontSize: 13,
+              fontFamiliy: "Roboto",
+              boxShadow: "none",
             }}
             />
             </div>
