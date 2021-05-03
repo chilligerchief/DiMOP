@@ -133,13 +133,13 @@ const CompareMaterials = () => {
   ]);
 
   const [tableColumnExtensions] = useState([
-    { columnName: "id", width: 70 },
+    { columnName: "id", width: 100 },
     { columnName: "mat_desc", width: 150 },
-    { columnName: "recycling_cat", width: 70 },
-    { columnName: "mat_rw", width: 70 },
-    { columnName: "price", width: 50 },
-    { columnName: "co2_value", width: 50 },
-    { columnName: "resource_use", width: 50 },
+    { columnName: "recycling_cat", width: 100 },
+    { columnName: "mat_rw", width: 100 },
+    { columnName: "price", width: 80 },
+    { columnName: "co2_value", width: 80 },
+    { columnName: "resource_use", width: 80 },
     { columnName: "impure", width: 150 },
     { columnName: "dangerous", width: 170 },
   ]);
