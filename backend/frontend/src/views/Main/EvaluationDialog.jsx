@@ -515,7 +515,7 @@ const EvaluationDialog = () => {
                     Bitte ordnen Sie zuerst jeder atomaren Komponente einen
                     Rohstoff zu.
                   </Typography>
-                  <Button onClick={handleClose} className={classes.buttons2}>
+                  <Button onClick={handleClose} className={classes.buttons}>
                     Ok
                   </Button>
                 </Grid>
