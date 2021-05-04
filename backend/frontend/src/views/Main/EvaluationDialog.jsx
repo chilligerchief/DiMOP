@@ -423,6 +423,25 @@ const EvaluationDialog = () => {
 
         <DialogContent>
           <MuiThemeProvider theme={muiTheme}>
+
+
+
+
+
+
+
+          {(dataBackend
+              .map((row) => row.is_atomic)
+              .filter((element) => element == 1).length ==
+              dataBackend
+                .map((row) => row.plast_fam)
+                .filter((element) => element != null).length) &&
+            (dataBackend
+              .map((row) => row.is_atomic)
+              .filter((element) => element == 1).length != 0)
+
+          ? (
+
             <div>
               <Stepper activeStep={activeStep}>
                 {steps.map((label, index) => {
@@ -498,6 +517,38 @@ const EvaluationDialog = () => {
                 )}
               </div>
             </div>
+
+
+
+
+            ) : (
+
+              <div>
+            <Grid container item xs={12} justify="center">
+                  <Typography className={classes.instructions}>
+                    Bitte ordnen Sie zuerst jeder atomaren Komponente einen Rohstoff zu.
+                  </Typography>
+                  <Button onClick={handleClose} className={classes.buttons2}>
+                    Ok
+                  </Button>
+                </Grid>
+            </div>
+
+            )}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           </MuiThemeProvider>
         </DialogContent>
       </Dialog>
