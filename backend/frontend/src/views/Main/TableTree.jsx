@@ -435,7 +435,8 @@ const TableTree = () => {
         <Button
         className={classes.buttons}
         onClick={() => {console.log(
-          dataBackend.map((row) => row.is_atomic)
+          dataBackend.map((row) => row.is_atomic).
+          filter(element => element == 1)
         )}}>
           console.log
         </Button>
