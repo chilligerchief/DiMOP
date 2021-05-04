@@ -433,8 +433,8 @@ const TableTree = () => {
                 .map((row) => row.plast_fam)
                 .filter((element) => element != null).length &&
             dataBackend
-              .map((row) => row.plast_fam)
-              .filter((element) => element != null).length != 0 ? (
+              .map((row) => row.is_atomic)
+              .filter((element) => element == 1).length != 0 ? (
               <div>
                 <EvaluationDialog></EvaluationDialog>
               </div>
