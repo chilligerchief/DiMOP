@@ -18,6 +18,7 @@ import {
 import { useContext, useEffect, useState } from "react";
 
 import EvaluationDialog from "./EvaluationDialog.jsx";
+import EvaluationWarningDialog from "./EvaluationWarningDialog.jsx";
 import AddBomDialog from "./AddBomDialog.jsx";
 import AddMaterialDialog from "./AddMaterialDialog.jsx";
 
@@ -153,9 +154,11 @@ const TableTree = () => {
     new_bom_created,
     selection_atomic,
     search_dialog_open,
+    evaluation_warning_open
   } = useContext(MainContext);
 
   const [evaluationOpen, setEvaluationOpen] = evaluation_open;
+  const [evaluationWarningOpen, setEvaluationWarningOpen] = evaluation_warning_open;
   const [selectedMaterial, setSelectedMaterial] = selected_material;
   const [parentMaterial, setParentMaterial] = parent_material;
   const [deleteMaterial, setDeleteMaterial] = delete_material;
@@ -416,7 +419,7 @@ const TableTree = () => {
             </div>
           </Tooltip>
         </Grid>
-
+     {/*
         <Grid item xs={2}>
           <Tooltip
             title={
@@ -425,22 +428,40 @@ const TableTree = () => {
               </Typography>
             }
           >
-            <div>
-              <EvaluationDialog></EvaluationDialog>
-            </div>
+            {(rowSelection.length == 1) == false &&
+          selectedConstructionTitle != "Bitte auswaehlen" &&
+          bomMaterialId != "" ? (
+          <div>
+            <EvaluationWarningDialog></EvaluationWarningDialog>
+          </div>
+        ) : (
+          <div>
+            <EvaluationDialog></EvaluationDialog>
+          </div>
+        )}
           </Tooltip>
         </Grid>
+        */}
       </Grid>
+
       <Grid item xs={2}>
         <Button
         className={classes.buttons}
-        onClick={() => {console.log(
+        onClick={() => {
+          console.log(
           dataBackend.map((row) => row.is_atomic).
-          filter(element => element == 1).length
-        )}}>
+          filter(element => element == 1).length)
+
+          console.log(
+            dataBackend.map((row) => row.plast_fam).
+            filter(element => element == null).length)
+            
+            }}>
           console.log
         </Button>
       </Grid>
+       
+
       <div>
         <GridDevExpress rows={dataBackend} columns={columns}>
           <SelectionState
