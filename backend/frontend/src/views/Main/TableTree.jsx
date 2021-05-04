@@ -20,27 +20,23 @@ import { useContext, useEffect, useState } from "react";
 import EvaluationDialog from "./EvaluationDialog.jsx";
 import AddBomDialog from "./AddBomDialog.jsx";
 import AddMaterialDialog from "./AddMaterialDialog.jsx";
-
-import Autocomplete from "@material-ui/lab/Autocomplete";
-import Button from "@material-ui/core/Button";
-
 import DeleteMaterialDialog from "./DeleteMaterialDialog.jsx";
 import CsvUploadDialog from "./CsvUploadDialog.jsx";
-import GetAppIcon from "@material-ui/icons/GetApp";
-import { FormControl } from "@material-ui/core";
-import Grid from "@material-ui/core/Grid";
-
 import { MainContext } from "./MainContext.jsx";
 
 import PolymerIcon from "@material-ui/icons/Polymer";
 import React from "react";
 import { SearchDialog } from "../../views/Main/SearchDialog.jsx";
-
 import TextField from "@material-ui/core/TextField";
 import Tooltip from "@material-ui/core/Tooltip";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import WarningIcon from "@material-ui/icons/Warning";
+import GetAppIcon from "@material-ui/icons/GetApp";
+import { FormControl } from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import Button from "@material-ui/core/Button";
 
 import CsvDownload from "react-json-to-csv";
 
