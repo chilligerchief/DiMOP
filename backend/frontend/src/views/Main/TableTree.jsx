@@ -435,7 +435,7 @@ const TableTree = () => {
         <Button
         className={classes.buttons}
         onClick={() => {console.log(dataBackend)}}>
-          console.log(dataBackend)
+          console.log(dataBackend.is_atomic)
         </Button>
       </Grid>
       <div>
