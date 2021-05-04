@@ -218,7 +218,7 @@ const TableTree = () => {
     { name: "mat_id_int", title: "ERP Mat.Nr." },
     { name: "mat_desc_int", title: "ERP Bez." },
     { name: "cad_id", title: "CAD Nr." },
-    { name: "is_atomic", title: " " },
+    { name: "is_atomic", title: "Atomar" },
     { name: "mara_plast_id", title: "Kunststoff_ID" },
     { name: "plast_desc", title: "Kunstst.Bez." },
     { name: "plast_fam", title: "Kunstst.Fam." },
@@ -231,13 +231,30 @@ const TableTree = () => {
     { name: "volume", title: "Volumen" },
     { name: "volume_unit", title: "Vol. Einheit" },
     { name: "orga_id", title: "Organisations Id" },
+    { name: "mat_rw", title: "Rec.Kat." },
+    { name: "recycling_cat", title: "Organisations Id" },
+    { name: "resource_use", title: "ADPf" },
+    { name: "co2_value", title: "GWP" },
+    { name: "impure", title: "Enthält Störstoffe" },
+    { name: "dangerous", title: "Enthält Gefahrenstoffe" },
+    { name: "evaluated", title: "Lösch.Kz" },
+    { name: "del_kz", title: "Organisations Id" },
+    { name: "cons_id", title: "Kons.Id" },
   ]);
+
 
   const [tableColumnExtensions] = useState([
     { columnName: "mat_id", width: 250 },
     { columnName: "mat_desc", width: 250 },
     { columnName: "plast_desc", width: 250 },
-    { columnName: "is_atomic", width: 50 },
+    { columnName: "recycling_cat", width: 100 },
+    { columnName: "mat_rw", width: 100 },
+    { columnName: "price", width: 80 },
+    { columnName: "co2_value", width: 80 },
+    { columnName: "resource_use", width: 80 },
+    { columnName: "impure", width: 150 },
+    { columnName: "dangerous", width: 170 },
+
   ]);
   const [defaultExpandedRowIds] = useState([0]);
   const [defaultHiddenColumnNames] = useState([
@@ -249,6 +266,16 @@ const TableTree = () => {
     "cad_id",
     "mara_plast_id",
     "orga_id",
+    "mat_rw",
+    "recycling_cat",
+    "resource_use",
+    "co2_value",
+    "impure",
+    "dangerous",
+    "del_kz",
+    "cons_id",
+    "evluated",
+    
   ]);
 
   const [rowSelection, setRowSelection] = useState([]);
