@@ -307,7 +307,7 @@ const TableTree = () => {
           textAlign: "left",
         }}
       >
-        <Grid item xs={4}>
+        <Grid item xs={2}>
           <Typography>Bitte wählen Sie eine Stückliste aus.</Typography>
           <FormControl className={classes.formControl}>
             <Autocomplete
@@ -403,6 +403,13 @@ const TableTree = () => {
             </div>
           </Tooltip>
         </Grid>
+      </Grid>
+      <Grid item xs={2}>
+        <Button
+        className={classes.buttons}
+        onClick={() => {console.log(dataBackend)}}>
+          console.log(dataBackend)
+        </Button>
       </Grid>
       <div>
         <GridDevExpress rows={dataBackend} columns={columns}>

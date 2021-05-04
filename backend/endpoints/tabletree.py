@@ -61,7 +61,16 @@ class Tabletree(Resource):
                 17: "volume_unit",
                 18: "is_atomic",
                 19: "orga_id",
-                20: "cons_id"})
+                20: "cons_id",
+                21: "del_kz",
+                22: "price",
+                23: "co2_value",
+                24: "resource_use",
+                25: "recycling_cat",
+                26: "evaluated",
+                27: "impure",
+                28: "dangerous"
+            })  # 21-28
 
         # To catch materials that have no components and are not atomic
         try:
@@ -97,7 +106,7 @@ class Tabletree(Resource):
 
         df_merged = df_merged.fillna(np.nan).replace([np.nan], [None])
 
-        # df_merged.to_csv("bom.csv", index=False)
+        print(df_merged.columns)
 
         result_json = df_merged.to_dict(orient="records")
 
