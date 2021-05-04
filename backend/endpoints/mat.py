@@ -192,6 +192,16 @@ class MatPost(Resource):
                         required=False,
                         help="This field cannot be blank."
                         )
+    parser.add_argument('impure',
+                        type=str,
+                        required=False,
+                        help="This field cannot be blank."
+                        )
+    parser.add_argument('dangerous',
+                        type=int,
+                        required=False,
+                        help="This field cannot be blank."
+                        )
 
     def post(self):
         data = MatPost.parser.parse_args()

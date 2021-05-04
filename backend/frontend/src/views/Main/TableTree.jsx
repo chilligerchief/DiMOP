@@ -426,15 +426,25 @@ const TableTree = () => {
               </Typography>
             }
           >
+            <div>
+              {dataBackend
+              .map((row) => row.is_atomic)
+              .filter((element) => element == 1).length}
+            </div>
+            <div>
             {dataBackend
+                .map((row) => row.plast_fam)
+                .filter((element) => element != null).length}
+            </div>
+            {(dataBackend
               .map((row) => row.is_atomic)
               .filter((element) => element == 1).length ==
               dataBackend
                 .map((row) => row.plast_fam)
-                .filter((element) => element != null).length &&
-            dataBackend
+                .filter((element) => element != null).length) &&
+            (dataBackend
               .map((row) => row.is_atomic)
-              .filter((element) => element == 1).length != 0 ? (
+              .filter((element) => element == 1).length != 0) ? (
               <div>
                 <EvaluationDialog></EvaluationDialog>
               </div>
