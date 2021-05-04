@@ -18,7 +18,7 @@ import {
 import { useContext, useEffect, useState } from "react";
 
 import EvaluationDialog from "./EvaluationDialog.jsx";
-import EvaluationWarningDialog from "./EvaluationWarningDialog.jsx";
+import EvaluationWarningDialog from "./EvaluationDialog.jsx";
 import AddBomDialog from "./AddBomDialog.jsx";
 import AddMaterialDialog from "./AddMaterialDialog.jsx";
 
@@ -43,7 +43,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import WarningIcon from "@material-ui/icons/Warning";
 
-import CsvDownload from 'react-json-to-csv'
+import CsvDownload from "react-json-to-csv";
 
 const useStyles = makeStyles((theme) => ({
   mainwindow: {
@@ -99,8 +99,6 @@ const getChildRows = (row, rootRows) => {
   return childRows.length ? childRows : null;
 };
 
-
-
 const PlasticTypeProviderFormatter = ({ value, row }) => {
   if (value == 1)
     return (
@@ -154,11 +152,14 @@ const TableTree = () => {
     new_bom_created,
     selection_atomic,
     search_dialog_open,
-    evaluation_warning_open
+    evaluation_warning_open,
   } = useContext(MainContext);
 
   const [evaluationOpen, setEvaluationOpen] = evaluation_open;
-  const [evaluationWarningOpen, setEvaluationWarningOpen] = evaluation_warning_open;
+  const [
+    evaluationWarningOpen,
+    setEvaluationWarningOpen,
+  ] = evaluation_warning_open;
   const [selectedMaterial, setSelectedMaterial] = selected_material;
   const [parentMaterial, setParentMaterial] = parent_material;
   const [deleteMaterial, setDeleteMaterial] = delete_material;
@@ -245,7 +246,6 @@ const TableTree = () => {
     { name: "cons_id", title: "Kons.Id" },
   ]);
 
-
   const [tableColumnExtensions] = useState([
     { columnName: "mat_id", width: 250 },
     { columnName: "mat_desc", width: 250 },
@@ -257,7 +257,6 @@ const TableTree = () => {
     { columnName: "resource_use", width: 80 },
     { columnName: "impure", width: 150 },
     { columnName: "dangerous", width: 170 },
-
   ]);
   const [defaultExpandedRowIds] = useState([0]);
   const [defaultHiddenColumnNames] = useState([
@@ -278,7 +277,6 @@ const TableTree = () => {
     "del_kz",
     "cons_id",
     "evluated",
-    
   ]);
 
   const [rowSelection, setRowSelection] = useState([]);
@@ -374,13 +372,13 @@ const TableTree = () => {
           <Tooltip
             title={
               <Typography variant="body1">
-                Hiermit können Sie eine Stückliste als csv-Datei
-                exportieren.
+                Hiermit können Sie eine Stückliste als csv-Datei exportieren.
               </Typography>
             }
           >
             <div>
-              <CsvDownload data={dataBackend}
+              <CsvDownload
+                data={dataBackend}
                 filename="dimop_bom.csv"
                 style={{
                   borderRight: "none",
@@ -397,11 +395,11 @@ const TableTree = () => {
                   fontWeight: "bold",
                   fontFamiliy: "Roboto",
                   textAlign: "center",
-                }}>
+                }}
+              >
                 <GetAppIcon style={{ marginRight: 5 }}></GetAppIcon>
-              Download
-            </CsvDownload>
-
+                Download
+              </CsvDownload>
             </div>
           </Tooltip>
         </Grid>
@@ -419,7 +417,7 @@ const TableTree = () => {
             </div>
           </Tooltip>
         </Grid>
-     {/*
+
         <Grid item xs={2}>
           <Tooltip
             title={
@@ -428,40 +426,26 @@ const TableTree = () => {
               </Typography>
             }
           >
-            {(rowSelection.length == 1) == false &&
-          selectedConstructionTitle != "Bitte auswaehlen" &&
-          bomMaterialId != "" ? (
-          <div>
-            <EvaluationWarningDialog></EvaluationWarningDialog>
-          </div>
-        ) : (
-          <div>
-            <EvaluationDialog></EvaluationDialog>
-          </div>
-        )}
+            {dataBackend
+              .map((row) => row.is_atomic)
+              .filter((element) => element == 1).length ==
+              dataBackend
+                .map((row) => row.plast_fam)
+                .filter((element) => element != null).length &&
+            dataBackend
+              .map((row) => row.plast_fam)
+              .filter((element) => element != null).length != 0 ? (
+              <div>
+                <EvaluationDialog></EvaluationDialog>
+              </div>
+            ) : (
+              <div>
+                <EvaluationWarningDialog></EvaluationWarningDialog>
+              </div>
+            )}
           </Tooltip>
         </Grid>
-        */}
       </Grid>
-
-      <Grid item xs={2}>
-        <Button
-        className={classes.buttons}
-        onClick={() => {
-          console.log(
-          dataBackend.map((row) => row.is_atomic).
-          filter(element => element == 1).length)
-
-          console.log(
-            dataBackend.map((row) => row.plast_fam).
-            filter(element => element == null).length)
-            
-            }}>
-          console.log
-        </Button>
-      </Grid>
-       
-
       <div>
         <GridDevExpress rows={dataBackend} columns={columns}>
           <SelectionState
@@ -548,8 +532,8 @@ const TableTree = () => {
       </Grid>
       <Grid container item xs={12} justify="center">
         {(rowSelection.length == 1) == false &&
-          selectedConstructionTitle != "Bitte auswaehlen" &&
-          bomMaterialId != "" ? (
+        selectedConstructionTitle != "Bitte auswaehlen" &&
+        bomMaterialId != "" ? (
           <div style={{ color: "red", marginTop: 20, marginBottom: 20 }}>
             <WarningIcon
               style={{ fontSize: "small", marginRight: 10 }}
