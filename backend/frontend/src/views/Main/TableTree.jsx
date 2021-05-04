@@ -18,7 +18,6 @@ import {
 import { useContext, useEffect, useState } from "react";
 
 import EvaluationDialog from "./EvaluationDialog.jsx";
-import EvaluationWarningDialog from "./EvaluationDialog.jsx";
 import AddBomDialog from "./AddBomDialog.jsx";
 import AddMaterialDialog from "./AddMaterialDialog.jsx";
 
@@ -335,7 +334,7 @@ const TableTree = () => {
           textAlign: "left",
         }}
       >
-        <Grid item xs={2}>
+        <Grid item xs={4}>
           <Typography>Bitte wählen Sie eine Stückliste aus.</Typography>
           <FormControl className={classes.formControl}>
             <Autocomplete
@@ -426,9 +425,7 @@ const TableTree = () => {
               </Typography>
             }
           >
-
-                <EvaluationDialog></EvaluationDialog>
-     
+            <EvaluationDialog></EvaluationDialog>
           </Tooltip>
         </Grid>
       </Grid>

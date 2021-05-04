@@ -140,7 +140,7 @@ const EvaluationDialog = () => {
         recycling_cat: evaluationData.Grade,
         evaluated: 1,
         impure: isImpure,
-        dangerous: isDangerous
+        dangerous: isDangerous,
       }),
       redirect: "follow",
     };
@@ -423,132 +423,104 @@ const EvaluationDialog = () => {
 
         <DialogContent>
           <MuiThemeProvider theme={muiTheme}>
-
-
-
-
-
-
-
-          {(dataBackend
+            {dataBackend
               .map((row) => row.is_atomic)
               .filter((element) => element == 1).length ==
               dataBackend
                 .map((row) => row.plast_fam)
-                .filter((element) => element != null).length) &&
-            (dataBackend
+                .filter((element) => element != null).length &&
+            dataBackend
               .map((row) => row.is_atomic)
-              .filter((element) => element == 1).length != 0)
-
-          ? (
-
-            <div>
-              <Stepper activeStep={activeStep}>
-                {steps.map((label, index) => {
-                  const stepProps = {};
-                  const labelProps = {};
-
-                  return (
-                    <Step key={label} {...stepProps}>
-                      <StepLabel {...labelProps}>{label}</StepLabel>
-                    </Step>
-                  );
-                })}
-              </Stepper>
+              .filter((element) => element == 1).length != 0 ? (
               <div>
-                {activeStep === steps.length ? (
-                  <div>
-                    <Typography className={classes.instructions}>
-                      Vielen Dank für Ihre Eingaben. Sie können Ihre Ergebnisse
-                      jetzt speichern, indem Sie die Bewertung "Abschließen".
-                    </Typography>
+                <Stepper activeStep={activeStep}>
+                  {steps.map((label, index) => {
+                    const stepProps = {};
+                    const labelProps = {};
 
-                    <Grid container item xs={12} justify="center">
-                      <Button
-                        onClick={handleReset}
-                        className={classes.buttons2}
-                      >
-                        Eingaben ändern
-                      </Button>
-                      <Button
-                        onClick={() => {
-                          handleReset();
-                          handleClose();
-                        }}
-                        className={classes.buttons2}
-                      >
-                        Abbrechen
-                      </Button>
-                      <Button
-                        onClick={() => {
-                          saveEvaluationResults();
-                          handleReset();
-                          handleClose();
-                        }}
-                        className={classes.buttons2}
-                      >
-                        Evaluationsergebnisse speichern
-                      </Button>
-                    </Grid>
-                  </div>
-                ) : (
-                  <div>
-                    <Typography className={classes.instructions}>
-                      {getStepContent(activeStep)}
-                    </Typography>
+                    return (
+                      <Step key={label} {...stepProps}>
+                        <StepLabel {...labelProps}>{label}</StepLabel>
+                      </Step>
+                    );
+                  })}
+                </Stepper>
+                <div>
+                  {activeStep === steps.length ? (
                     <div>
+                      <Typography className={classes.instructions}>
+                        Vielen Dank für Ihre Eingaben. Sie können Ihre
+                        Ergebnisse jetzt speichern, indem Sie die Bewertung
+                        "Abschließen".
+                      </Typography>
+
                       <Grid container item xs={12} justify="center">
                         <Button
-                          disabled={activeStep === 0}
-                          onClick={handleBack}
-                          className={classes.buttons}
+                          onClick={handleReset}
+                          className={classes.buttons2}
                         >
-                          Zurück
+                          Eingaben ändern
                         </Button>
                         <Button
-                          onClick={handleNext}
-                          className={classes.buttons}
+                          onClick={() => {
+                            handleReset();
+                            handleClose();
+                          }}
+                          className={classes.buttons2}
                         >
-                          Weiter
+                          Abbrechen
+                        </Button>
+                        <Button
+                          onClick={() => {
+                            saveEvaluationResults();
+                            handleReset();
+                            handleClose();
+                          }}
+                          className={classes.buttons2}
+                        >
+                          Evaluationsergebnisse speichern
                         </Button>
                       </Grid>
                     </div>
-                  </div>
-                )}
+                  ) : (
+                    <div>
+                      <Typography className={classes.instructions}>
+                        {getStepContent(activeStep)}
+                      </Typography>
+                      <div>
+                        <Grid container item xs={12} justify="center">
+                          <Button
+                            disabled={activeStep === 0}
+                            onClick={handleBack}
+                            className={classes.buttons}
+                          >
+                            Zurück
+                          </Button>
+                          <Button
+                            onClick={handleNext}
+                            className={classes.buttons}
+                          >
+                            Weiter
+                          </Button>
+                        </Grid>
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-
-
-
-
             ) : (
-
               <div>
-            <Grid container item xs={12} justify="center">
+                <Grid container item xs={12} justify="center">
                   <Typography className={classes.instructions}>
-                    Bitte ordnen Sie zuerst jeder atomaren Komponente einen Rohstoff zu.
+                    Bitte ordnen Sie zuerst jeder atomaren Komponente einen
+                    Rohstoff zu.
                   </Typography>
                   <Button onClick={handleClose} className={classes.buttons2}>
                     Ok
                   </Button>
                 </Grid>
-            </div>
-
+              </div>
             )}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
           </MuiThemeProvider>
         </DialogContent>
       </Dialog>
