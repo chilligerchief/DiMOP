@@ -144,6 +144,7 @@ const Main = () => {
                 <InfoOutlinedIcon
                   style={{
                     fontSize: 32,
+                    cursor: "pointer",
                   }}
                   onClick={() => setContentNum(1)}
                   className={clsx({
@@ -153,6 +154,7 @@ const Main = () => {
                 <AccountTreeOutlinedIcon
                   style={{
                     fontSize: 32,
+                    cursor: "pointer",
                   }}
                   onClick={() => setContentNum(2)}
                   className={clsx({
@@ -162,6 +164,7 @@ const Main = () => {
                 <RateReviewOutlinedIcon
                   style={{
                     fontSize: 32,
+                    cursor: "pointer",
                   }}
                   onClick={() => setContentNum(3)}
                   className={clsx({
