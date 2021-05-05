@@ -1,10 +1,13 @@
-import React from "react";
-import { useContext, useState, useEffect } from "react";
+// Contains evaluation dialog
 
-//Components
+// Import react components
+import React from "react";
+import { useContext, useState } from "react";
+
+// Import own components
 import { MainContext } from "./MainContext.jsx";
 
-//Material UI
+// Import material ui components
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";
@@ -30,7 +33,7 @@ import {
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 
-// css theme
+// Use css via makeStyles
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -63,6 +66,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// Override default material ui theme
 const muiTheme = createMuiTheme({
   overrides: {
     MuiStepIcon: {
@@ -79,6 +83,7 @@ const muiTheme = createMuiTheme({
   },
 });
 
+// Define radio button styles
 const GreenRadio = withStyles({
   root: {
     color: "#005000",
@@ -89,17 +94,25 @@ const GreenRadio = withStyles({
   checked: {},
 })((props) => <Radio color="default" {...props} />);
 
+// Component EvaluationDialog
 const EvaluationDialog = () => {
+
+  // Declare variable for useStyles
   const classes = useStyles();
 
+  // Import global variables via useContext
   const { evaluation_open, data_backend } = useContext(MainContext);
 
+  // Declare variables imported from MainContext.jsx
   const [dataBackend, setDataBackend] = data_backend;
   const [evaluationOpen, setEvaluationOpen] = evaluation_open;
+
+  // Declare variables
   const [evaluationData, setEvaluationData] = useState([]);
   const [isDangerous, setIsDangerous] = useState(0);
   const [isImpure, setIsImpure] = useState(0);
 
+  // Send data to backend, evaluate and send results back. Using endpoint evaluation.py
   const initiateEvaluation = () => {
     const requestOptions = {
       method: "POST",
@@ -125,6 +138,7 @@ const EvaluationDialog = () => {
       });
   };
 
+  // Save evaluation results. Using endpoint mat.py
   const saveEvaluationResults = () => {
     var requestOptions = {
       method: "PUT",
@@ -151,18 +165,22 @@ const EvaluationDialog = () => {
       .catch((error) => console.log("error", error));
   };
 
+  // Handle setting isDangerous
   const handleChangeDangerous = (event) => {
     setIsDangerous(event.target.value);
   };
 
+  // Handle setting isImpure
   const handleChangeImpurity = (event) => {
     setIsImpure(event.target.value);
   };
 
+  // Get steps for stepper (number of elements in array = number of steps)
   const getSteps = () => {
     return ["", "", "", ""];
   };
 
+// Rendering color of visual recycling value based on recycling grade
   const renderVisualRecyclingValue = () => {
     if (evaluationData.Grade == "A")
       return (
@@ -228,6 +246,7 @@ const EvaluationDialog = () => {
     );
   };
 
+  // Used to get step contents
   function getStepContent(step) {
     switch (step) {
       case 0:
@@ -240,6 +259,7 @@ const EvaluationDialog = () => {
           </div>
         );
       case 1:
+        // Define if product causes environmental damage
         return (
           <div className={classes.stepdiv}>
             <Grid container item xs={12}>
@@ -269,6 +289,7 @@ const EvaluationDialog = () => {
           </div>
         );
       case 2:
+        // Define if product contains impurities
         return (
           <div className={classes.stepdiv}>
             <Grid container item xs={12}>
@@ -298,6 +319,7 @@ const EvaluationDialog = () => {
           </div>
         );
       case 3:
+        // Here, evaluation can be triggered
         return (
           <div className={classes.stepdiv2}>
             <Grid
@@ -360,6 +382,7 @@ const EvaluationDialog = () => {
               alignItems="center"
               justify="center"
             >
+              {/* Button: Triggers evaluation using endpoint evaluation.py */}
               <Button onClick={initiateEvaluation} className={classes.buttons}>
                 Bewerten
               </Button>
@@ -375,33 +398,40 @@ const EvaluationDialog = () => {
     }
   }
 
+  // Used to handle if evaluation dialog is open
   const handleClickOpen = () => {
     setEvaluationOpen(true);
   };
 
+  // Used to handle if evaluation dialog is closed
   const handleClose = () => {
     setEvaluationOpen(false);
     setEvaluationData([]);
     setActiveStep(0);
   };
 
+  // Set active steps and define getSteps
   const [activeStep, setActiveStep] = useState(0);
   const steps = getSteps();
 
+  // Increase step
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
+  // Decrease step
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
+  // Reset steps to 1
   const handleReset = () => {
     setActiveStep(1);
   };
 
   return (
     <div>
+      {/* Embedded in TableTree.jsx */}
       <Button className={classes.buttons} onClick={handleClickOpen}>
         <PlayCircleOutlineIcon
           style={{ marginRight: 5 }}
@@ -423,6 +453,8 @@ const EvaluationDialog = () => {
 
         <DialogContent>
           <MuiThemeProvider theme={muiTheme}>
+            {/* Filters data backend, and if conditions are met,
+            the evaluation stepper is rendered */}
             {dataBackend
               .map((row) => row.is_atomic)
               .filter((element) => element == 1).length ==
@@ -455,12 +487,14 @@ const EvaluationDialog = () => {
                       </Typography>
 
                       <Grid container item xs={12} justify="center">
+                        {/* Button: Reset input */}
                         <Button
                           onClick={handleReset}
                           className={classes.buttons2}
                         >
                           Eingaben ändern
                         </Button>
+                        {/* Button: Cancel dialog */}
                         <Button
                           onClick={() => {
                             handleReset();
@@ -470,6 +504,7 @@ const EvaluationDialog = () => {
                         >
                           Abbrechen
                         </Button>
+                        {/* Button: Safe evaluation results */}
                         <Button
                           onClick={() => {
                             saveEvaluationResults();
@@ -489,6 +524,7 @@ const EvaluationDialog = () => {
                       </Typography>
                       <div>
                         <Grid container item xs={12} justify="center">
+                          {/* Button: Decrease step */}
                           <Button
                             disabled={activeStep === 0}
                             onClick={handleBack}
@@ -496,6 +532,7 @@ const EvaluationDialog = () => {
                           >
                             Zurück
                           </Button>
+                          {/* Button: Increase step */}
                           <Button
                             onClick={handleNext}
                             className={classes.buttons}
@@ -510,6 +547,8 @@ const EvaluationDialog = () => {
               </div>
             ) : (
               <div>
+                {/* If conditions are not met (e.g. if not every atomic component is
+                  assigned to a plastic type),  */}
                 <Grid container item xs={12} justify="center">
                   <Typography className={classes.instructions}>
                     Bitte ordnen Sie zuerst jeder atomaren Komponente einen

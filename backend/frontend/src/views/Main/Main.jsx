@@ -1,8 +1,13 @@
+// Main component: Contains everything relevant
+
+// Import react components
 import React from "react";
 import { useContext, useState, useEffect } from "react";
+
+// Import clsx
 import clsx from "clsx";
 
-//Components
+// Import own components
 import PartnerLogos from "../../components/PartnerLogos/PartnerLogos";
 import NavBar from "../../components/NavBar/NavBar";
 import TableTree from "./TableTree.jsx";
@@ -10,7 +15,7 @@ import ConstructionsTable from "./ConstructionsTable.jsx";
 import CompareMaterials from "./CompareMaterials.jsx";
 import { MainContext } from "./MainContext.jsx";
 
-//Material UI
+// Import material ui components
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import MaterialUIToolbar from "@material-ui/core/Toolbar";
@@ -20,6 +25,7 @@ import AccountTreeOutlinedIcon from "@material-ui/icons/AccountTreeOutlined";
 import RateReviewOutlinedIcon from "@material-ui/icons/RateReviewOutlined";
 import Typography from "@material-ui/core/Typography";
 
+// Use css via makeStyles
 const useStyles = makeStyles((theme) => ({
   mainwindow: {
     padding: 20,
@@ -82,17 +88,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// Component Main
 const Main = () => {
+
+  // Declare variable for useStyles
   const classes = useStyles();
 
+  // Import global variables via useContext
   const {
     selected_construction_id,
     selected_construction_title,
-    orga_id,
   } = useContext(MainContext);
 
-  const [orgaId, setOrgaId] = orga_id;
-
+  // Declare variables imported from MainContext.jsx
   const [
     selectedConstructionId,
     setSelectedConstructionId,
@@ -102,16 +110,22 @@ const Main = () => {
     setSelectedConstructionTitle,
   ] = selected_construction_title;
 
+  // Declare variables
   const [contentNum, setContentNum] = useState(1);
 
   return (
     <div>
+      {/* Contains component NavBar.jsx */}
       <NavBar></NavBar>
+      {/* Contains component PartnerLogos.jsx */}
       <PartnerLogos></PartnerLogos>
+      {/* Contains AppBar. Can switch between ConstructionsTable.jsx,
+      TableTree.jsx and CompareMaterials.jsx"  */}
       <AppBar position="relative" style={{ background: "#007F3D" }}>
         <MaterialUIToolbar>
           <Grid container alignItems="center">
             <Grid item xs={6}>
+              {/* Shows which construction is currently constructed */}
               <Typography variant="h6" noWrap>
                 {"Konstruktion: " +
                   selectedConstructionId +
@@ -119,6 +133,7 @@ const Main = () => {
                   selectedConstructionTitle}
               </Typography>
             </Grid>
+            {/* Contains icons which can be used to choose content */}
             <Grid item xs={6}>
               <Grid
                 container

@@ -38,10 +38,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// Main component MaterialFertNew
+// Component MaterialFertNew
 const MaterialFertNew = () => {
 
-  // Declare variable for useStates
+  // Declare variable for useStyles
   const classes = useStyles();
 
   // Import global variables via useContext

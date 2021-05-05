@@ -18,7 +18,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 
-// css theme
+// Use css via makeStyles
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -36,15 +36,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// Component DeleteConstructionDialog
 const DeleteConstructionDialog = () => {
+
+  // Declare variable for useStyles
   const classes = useStyles();
 
+   // Import global variables via useContext
   const {
     delete_construction_open,
     constructions_updated,
     selected_construction_id,
   } = useContext(MainContext);
 
+  // Declare variables imported from MainContext.jsx
   const [
     selectedConstructionId,
     setSelectedConstructionId,
@@ -55,15 +60,18 @@ const DeleteConstructionDialog = () => {
     setDeleteConstructionOpen,
   ] = delete_construction_open;
 
+  // Used to handle if delete material dialog is open
   const handleClickOpen = () => {
     setDeleteConstructionOpen(true);
   };
 
+  // Used to handle if delete material dialog is closed
   const handleClose = () => {
     setDeleteConstructionOpen(false);
     setSelectedConstructionId([]);
   };
 
+  // Used to delete construction entry. Using cons.py
   const deleteConstructionEntry = (consId) => {
     var requestOptions = {
       method: "DELETE",
@@ -79,6 +87,7 @@ const DeleteConstructionDialog = () => {
 
   return (
     <div>
+      {/* Embedded in TableTree.jsx */}
       <Button className={classes.buttons} onClick={handleClickOpen}>
         <DeleteIcon style={{ marginRight: 5 }}></DeleteIcon>
         Löschen
@@ -117,6 +126,7 @@ const DeleteConstructionDialog = () => {
           </Grid>
           <Grid container item xs={12}>
             <Grid item xs={6}>
+              {/* Button: Cancel deletion*/}
               <Button
                 color="primary"
                 className={classes.buttons}
@@ -128,6 +138,7 @@ const DeleteConstructionDialog = () => {
             </Grid>
 
             <Grid item xs={6}>
+              {/* Delete selected construction*/}
               <Button
                 color="primary"
                 className={classes.buttons}

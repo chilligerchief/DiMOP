@@ -56,10 +56,10 @@ const useStyles = makeStyles((theme) => ({
   textfield: { margin: 10, padding: 0, background: "white" },
 }));
 
-// Main component MaterialSearch
+// Component MaterialSearch
 const MaterialSearch = () => {
 
-  // Declare variable for useStates
+  // Declare variable for useStyles
   const classes = useStyles();
 
   // Import global variables via useContext

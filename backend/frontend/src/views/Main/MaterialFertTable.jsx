@@ -50,10 +50,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// Main component MatFertTable
+// Component MatFertTable
 const MatFertTable = () => {
 
-  // Declare variable for useStates
+  // Declare variable for useStyles
   const classes = useStyles();
 
   // Import global variables via useContext

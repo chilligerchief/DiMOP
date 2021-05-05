@@ -1,10 +1,12 @@
+
+// Import react components
 import React from "react";
 
-//Components
+//Import main components
 import { MainProvider } from "./MainContext";
 import Main from "./Main";
 
-// import provider for wrapping and state management in construction Info
+// Import provider for wrapping and state management in construction info
 function MainWrapper() {
   return (
     <MainProvider>

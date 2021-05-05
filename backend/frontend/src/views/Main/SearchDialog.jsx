@@ -22,7 +22,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-// Main component SearchDialog
+// Component SearchDialog
 export const SearchDialog = (props) => {
   const descriptionElementRef = useRef(null);
 
