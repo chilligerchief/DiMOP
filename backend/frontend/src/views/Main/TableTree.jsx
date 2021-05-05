@@ -230,14 +230,14 @@ const TableTree = () => {
     { name: "volume", title: "Volumen" },
     { name: "volume_unit", title: "Vol. Einheit" },
     { name: "orga_id", title: "Organisations Id" },
-    { name: "mat_rw", title: "Rec.Kat." },
-    { name: "recycling_cat", title: "Organisations Id" },
+    { name: "mat_rw", title: "Rec.Value" },
+    { name: "recycling_cat", title: "Rec.Kat." },
     { name: "resource_use", title: "ADPf" },
     { name: "co2_value", title: "GWP" },
     { name: "impure", title: "Enthält Störstoffe" },
     { name: "dangerous", title: "Enthält Gefahrenstoffe" },
-    { name: "evaluated", title: "Lösch.Kz" },
-    { name: "del_kz", title: "Organisations Id" },
+    { name: "evaluated", title: "Evaluiert" },
+    { name: "del_kz", title: "Lösch.Kz" },
     { name: "cons_id", title: "Kons.Id" },
   ]);
 
