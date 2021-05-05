@@ -275,6 +275,7 @@ const TableTree = () => {
 
   // Hide specific columns by default
   const [defaultHiddenColumnNames] = useState([
+    "bom_id",
     "level",
     "result_id",
     "parent_id",
@@ -292,7 +293,7 @@ const TableTree = () => {
     "dangerous",
     "del_kz",
     "cons_id",
-    "evluated",
+    "evaluated",
   ]);
 
   // Set specific variables on click
