@@ -1,3 +1,11 @@
+{/* 
+Contains table tree componente where bill of materials (bom) can be managed, exported and evaluated
+*/}
+
+// Import react components
+import { useContext, useEffect, useState } from "react";
+
+// Import devexpress components
 import {
   ColumnChooser,
   Grid as GridDevExpress,
@@ -15,8 +23,8 @@ import {
   SortingState,
   TreeDataState,
 } from "@devexpress/dx-react-grid";
-import { useContext, useEffect, useState } from "react";
 
+// Import own components
 import EvaluationDialog from "./EvaluationDialog.jsx";
 import AddBomDialog from "./AddBomDialog.jsx";
 import AddMaterialDialog from "./AddMaterialDialog.jsx";
@@ -24,6 +32,7 @@ import DeleteMaterialDialog from "./DeleteMaterialDialog.jsx";
 import CsvUploadDialog from "./CsvUploadDialog.jsx";
 import { MainContext } from "./MainContext.jsx";
 
+// Import material ui components
 import PolymerIcon from "@material-ui/icons/Polymer";
 import React from "react";
 import { SearchDialog } from "../../views/Main/SearchDialog.jsx";
@@ -38,8 +47,10 @@ import Grid from "@material-ui/core/Grid";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import Button from "@material-ui/core/Button";
 
+// Import csv download component
 import CsvDownload from "react-json-to-csv";
 
+// Use css via makeStyles
 const useStyles = makeStyles((theme) => ({
   mainwindow: {
     padding: 20,
@@ -87,6 +98,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// Function to get child rows
 const getChildRows = (row, rootRows) => {
   const childRows = rootRows.filter(
     (r) => r.parent_id === (row ? row.result_id : null)
@@ -94,6 +106,7 @@ const getChildRows = (row, rootRows) => {
   return childRows.length ? childRows : null;
 };
 
+// Function to visually represent which bom components are atomic
 const PlasticTypeProviderFormatter = ({ value, row }) => {
   if (value == 1)
     return (
@@ -125,6 +138,7 @@ const PlasticTypeProviderFormatter = ({ value, row }) => {
     );
 };
 
+// Function to visually represent which bom components are atomic
 const PlasticTypeProvider = (props) => (
   <DataTypeProvider
     formatterComponent={PlasticTypeProviderFormatter}
@@ -132,7 +146,13 @@ const PlasticTypeProvider = (props) => (
   />
 );
 
+// Main component TableTree
 const TableTree = () => {
+
+  // Declare variable for useStales
+  const classes = useStyles();
+
+  // Import global variables via useContext
   const {
     selected_material,
     parent_material,
@@ -150,12 +170,9 @@ const TableTree = () => {
     evaluation_warning_open,
   } = useContext(MainContext);
 
-  const [evaluationOpen, setEvaluationOpen] = evaluation_open;
-  const [
-    evaluationWarningOpen,
-    setEvaluationWarningOpen,
-  ] = evaluation_warning_open;
-  const [selectedMaterial, setSelectedMaterial] = selected_material;
+  // Declare variables imported from MainContext
+  // const [evaluationOpen, setEvaluationOpen] = evaluation_open;
+  // const [selectedMaterial, setSelectedMaterial] = selected_material;
   const [parentMaterial, setParentMaterial] = parent_material;
   const [deleteMaterial, setDeleteMaterial] = delete_material;
   const [bomUpdated, setBomUpdated] = bom_updated;
@@ -167,16 +184,21 @@ const TableTree = () => {
     selectedConstructionTitle,
     setSelectedConstructionTitle,
   ] = selected_construction_title;
-  const [bomMaterialId, setBomMaterialId] = useState("");
-
-  const classes = useStyles();
   const [dataBackend, setDataBackend] = data_backend;
-  const [childUpdated, setChildUpdated] = child_updated;
+  // const [childUpdated, setChildUpdated] = child_updated;
   const [highestLevelId, setHighestLevelId] = highest_level_id;
   const [newBomCreated, setNewBomCreated] = new_bom_created;
   const [selectionAtomic, setSelectionAtomic] = selection_atomic;
   const [searchDialogOpen, setSearchDialogOpen] = search_dialog_open;
 
+  // Declare variables
+  const [bomMaterialId, setBomMaterialId] = useState("");
+  const [rowSelection, setRowSelection] = useState([]);
+  //const [selectedMaraId, setSelectedMaraId] = useState(0);
+  const [listDropdownData, setListDropdownData] = useState([]);
+  const [dropdownSelected, setDropdownSelected] = useState([]);
+
+ // Fetch tabletree data from backend endpoint tabletree.py
   useEffect(() => {
     if (selectedConstructionTitle !== "Bitte auswaehlen") {
       fetch("/tree/" + bomMaterialId)
@@ -194,6 +216,7 @@ const TableTree = () => {
     }
   }, [bomUpdated, bomMaterialId]);
 
+  // Fetch dropdown data from backend endpoint mat.py
   useEffect(() => {
     if (selectedConstructionTitle !== "Bitte auswaehlen") {
       fetch("/mat?cons_id=" + selectedConstructionId)
@@ -207,6 +230,7 @@ const TableTree = () => {
     }
   }, [selectedConstructionId, newBomCreated]);
 
+  // Define columns for tabletree data
   const [columns] = useState([
     { name: "result_id", title: "Id" },
     { name: "parent_id", title: "Parent" },
@@ -241,6 +265,7 @@ const TableTree = () => {
     { name: "cons_id", title: "Kons.Id" },
   ]);
 
+  // Define column width for specific columns
   const [tableColumnExtensions] = useState([
     { columnName: "mat_id", width: 250 },
     { columnName: "mat_desc", width: 250 },
@@ -253,7 +278,11 @@ const TableTree = () => {
     { columnName: "impure", width: 150 },
     { columnName: "dangerous", width: 170 },
   ]);
+
+  // Default value for expanded rows in tabletree
   const [defaultExpandedRowIds] = useState([0]);
+
+  // Hide specific columns by default
   const [defaultHiddenColumnNames] = useState([
     "level",
     "result_id",
@@ -274,12 +303,7 @@ const TableTree = () => {
     "evluated",
   ]);
 
-  const [rowSelection, setRowSelection] = useState([]);
-  const [selectedMaraId, setSelectedMaraId] = useState(0);
-
-  const [listDropdownData, setListDropdownData] = useState([]);
-  const [dropdownSelected, setDropdownSelected] = useState([]);
-
+  // Set specific variables on click
   const setParent = () => {
     if (rowSelection.length == 1) {
       setParentMaterial(dataBackend[rowSelection].mat_id);
@@ -288,11 +312,13 @@ const TableTree = () => {
     }
   };
 
+  // Handle drop down menu changes
   const handleDropdownChange = (event) => {
     setDropdownSelected(event.target.textContent);
     setBomMaterialId(parseInt(event.target.textContent.split(" ")[0]));
   };
 
+  // Transform drop down data
   const transformDropdownData = (data) => {
     if (data !== null && data.length !== 0) {
       const source = data.map((item) => item.id + " " + item.mat_desc);
@@ -300,22 +326,26 @@ const TableTree = () => {
     } else setListDropdownData([]);
   };
 
+  // Select component to be deleted
   const setDeleteComponent = () => {
     if (rowSelection.length == 1) {
       setDeleteMaterial(dataBackend[rowSelection].bom_id);
     }
   };
 
+  // Handle if search dialog is closed
   const handleSearchDialogClose = () => {
     setSearchDialogOpen(false);
   };
 
+  {/* Used to control if search dialog is open */}
   useEffect(() => {
     console.log("search dialog changed", searchDialogOpen);
   }, [searchDialogOpen]);
 
   return (
     <div>
+      {/* Search dialog */}
       <SearchDialog
         open={searchDialogOpen}
         handleSearchDialogClose={handleSearchDialogClose}
@@ -330,6 +360,7 @@ const TableTree = () => {
           textAlign: "left",
         }}
       >
+        {/* Dropdown to choose bom */}
         <Grid item xs={4}>
           <Typography>Bitte wählen Sie eine Stückliste aus.</Typography>
           <FormControl className={classes.formControl}>
@@ -349,6 +380,7 @@ const TableTree = () => {
             />
           </FormControl>
         </Grid>
+        {/* Component to import csv. Uses CsvUploadDialod.jsx */}
         <Grid item xs={2}>
           <Tooltip
             title={
@@ -363,6 +395,7 @@ const TableTree = () => {
             </div>
           </Tooltip>
         </Grid>
+        {/* Export choosen bom to csv */}
         <Grid item xs={2}>
           <Tooltip
             title={
@@ -399,6 +432,7 @@ const TableTree = () => {
           </Tooltip>
         </Grid>
 
+        {/* Used to create new material as bom. Uses AddBomDialog.jsx */}
         <Grid item xs={2}>
           <Tooltip
             title={
@@ -413,6 +447,7 @@ const TableTree = () => {
           </Tooltip>
         </Grid>
 
+        {/* Used to evaluate choosen bom. Uses EvaluationDialog.jsx */}
         <Grid item xs={2}>
           <Tooltip
             title={
@@ -425,6 +460,8 @@ const TableTree = () => {
           </Tooltip>
         </Grid>
       </Grid>
+
+      {/* Contains tabletree component */}
       <div>
         <GridDevExpress rows={dataBackend} columns={columns}>
           <SelectionState
@@ -459,6 +496,7 @@ const TableTree = () => {
       >
         <Grid item xs={6}></Grid>
 
+        {/* Used to delete component within bom. Uses DeleteMaterialDialog.jsx */}
         <Grid item xs={2}>
           <Tooltip
             title={
@@ -473,6 +511,7 @@ const TableTree = () => {
           </Tooltip>
         </Grid>
 
+        {/* Used to add material within bom. Uses AddMaterialDialog.jsx */}
         <Grid item xs={2}>
           <Tooltip
             title={
@@ -487,6 +526,8 @@ const TableTree = () => {
             </div>
           </Tooltip>
         </Grid>
+
+        {/* Used to initiate search. Uses SearchDialog.jsx*/}
         <Grid item xs={2}>
           <Tooltip
             title={
@@ -509,6 +550,7 @@ const TableTree = () => {
           </Tooltip>
         </Grid>
       </Grid>
+      {/* Warning if no onlx one row is selected */}
       <Grid container item xs={12} justify="center">
         {(rowSelection.length == 1) == false &&
         selectedConstructionTitle != "Bitte auswaehlen" &&

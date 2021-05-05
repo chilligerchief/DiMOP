@@ -1,8 +1,11 @@
+{/* 
+  Contains all the global variales that are used
+*/}
 import React, { createContext, useState } from "react";
 
 export const MainContext = createContext();
-
 export const MainProvider = (props) => {
+  {/* Initialize global variables */}
   const [orga_id, setOrgaId] = useState(1);
   const [selected_construction_id, setSelectedConstructionId] = useState([]);
   const [selected_construction_title, setSelectedConstructionTitle] = useState(
@@ -39,7 +42,6 @@ export const MainProvider = (props) => {
   const [child_updated, setChildUpdated] = useState(false);
   const [add_plast_open, setAddPlastOpen] = useState(false);
   const [evaluation_open, setEvaluationOpen] = useState(false);
-  const [evaluation_warning_open, setEvaluationWarningOpen] = useState(false);
   const [data_backend, setDataBackend] = useState([]);
   const [highest_level_id, setHighestLevelId] = useState();
   const [add_construction_open, setAddConstructionOpen] = useState(false);
@@ -78,7 +80,6 @@ export const MainProvider = (props) => {
         child_updated: [child_updated, setChildUpdated],
         add_plast_open: [add_plast_open, setAddPlastOpen],
         evaluation_open: [evaluation_open, setEvaluationOpen],
-        evaluation_warning_open: [evaluation_warning_open, setEvaluationWarningOpen],
         data_backend: [data_backend, setDataBackend],
         highest_level_id: [highest_level_id, setHighestLevelId],
         add_construction_open: [add_construction_open, setAddConstructionOpen],
