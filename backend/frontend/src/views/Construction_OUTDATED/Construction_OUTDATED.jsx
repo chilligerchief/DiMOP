@@ -17,7 +17,7 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import NavBar from "../../components/NavBar/NavBar";
 
-import ConstructionLoad from "./ConstructionLoad";
+import ConstructionLoad from "./ConstructionLoad_OUTDATED";
 import variants from "../../files/constructionVariantsById.json";
 import { DataTable } from "../../components/DataTable/DataTable";
 

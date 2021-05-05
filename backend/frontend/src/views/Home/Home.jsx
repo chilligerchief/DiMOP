@@ -4,7 +4,7 @@ import React, { Component, useRef } from "react";
 import { Ansprechpartner } from "../../components/Ansprechpartner/Ansprechpartner";
 import NavBar from "../../components/NavBar/NavBar";
 import PartnerLogos from "../../components/PartnerLogos/PartnerLogos";
-import { SearchDialog } from "../../components/Search/SearchDialog";
+import { SearchDialog } from "../../components/Search_OUTDATED/SearchDialog_OUTDATED";
 import { TriangleSpacer } from "../../components/Spacers/TriangleSpacer";
 import colors from "../../variables/colors";
 import solution from "../../assets/img/solution.jpg";

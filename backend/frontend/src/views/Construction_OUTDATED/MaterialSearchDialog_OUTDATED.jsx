@@ -6,7 +6,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
-import MaterialSearch from "./MaterialSearch";
+import MaterialSearch from "./MaterialSearch_OUTDATED";
 
 import { APIContext } from "../../APIContext";
 import { ConstructionContext } from "../../views/Construction/ConstructionContext";

@@ -15,8 +15,8 @@ import { APIContext } from "../../APIContext";
 import { ConstructionContext } from "../../views/Construction/ConstructionContext";
 
 import SearchMaterial_JSON from "../../files/searchmaterial.json";
-import FilterColumns from "./FilterColumns";
-import TableMaterialSearch from "./Table_MaterialSearch";
+import FilterColumns from "./FilterColumns_OUTDATED";
+import TableMaterialSearch from "./Table_MaterialSearch_OUTDATED";
 
 import moment from "moment";
 

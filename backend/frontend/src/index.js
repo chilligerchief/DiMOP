@@ -3,12 +3,12 @@ import ReactDOM from "react-dom";
 import { Route, Router, Switch } from "react-router-dom";
 import { APIProvider } from "./APIContext";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
-import { UserProvider } from "./contexts/UserContext";
+import { UserProvider } from "./contexts_OUTDATED/UserContext_OUTDATED";
 import { history } from "./helpers/history";
 import "./index.css";
 import { authenticationService } from "./services/authenticationService";
 import * as serviceWorker from "./serviceWorker";
-import ConstructionWrapper from "./views/Construction/ConstructionWrapper";
+import ConstructionWrapper from "./views/Construction_OUTDATED/ConstructionWrapper_OUTDATED";
 import { Home } from "./views/Home/Home";
 import { Login } from "./views/Login/Login";
 import MainWrapper from "./views/Main/MainWrapper";
@@ -41,11 +41,13 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Home}></Route>
           <PrivateRoute path="/home" component={Home}></PrivateRoute>
+          {/*
           <PrivateRoute
             path="/construction"
             component={ConstructionWrapper}
           ></PrivateRoute>
           <PrivateRoute path="/settings" component={Settings}></PrivateRoute>
+          */}
           <PrivateRoute path="/main" component={MainWrapper}></PrivateRoute>
           <Route path="/login" component={Login}></Route>
         </Switch>
