@@ -1,18 +1,19 @@
+// Contains the component that  allows to add components that already exist to materials
+
+// Import react components
 import React from "react";
 import { useEffect, useContext, useState } from "react";
 
-//Components
+// Import own components
 import { MainContext } from "./MainContext.jsx";
 
-//Material UI
+// Import material ui components
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-import { Typography } from "@material-ui/core";
-import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import WarningIcon from "@material-ui/icons/Warning";
 
-//Devexpress
+// Import devexpress components
 import {
   SelectionState,
   FilteringState,
@@ -31,6 +32,7 @@ import {
   Toolbar,
 } from "@devexpress/dx-react-grid-material-ui";
 
+// Use css via makeStyles
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -48,32 +50,38 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// Main component MatFertTable
 const MatFertTable = () => {
+
+  // Declare variable for useStates
   const classes = useStyles();
 
+  // Import global variables via useContext
   const {
     selected_material,
-    new_material,
     add_component_open,
     orga_id,
-    bom_updated,
     parent_material,
     child_updated,
     add_component_mode,
     active_step,
   } = useContext(MainContext);
 
+  // Declare variables imported from MainContext.jsx
   const [activeStep, setActiveStep] = active_step;
   const [selectedMaterial, setSelectedMaterial] = selected_material;
-  const [addComponentOpen, setAddComponentOpen] = add_component_open;
   const [orgaId, setOrgaId] = orga_id;
   const [childUpdated, setChildUpdated] = child_updated;
-  const [loading, setLoading] = useState(true);
-  const [materialData, setMaterialData] = useState([]);
   const [parentMaterial, setParentMaterial] = parent_material;
-  const [materialValid, setMaterialValid] = useState(true);
   const [addComponentMode, setAddComponentMode] = add_component_mode;
 
+// Declare variables
+  const [materialData, setMaterialData] = useState([]);
+  const [materialValid, setMaterialValid] = useState(true);
+  const [selection, setSelection] = useState([]);
+
+
+  // Fetch material data from backend endpoint mat.py
   useEffect(() => {
     fetch("/mat?orga_id=" + orgaId)
       .then((res) => {
@@ -87,6 +95,7 @@ const MatFertTable = () => {
       });
   }, []);
 
+  // Define columns for material data
   const [materialColumns] = useState([
     { name: "id", title: "Mat.Nr." },
     { name: "mat_desc", title: "Mat.Bez." },
@@ -106,6 +115,7 @@ const MatFertTable = () => {
     { name: "is_atomic", title: "Atomar?" },
   ]);
 
+  // Hide specific columns by default
   const [defaultHiddenColumnNames] = useState([
     "mat_id_int",
     "mat_desc_int",
@@ -123,10 +133,10 @@ const MatFertTable = () => {
     "is_atomic",
   ]);
 
+  // Define column width for specific columns
   const [tableColumnExtensions] = useState([{ columnName: "id", width: 100 }]);
 
-  const [selection, setSelection] = useState([]);
-
+  // Select material
   const onClickSelect = () => {
     if (selection.length == 1) {
       setSelectedMaterial(materialData[selection].id);
@@ -139,6 +149,7 @@ const MatFertTable = () => {
 
   return (
     <div>
+      {/* Contains material table */}
       <GridDevExpress rows={materialData} columns={materialColumns}>
         <SelectionState
           selection={selection}
@@ -158,12 +169,14 @@ const MatFertTable = () => {
         <TableFilterRow />
         <TableHeaderRow showSortingControls />
       </GridDevExpress>
+      {/* Button: Choose material */}
       <Grid container item xs={12} justify="center">
         <Grid item xs={2}></Grid>
         <Grid item xs={8}>
           <Button className={classes.buttons} onClick={onClickSelect}>
             Material auswählen
           </Button>
+          {/* If material is not valid. Display warning */}
           {materialValid ? (
             <div />
           ) : (

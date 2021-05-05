@@ -6,7 +6,7 @@ import React, { useContext, useState } from "react";
 // Import own components
 import { MainContext } from "./MainContext.jsx";
 
-//Material UI
+// Import material ui components
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
@@ -59,15 +59,15 @@ const useStyles = makeStyles((theme) => ({
 // Main component MaterialSearch
 const MaterialSearch = () => {
 
-    // Declare variable for useStates
+  // Declare variable for useStates
   const classes = useStyles();
 
-   // Import global variables via useContext
+  // Import global variables via useContext
   const { search_dialog_open, parent_material, bom_updated } = useContext(
     MainContext
   );
 
-   // Declare variables imported from MainContext
+  // Declare variables imported from MainContext.jsx
   const [searchDialogOpen, setSearchDialogOpen] = search_dialog_open;
   const [parentMaterial, setParentMaterial] = parent_material;
   const [bomUpdated, setBomUpdated] = bom_updated;
@@ -163,7 +163,7 @@ const MaterialSearch = () => {
     setSearchDialogOpen(false);
   };
 
-  // Initiates search based on given specification
+  // Initiates search based on given specification using search.py
   const initiateSearch = () => {
     const requestOptions = {
       method: "POST",

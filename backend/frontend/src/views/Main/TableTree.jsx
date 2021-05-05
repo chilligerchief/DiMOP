@@ -1,4 +1,4 @@
-// Contains tabletree componente where bill of materials (bom) can be managed, exported and evaluated
+// Contains tabletree component where bill of materials (bom) can be managed, exported and evaluated
 
 // Import react components
 import { useContext, useEffect, useState } from "react";
@@ -164,7 +164,7 @@ const TableTree = () => {
     search_dialog_open,
   } = useContext(MainContext);
 
-  // Declare variables imported from MainContext
+  // Declare variables imported from MainContext.jsx
   const [parentMaterial, setParentMaterial] = parent_material;
   const [deleteMaterial, setDeleteMaterial] = delete_material;
   const [bomUpdated, setBomUpdated] = bom_updated;
@@ -188,7 +188,7 @@ const TableTree = () => {
   const [listDropdownData, setListDropdownData] = useState([]);
   const [dropdownSelected, setDropdownSelected] = useState([]);
 
- // Fetch tabletree data from backend endpoint tabletree.py
+  // Fetch tabletree data from backend endpoint tabletree.py
   useEffect(() => {
     if (selectedConstructionTitle !== "Bitte auswaehlen") {
       fetch("/tree/" + bomMaterialId)

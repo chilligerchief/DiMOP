@@ -1,9 +1,12 @@
+// Contains the component that  allows to add components that are new materials which are created 
+
+// Import react components
 import React, { useContext, useState } from "react";
 
-//Components
+// Import own components
 import { MainContext } from "./MainContext.jsx";
 
-//Material UI
+// Import material ui components
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -17,6 +20,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Typography from "@material-ui/core/Typography";
 import HelpIcon from "@material-ui/icons/Help";
 
+// Use css via makeStyles
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -34,9 +38,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MaterialFertNew = (saveItem) => {
+// Main component MaterialFertNew
+const MaterialFertNew = () => {
+
+  // Declare variable for useStates
   const classes = useStyles();
 
+  // Import global variables via useContext
   const {
     add_component_open,
     selected_construction_id,
@@ -47,9 +55,9 @@ const MaterialFertNew = (saveItem) => {
     material_created,
   } = useContext(MainContext);
 
+  // Declare variables imported from MainContext.jsx
   const [materialCreated, setMaterialCreated] = material_created;
   const [activeStep, setActiveStep] = active_step;
-  const [addComponentOpen, setAddComponentOpen] = add_component_open;
   const [
     selectedConstructionId,
     setSelectedConstructionId,
@@ -58,6 +66,7 @@ const MaterialFertNew = (saveItem) => {
   const [orgaId, setOrgaId] = orga_id;
   const [addComponentMode, setAddComponentMode] = add_component_mode;
 
+  // Declare variables
   const [newMaterial, setNewMaterial] = useState({
     mat_desc: "",
     mat_desc_int: "",
@@ -76,18 +85,20 @@ const MaterialFertNew = (saveItem) => {
   });
 
   const [isAtomic, setIsAtomic] = useState("1");
+  const [showErrorText1, setShowErrorText1] = useState(false);
+  const [showErrorText2, setShowErrorText2] = useState(false);
 
+  // Used to set newMaterial values
   const handleNewMaterialInputs = (event) => {
     setNewMaterial({ ...newMaterial, [event.target.id]: event.target.value });
   };
 
+  // Used to set isAtomic
   const handleRadioChange = (event) => {
     setIsAtomic(event.target.value);
   };
 
-  const [showErrorText1, setShowErrorText1] = useState(false);
-  const [showErrorText2, setShowErrorText2] = useState(false);
-
+  // Used to validate if input for new material is correct
   const validateNewMat = () => {
     var weightIsFloat = /^\d+\.\d+$/.test(newMaterial.weight);
     var weightIsNumeric = /^\d+$/.test(newMaterial.weight);
@@ -120,6 +131,7 @@ const MaterialFertNew = (saveItem) => {
     }
   };
 
+  // Used to save new material using mat.py
   const addMaterial = () => {
     const requestOptions = {
       method: "POST",
@@ -160,6 +172,7 @@ const MaterialFertNew = (saveItem) => {
 
   return (
     <div>
+      {/* Form for new material input */}
       <form className={classes.root} noValidate autoComplete="off">
         <TextField
           error={showErrorText1}
@@ -318,6 +331,7 @@ const MaterialFertNew = (saveItem) => {
       <Grid container item xs={12} justify="center">
         <Grid item xs={4}></Grid>
         <Grid item xs={4}>
+          {/* Button: Validate and create material */}
           <Button
             className={classes.buttons}
             onClick={() => {

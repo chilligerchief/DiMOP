@@ -38,7 +38,7 @@ export const SearchDialog = (props) => {
   // Declare variable for useStates
   const { selection_atomic } = useContext(MainContext);
 
-    // Import global variables via useContext
+  // Declare variables imported from MainContext.jsx
   const [selectionAtomic, setSelectionAtomic] = selection_atomic;
 
   return (
