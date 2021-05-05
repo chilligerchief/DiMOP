@@ -491,8 +491,7 @@ const CompareMaterials = () => {
         container
         item
         xs={12}
-        alignItems="center"
-        justifyContent="center"
+        justify="center"
         style={{
           marginTop: 25,
           marginBottom: 25,
