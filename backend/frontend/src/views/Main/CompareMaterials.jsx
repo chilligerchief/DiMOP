@@ -22,7 +22,7 @@ import CardContent from "@material-ui/core/CardContent";
 import WarningIcon from "@material-ui/icons/Warning";
 import CompareArrowsIcon from "@material-ui/icons/CompareArrows";
 import Tooltip from "@material-ui/core/Tooltip";
-
+import GetAppIcon from "@material-ui/icons/GetApp";
 
 //Devexpress
 import {
@@ -38,6 +38,9 @@ import {
   TableHeaderRow,
   Toolbar,
 } from "@devexpress/dx-react-grid-material-ui";
+
+// Import csv download component
+import CsvDownload from "react-json-to-csv";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -483,6 +486,56 @@ const CompareMaterials = () => {
             <TableHeaderRow showSortingControls />
           </GridDevExpress>
         </div>
+      </Grid>
+      <Grid
+        container
+        item
+        xs={12}
+        alignItems="center"
+        justifyContent="center"
+        style={{
+          marginTop: 25,
+          marginBottom: 25,
+          textAlign: "center",
+        }}
+      >
+                  <Tooltip
+            title={
+              <Typography variant="body1">
+                Hiermit können Sie den Vergleich der Materialien als csv-Datei exportieren.
+              </Typography>
+            }
+          >
+            <div>
+              <CsvDownload
+                data={resultData}
+                filename="dimop_comparison.csv"
+                style={{
+                  borderRight: "none",
+                  borderBottom: "none",
+                  borderLeft: "none",
+                  borderTop: "none",
+                  color: "#005000",
+                  margin: 20,
+                  height: 30,
+                  width: 120,
+                  backgroundColor: "white",
+                  cursor: "pointer",
+                  fontSize: "12px",
+                  fontWeight: "bold",
+                  fontFamiliy: "Roboto",
+                  textAlign: "center",
+                }}
+              >
+                <GetAppIcon style={{ marginRight: 5 }}></GetAppIcon>
+                Download
+              </CsvDownload>
+            </div>
+          </Tooltip>
+
+
+
+
       </Grid>
     </div>
   );
