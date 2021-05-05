@@ -39,8 +39,8 @@ import AddComponent from "../../components/ConstructionComponents/AddComponent";
 
 import { ConstructionContext } from "../../views/Construction/ConstructionContext";
 import { APIContext } from "../../APIContext";
-import TableTest from "./TableTest";
-import DemoTable from "./DemoTable";
+import TableTest from "./TableTest_OUTDATED";
+import DemoTable from "./DemoTable_OUTDATED";
 
 const useStyles = makeStyles((theme) => ({
     mainwindow: {

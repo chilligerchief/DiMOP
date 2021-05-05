@@ -12,7 +12,7 @@ import ConstructionWrapper from "./views/Construction_OUTDATED/ConstructionWrapp
 import { Home } from "./views/Home/Home";
 import { Login } from "./views/Login/Login";
 import MainWrapper from "./views/Main/MainWrapper";
-import Settings from "./views/Settings/Settings";
+// import Settings from "./views/Settings/Settings";
 
 // using router and debugging API Context in all sources
 const styleLink = document.createElement("link");

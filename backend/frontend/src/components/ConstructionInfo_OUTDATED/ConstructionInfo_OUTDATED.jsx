@@ -4,14 +4,14 @@ import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { ConstructionContext } from "../../views/Construction/ConstructionContext";
-import TableProjektTeam from "../../components/ConstructionInfo/Table_ProjektTeam";
-import TableProjektInfo from "../../components/ConstructionInfo/Table_ProjektInfo";
-import DeleteUser from "../../components/ConstructionInfo/DeleteUser";
-import EditUser from "../../components/ConstructionInfo/EditUser";
-import AddUser from "../../components/ConstructionInfo/AddUser";
-import DeleteAlternative from "../../components/ConstructionInfo/DeleteAlternative";
-import EditAlternative from "../../components/ConstructionInfo/EditAlternative";
-import AddAlternative from "../../components/ConstructionInfo/AddAlternative";
+import TableProjektTeam from "./Table_ProjektTeam_OUTDATED";
+import TableProjektInfo from "./Table_ProjektInfo_OUTDATED";
+import DeleteUser from "./DeleteUser_OUTDATED";
+import EditUser from "./EditUser_OUTDATED";
+import AddUser from "./AddUser";
+import DeleteAlternative from "./DeleteAlternative_OUTDATED";
+import EditAlternative from "./EditAlternative_OUTDATED";
+import AddAlternative from "./AddAlternative";
 
 // css theme
 const useStyles = makeStyles((theme) => ({

@@ -93,15 +93,9 @@ def calculate_f2(temp):
 
     temp["sys_ab"] = temp["mara_plast_id"].apply(get_has_system_ability)
 
-    sys_abs = np.array(temp["sys_ab"])
-    masses = np.array(temp["weight"])
-    mass_sum = np.sum(masses)
+    f2 = temp.loc[temp["sys_ab"] == 2]["weight"].sum()/temp["weight"].sum()
 
-    ##################################
-    # How shall 2s vs. 1s be handled???
-    ##################################
-
-    return np.dot(sys_abs, masses)/mass_sum
+    return f2
 
 
 def calculate_f3(temp, rel, table_tree):
@@ -183,14 +177,19 @@ def calculate_f4(temp, compability, g=0.2, h=0.5):
     '''
     mat_combinations = pd.DataFrame(
         list(product(temp['mat_id'], temp['mat_id'])), columns=["mat_id_1", "mat_id_2"])
+
     mat_weights = pd.DataFrame(
         list(product(temp['weight'], temp['weight'])), columns=["weight_1", "weight_2"])
+
     mat_fams = pd.DataFrame(
         list(product(temp['plast_fam'], temp['plast_fam'])), columns=["fam_1", "fam_2"])
+
     mat_combinations = pd.concat(
         [mat_combinations, mat_weights, mat_fams], axis=1)
+
     mat_combinations["mass_product"] = np.multiply(np.array(
         mat_combinations["weight_1"]), np.array(mat_combinations["weight_2"])).tolist()
+
     mat_combinations["compability"] = None
 
     mass_prod_sum = sum(mat_combinations["mass_product"])
@@ -212,8 +211,15 @@ def calculate_f4(temp, compability, g=0.2, h=0.5):
     mat_combinations["compability_weighted"] = mat_combinations["mass_product"] * \
         mat_combinations["compability"]
 
+    print(mat_combinations)
+
     mm = sum(mat_combinations["mass_product"])
+
+    print(f"mm: {mm}")
+
     vm = sum(mat_combinations["compability_weighted"])/mm
+
+    print(f"vm: {vm}")
 
     f4 = 1+g*(vm-h)
 

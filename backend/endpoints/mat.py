@@ -62,7 +62,15 @@ class MatEval(Resource):
         data = MatEval.parser.parse_args()
         print(data)
         mat = MatModel.find_by_id(_id).first()
+
+        db = connect_db()
+        material = pd.read_sql_query(f'SELECT * FROM mat WHERE id={_id}', db)
+
+        description = material["mat_desc"].tolist()[0]
+
         if mat:
+            mat.mat_desc = description.split(
+                "_")[0] + "_RW" + str(data['mat_rw'])
             mat.mat_rw = data['mat_rw']
             mat.price = data['price']
             mat.co2_value = data['co2_value']

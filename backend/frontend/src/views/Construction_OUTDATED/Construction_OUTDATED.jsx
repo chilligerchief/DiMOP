@@ -19,7 +19,7 @@ import NavBar from "../../components/NavBar/NavBar";
 
 import ConstructionLoad from "./ConstructionLoad_OUTDATED";
 import variants from "../../files/constructionVariantsById.json";
-import { DataTable } from "../../components/DataTable/DataTable";
+import { DataTable } from "../../components/DataTable_OUTDATED/DataTable_OUTDATED";
 
 // css theme || use classes.NAME
 const useStyles = makeStyles((theme) => ({}));

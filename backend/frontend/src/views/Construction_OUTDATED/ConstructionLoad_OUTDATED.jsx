@@ -17,7 +17,7 @@ import {
     TableBody,
     TableCell,
 } from "@material-ui/core";
-import { DataTable } from "../../components/DataTable/DataTable";
+import { DataTable } from "../../components/DataTable_OUTDATED/DataTable_OUTDATED";
 
 const ConstructionLoad = (props) => {
     // const [open, setOpen] = useState(props.loadDialogOpen || false);
