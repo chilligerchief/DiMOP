@@ -1,11 +1,10 @@
-{/* 
-  Contains all the global variales that are used
-*/}
-import React, { createContext, useState } from "react";
+// Contains all the global variales that are used
+ import React, { createContext, useState } from "react";
 
 export const MainContext = createContext();
+
 export const MainProvider = (props) => {
-  {/* Initialize global variables */}
+  //Initialize global variables 
   const [orga_id, setOrgaId] = useState(1);
   const [selected_construction_id, setSelectedConstructionId] = useState([]);
   const [selected_construction_title, setSelectedConstructionTitle] = useState(

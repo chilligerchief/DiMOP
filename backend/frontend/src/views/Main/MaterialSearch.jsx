@@ -1,4 +1,9 @@
+// Contains UI for materials search
+
+// Import react components
 import React, { useContext, useState } from "react";
+
+// Import own components
 import { MainContext } from "./MainContext.jsx";
 
 //Material UI
@@ -12,16 +17,15 @@ import PolymerIcon from "@material-ui/icons/Polymer";
 import SearchIcon from "@material-ui/icons/Search";
 import LoopIcon from "@material-ui/icons/Loop";
 
-// Data
+// Import autocomplete data
 import autocompleteData from "../../files/search_plast_data.json";
 
-// devexpress
+// Import devexpress components
 import {
   SelectionState,
   FilteringState,
   IntegratedFiltering,
 } from "@devexpress/dx-react-grid";
-
 import {
   Grid as GridDevExpress,
   Table,
@@ -33,6 +37,7 @@ import {
   Toolbar,
 } from "@devexpress/dx-react-grid-material-ui";
 
+// Use css via makeStyles
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -51,29 +56,40 @@ const useStyles = makeStyles((theme) => ({
   textfield: { margin: 10, padding: 0, background: "white" },
 }));
 
+// Main component MaterialSearch
 const MaterialSearch = () => {
+
+    // Declare variable for useStates
   const classes = useStyles();
 
+   // Import global variables via useContext
   const { search_dialog_open, parent_material, bom_updated } = useContext(
     MainContext
   );
 
+   // Declare variables imported from MainContext
   const [searchDialogOpen, setSearchDialogOpen] = search_dialog_open;
   const [parentMaterial, setParentMaterial] = parent_material;
   const [bomUpdated, setBomUpdated] = bom_updated;
 
+  // Declare variables
   const [matDesc, setMatDesc] = useState("");
   const [campusFam, setCampusFam] = useState("");
   const [producer, setProducer] = useState("");
   const [method, setMethod] = useState("");
+  const [resultData, setResultData] = useState([]);
+  const [resultCount, setResultCount] = useState(0);
+  const [resultsReturned, setResultsReturned] = useState(false);
+  const [selection, setSelection] = useState([]);
 
+  // For the following variables I looked up the min/max
+  // values in the data base and hardcored these
   const [zugmodul, setZugmodul] = useState("");
   const [zugmodulSliderRange, setZugmodulSliderRange] = useState([0, 110000]);
   const [zugmodulSliderValue, setZugmodulSliderValue] = useState([
     zugmodulSliderRange[0],
     zugmodulSliderRange[1],
   ]);
-
   const [bruchspannung, setBruchspannung] = useState("");
   const [bruchspannungSliderRange, setBruchspannungSliderRange] = useState([
     6.0,
@@ -83,7 +99,6 @@ const MaterialSearch = () => {
     bruchspannungSliderRange[0],
     bruchspannungSliderRange[1],
   ]);
-
   const [bruchdehnung, setBruchdehnung] = useState("");
   const [bruchdehnungSliderRange, setBruchdehnungSliderRange] = useState([
     0.3,
@@ -93,28 +108,24 @@ const MaterialSearch = () => {
     bruchdehnungSliderRange[0],
     bruchdehnungSliderRange[1],
   ]);
-
   const [mvr, setMvr] = useState("");
   const [mvrSliderRange, setMvrSliderRange] = useState([0.1, 290.0]);
   const [mvrSliderValue, setMvrSliderValue] = useState([
     mvrSliderRange[0],
     mvrSliderRange[1],
   ]);
-
   const [dichte, setDichte] = useState("");
   const [dichteSliderRange, setDichteSliderRange] = useState([700.0, 3150.0]);
   const [dichteSliderValue, setDichteSliderValue] = useState([
     dichteSliderRange[0],
     dichteSliderRange[1],
   ]);
-
   const [belastung, setBelastung] = useState("");
   const [belastungSliderRange, setBelastungSliderRange] = useState([1.2, 21.6]);
   const [belastungSliderValue, setBelastungSliderValue] = useState([
     belastungSliderRange[0],
     belastungSliderRange[1],
   ]);
-
   const [temperatur, setTemperatur] = useState("");
   const [temperaturSliderRange, setTemperaturSliderRange] = useState([
     160.0,
@@ -125,12 +136,7 @@ const MaterialSearch = () => {
     temperaturSliderRange[1],
   ]);
 
-  const [resultData, setResultData] = useState([]);
-  const [resultCount, setResultCount] = useState(0);
-  const [resultsReturned, setResultsReturned] = useState(false);
-
-  const [selection, setSelection] = useState([]);
-
+  // Assign a plastic to a material
   const addPlast = () => {
     if (selection.length == 1) {
       var requestOptions = {
@@ -152,10 +158,12 @@ const MaterialSearch = () => {
     }
   };
 
+  // Handle if search dialog is closed 
   const handleClickPlastClose = () => {
     setSearchDialogOpen(false);
   };
 
+  // Initiates search based on given specification
   const initiateSearch = () => {
     const requestOptions = {
       method: "POST",
@@ -204,6 +212,7 @@ const MaterialSearch = () => {
       });
   };
 
+  // Resets search
   const resetSearch = () => {
     setMatDesc("");
     setCampusFam("");
@@ -236,6 +245,7 @@ const MaterialSearch = () => {
     setResultsReturned(false);
   };
 
+  // Define columns for result data
   const [resultColumns] = useState([
     { name: "id", title: "ID" },
     { name: "mat_desc", title: "Mat.Beschreibung" },
@@ -330,6 +340,7 @@ const MaterialSearch = () => {
   return (
     <div>
       <Grid container item xs={12}>
+        {/* Contains text fields for search */}
         <Grid item xs={3}>
           <Autocomplete
             id="mat_desc"
@@ -393,6 +404,7 @@ const MaterialSearch = () => {
           />
         </Grid>
         <Grid item xs={1}></Grid>
+        {/* Contains property fields (zugmodul etc.) for search */}
         <Grid item xs={8}>
           <Grid container item xs={12}>
             <Grid item xs={5}>
@@ -539,7 +551,6 @@ const MaterialSearch = () => {
               ></Slider>
             </Grid>
           </Grid>
-
           <Grid container item xs={12}>
             <Grid item xs={5}>
               <Autocomplete
@@ -575,7 +586,6 @@ const MaterialSearch = () => {
               ></Slider>
             </Grid>
           </Grid>
-
           <Grid container item xs={12}>
             <Grid item xs={5}>
               {" "}
@@ -613,7 +623,6 @@ const MaterialSearch = () => {
               ></Slider>
             </Grid>
           </Grid>
-
           <Grid container item xs={12}>
             <Grid item xs={5}>
               <Autocomplete
@@ -652,6 +661,7 @@ const MaterialSearch = () => {
           </Grid>
         </Grid>
       </Grid>
+      {/* Contains buttons to navigate search */}
       <Grid container item xs={12} style={{ marginTop: 40 }}>
         <Grid
           container
@@ -661,14 +671,17 @@ const MaterialSearch = () => {
           alignContent="center"
           alignItems="center"
         >
+          {/* Button: Resets specifications */}
           <Button className={classes.buttons} style={{ marginRight: 30 }} onClick={resetSearch}>
             <LoopIcon style={{ marginRight: 5 }}></LoopIcon>
             Zurücksetzen
           </Button>{" "}
+          {/* Button: Initiate search */}
           <Button className={classes.buttons} onClick={initiateSearch}>
             <SearchIcon style={{ marginRight: 5 }}></SearchIcon>
             Suche starten
           </Button>{" "}
+          {/* Button: Assign selected plastic to material */}
           <Button
             className={classes.buttons}
             style={{ marginLeft: 30 }}
@@ -682,6 +695,7 @@ const MaterialSearch = () => {
           </Button>
         </Grid>
       </Grid>
+      {/* Shows how many hits were found */}
       <Grid
         container
         item
@@ -700,6 +714,7 @@ const MaterialSearch = () => {
           </div>
         )}
       </Grid>
+      {/* Contains result table */}
       <Grid container item xs={12}>
         <GridDevExpress rows={resultData} columns={resultColumns}>
           <SelectionState

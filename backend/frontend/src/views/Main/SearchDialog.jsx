@@ -1,15 +1,19 @@
+
+// Import react components
+import React, { useContext, useEffect, useRef, useState } from "react";
+
+// Import own components
+import { MainContext } from "../../views/Main/MainContext.jsx";
+import MaterialSearch from "../../views/Main/MaterialSearch.jsx";
+
+// Import material ui components
 import {
   Button,
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
 } from "@material-ui/core";
-import React, { useContext, useEffect, useRef, useState } from "react";
-//Components
-import { MainContext } from "../../views/Main/MainContext.jsx";
-import MaterialSearch from "../../views/Main/MaterialSearch.jsx";
 import Slide from "@material-ui/core/Slide";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -18,6 +22,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
+// Main component SearchDialog
 export const SearchDialog = (props) => {
   const descriptionElementRef = useRef(null);
 
@@ -30,11 +35,15 @@ export const SearchDialog = (props) => {
     }
   }, [props.open]);
 
+  // Declare variable for useStates
   const { selection_atomic } = useContext(MainContext);
+
+    // Import global variables via useContext
   const [selectionAtomic, setSelectionAtomic] = selection_atomic;
 
   return (
     <div>
+      {/* Dialog the opens from TableTree.jsx */}
       <Dialog
         open={props.open}
         TransitionComponent={Transition}
@@ -48,10 +57,12 @@ export const SearchDialog = (props) => {
         <DialogTitle id="scroll-dialog-title">Materialsuche</DialogTitle>
         <DialogContent dividers>
           {selectionAtomic == 1 ? (
+            // If only one row is selected go to MaterialSearch.jsx 
             <div>
               <MaterialSearch />
             </div>
           ) : (
+            // If less than one or more than one rows are selected display warning
             <div>
               <Grid container item xs={12} justify="center">
                 <Typography>
@@ -64,6 +75,7 @@ export const SearchDialog = (props) => {
         </DialogContent>
         <DialogActions>
           <Grid contrainer item xs={12} justify="center">
+            {/* Button that closes dialog */}
             <Button
               onClick={props.handleSearchDialogClose}
               style={{

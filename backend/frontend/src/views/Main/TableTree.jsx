@@ -1,6 +1,4 @@
-{/* 
-Contains table tree componente where bill of materials (bom) can be managed, exported and evaluated
-*/}
+// Contains tabletree componente where bill of materials (bom) can be managed, exported and evaluated
 
 // Import react components
 import { useContext, useEffect, useState } from "react";
@@ -149,30 +147,24 @@ const PlasticTypeProvider = (props) => (
 // Main component TableTree
 const TableTree = () => {
 
-  // Declare variable for useStales
+  // Declare variable for useStates
   const classes = useStyles();
 
   // Import global variables via useContext
   const {
-    selected_material,
     parent_material,
     bom_updated,
     delete_material,
     selected_construction_id,
     selected_construction_title,
-    child_updated,
-    evaluation_open,
     data_backend,
     highest_level_id,
     new_bom_created,
     selection_atomic,
     search_dialog_open,
-    evaluation_warning_open,
   } = useContext(MainContext);
 
   // Declare variables imported from MainContext
-  // const [evaluationOpen, setEvaluationOpen] = evaluation_open;
-  // const [selectedMaterial, setSelectedMaterial] = selected_material;
   const [parentMaterial, setParentMaterial] = parent_material;
   const [deleteMaterial, setDeleteMaterial] = delete_material;
   const [bomUpdated, setBomUpdated] = bom_updated;
@@ -185,7 +177,6 @@ const TableTree = () => {
     setSelectedConstructionTitle,
   ] = selected_construction_title;
   const [dataBackend, setDataBackend] = data_backend;
-  // const [childUpdated, setChildUpdated] = child_updated;
   const [highestLevelId, setHighestLevelId] = highest_level_id;
   const [newBomCreated, setNewBomCreated] = new_bom_created;
   const [selectionAtomic, setSelectionAtomic] = selection_atomic;
@@ -194,7 +185,6 @@ const TableTree = () => {
   // Declare variables
   const [bomMaterialId, setBomMaterialId] = useState("");
   const [rowSelection, setRowSelection] = useState([]);
-  //const [selectedMaraId, setSelectedMaraId] = useState(0);
   const [listDropdownData, setListDropdownData] = useState([]);
   const [dropdownSelected, setDropdownSelected] = useState([]);
 
