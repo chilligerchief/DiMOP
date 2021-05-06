@@ -5,7 +5,7 @@ export const MainContext = createContext();
 
 export const MainProvider = (props) => {
   //Initialize global variables 
-  const [orga_id, setOrgaId] = useState(1);
+  const [orga_id, setOrgaId] = useState(2);
   const [selected_construction_id, setSelectedConstructionId] = useState([]);
   const [selected_construction_title, setSelectedConstructionTitle] = useState(
     "Bitte auswaehlen"
