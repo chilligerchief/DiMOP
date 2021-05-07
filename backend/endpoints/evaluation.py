@@ -19,8 +19,8 @@ class Evaluation(Resource):
 
         db_connection = connect_db()
 
-        g = 0.2
-        h = 0.5
+        g = 0.2  # ERKLAERUNG NOTWENDIG - Oberfläche?#
+        h = 0.5  # ERKLAERUNG NOTWENDIG - Oberfläche?#
 
         json_data = request.get_json(force=True)
 
@@ -55,6 +55,12 @@ class Evaluation(Resource):
         f3 = calculate_f3(temp, rel, table_tree)
         f4 = calculate_f4(temp, compability)
         rv = f1 * f2 * f3 * f4
+
+        if(rv > 1.0):
+            rv = 1.0
+        elif(rv < 0.0):
+            rv = 0.0
+
         grade = get_grade(rv)
 
         evaluation = dict()
