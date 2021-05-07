@@ -147,7 +147,7 @@ const CompareMaterials = () => {
     { columnName: "dangerous", width: 170 },
   ]);
 
-  const [rowSelection, setRowSelection] = useState([]);
+  const [rowSelection, setRowSelection] = useState(rows);
 
   useEffect(() => {
     if (selectedConstructionTitle !== "Bitte auswaehlen") {
@@ -244,7 +244,7 @@ const CompareMaterials = () => {
             <SortingState />
             <IntegratedSorting />
             <Table columnExtensions={tableColumnExtensions} />
-            <TableSelection />
+            <TableSelection showSelectAll />
             <Toolbar />
             <TableHeaderRow showSortingControls />
           </GridDevExpress>
