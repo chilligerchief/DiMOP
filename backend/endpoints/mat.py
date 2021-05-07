@@ -70,7 +70,7 @@ class MatEval(Resource):
 
         if mat:
             mat.mat_desc = description.split(
-                "_")[0] + "_RW" + str(data['mat_rw'])
+                "_")[0] + "_RW_" + str(data['mat_rw'])
             mat.mat_rw = data['mat_rw']
             mat.price = data['price']
             mat.co2_value = data['co2_value']

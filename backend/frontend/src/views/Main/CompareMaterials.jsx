@@ -29,6 +29,7 @@ import {
   SelectionState,
   SortingState,
   IntegratedSorting,
+  IntegratedSelection,
 } from "@devexpress/dx-react-grid";
 
 import {
@@ -147,7 +148,7 @@ const CompareMaterials = () => {
     { columnName: "dangerous", width: 170 },
   ]);
 
-  const [rowSelection, setRowSelection] = useState(rows);
+  const [rowSelection, setRowSelection] = useState([]);
 
   useEffect(() => {
     if (selectedConstructionTitle !== "Bitte auswaehlen") {
@@ -243,6 +244,7 @@ const CompareMaterials = () => {
             />
             <SortingState />
             <IntegratedSorting />
+            <IntegratedSelection />
             <Table columnExtensions={tableColumnExtensions} />
             <TableSelection showSelectAll />
             <Toolbar />
