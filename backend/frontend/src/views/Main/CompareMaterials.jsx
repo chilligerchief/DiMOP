@@ -138,7 +138,7 @@ const CompareMaterials = () => {
 
   const [tableColumnExtensions] = useState([
     { columnName: "id", width: 100 },
-    { columnName: "mat_desc", width: 150 },
+    { columnName: "mat_desc", width: 250 },
     { columnName: "recycling_cat", width: 100 },
     { columnName: "mat_rw", width: 100 },
     { columnName: "price", width: 80 },
