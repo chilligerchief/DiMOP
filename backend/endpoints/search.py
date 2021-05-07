@@ -231,6 +231,8 @@ class Search(Resource):
 
         result = pd.read_sql_query(query, db)
 
+        print(result.shape)
+
         # Fill nans to display data correctly
         # Further data engineering could be useful later
         for col in result.columns:
@@ -238,6 +240,8 @@ class Search(Resource):
                 result[col] = result[col].fillna(0)
             elif(result[col].dtype == "object"):
                 result[col] = result[col].fillna("")
+
+        print(result.shape)
 
         result = result.loc[result["del_kz"] == 1]
 
