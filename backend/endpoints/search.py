@@ -231,8 +231,6 @@ class Search(Resource):
 
         result = pd.read_sql_query(query, db)
 
-        print(result.shape)
-
         # Fill nans to display data correctly
         # Further data engineering could be useful later
         for col in result.columns:
