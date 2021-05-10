@@ -73,7 +73,7 @@ class Evaluation(Resource):
             np.dot(merged["weight"], merged["ADPf"])/1000, 2)
         evaluation["Price"] = round(
             np.dot(merged["weight"], merged["Preis"])/1000, 2)
-        evaluation["RV"] = rv
+        evaluation["RV"] = round(rv, 2)
         evaluation["Grade"] = grade
 
         print(f"f1: {f1}")
