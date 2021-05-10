@@ -39,7 +39,6 @@ const useStyles = makeStyles((theme) => ({
 
 // Component DeleteMaterialDialog
 const DeleteMaterialDialog = () => {
-
   // Declare variable for useStyles
   const classes = useStyles();
 
@@ -115,6 +114,7 @@ const DeleteMaterialDialog = () => {
                 </Typography>
               </CardContent>
             </Card>
+
             {/* Warning if no material is selected */}
             {!deleteMaterial ? (
               <div style={{ color: "red", marginTop: 10, marginBottom: 10 }}>

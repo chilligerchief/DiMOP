@@ -275,7 +275,6 @@ const TableTree = () => {
 
   // Hide specific columns by default
   const [defaultHiddenColumnNames] = useState([
-    "bom_id",
     "level",
     "result_id",
     "parent_id",
