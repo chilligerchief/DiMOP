@@ -12,10 +12,7 @@ from flask_sqlalchemy import SQLAlchemy
 import pandas as pd
 from Models.mat import MatModel
 from Models.bom import BomModel
-from Models.rel import RelModel
-
-# ToDos:
-# - Check relations when upload
+from Models.rel import RelModels
 
 class Import(Resource):
 
@@ -33,9 +30,6 @@ class Import(Resource):
         if((all(item in list(bom.columns) for item in required_columns_bom) == False) |
         (all(item in list(rel.columns) for item in required_columns_rel) == False)):
             return 1
-            
-            
-      
 
         else:
             db = connect_db()
