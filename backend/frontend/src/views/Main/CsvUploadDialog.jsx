@@ -384,9 +384,7 @@ const CsvUploadDialog = () => {
                   aria-controls="panel1a-content"
                   id="panel1a-header"
                 >
-                  <Typography>
-                    <b> Mehr anzeigen:</b> Stückliste{" "}
-                  </Typography>
+                  <Typography>Mehr anzeigen: Stückliste </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                   <GridDevExpress rows={requiredData} columns={exampleColumns}>
@@ -402,9 +400,7 @@ const CsvUploadDialog = () => {
                   aria-controls="panel1a-content"
                   id="panel1a-header"
                 >
-                  <Typography>
-                    <b>Mehr anzeigen: </b>Beziehungstypen
-                  </Typography>
+                  <Typography>Mehr anzeigen: Beziehungstypen</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                   <GridDevExpress
@@ -419,7 +415,7 @@ const CsvUploadDialog = () => {
             </Grid>
 
             <Grid container item xs={12} justify="center">
-              <Typography>Stückliste</Typography>
+              <Typography>Vorschau: Stückliste</Typography>
 
               <div style={{ width: "100%" }}>
                 <input
@@ -432,7 +428,16 @@ const CsvUploadDialog = () => {
             </Grid>
 
             <Grid container item xs={12} justify="center">
-              <Typography>Beziehungstypen</Typography>
+              <div style={{ width: "100%" }}>
+                <GridDevExpress rows={data} columns={columns}>
+                  <Table />
+                  <TableHeaderRow />
+                </GridDevExpress>
+              </div>
+            </Grid>
+
+            <Grid container item xs={12} justify="center">
+              <Typography>Vorschau: Beziehungstypen</Typography>
 
               <div style={{ width: "100%" }}>
                 <input
@@ -443,28 +448,6 @@ const CsvUploadDialog = () => {
                 />
               </div>
             </Grid>
-
-            <Grid container item xs={12} justify="center">
-              {loaded && loadedRelations ? (
-                <div style={{ marginTop: 20, marginBottom: 20 }}>
-                  <Typography style={{ fontWeight: "bold" }}>
-                    Vorschau
-                  </Typography>
-                </div>
-              ) : (
-                <div style={{ marginTop: 20, marginBottom: 20 }} />
-              )}
-            </Grid>
-
-            <Grid container item xs={12} justify="center">
-              <div style={{ width: "100%" }}>
-                <GridDevExpress rows={data} columns={columns}>
-                  <Table />
-                  <TableHeaderRow />
-                </GridDevExpress>
-              </div>
-            </Grid>
-
             <Grid container item xs={12} justify="center">
               <div style={{ width: "100%" }}>
                 <GridDevExpress rows={dataRelations} columns={columnsRelations}>
@@ -475,7 +458,7 @@ const CsvUploadDialog = () => {
             </Grid>
 
             <Grid container item xs={12} justify="center">
-              {loaded ? (
+              {loaded && loadedRelations ? (
                 <div style={{ marginTop: 20 }}>
                   <Button
                     onClick={() => {
