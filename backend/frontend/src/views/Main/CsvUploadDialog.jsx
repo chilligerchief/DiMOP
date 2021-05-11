@@ -149,6 +149,7 @@ const CsvUploadDialog = () => {
     reader.readAsBinaryString(file);
   };
 
+
   const [exampleColumns] = useState([
     { name: "colName", title: "Spaltenbezeichnung" },
     { name: "colDesc", title: "Spaltenbeschreibung" },
@@ -247,6 +248,35 @@ const CsvUploadDialog = () => {
     },
   ]);
 
+
+
+  const [requiredDataRelations, setRequiredDataRelations] = useState([
+    {
+      colName: "p_id",
+      colDesc: "Übergeordnetes Material",
+      colContent: "Integer (Ganzzahl)",
+      required: "Ja",
+    },
+    {
+      colName: "m1_id",
+      colDesc: "Material 1",
+      colContent: "Integer (Ganzzahl)",
+      required: "Ja",
+    },
+    {
+      colName: "m2_id",
+      colDesc: "Material 2",
+      colContent: "String (Text)",
+      required: "Ja",
+    },
+    {
+      colName: "rel_type",
+      colDesc: "Verbindungstyp (1 = löslich/direkt, 2 = löslich/indirekt, 3 = nicht löslich/direkt, 4 = nicht löslich/direkt)",
+      colContent: "Integer (Ganzzahl)",
+      required: "Ja",
+    },
+  ]);
+
   return (
     <div>
       <Button className={classes.buttons} onClick={handleClickOpen}>
@@ -291,15 +321,27 @@ const CsvUploadDialog = () => {
                   <Typography>Mehr anzeigen</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
+
+                <Typography>Formatierung: Stückliste</Typography>
                   <GridDevExpress rows={requiredData} columns={exampleColumns}>
                     <Table columnExtensions={tableColumnExtensions} />
                     <TableHeaderRow />
                   </GridDevExpress>
+
+                  <Typography>Formatierung: Beziehungstypen</Typography>
+                  <GridDevExpress rows={requiredDataRelations} columns={exampleColumns}>
+                    <Table columnExtensions={tableColumnExtensions} />
+                    <TableHeaderRow />
+                  </GridDevExpress>
+
+
                 </AccordionDetails>
               </Accordion>
             </Grid>
 
             <Grid container item xs={12} justify="center">
+            <Typography>Stückliste</Typography>
+
               <div style={{ width: "100%" }}>
                 <input
                   type="file"
@@ -309,6 +351,9 @@ const CsvUploadDialog = () => {
                 />
               </div>
             </Grid>
+
+    
+
 
             <Grid container item xs={12} justify="center">
               {loaded ? (
