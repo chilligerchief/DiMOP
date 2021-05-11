@@ -23,6 +23,8 @@ from Models.rel import RelModel
 class Import(Resource):
 
     def post(self):
+        db = connect_db()
+
         json_data = request.get_json(force=True)
         bom = pd.DataFrame.from_dict(json_data["data"])
         rel = pd.DataFrame.from_dict(json_data["dataRelations"])
@@ -89,12 +91,20 @@ class Import(Resource):
             else:
                 is_atomic = None
 
-            new_mat_entry = MatModel(mat_desc=mat_desc, mat_id_int=mat_id_int, mat_desc_int=mat_desc_int, cad_id=cad_id, mara_plast_id=None, mat_rw=None, height=height, width=width, depth=depth, unit="mm", weight=weight, weight_unit="g",
+            if(len(str(bom["plast_desc"][i])) > 0):
+                plast = pd.read_sql_query(
+                    f'SELECT * FROM plast WHERE mat_desc="{bom["plast_desc"][i]}"', db)
+                print("plast")
+                print(plast)
+                mara_plast_id = None
+            else:
+                mara_plast_id = None
+
+            new_mat_entry = MatModel(mat_desc=mat_desc, mat_id_int=mat_id_int, mat_desc_int=mat_desc_int, cad_id=cad_id, mara_plast_id=mara_plast_id, mat_rw=None, height=height, width=width, depth=depth, unit="mm", weight=weight, weight_unit="g",
                                      volume=volume, volume_unit="mm^3", is_atomic=is_atomic, orga_id=orga_id, cons_id=cons_id, del_kz=0, price=None, co2_value=None, resource_use=None, recycling_cat=None, evaluated=None, impure=None, dangerous=None)
 
             new_mat_entry.save_to_db()
 
-            db = connect_db()
             mat = pd.read_sql_query('SELECT * FROM mat', db)
             newest_mat = mat["id"].tolist()[mat.shape[0]-1]
             bom["mat_id"][i] = newest_mat
