@@ -65,7 +65,7 @@ const CsvUploadDialog = () => {
   const [columnsRelations, setColumnsRelations] = useState([]);
   const [dataRelations, setDataRelations] = useState([]);
   const [loadedRelations, setLoadedRelations] = useState(false);
-  const [errorOccured, setErrorOccured] = useState(0);
+  const [errorOccured, setErrorOccured] = useState(false);
 
   const [newBomCreated, setNewBomCreated] = new_bom_created;
 
@@ -99,13 +99,13 @@ const CsvUploadDialog = () => {
       })
       .then((d) => {
         console.log(d);
-        setErrorOccured(1);
-        console.log(errorOccured)
 
-        if (errorOccured == 0) {
+        if (d == 0) {
           setNewBomCreated(!newBomCreated);
           setCsvUploadOpen(false);
+          setErrorOccured(true);
         } else {
+          setErrorOccured(false);
         }
       });
   };
@@ -505,7 +505,7 @@ const CsvUploadDialog = () => {
             </Grid>
 
             <Grid container item xs={12} justify="center">
-              {errorOccured == 1 ? (
+              {errorOccured ? (
                 <div style={{ color: "red", marginTop: 20, marginBottom: 20 }}>
                   <WarningIcon
                     style={{ fontSize: "small", marginRight: 10 }}
