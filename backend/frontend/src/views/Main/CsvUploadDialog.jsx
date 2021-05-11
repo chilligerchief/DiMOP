@@ -46,7 +46,9 @@ const useStyles = makeStyles((theme) => ({
 const CsvUploadDialog = () => {
   const classes = useStyles();
 
-  const { csv_upload_open } = useContext(MainContext);
+  const { csv_upload_open, selected_construction_id, orga_id } = useContext(MainContext);
+  const [selectedConstructionId, setSelectedConstructionId] = selected_construction_id;
+  const [orgaId, setOrgaId] = orga_id;
   const [csvUploadOpen, setCsvUploadOpen] = csv_upload_open;
   const [loaded, setLoaded] = useState(false);
 
@@ -67,6 +69,8 @@ const CsvUploadDialog = () => {
       },
       body: JSON.stringify({
         data,
+        selectedConstructionId,
+        orgaId,
       }),
       redirect: "follow",
     };
