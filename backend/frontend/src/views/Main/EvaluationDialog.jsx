@@ -101,11 +101,12 @@ const EvaluationDialog = () => {
   const classes = useStyles();
 
   // Import global variables via useContext
-  const { evaluation_open, data_backend } = useContext(MainContext);
+  const { evaluation_open, data_backend, new_bom_created } = useContext(MainContext);
 
   // Declare variables imported from MainContext.jsx
   const [dataBackend, setDataBackend] = data_backend;
   const [evaluationOpen, setEvaluationOpen] = evaluation_open;
+  const [newBomCreated, setNewBomCreated] = new_bom_created;
 
   // Declare variables
   const [evaluationData, setEvaluationData] = useState([]);
@@ -163,6 +164,10 @@ const EvaluationDialog = () => {
       .then((response) => response.text())
       .then((result) => console.log(result))
       .catch((error) => console.log("error", error));
+
+      setNewBomCreated(!newBomCreated);
+
+
   };
 
   // Handle setting isDangerous
