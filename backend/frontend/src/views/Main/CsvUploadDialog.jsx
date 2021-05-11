@@ -52,7 +52,14 @@ const CsvUploadDialog = () => {
     selected_construction_id;
   const [orgaId, setOrgaId] = orga_id;
   const [csvUploadOpen, setCsvUploadOpen] = csv_upload_open;
+
+  const [columns, setColumns] = useState([]);
+  const [data, setData] = useState([]);
   const [loaded, setLoaded] = useState(false);
+
+  const [columnsRelations, setColumnsRelations] = useState([]);
+  const [dataRelations, setDataRelations] = useState([]);
+  const [loadedRelations, setLoadedRelations] = useState(false);
 
   const handleClickOpen = () => {
     setCsvUploadOpen(true);
@@ -71,6 +78,7 @@ const CsvUploadDialog = () => {
       },
       body: JSON.stringify({
         data,
+        dataRelations,
         selectedConstructionId,
         orgaId,
       }),
@@ -87,8 +95,7 @@ const CsvUploadDialog = () => {
       });
   };
 
-  const [columns, setColumns] = useState([]);
-  const [data, setData] = useState([]);
+  
 
   // process CSV data
   const processData = (dataString) => {
@@ -132,6 +139,50 @@ const CsvUploadDialog = () => {
     setColumns(columns);
     setLoaded(true);
   };
+
+  // process CSV data
+  const processDataRelations = (dataString) => {
+    const dataStringLines = dataString.split(/\r\n|\n/);
+    const headers = dataStringLines[0].split(
+      /,(?![^"]*"(?:(?:[^"]*"){2})*[^"]*$)/
+    );
+
+    const list = [];
+    for (let i = 1; i < dataStringLines.length; i++) {
+      const row = dataStringLines[i].split(
+        /,(?![^"]*"(?:(?:[^"]*"){2})*[^"]*$)/
+      );
+      if (headers && row.length == headers.length) {
+        const obj = {};
+        for (let j = 0; j < headers.length; j++) {
+          let d = row[j];
+          if (d.length > 0) {
+            if (d[0] == '"') d = d.substring(1, d.length - 1);
+            if (d[d.length - 1] == '"') d = d.substring(d.length - 2, 1);
+          }
+          if (headers[j]) {
+            obj[headers[j]] = d;
+          }
+        }
+
+        // remove the blank rows
+        if (Object.values(obj).filter((x) => x).length > 0) {
+          list.push(obj);
+        }
+      }
+    }
+
+    // prepare columns list from headers
+    const columns = headers.map((c) => ({
+      name: c,
+      selector: c,
+    }));
+
+    setDataRelations(list);
+    setColumnsRelations(columns);
+    setLoadedRelations(true);
+  };
+
 
   // handle file upload
   const handleFileUpload = (e) => {
@@ -265,7 +316,7 @@ const CsvUploadDialog = () => {
     {
       colName: "m2_id",
       colDesc: "Material 2",
-      colContent: "String (Text)",
+      colContent: "Integer (Ganzzahl)",
       required: "Ja",
     },
     {
@@ -318,11 +369,11 @@ const CsvUploadDialog = () => {
                   aria-controls="panel1a-content"
                   id="panel1a-header"
                 >
-                  <Typography>Mehr anzeigen_ Stückliste</Typography>
+                  <Typography>Mehr anzeigen: <b>Stückliste</b></Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                   <GridDevExpress
-                    rows={requiredDataRelations}
+                    rows={requiredData}
                     columns={exampleColumns}
                   >
                     <Table columnExtensions={tableColumnExtensions} />
@@ -337,7 +388,7 @@ const CsvUploadDialog = () => {
                   aria-controls="panel1a-content"
                   id="panel1a-header"
                 >
-                  <Typography>Mehr anzeigen: Beziehungstypen</Typography>
+                  <Typography>Mehr anzeigen: <b>Beziehungstypen</b></Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                   <GridDevExpress
@@ -365,7 +416,8 @@ const CsvUploadDialog = () => {
             </Grid>
 
             <Grid container item xs={12} justify="center">
-              {loaded ? (
+              {loaded &&
+              loadedRelations ? (
                 <div style={{ marginTop: 20, marginBottom: 20 }}>
                   <Typography style={{ fontWeight: "bold" }}>
                     Vorschau
@@ -384,6 +436,18 @@ const CsvUploadDialog = () => {
                 </GridDevExpress>
               </div>
             </Grid>
+
+            <Grid container item xs={12} justify="center">
+              <div style={{ width: "100%" }}>
+                <GridDevExpress rows={dataRelations} columns={columnsRelations}>
+                  <Table />
+                  <TableHeaderRow />
+                </GridDevExpress>
+              </div>
+            </Grid>
+
+
+
 
             <Grid container item xs={12} justify="center">
               {loaded ? (
