@@ -8,6 +8,9 @@ description: used to get, add and delete constructions
 from flask_restful import Resource, reqparse
 from Models.cons import ConsModel
 
+import pandas as pd
+from dbfunctions.connect import connect_db
+
 
 class ConsPost(Resource):
     parser = reqparse.RequestParser()
@@ -52,6 +55,7 @@ class Cons(Resource):
         my_list = []
         for x in cons:
             my_list.append(dict(x))
+
         return my_list
 
 
