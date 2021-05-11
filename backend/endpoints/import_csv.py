@@ -5,7 +5,6 @@ currently used: yes
 description: used to import data
 """
 
-# from Models.rel import RelModel
 from flask_restful import Resource, reqparse
 from dbfunctions.connect import connect_db
 from sqlalchemy import create_engine, MetaData, text
