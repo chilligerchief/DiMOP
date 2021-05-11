@@ -17,13 +17,13 @@ from Models.rel import RelModel
 # ToDos:
 # - Check columns when upload
 # - Check relations when upload
-# - Check plastics when upload
 
 
 class Import(Resource):
 
     def post(self):
         db = connect_db()
+        plast = pd.read_sql_query(f'SELECT * FROM plast', db)
 
         json_data = request.get_json(force=True)
         bom = pd.DataFrame.from_dict(json_data["data"])
@@ -91,12 +91,20 @@ class Import(Resource):
             else:
                 is_atomic = None
 
-            if(len(str(bom["plast_desc"][i])) > 0):
-                plast = pd.read_sql_query(
-                    f'SELECT * FROM plast WHERE mat_desc="{bom["plast_desc"][i]}"', db)
-                print("plast")
-                print(plast)
-                mara_plast_id = None
+            description = bom["plast_desc"][i]
+            family = bom["plast_fam"][i]
+
+            plast_descriptions = plast.loc[plast["del_kz"]
+                                           == 1.0]["mat_desc"].tolist()
+            plast_families = list(
+                set(plast.loc[plast["del_kz"] == 1.0]["campus_fam"].tolist()))
+
+            if(description in plast_descriptions):
+                mara_plast_id = plast.loc[plast["mat_desc"] == description]["id"].tolist()[
+                    0]
+            elif(family in plast_families):
+                mara_plast_id = plast.loc[plast["mat_desc"] == f"Dummy_{family}"]["id"].tolist()[
+                    0]
             else:
                 mara_plast_id = None
 
@@ -127,9 +135,17 @@ class Import(Resource):
         # Iterate though relations an create new rel entry for each row
         for i in range(0, rel.shape[0]):
 
+            p_id = bom.loc[bom["id"] == str(
+                rel["p_id"][i])]["mat_id"].tolist()[0]
+            m1_id = bom.loc[bom["id"] == str(
+                rel["m1_id"][i])]["mat_id"].tolist()[0]
+            m2_id = bom.loc[bom["id"] == str(
+                rel["m2_id"][i])]["mat_id"].tolist()[0]
+            rel_type = rel["rel_type"][i]
+
             new_rel_entry = RelModel(
-                p_id=rel["p_id"][i], m1_id=rel["m1_id"][i], m2_id=rel["m2_id"][i], rel_type=rel["rel_type"][i])
+                p_id=p_id, m1_id=m1_id, m2_id=m2_id, rel_type=rel_type)
 
             new_rel_entry.save_to_db()
 
-        return "Everything worked just fine!"
+        return {'bom': 'bom imported successfully'}

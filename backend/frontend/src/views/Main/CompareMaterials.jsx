@@ -30,6 +30,8 @@ import {
   SortingState,
   IntegratedSorting,
   IntegratedSelection,
+  FilteringState,
+  IntegratedFiltering,
 } from "@devexpress/dx-react-grid";
 
 import {
@@ -245,9 +247,12 @@ const CompareMaterials = () => {
             <SortingState />
             <IntegratedSorting />
             <IntegratedSelection />
+            <FilteringState defaultFilters={[]} />
+        <IntegratedFiltering />
             <Table columnExtensions={tableColumnExtensions} />
             <TableSelection showSelectAll />
             <Toolbar />
+            <TableFilterRow />
             <TableHeaderRow showSortingControls />
           </GridDevExpress>
         </div>
