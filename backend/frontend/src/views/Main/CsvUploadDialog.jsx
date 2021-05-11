@@ -103,9 +103,9 @@ const CsvUploadDialog = () => {
         if (d == 0) {
           setNewBomCreated(!newBomCreated);
           setCsvUploadOpen(false);
-          setErrorOccured(true);
-        } else {
           setErrorOccured(false);
+        } else {
+          setErrorOccured(true);
         }
       });
   };

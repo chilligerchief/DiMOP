@@ -173,4 +173,4 @@ class Import(Resource):
 
                 new_rel_entry.save_to_db()
 
-            return 0
+            return 1
