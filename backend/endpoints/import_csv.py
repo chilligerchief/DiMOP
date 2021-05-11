@@ -12,6 +12,7 @@ from flask_sqlalchemy import SQLAlchemy
 import pandas as pd
 from Models.mat import MatModel
 from Models.bom import BomModel
+from Models.rel import RelModel
 
 # ToDos:
 # - Check columns when upload
@@ -108,9 +109,17 @@ class Import(Resource):
 
             print(f"parent_mat_id: {parent_mat_id}")
 
-            new_bom_entry = BomModel(mat_id=mat_id,
-                                     parent_mat_id=parent_mat_id)
+            new_bom_entry = BomModel(
+                mat_id=mat_id, parent_mat_id=parent_mat_id)
 
             new_bom_entry.save_to_db()
+
+        # Iterate though relations an create new rel entry for each row
+        for i in range(0, rel.shape[0]):
+
+            new_rel_entry = RelModel(
+                p_id=rel["p_id"][i], m1_id=rel["m1_id"][i], m2_id=rel["m2_id"][i], rel_type=rel["rel_type"][i])
+
+            new_rel_entry.save_to_db()
 
         return "Everything worked just fine!"
