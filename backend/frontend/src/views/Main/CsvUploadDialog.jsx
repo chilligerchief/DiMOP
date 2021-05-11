@@ -95,8 +95,6 @@ const CsvUploadDialog = () => {
       });
   };
 
-  
-
   // process CSV data
   const processData = (dataString) => {
     const dataStringLines = dataString.split(/\r\n|\n/);
@@ -183,7 +181,6 @@ const CsvUploadDialog = () => {
     setLoadedRelations(true);
   };
 
-
   // handle file upload
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
@@ -198,6 +195,24 @@ const CsvUploadDialog = () => {
       /* Convert array of arrays */
       const data = XLSX.utils.sheet_to_csv(ws, { header: 1 });
       processData(data);
+    };
+    reader.readAsBinaryString(file);
+  };
+
+  // handle file upload
+  const handleFileUploadRelations = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.onload = (evt) => {
+      /* Parse data */
+      const bstr = evt.target.result;
+      const wb = XLSX.read(bstr, { type: "binary" });
+      /* Get first worksheet */
+      const wsname = wb.SheetNames[0];
+      const ws = wb.Sheets[wsname];
+      /* Convert array of arrays */
+      const data = XLSX.utils.sheet_to_csv(ws, { header: 1 });
+      processDataRelations(data);
     };
     reader.readAsBinaryString(file);
   };
@@ -369,13 +384,12 @@ const CsvUploadDialog = () => {
                   aria-controls="panel1a-content"
                   id="panel1a-header"
                 >
-                  <Typography>Mehr anzeigen: <b>Stückliste</b></Typography>
+                  <Typography>
+                    <b> Mehr anzeigen:</b> Stückliste{" "}
+                  </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <GridDevExpress
-                    rows={requiredData}
-                    columns={exampleColumns}
-                  >
+                  <GridDevExpress rows={requiredData} columns={exampleColumns}>
                     <Table columnExtensions={tableColumnExtensions} />
                     <TableHeaderRow />
                   </GridDevExpress>
@@ -388,7 +402,9 @@ const CsvUploadDialog = () => {
                   aria-controls="panel1a-content"
                   id="panel1a-header"
                 >
-                  <Typography>Mehr anzeigen: <b>Beziehungstypen</b></Typography>
+                  <Typography>
+                    <b>Mehr anzeigen: </b>Beziehungstypen
+                  </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                   <GridDevExpress
@@ -416,8 +432,20 @@ const CsvUploadDialog = () => {
             </Grid>
 
             <Grid container item xs={12} justify="center">
-              {loaded &&
-              loadedRelations ? (
+              <Typography>Beziehungstypen</Typography>
+
+              <div style={{ width: "100%" }}>
+                <input
+                  type="file"
+                  accept=".csv,.xlsx,.xls"
+                  onChange={handleFileUploadRelations}
+                  style={{ marginBottom: 10 }}
+                />
+              </div>
+            </Grid>
+
+            <Grid container item xs={12} justify="center">
+              {loaded && loadedRelations ? (
                 <div style={{ marginTop: 20, marginBottom: 20 }}>
                   <Typography style={{ fontWeight: "bold" }}>
                     Vorschau
@@ -445,9 +473,6 @@ const CsvUploadDialog = () => {
                 </GridDevExpress>
               </div>
             </Grid>
-
-
-
 
             <Grid container item xs={12} justify="center">
               {loaded ? (
