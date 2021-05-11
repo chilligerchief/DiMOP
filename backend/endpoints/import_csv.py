@@ -26,17 +26,16 @@ class Import(Resource):
         rel = pd.DataFrame.from_dict(json_data["dataRelations"])
         orga_id = json_data["orgaId"]
         cons_id = json_data["selectedConstructionId"]
+        required_columns_bom = ["id", "parent_id", "mat_desc", "is_atomic", "weight"]
+        required_columns_rel = ["p_id", "m1_id", "m2_id", "rel_type"]
 
-        if(1 == 0):
-
-            #
-            #
-            # Hier kommt noch was hin :)
-            #
-            #
-            #
-
-            return 0
+        # Check if required columns are there
+        if((all(item in list(bom.columns) for item in required_columns_bom) == False) |
+        (all(item in list(rel.columns) for item in required_columns_rel) == False)):
+            return 1
+            
+            
+      
 
         else:
             db = connect_db()
@@ -174,4 +173,4 @@ class Import(Resource):
 
                 new_rel_entry.save_to_db()
 
-            return 1
+            return 0

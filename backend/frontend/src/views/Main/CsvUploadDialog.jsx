@@ -25,6 +25,7 @@ import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import WarningIcon from "@material-ui/icons/Warning";
 
 // css theme
 const useStyles = makeStyles((theme) => ({
@@ -64,6 +65,7 @@ const CsvUploadDialog = () => {
   const [columnsRelations, setColumnsRelations] = useState([]);
   const [dataRelations, setDataRelations] = useState([]);
   const [loadedRelations, setLoadedRelations] = useState(false);
+  const [errorOccured, setErrorOccured] = useState(0);
 
   const [newBomCreated, setNewBomCreated] = new_bom_created;
 
@@ -97,8 +99,13 @@ const CsvUploadDialog = () => {
       })
       .then((d) => {
         console.log(d);
-        setNewBomCreated(!newBomCreated);
-        setCsvUploadOpen(false);
+        setErrorOccured(1);
+
+        if (errorOccured == 0) {
+          setNewBomCreated(!newBomCreated);
+          setCsvUploadOpen(false);
+        } else {
+        }
       });
   };
 
@@ -494,6 +501,19 @@ const CsvUploadDialog = () => {
                   <TableHeaderRow />
                 </GridDevExpress>
               </div>
+            </Grid>
+
+            <Grid container item xs={12} justify="center">
+              {errorOccured == 1 ? (
+                <div style={{ color: "red", marginTop: 20, marginBottom: 20 }}>
+                  <WarningIcon
+                    style={{ fontSize: "small", marginRight: 10 }}
+                  ></WarningIcon>{" "}
+                  Bitte überprüfen Sie, ob Ihre Input-Dateien den Vorgaben entsprechen.
+                </div>
+              ) : (
+                <div />
+              )}
             </Grid>
 
             <Grid container item xs={12} justify="center">
