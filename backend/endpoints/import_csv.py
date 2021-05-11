@@ -12,7 +12,8 @@ from flask_sqlalchemy import SQLAlchemy
 import pandas as pd
 from Models.mat import MatModel
 from Models.bom import BomModel
-from Models.rel import RelModels
+from Models.rel import RelModel
+
 
 class Import(Resource):
 
@@ -23,19 +24,21 @@ class Import(Resource):
         rel = pd.DataFrame.from_dict(json_data["dataRelations"])
         orga_id = json_data["orgaId"]
         cons_id = json_data["selectedConstructionId"]
-        required_columns_bom = ["id", "parent_id", "mat_desc", "is_atomic", "weight"]
+        required_columns_bom = ["id", "parent_id",
+                                "mat_desc", "is_atomic", "weight"]
         required_columns_rel = ["p_id", "m1_id", "m2_id", "rel_type"]
 
         # Check if required columns are there
         if((all(item in list(bom.columns) for item in required_columns_bom) == False) |
-        (all(item in list(rel.columns) for item in required_columns_rel) == False)):
+           (all(item in list(rel.columns) for item in required_columns_rel) == False)):
             return 1
 
         else:
             db = connect_db()
             plast = pd.read_sql_query(f'SELECT * FROM plast', db)
 
-            bom["mat_id"] = None
+            ########bom["mat_id"] = None
+            materials = []
 
             # Iterate through bom an create new material entry for each row
             for i in range(0, bom.shape[0]):
@@ -55,6 +58,11 @@ class Import(Resource):
                 try:
                     if(len(str(bom["mat_desc"][i])) > 0):
                         mat_desc = bom["mat_desc"][i]
+
+                        if(mat_desc in materials):
+                            continue
+                        # Dont add the same material twice
+                        materials.append(mat_desc)
                 except:
                     print(f"error: mat_desc")
 
@@ -134,17 +142,25 @@ class Import(Resource):
 
                 new_mat_entry.save_to_db()
 
-                mat = pd.read_sql_query('SELECT * FROM mat', db)
-                newest_mat = mat["id"].tolist()[mat.shape[0]-1]
-                bom["mat_id"][i] = newest_mat
+               ####### mat = pd.read_sql_query('SELECT * FROM mat', db)
+               ####### newest_mat = mat["id"].tolist()[mat.shape[0]-1]
+               ####### bom["mat_id"][i] = newest_mat
+
+            mat = pd.read_sql_query('SELECT * FROM mat', db)
 
             # Iterate through bom an create new bom entry for each row
             for i in range(1, bom.shape[0]):
 
-                mat_id = bom["mat_id"][i]
+                mat_desc = bom["mat_desc"][i]
 
-                parent_mat_id = bom.loc[bom["id"] == str(
-                    int(float(bom["parent_id"][i])))]["mat_id"].tolist()[0]
+                mat_id = mat.loc[mat["mat_desc"] == mat_desc]["mat_id"].tolist()[
+                    0]
+
+                parent_mat_desc = bom.loc[bom["id"] == str(
+                    int(float(bom["parent_id"][i])))]["mat_desc"].tolist()[0]
+
+                parent_mat_id = mat.loc[mat["mat_desc"] == parent_mat_desc]["mat_id"].tolist()[
+                    0]
 
                 new_bom_entry = BomModel(
                     mat_id=mat_id, parent_mat_id=parent_mat_id)
