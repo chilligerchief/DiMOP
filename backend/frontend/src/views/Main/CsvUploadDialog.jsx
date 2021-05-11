@@ -398,6 +398,13 @@ const CsvUploadDialog = () => {
                   </div>
                 </AccordionDetails>
               </Accordion>
+              <Grid
+                container
+                item
+                xs={12}
+                justify="center"
+                style={{ marginTop: 20 }}
+              ></Grid>
 
               <Accordion>
                 <AccordionSummary
