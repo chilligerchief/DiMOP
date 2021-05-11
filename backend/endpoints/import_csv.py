@@ -19,13 +19,18 @@ class Import(Resource):
     def post(self):
         json_data = request.get_json(force=True)
         bom = pd.DataFrame.from_dict(json_data["data"])
+        rel = pd.DataFrame.from_dict(json_data["dataRelations"])
         orga_id = json_data["orgaId"]
         cons_id = json_data["selectedConstructionId"]
-        bom["mat_id"] = None
 
         print(f"orga_id: {orga_id}")
         print(f"cons_id: {cons_id}")
+        print(f"rel:")
+        print(rel)
 
+        bom["mat_id"] = None
+
+        # Iterate through bom an create new material entry for each row
         for i in range(0, bom.shape[0]):
 
             if(len(str(bom["mat_desc"][i])) > 0):
@@ -88,13 +93,10 @@ class Import(Resource):
             newest_mat = mat["id"].tolist()[mat.shape[0]-1]
             bom["mat_id"][i] = newest_mat
 
-        print(bom)
-
+        # Iterate through bom an create new bom entry for each row
         for i in range(1, bom.shape[0]):
 
             mat_id = bom["mat_id"][i]
-
-            print(f"mat_id: {mat_id}")
 
             parent_mat_id = bom.loc[bom["id"] == str(
                 int(float(bom["parent_id"][i])))]["mat_id"].tolist()[0]

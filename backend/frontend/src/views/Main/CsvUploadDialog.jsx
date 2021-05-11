@@ -318,19 +318,19 @@ const CsvUploadDialog = () => {
   const [requiredDataRelations, setRequiredDataRelations] = useState([
     {
       colName: "p_id",
-      colDesc: "Übergeordnetes Material",
+      colDesc: "Übergeordnetes Material (Column id aus Stückliste)",
       colContent: "Integer (Ganzzahl)",
       required: "Ja",
     },
     {
       colName: "m1_id",
-      colDesc: "Material 1",
+      colDesc: "Material 1 (Column id aus Stückliste)",
       colContent: "Integer (Ganzzahl)",
       required: "Ja",
     },
     {
       colName: "m2_id",
-      colDesc: "Material 2",
+      colDesc: "Material 2 (Column id aus Stückliste)",
       colContent: "Integer (Ganzzahl)",
       required: "Ja",
     },
