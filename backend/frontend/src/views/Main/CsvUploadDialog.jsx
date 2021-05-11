@@ -100,6 +100,7 @@ const CsvUploadDialog = () => {
       .then((d) => {
         console.log(d);
         setErrorOccured(1);
+        console.log(errorOccured)
 
         if (errorOccured == 0) {
           setNewBomCreated(!newBomCreated);
