@@ -15,9 +15,7 @@ from Models.bom import BomModel
 from Models.rel import RelModel
 
 # ToDos:
-# - Check columns when upload
 # - Check relations when upload
-
 
 class Import(Resource):
 
