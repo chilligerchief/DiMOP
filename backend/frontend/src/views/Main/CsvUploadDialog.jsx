@@ -58,6 +58,29 @@ const CsvUploadDialog = () => {
     setCsvUploadOpen(false);
   };
 
+  const handleUpload = () => {
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        data,
+      }),
+      redirect: "follow",
+    };
+
+    fetch("/import", requestOptions)
+      .then((res) => {
+        return res.json();
+      })
+      .then((d) => {
+        console.log(d);
+        setCsvUploadOpen(false);
+      });
+  };
+
   const [columns, setColumns] = useState([]);
   const [data, setData] = useState([]);
 
@@ -169,12 +192,6 @@ const CsvUploadDialog = () => {
       required: "Ja",
     },
     {
-      colName: "mat_rw",
-      colDesc: "Recycling-/Verträglichkeitswert",
-      colContent: "Float (Gleitkommazahl)",
-      required: "Nein",
-    },
-    {
       colName: "mat_id_int",
       colDesc: "Interne Materialnummer (z.B. aus ERP-System)",
       colContent: "String (Text)",
@@ -190,6 +207,13 @@ const CsvUploadDialog = () => {
       colName: "plast_desc",
       colDesc:
         'Zugeordneter Kunststoff. Muss der Beschreibung in der Campus-Datenbank entsprechen (z.B. "ACRYMID® TT50").',
+      colContent: "String (Text)",
+      required: "Nein",
+    },
+    {
+      colName: "plast_fam",
+      colDesc:
+        'Zugeordnete Kunststofffamilie ("PA66", "PP", "ABS", "TPE-U", "PUR", "PET", "PC", "PE-HD", "PE-LD", "POM", "PA6", "PS HI", "PBT", "PC+ABS", "PS", "SAN").',
       colContent: "String (Text)",
       required: "Nein",
     },
@@ -308,7 +332,7 @@ const CsvUploadDialog = () => {
                 <div style={{ marginTop: 20 }}>
                   <Button
                     onClick={() => {
-                      handleClose();
+                      handleUpload();
                     }}
                     style={{
                       borderColor: "#005000",

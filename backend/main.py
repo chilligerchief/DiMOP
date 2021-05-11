@@ -32,6 +32,7 @@ from endpoints.cons import Cons, ConsPost, ConsAlter
 #from Topsis_Milena.topsis_endpoint import Topsis
 #from endpoints.test import Test
 #from endpoints.search import Results
+from endpoints.import_csv import Import
 
 # SETUP STEP
 app = Flask(__name__, static_folder="frontend/build/static",
@@ -142,6 +143,8 @@ api.add_resource(Search, '/search')
 api.add_resource(Evaluation, '/evaluation')
 # Comparison
 api.add_resource(Comparison, '/comparison')
+# Import
+api.add_resource(Import, '/import')
 
 
 @app.route('/', defaults={'path': ''})
