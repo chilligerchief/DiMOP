@@ -321,19 +321,22 @@ const CsvUploadDialog = () => {
                   <Typography>Mehr anzeigen</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-
+                <Grid container item xs={12} direction="column">
                 <Typography>Formatierung: Stückliste</Typography>
                   <GridDevExpress rows={requiredData} columns={exampleColumns}>
                     <Table columnExtensions={tableColumnExtensions} />
                     <TableHeaderRow />
+                
                   </GridDevExpress>
+                  </Grid>
 
+                  <Grid container item xs={12} direction="column">
                   <Typography>Formatierung: Beziehungstypen</Typography>
                   <GridDevExpress rows={requiredDataRelations} columns={exampleColumns}>
                     <Table columnExtensions={tableColumnExtensions} />
                     <TableHeaderRow />
                   </GridDevExpress>
-
+                  </Grid>
 
                 </AccordionDetails>
               </Accordion>
