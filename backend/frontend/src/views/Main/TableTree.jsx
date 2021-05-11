@@ -146,7 +146,6 @@ const PlasticTypeProvider = (props) => (
 
 // Component TableTree
 const TableTree = () => {
-
   // Declare variable for useStyles
   const classes = useStyles();
 
@@ -168,14 +167,10 @@ const TableTree = () => {
   const [parentMaterial, setParentMaterial] = parent_material;
   const [deleteMaterial, setDeleteMaterial] = delete_material;
   const [bomUpdated, setBomUpdated] = bom_updated;
-  const [
-    selectedConstructionId,
-    setSelectedConstructionId,
-  ] = selected_construction_id;
-  const [
-    selectedConstructionTitle,
-    setSelectedConstructionTitle,
-  ] = selected_construction_title;
+  const [selectedConstructionId, setSelectedConstructionId] =
+    selected_construction_id;
+  const [selectedConstructionTitle, setSelectedConstructionTitle] =
+    selected_construction_title;
   const [dataBackend, setDataBackend] = data_backend;
   const [highestLevelId, setHighestLevelId] = highest_level_id;
   const [newBomCreated, setNewBomCreated] = new_bom_created;
@@ -330,7 +325,9 @@ const TableTree = () => {
     setSearchDialogOpen(false);
   };
 
-  {/* Used to control if search dialog is open */}
+  {
+    /* Used to control if search dialog is open */
+  }
   useEffect(() => {
     console.log("search dialog changed", searchDialogOpen);
   }, [searchDialogOpen]);
@@ -448,7 +445,9 @@ const TableTree = () => {
               </Typography>
             }
           >
-            <EvaluationDialog></EvaluationDialog>
+            <div>
+              <EvaluationDialog></EvaluationDialog>
+            </div>
           </Tooltip>
         </Grid>
       </Grid>

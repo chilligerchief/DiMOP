@@ -39,6 +39,7 @@ import {
   Table,
   TableSelection,
   TableHeaderRow,
+  TableFilterRow,
   Toolbar,
 } from "@devexpress/dx-react-grid-material-ui";
 
