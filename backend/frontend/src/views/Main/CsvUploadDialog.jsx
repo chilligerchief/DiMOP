@@ -46,8 +46,10 @@ const useStyles = makeStyles((theme) => ({
 const CsvUploadDialog = () => {
   const classes = useStyles();
 
-  const { csv_upload_open, selected_construction_id, orga_id } = useContext(MainContext);
-  const [selectedConstructionId, setSelectedConstructionId] = selected_construction_id;
+  const { csv_upload_open, selected_construction_id, orga_id } =
+    useContext(MainContext);
+  const [selectedConstructionId, setSelectedConstructionId] =
+    selected_construction_id;
   const [orgaId, setOrgaId] = orga_id;
   const [csvUploadOpen, setCsvUploadOpen] = csv_upload_open;
   const [loaded, setLoaded] = useState(false);
@@ -149,7 +151,6 @@ const CsvUploadDialog = () => {
     reader.readAsBinaryString(file);
   };
 
-
   const [exampleColumns] = useState([
     { name: "colName", title: "Spaltenbezeichnung" },
     { name: "colDesc", title: "Spaltenbeschreibung" },
@@ -248,8 +249,6 @@ const CsvUploadDialog = () => {
     },
   ]);
 
-
-
   const [requiredDataRelations, setRequiredDataRelations] = useState([
     {
       colName: "p_id",
@@ -271,7 +270,8 @@ const CsvUploadDialog = () => {
     },
     {
       colName: "rel_type",
-      colDesc: "Verbindungstyp (1 = löslich/direkt, 2 = löslich/indirekt, 3 = nicht löslich/direkt, 4 = nicht löslich/direkt)",
+      colDesc:
+        "Verbindungstyp (1 = löslich/direkt, 2 = löslich/indirekt, 3 = nicht löslich/direkt, 4 = nicht löslich/direkt)",
       colContent: "Integer (Ganzzahl)",
       required: "Ja",
     },
@@ -318,32 +318,41 @@ const CsvUploadDialog = () => {
                   aria-controls="panel1a-content"
                   id="panel1a-header"
                 >
-                  <Typography>Mehr anzeigen</Typography>
+                  <Typography>Mehr anzeigen_ Stückliste</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                <Grid container item xs={12} direction="column">
-                <Typography>Formatierung: Stückliste</Typography>
-                  <GridDevExpress rows={requiredData} columns={exampleColumns}>
-                    <Table columnExtensions={tableColumnExtensions} />
-                    <TableHeaderRow />
-                
-                  </GridDevExpress>
-                  </Grid>
-
-                  <Grid container item xs={12} direction="column">
-                  <Typography>Formatierung: Beziehungstypen</Typography>
-                  <GridDevExpress rows={requiredDataRelations} columns={exampleColumns}>
+                  <GridDevExpress
+                    rows={requiredDataRelations}
+                    columns={exampleColumns}
+                  >
                     <Table columnExtensions={tableColumnExtensions} />
                     <TableHeaderRow />
                   </GridDevExpress>
-                  </Grid>
+                </AccordionDetails>
+              </Accordion>
 
+              <Accordion>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel1a-content"
+                  id="panel1a-header"
+                >
+                  <Typography>Mehr anzeigen: Beziehungstypen</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <GridDevExpress
+                    rows={requiredDataRelations}
+                    columns={exampleColumns}
+                  >
+                    <Table columnExtensions={tableColumnExtensions} />
+                    <TableHeaderRow />
+                  </GridDevExpress>
                 </AccordionDetails>
               </Accordion>
             </Grid>
 
             <Grid container item xs={12} justify="center">
-            <Typography>Stückliste</Typography>
+              <Typography>Stückliste</Typography>
 
               <div style={{ width: "100%" }}>
                 <input
@@ -354,9 +363,6 @@ const CsvUploadDialog = () => {
                 />
               </div>
             </Grid>
-
-    
-
 
             <Grid container item xs={12} justify="center">
               {loaded ? (
