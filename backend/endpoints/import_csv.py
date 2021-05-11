@@ -28,6 +28,13 @@ class Import(Resource):
                                 "mat_desc", "is_atomic", "weight"]
         required_columns_rel = ["p_id", "m1_id", "m2_id", "rel_type"]
 
+        print("bom")
+        print(list(bom.columns))
+        print(required_columns_bom)
+        print("rel")
+        print(list(rel.columns))
+        print(required_columns_rel)
+
         # Check if required columns are there
         if((all(item in list(bom.columns) for item in required_columns_bom) == False) |
            (all(item in list(rel.columns) for item in required_columns_rel) == False)):
@@ -38,7 +45,7 @@ class Import(Resource):
             plast = pd.read_sql_query(f'SELECT * FROM plast', db)
 
             ########bom["mat_id"] = None
-            materials = []
+            new_materials = []
 
             # Iterate through bom an create new material entry for each row
             for i in range(0, bom.shape[0]):
@@ -59,10 +66,10 @@ class Import(Resource):
                     if(len(str(bom["mat_desc"][i])) > 0):
                         mat_desc = bom["mat_desc"][i]
 
-                        if(mat_desc in materials):
+                        if(mat_desc in new_materials):
                             continue
                         # Dont add the same material twice
-                        materials.append(mat_desc)
+                        new_materials.append(mat_desc)
                 except:
                     print(f"error: mat_desc")
 
@@ -149,38 +156,66 @@ class Import(Resource):
             mat = pd.read_sql_query('SELECT * FROM mat', db)
 
             # Iterate through bom an create new bom entry for each row
+            new_bom_entries = []
+
             for i in range(1, bom.shape[0]):
 
                 mat_desc = bom["mat_desc"][i]
 
-                mat_id = mat.loc[mat["mat_desc"] == mat_desc]["mat_id"].tolist()[
+                mat_id = mat.loc[mat["mat_desc"] == mat_desc]["id"].tolist()[
                     0]
 
                 parent_mat_desc = bom.loc[bom["id"] == str(
                     int(float(bom["parent_id"][i])))]["mat_desc"].tolist()[0]
 
-                parent_mat_id = mat.loc[mat["mat_desc"] == parent_mat_desc]["mat_id"].tolist()[
+                parent_mat_id = mat.loc[mat["mat_desc"] == parent_mat_desc]["id"].tolist()[
                     0]
 
-                new_bom_entry = BomModel(
-                    mat_id=mat_id, parent_mat_id=parent_mat_id)
+                new_bom_combination = f"{mat_id}-{parent_mat_id}"
 
-                new_bom_entry.save_to_db()
+                if(new_bom_combination in new_bom_entries):
+                    new_bom_entry = BomModel(
+                        mat_id=mat_id, parent_mat_id=parent_mat_id)
+                    new_bom_entry.save_to_db()
+                    break
+                else:
+                    new_bom_entries.append(new_bom_combination)
+                    new_bom_entry = BomModel(
+                        mat_id=mat_id, parent_mat_id=parent_mat_id)
+                    new_bom_entry.save_to_db()
 
             # Iterate though relations an create new rel entry for each row
             for i in range(0, rel.shape[0]):
 
-                p_id = bom.loc[bom["id"] == str(
-                    rel["p_id"][i])]["mat_id"].tolist()[0]
-                m1_id = bom.loc[bom["id"] == str(
-                    rel["m1_id"][i])]["mat_id"].tolist()[0]
-                m2_id = bom.loc[bom["id"] == str(
-                    rel["m2_id"][i])]["mat_id"].tolist()[0]
+                p_id_desc = bom.loc[bom["id"] == str(
+                    rel["p_id"][i])]["mat_desc"].tolist()[0]
+                p_id = mat.loc[mat["mat_desc"] == p_id_desc]["id"].tolist()[0]
+
+                m1_id_desc = bom.loc[bom["id"] == str(
+                    rel["m1_id"][i])]["mat_desc"].tolist()[0]
+                m1_id = mat.loc[mat["mat_desc"] == m1_id_desc]["id"].tolist()[
+                    0]
+
+                m2_id_desc = bom.loc[bom["id"] == str(
+                    rel["m2_id"][i])]["mat_desc"].tolist()[0]
+                m2_id = mat.loc[mat["mat_desc"] == m2_id_desc]["id"].tolist()[
+                    0]
+
+                # p_id = bom.loc[bom["id"] == str(
+                #    rel["p_id"][i])]["mat_desc"].tolist()[0]
+
                 rel_type = rel["rel_type"][i]
 
-                new_rel_entry = RelModel(
-                    p_id=p_id, m1_id=m1_id, m2_id=m2_id, rel_type=rel_type)
+                relations = pd.read_sql_query('SELECT * FROM rel', db)
 
-                new_rel_entry.save_to_db()
+                # If there is no relation with the combinations m1_id to m2_id or m2_id to m1_id for the parent p_id, create relation
+                if(len(relations.loc[(relations["p_id"] == p_id) & ((((relations["m1_id"] == m1_id) & (relations["m2_id"] == m2_id))) | (((relations["m1_id"] == m2_id) & (relations["m2_id"] == m1_id))))]) == 0):
+
+                    new_rel_entry = RelModel(
+                        p_id=p_id, m1_id=m1_id, m2_id=m2_id, rel_type=rel_type)
+
+                    new_rel_entry.save_to_db()
+                else:
+                    continue
 
             return 0

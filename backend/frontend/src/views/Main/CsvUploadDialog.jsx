@@ -104,6 +104,8 @@ const CsvUploadDialog = () => {
           setNewBomCreated(!newBomCreated);
           setCsvUploadOpen(false);
           setErrorOccured(false);
+          setDataRelations([]);
+          setData([]);
         } else {
           setErrorOccured(true);
         }

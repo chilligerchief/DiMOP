@@ -33,8 +33,6 @@ class Bom(Resource):
 
         return {"bom": "entry created successfully."}, 201
 
-        return {bom}
-
     def get(self):
         bom = BomModel.find_all()
         my_list = []
