@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
 const CsvUploadDialog = () => {
   const classes = useStyles();
 
-  const { csv_upload_open, selected_construction_id, orga_id } =
+  const { csv_upload_open, selected_construction_id, orga_id, new_bom_created } =
     useContext(MainContext);
   const [selectedConstructionId, setSelectedConstructionId] =
     selected_construction_id;
@@ -60,6 +60,8 @@ const CsvUploadDialog = () => {
   const [columnsRelations, setColumnsRelations] = useState([]);
   const [dataRelations, setDataRelations] = useState([]);
   const [loadedRelations, setLoadedRelations] = useState(false);
+
+  const [newBomCreated, setNewBomCreated] = new_bom_created;
 
   const handleClickOpen = () => {
     setCsvUploadOpen(true);
@@ -91,6 +93,7 @@ const CsvUploadDialog = () => {
       })
       .then((d) => {
         console.log(d);
+        setNewBomCreated(!newBomCreated);
         setCsvUploadOpen(false);
       });
   };

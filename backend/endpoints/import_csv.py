@@ -13,6 +13,11 @@ import pandas as pd
 from Models.mat import MatModel
 from Models.bom import BomModel
 
+# ToDos:
+# - Check columns when upload
+# - Check relations when upload
+# - Check plastics when upload
+
 
 class Import(Resource):
 
