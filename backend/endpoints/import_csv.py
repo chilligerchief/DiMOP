@@ -44,7 +44,6 @@ class Import(Resource):
             db = connect_db()
             plast = pd.read_sql_query(f'SELECT * FROM plast', db)
 
-            ########bom["mat_id"] = None
             new_materials = []
 
             # Iterate through bom an create new material entry for each row
@@ -66,9 +65,10 @@ class Import(Resource):
                     if(len(str(bom["mat_desc"][i])) > 0):
                         mat_desc = bom["mat_desc"][i]
 
+                        # Dont add the same material twice
                         if(mat_desc in new_materials):
                             continue
-                        # Dont add the same material twice
+
                         new_materials.append(mat_desc)
                 except:
                     print(f"error: mat_desc")
@@ -149,16 +149,12 @@ class Import(Resource):
 
                 new_mat_entry.save_to_db()
 
-               ####### mat = pd.read_sql_query('SELECT * FROM mat', db)
-               ####### newest_mat = mat["id"].tolist()[mat.shape[0]-1]
-               ####### bom["mat_id"][i] = newest_mat
-
             mat = pd.read_sql_query('SELECT * FROM mat', db)
 
             # Iterate through bom an create new bom entry for each row
-            new_bom_entries = []
-
             for i in range(1, bom.shape[0]):
+
+                boms = pd.read_sql_query('SELECT * FROM bom', db)
 
                 mat_desc = bom["mat_desc"][i]
 
@@ -171,15 +167,11 @@ class Import(Resource):
                 parent_mat_id = mat.loc[mat["mat_desc"] == parent_mat_desc]["id"].tolist()[
                     0]
 
-                new_bom_combination = f"{mat_id}-{parent_mat_id}"
-
-                if(new_bom_combination in new_bom_entries):
-                    new_bom_entry = BomModel(
-                        mat_id=mat_id, parent_mat_id=parent_mat_id)
-                    new_bom_entry.save_to_db()
-                    break
+                # If parent material has more than one entries as child in bom table
+                # Workaround to prevent adding multiple copies of children
+                if(boms.loc[boms["mat_id"] == parent_mat_id].shape[0] > 1):
+                    continue
                 else:
-                    new_bom_entries.append(new_bom_combination)
                     new_bom_entry = BomModel(
                         mat_id=mat_id, parent_mat_id=parent_mat_id)
                     new_bom_entry.save_to_db()
@@ -201,16 +193,12 @@ class Import(Resource):
                 m2_id = mat.loc[mat["mat_desc"] == m2_id_desc]["id"].tolist()[
                     0]
 
-                # p_id = bom.loc[bom["id"] == str(
-                #    rel["p_id"][i])]["mat_desc"].tolist()[0]
-
                 rel_type = rel["rel_type"][i]
 
                 relations = pd.read_sql_query('SELECT * FROM rel', db)
 
                 # If there is no relation with the combinations m1_id to m2_id or m2_id to m1_id for the parent p_id, create relation
                 if(len(relations.loc[(relations["p_id"] == p_id) & ((((relations["m1_id"] == m1_id) & (relations["m2_id"] == m2_id))) | (((relations["m1_id"] == m2_id) & (relations["m2_id"] == m1_id))))]) == 0):
-
                     new_rel_entry = RelModel(
                         p_id=p_id, m1_id=m1_id, m2_id=m2_id, rel_type=rel_type)
 
