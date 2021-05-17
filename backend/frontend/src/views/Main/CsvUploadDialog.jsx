@@ -354,7 +354,7 @@ const CsvUploadDialog = () => {
     {
       colName: "rel_type",
       colDesc:
-        "Verbindungstyp (1 = löslich/direkt, 2 = löslich/indirekt, 3 = nicht löslich/direkt, 4 = nicht löslich/direkt)",
+        "Verbindungstyp (1 = löslich/direkt, 2 = löslich/indirekt, 3 = nicht löslich/direkt, 4 = nicht löslich/indirekt)",
       colContent: "Integer (Ganzzahl)",
       required: "Ja",
     },
