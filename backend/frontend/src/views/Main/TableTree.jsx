@@ -222,7 +222,7 @@ const TableTree = () => {
     { name: "mat_id", title: "Mat.Nr." },
     { name: "bom_id", title: "Id. BOM Eintrag" },
     { name: "mat_desc", title: "Mat.Bez." },
-    { name: "level", title: "Ebene" },
+    // { name: "level", title: "Ebene" }, currently not working in backend
     { name: "mat_id_int", title: "ERP Mat.Nr." },
     { name: "mat_desc_int", title: "ERP Bez." },
     { name: "cad_id", title: "CAD Nr." },
@@ -270,7 +270,7 @@ const TableTree = () => {
 
   // Hide specific columns by default
   const [defaultHiddenColumnNames] = useState([
-    "level",
+    //"level", currently not working in backend
     "result_id",
     "parent_id",
     "mat_id_int",

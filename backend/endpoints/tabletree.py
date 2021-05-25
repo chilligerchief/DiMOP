@@ -73,10 +73,10 @@ class Tabletree(Resource):
             })  # 21-28
 
         # To catch materials that have no components and are not atomic
-        try:
-            result_df = getBomLevel(result_df)
-        except:
-            result_df["level"] = 1
+        # try:
+        #    result_df = getBomLevel(result_df)
+        # except:
+        #    result_df["level"] = 1
 
         plast_list = list(set(result_df.loc[(result_df["mara_plast_id"] != "None") & (
             result_df["mara_plast_id"].notna())]["mara_plast_id"].tolist()))
@@ -161,45 +161,38 @@ def getChildren(mat_id, result_list, mat, bom):
 
     return result_list
 
-# Subfunction for getBomLevel
-
-
-def getLevels(dictionary, depth_list, start=0):
-
-    for key, value in dictionary.items():
-        depth_list.append(start + 1)
-        if isinstance(value, dict):
-            getLevels(value, depth_list, start=start+1)
-
-    return depth_list
+# Subfunction for getBomLevel – CURRENTLY not working and not needed
+# def getLevels(dictionary, depth_list, start=0):
+#
+#    for key, value in dictionary.items():
+#        depth_list.append(start+1)
+#        if isinstance(value, dict):
+#            getLevels(value, depth_list, start=start+1)
+#
+#    return depth_list
 
 
 # Gets bom level (depth) of each component
-def getBomLevel(df):
-
-    parent_child_pairs = []
-
-    for parent, child in zip(df["parent_id"].to_list(), df["result_id"].to_list()):
-        parent_child_pairs.append((parent, child))
-
-    parent_child_pairs = parent_child_pairs[1:]
-
-    graph = {name: set() for tup in parent_child_pairs for name in tup}
-    has_parent = {name: False for tup in parent_child_pairs for name in tup}
-    for parent, child in parent_child_pairs:
-        graph[parent].add(child)
-        has_parent[child] = True
-
-    roots = [name for name, parents in has_parent.items() if not parents]
-
-    def traverse(hierarchy, graph, names):
-        for name in names:
-            hierarchy[name] = traverse({}, graph, graph[name])
-        return hierarchy
-
-    nested_parent_child_dict = traverse({}, graph, roots)
-
-    levels = getLevels(nested_parent_child_dict, depth_list=[])
-    df["level"] = levels
-
-    return df
+# def getBomLevel(df):
+#
+#    parent_child_pairs = []
+#
+#    for parent, child in zip(df["parent_id"].to_list(), df["result_id"].to_list()):
+#        parent_child_pairs.append((parent, child))
+#
+#    parent_child_pairs = parent_child_pairs[1:]
+#
+#    graph = {name: set() for tup in parent_child_pairs for name in tup}
+#    has_parent = {name: False for tup in parent_child_pairs for name in tup}
+#    for parent, child in parent_child_pairs:
+#        graph[parent].add(child)
+#        has_parent[child] = True
+#    roots = [name for name, parents in has_parent.items() if not parents]
+#    def traverse(hierarchy, graph, names):
+#        for name in names:
+#            hierarchy[name] = traverse({}, graph, graph[name])
+#        return hierarchy
+#    nested_parent_child_dict = traverse({}, graph, roots)
+#    levels = getLevels(nested_parent_child_dict, depth_list=[])
+#    df["level"] = levels
+#    return df

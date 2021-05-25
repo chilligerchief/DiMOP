@@ -26,45 +26,49 @@ class Evaluation(Resource):
 
         data = []
 
+        # If material contains dangerous components set f1 to 0.0
         if(int(json_data["isDangerous"]) == 0):
             f1 = 1.0
         else:
             f1 = 0.0
 
-        descriptions = []
-
+        # Iterates through every row in table tree
         for element in json_data["dataBackend"]:
 
             data.append([element["result_id"], element["parent_id"], element["mat_id"], element["mat_desc"], element["plast_fam"],
                          element["mara_plast_id"], element["weight"], element["is_atomic"]])
 
+        # Create df out of list data
         table_tree = pd.DataFrame(data, columns=[
             "result_id", "parent_id", "mat_id", "mat_desc", "plast_fam", "mara_plast_id", "weight", "is_atomic"])
 
+        # Filter to get only atomic components
         temp = table_tree.loc[table_tree["is_atomic"] == 1]
 
+        # Read in necessary data from data base and merge data frames
         compability = pd.read_sql_query(
             'SELECT * FROM compability', db_connection)
-
-        plast = pd.read_sql_query('SELECT * FROM plast', db_connection)
         rel = pd.read_sql_query('SELECT * FROM rel', db_connection)
         sys_sort = pd.read_sql_query('SELECT * FROM sys_sort', db_connection)
         merged = temp.merge(sys_sort, left_on='plast_fam', right_on='Eintrag')
 
+        # Call functions to calculate different metricss
         f2 = calculate_f2(temp)
         f3 = calculate_f3(temp, rel, table_tree)
         f4 = calculate_f4(temp, compability)
         rv = f1 * f2 * f3 * f4
 
+        # rv cant be greater than 1.0 or smaller than 0.0
         if(rv > 1.0):
             rv = 1.0
         elif(rv < 0.0):
             rv = 0.0
 
+        # Get grade (A-F) based on rv
         grade = get_grade(rv)
 
+        # Prepare return json
         evaluation = dict()
-
         evaluation["mat_id"] = data[0][2]
         evaluation["mat_desc"] = data[0][3]
         evaluation["GWP"] = round(
@@ -76,6 +80,7 @@ class Evaluation(Resource):
         evaluation["RV"] = round(rv, 2)
         evaluation["Grade"] = grade
 
+        # Print results in console
         print(f"f1: {f1}")
         print(f"f2: {f2}")
         print(f"f3: {f3}")
@@ -197,8 +202,6 @@ def calculate_f4(temp, compability, g=0.2, h=0.5):
         mat_combinations["weight_1"]), np.array(mat_combinations["weight_2"])).tolist()
 
     mat_combinations["compability"] = None
-
-    mass_prod_sum = sum(mat_combinations["mass_product"])
 
     for i in range(mat_combinations.shape[0]):
         m1_plast_fam = mat_combinations["fam_1"][i]
