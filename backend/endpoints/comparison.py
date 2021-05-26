@@ -1,8 +1,8 @@
 """
 author: topr
-last updated: 30.04.2021
+last updated: 25.05.2021
 currently used: yes
-description: used to calculate recycling value
+description: used to compare boms
 """
 
 from flask_restful import Resource, request

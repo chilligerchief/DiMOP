@@ -1,6 +1,6 @@
 """
 author: topr
-last updated: 16.12.2020
+last updated: 25.05.2021
 currently used: yes
 description: used to get, add and delete bom entries
 """

@@ -1,6 +1,6 @@
 """
 author: topr
-last updated: 31.03.2021
+last updated: 25.05.2021
 currently used: yes
 description: used to calculate recycling value
 """

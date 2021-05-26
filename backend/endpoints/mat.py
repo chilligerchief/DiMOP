@@ -1,6 +1,6 @@
 """
 author: topr
-last updated: 28.04.2021
+last updated: 25.05.2021
 currently used: yes
 description: is used to manage materials (parts that either can have components below
 (if is_atomic == false) or plastics (if is_atomic == true))
@@ -70,7 +70,7 @@ class MatEval(Resource):
 
         if mat:
             mat.mat_desc = description.split(
-                "_")[0] + "_Recyc_" + str(data['recycling_cat'])
+                "_")[0] + "_Recyc_" + str(data['recycling_cat']) + "_" + str(data['mat_rw'])
             mat.mat_rw = data['mat_rw']
             mat.price = data['price']
             mat.co2_value = data['co2_value']

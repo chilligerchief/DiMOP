@@ -1,11 +1,8 @@
 """
 author: topr
-last updated: 12.12.2020
+last updated: 25.05.2021
 currently used: yes
 description: used to create the bill of material in a tree structure
-
-Needs more description of what is going on.
-
 """
 
 from flask_restful import Resource, reqparse
