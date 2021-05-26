@@ -18,27 +18,35 @@ import numpy as np
 
 class Tabletree(Resource):
 
-    # main function that assembles table tree of a given mat_id
+    # Main function that assembles table tree of a given mat_id
     def get(self, mat_id):
         db = connect_db()
         mat = pd.read_sql_query('SELECT * FROM mat', db)
         bom = pd.read_sql_query('SELECT * FROM bom', db)
 
         result_list = []
-        result = [None, 1, None]
 
+        # Create for row for result
+        result = [None, 1, None]  # No bom_id, result_id = 1, No parent_id
+
+        # Get row for mat_id from mat
         result_df = mat.loc[mat["id"] == mat_id]
 
+        # Add columns from mat entry to result row
         for col in result_df.columns:
             result.append(result_df[col].item())
 
+        # Add result row to result list (which will later be transformed to data frame)
         result_list.append(result)
 
+        # Call getChildren that calls itself until all children are found and added to result list
         result_list = getChildren(mat_id, result_list, mat, bom)
 
+        # Transform result list to result data frame
         result_df = pd.DataFrame(result_list).fillna(
             np.nan).replace([np.nan], [None])
 
+        # Rename columns
         result_df = result_df.rename(
             columns={
                 0: "bom_id",
@@ -70,7 +78,7 @@ class Tabletree(Resource):
                 26: "evaluated",
                 27: "impure",
                 28: "dangerous"
-            })  # 21-28
+            })
 
         # To catch materials that have no components and are not atomic
         # try:
@@ -78,11 +86,13 @@ class Tabletree(Resource):
         # except:
         #    result_df["level"] = 1
 
+        # This block is used to get information about the components plastics and their families
         plast_list = list(set(result_df.loc[(result_df["mara_plast_id"] != "None") & (
             result_df["mara_plast_id"].notna())]["mara_plast_id"].tolist()))
         print(plast_list)
         plast_desc, plast_family = [], []
 
+        # Information from table plast
         for element in plast_list:
             sql = F"SELECT mat_desc, campus_fam FROM plast WHERE id = {int(element)}"
             result = db.execute(sql).fetchall()
@@ -98,34 +108,24 @@ class Tabletree(Resource):
         result_df["mara_plast_id"] = result_df["mara_plast_id"].astype(
             str)
 
-        # print(df_plast.dtypes)
-        # print(result_df.dtypes)
-
+        # Merge result_df and df_plast
         df_merged = pd.merge(result_df, df_plast, left_on='mara_plast_id',
                              right_on='p_id', how='left').drop('p_id', axis=1)
 
+        # Fill nans with None to prevent error when sending json to frontend
         df_merged = df_merged.fillna(np.nan).replace([np.nan], [None])
 
         print(df_merged.columns)
 
+        # Transform df to json
         result_json = df_merged.to_dict(orient="records")
 
         return result_json
 
-# connects to database
-
-
-# def connect_db():
-#     db_connection_str = 'mysql+pymysql://milena:ALAQsM8W@132.187.102.201/dimop'
-#     db_connection = create_engine(db_connection_str)
-
-#     return db_connection
-
-# adds result (tuple) to result list
-
 
 def addResult(child, parent_id, result_list, mat, child_bom_entry):
 
+    # Get mat row for given child
     result_df = mat.loc[mat["id"] == child]
 
     result = [child_bom_entry, result_list[len(result_list)-1][1]+1, parent_id]
@@ -137,21 +137,27 @@ def addResult(child, parent_id, result_list, mat, child_bom_entry):
 
     return result_list
 
-# get children for given mat_id
+# Get children for given mat_id
 
 
 def getChildren(mat_id, result_list, mat, bom):
 
+    # Get bom entry for mat_id as parent
     bom_entry = bom.loc[bom["parent_mat_id"] == mat_id]
 
     if(len(bom_entry) != 0):
 
+        # Get children mat_ids
         children = bom.loc[bom["parent_mat_id"] == mat_id]["mat_id"].tolist()
+
+        # Get children bom ids
         children_bom_entries = bom.loc[bom["parent_mat_id"]
                                        == mat_id]["id"].tolist()
 
+        # Get parent_id from result list
         parent_id = result_list[len(result_list)-1][1]
 
+        # Add result to table tree and call getChildren
         for child, child_bom_entry in zip(children, children_bom_entries):
             addResult(child, parent_id, result_list, mat, child_bom_entry)
             getChildren(child, result_list, mat, bom)
@@ -161,7 +167,8 @@ def getChildren(mat_id, result_list, mat, bom):
 
     return result_list
 
-# Subfunction for getBomLevel – CURRENTLY not working and not needed
+### CURRENTLY not working correctly and but not needed ###
+# Subfunction for getBomLevel
 # def getLevels(dictionary, depth_list, start=0):
 #
 #    for key, value in dictionary.items():
@@ -170,7 +177,6 @@ def getChildren(mat_id, result_list, mat, bom):
 #            getLevels(value, depth_list, start=start+1)
 #
 #    return depth_list
-
 
 # Gets bom level (depth) of each component
 # def getBomLevel(df):

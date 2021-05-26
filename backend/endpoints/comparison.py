@@ -38,6 +38,7 @@ class Comparison(Resource):
         ranks = np.array(
             [sorted(scores, reverse=True).index(x)+1 for x in scores])
 
+        # Prepare data for result_json
         result_data["id"] = json_data["selectedIds"]
         result_data["mat_desc"] = mat.loc[mat["id"].isin(
             json_data["selectedIds"])]["mat_desc"]

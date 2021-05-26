@@ -244,6 +244,8 @@ class Mat(Resource):
             mat.delete_from_db()
         return {'mat': 'mat deleted successfully'}
 
+# Get evaluated materials to display then for topsis in frontend
+
 
 class MatEvalGet(Resource):
     def get(self, kons_id):
@@ -257,6 +259,8 @@ class MatEvalGet(Resource):
 
         return mat_json
 
+# Get material either by orga_id or cons_id
+
 
 class MatGet(Resource):
     def get(self):
@@ -269,6 +273,8 @@ class MatGet(Resource):
         for x in mat:
             my_list.append(dict(x))
         return my_list
+
+# Get newest material
 
 
 class MatGetNew(Resource):
