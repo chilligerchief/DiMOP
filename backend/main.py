@@ -1,4 +1,3 @@
-# adho is a cutie
 from endpoints.search import Search
 from endpoints.comparison import Comparison
 from endpoints.evaluation import Evaluation

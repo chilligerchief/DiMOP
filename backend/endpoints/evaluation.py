@@ -102,6 +102,7 @@ def calculate_f2(temp):
     - f2: f2 score
     '''
 
+    # Call function has system ability and apply to every material
     temp["sys_ab"] = temp["mara_plast_id"].apply(get_has_system_ability)
 
     f2 = temp.loc[temp["sys_ab"] == 2]["weight"].sum()/temp["weight"].sum()
@@ -123,7 +124,7 @@ def calculate_f3(temp, rel, table_tree):
     # Get unique families
     n_families = len(set(temp["plast_fam"]))
 
-    # Get column that contains information about sortability
+    # # Call function has sortability and apply to every material
     temp["sort"] = temp["mara_plast_id"].apply(get_can_be_sorted)
 
     # Calculate sortable percentage
@@ -186,46 +187,63 @@ def calculate_f4(temp, compability, g=0.2, h=0.5):
     Returns:
     - f4: "Materialverträglichkeit"
     '''
+
+    # Create data frame with material combinations
     mat_combinations = pd.DataFrame(
         list(product(temp['mat_id'], temp['mat_id'])), columns=["mat_id_1", "mat_id_2"])
 
+    # Create data frame with individual weights material combinations
     mat_weights = pd.DataFrame(
         list(product(temp['weight'], temp['weight'])), columns=["weight_1", "weight_2"])
 
+    # Create data frame with families of material combinations
     mat_fams = pd.DataFrame(
         list(product(temp['plast_fam'], temp['plast_fam'])), columns=["fam_1", "fam_2"])
 
+    # Merge data frames
     mat_combinations = pd.concat(
         [mat_combinations, mat_weights, mat_fams], axis=1)
 
+    # Calculate mass products
     mat_combinations["mass_product"] = np.multiply(np.array(
         mat_combinations["weight_1"]), np.array(mat_combinations["weight_2"])).tolist()
 
+    # Create empty columns compability
     mat_combinations["compability"] = None
 
+    # Iterte thorough every row
     for i in range(mat_combinations.shape[0]):
         m1_plast_fam = mat_combinations["fam_1"][i]
         m2_plast_fam = mat_combinations["fam_2"][i]
 
+        # Get compabilities
+        # If material 1 is the same family as material 2, compability = 1
         if(m1_plast_fam == m2_plast_fam):
             mat_combinations["compability"][i] = 1
+
+        # If not, get values from compability data frame
         elif(len(compability.loc[((compability["Komponente 1"] == m1_plast_fam) & (compability["Komponente 2"] == m2_plast_fam)) | ((compability["Komponente 2"] == m1_plast_fam) & (compability["Komponente 1"] == m2_plast_fam))]["Verträglichkeitswerte neu2"]) != 0):
             comp_value = compability.loc[((compability["Komponente 1"] == m1_plast_fam) & (compability["Komponente 2"] == m2_plast_fam)) | (
                 (compability["Komponente 2"] == m1_plast_fam) & (compability["Komponente 1"] == m2_plast_fam))]["Verträglichkeitswerte neu2"].values[0]
             mat_combinations["compability"][i] = float(
                 comp_value.replace(',', '.'))
+
+        # If there is no information about compability = 0
         else:
             mat_combinations["compability"][i] = 0
 
+    # Get weighted compability
     mat_combinations["compability_weighted"] = mat_combinations["mass_product"] * \
         mat_combinations["compability"]
 
     print(mat_combinations)
 
+    # Sum mass products
     mm = sum(mat_combinations["mass_product"])
 
     print(f"mm: {mm}")
 
+    # Sum up weighted compabilities and divide by summed mass products
     vm = sum(mat_combinations["compability_weighted"])/mm
 
     print(f"vm: {vm}")
@@ -245,6 +263,7 @@ def get_has_system_ability(mara_plast_id):
     Returns:
     - sys_ab: Information on system ability
     '''
+    # Get sys_sort and plast from db
     db_connection = connect_db()
     sys_sort = pd.read_sql_query('SELECT * FROM sys_sort', db_connection)
     plast = pd.read_sql_query('SELECT * FROM plast', db_connection)
@@ -253,11 +272,14 @@ def get_has_system_ability(mara_plast_id):
         fam = plast.loc[plast["id"] == float(
             mara_plast_id)]["campus_fam"].values[0]
 
+        # Get system ability from sys_sort
         sys_ab = sys_sort.loc[sys_sort["Eintrag"] ==
                               fam]["Systemfaehig (0 - nein, 1 - potentiell, 2 - ja)"].values[0]
         print(f"{mara_plast_id} successful.")
 
     except:
+
+        # If error occurs, set sys_ab = 0
         sys_ab = 0
         print(f"No entry for material {mara_plast_id} found.")
 
@@ -274,10 +296,12 @@ def get_can_be_sorted(mara_plast_id):
     Returns:
     - sort_ab: Information on the sorting ability 
     '''
+    # Get sys_sort and plast from db
     db_connection = connect_db()
     sys_sort = pd.read_sql_query('SELECT * FROM sys_sort', db_connection)
     plast = pd.read_sql_query('SELECT * FROM plast', db_connection)
 
+    # Get sortability from sys_sort
     try:
         fam = plast.loc[plast["id"] == float(
             mara_plast_id)]["campus_fam"].values[0]
@@ -285,10 +309,13 @@ def get_can_be_sorted(mara_plast_id):
                                fam]["Sortierbar (0 - nein, 1 - ja)"].values[0]
         print(f"{mara_plast_id} successful.")
     except:
+        # If error occurs, set sort_ab = 0
         sort_ab = 0
         print(f"No entry for material {mara_plast_id} found.")
 
     return sort_ab
+
+# Get recycling grade, based on recycling value
 
 
 def get_grade(rv):
