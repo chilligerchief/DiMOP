@@ -70,7 +70,7 @@ class MatEval(Resource):
 
         if mat:
             mat.mat_desc = description.split(
-                "_")[0] + "_Recyc_" + str(data['recycling_cat']) + "_" + str(data['mat_rw'])
+                "_Recyc_")[0] + "_Recyc_" + str(data['recycling_cat']) + "_" + str(data['mat_rw'])
             mat.mat_rw = data['mat_rw']
             mat.price = data['price']
             mat.co2_value = data['co2_value']
@@ -252,7 +252,8 @@ class MatEvalGet(Resource):
 
         db = connect_db()
 
-        mat = pd.read_sql_query('SELECT * FROM mat WHERE evaluated=1', db)
+        mat = pd.read_sql_query(
+            f'SELECT * FROM mat WHERE evaluated=1 AND cons_id={kons_id}', db)
 
         mat_json = mat.fillna(np.nan).replace(
             [np.nan], [None]).to_dict(orient="records")
@@ -268,7 +269,7 @@ class MatGet(Resource):
         if "orga_id" in args:
             mat = MatModel.find_by_orga_id(args["orga_id"])
         elif "cons_id" in args:
-            mat = MatModel.find_by_cons_id(args["cons_id"])
+            mat = MatModel.find_by_cons_id(args["≈"])
         my_list = []
         for x in mat:
             my_list.append(dict(x))
