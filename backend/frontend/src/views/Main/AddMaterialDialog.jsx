@@ -123,8 +123,8 @@ const AddMaterialDialog = () => {
   };
 
   const handleClose = () => {
-    setAddComponentOpen(false);
     setRelationError(false);
+    setAddComponentOpen(false);
   };
 
   const handleDropdownChange = (event, id) => {
@@ -205,6 +205,7 @@ const AddMaterialDialog = () => {
           .catch((error) => console.log("error", error));
 
         setBomUpdated(true);
+        setRelationError(false);
         setActiveStep(steps.length);
       } else {
         setRelationError(true);
