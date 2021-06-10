@@ -24,15 +24,7 @@ export const Ansprechpartner = () => {
     return (
         <Card className={classes.card}>
             <CardActionArea>
-                <CardMedia
-                    className={classes.media}
-                    image={norman}
-                    title="Ansprechpartner"
-                />
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                        Norman Pytel
-                    </Typography>
                     <Typography
                         variant="body2"
                         color="textSecondary"
@@ -67,14 +59,14 @@ export const Ansprechpartner = () => {
                         color="textSecondary"
                         component="p"
                     >
-                        E-Mail: Norman.Pytel@uni-wuerzburg.de
+                        E-Mail: axel.winkelmann@uni-wuerzburg.de
                     </Typography>
                     <Typography
                         variant="body2"
                         color="textSecondary"
                         component="p"
                     >
-                        Telefon: 0931 31-86348
+                        Telefon: +49 (0)931 31-89640
                     </Typography>
                 </CardContent>
             </CardActionArea>

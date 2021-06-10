@@ -242,9 +242,20 @@ export const Home = () => {
             </List>
           </Paragraph>
           <TriangleSpacer variant="bottomRight" backgroundColor={colors.lightGrey} />
-          <Paragraph heading="Ansprechpartner">
+
+
+        {/*
+        
+              <Paragraph heading="Ansprechpartner">
             <Ansprechpartner />
           </Paragraph>
+        
+        
+        */}
+
+
+
+
         </Grid>
       </Grid>
     </Grid>

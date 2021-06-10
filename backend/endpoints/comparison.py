@@ -27,6 +27,11 @@ class Comparison(Resource):
 
         alternatives = np.array(result_data)
 
+        alternatives[:, 0] = alternatives[:, 0] + 1
+
+        print("alternatives")
+        print(alternatives[:, 0])
+
         weights = np.array([float(json_data["recyclingWeight"]), float(json_data["priceWeight"]),
                             float(json_data["co2Weight"]), float(json_data["adpfWeight"])])
 
@@ -35,6 +40,7 @@ class Comparison(Resource):
         result = topsis(alternatives, weights, directions)
         result.calc()
         scores = np.round(np.array(result.C), 3)
+
         ranks = np.array(
             [sorted(scores, reverse=True).index(x)+1 for x in scores])
 
