@@ -2,7 +2,7 @@
 author: topr
 last updated: 25.05.2021
 currently used: yes
-description: used to calculate recycling value
+description: used to execute material search
 """
 
 from flask_restful import Resource, reqparse
