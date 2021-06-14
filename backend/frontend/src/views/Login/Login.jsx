@@ -138,7 +138,7 @@ export const Login = () => {
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
-          <LockIcon  style={{color: "#005000"}} /> 
+          <LockIcon /> 
         </Avatar>
         <Typography component="h1" variant="h5" align="center">
           Bitte melden Sie sich mit Ihrem Konto an
