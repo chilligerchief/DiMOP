@@ -195,7 +195,7 @@ export const Login = () => {
           </Button>
         </form>
 
-        {/* Registrieren */}
+        {/* Registrieren 
         <TextField
                     autoFocus
                     margin="dense"
@@ -231,7 +231,9 @@ export const Login = () => {
           >
             Registrieren
           </Button>
+          */}
       </div>
+
       {/*
       <p>testaccounts</p>
       <table>
