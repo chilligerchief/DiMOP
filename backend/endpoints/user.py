@@ -124,7 +124,7 @@ class UserRegister(Resource):
     parser = reqparse.RequestParser()
     parser.add_argument('firstname',
                         type=str,
-                        required=True,
+                        required=False,  # Warum war das hier auf true, wenn es optional ist?
                         help="This field is optional, but a real Name should be used ;)."
                         )
     parser.add_argument('e_mail',
@@ -144,7 +144,7 @@ class UserRegister(Resource):
                         )
     parser.add_argument('t_function_id',
                         type=int,
-                        required=True,
+                        required=False,
                         help="This field is optional, but a real Name should be used ;)."
                         )
     parser.add_argument('del_kz',

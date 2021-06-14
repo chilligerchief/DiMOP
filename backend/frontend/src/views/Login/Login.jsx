@@ -98,6 +98,8 @@ export const Login = () => {
         body: JSON.stringify({
           e_mail: newUser.e_mail,
           password: newUser.password,
+          orga_id: 2,
+          del_kz: 0,
         }),
         redirect: "follow",
       };
@@ -198,6 +200,8 @@ export const Login = () => {
                     margin="dense"
                     id="e_mail"
                     label="User"
+                    variant="outlined"
+                    margin="normal"
                     onChange={handleNewUser}
                     value={newUser.e_mail || ""}
         />
@@ -207,6 +211,8 @@ export const Login = () => {
                     id="password"
                     label="Passwort"
                     type="password"
+                    variant="outlined"
+                    margin="normal"
                     onChange={handleNewUser}
                     value={newUser.password || ""}
         />
