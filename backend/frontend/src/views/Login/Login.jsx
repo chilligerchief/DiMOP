@@ -74,6 +74,41 @@ export const Login = () => {
       }
     );
 
+  };
+
+    const [newUser, setNewUser] = useState({
+      e_mail: "",
+      password: "",
+    });
+
+    const handleNewUser = (event) => {
+      setNewUser({
+        ...newUser,
+        [event.target.id]: event.target.value,
+      });
+    };
+
+    const registerUser = () => {
+      var requestOptions = {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          e_mail: newUser.e_mail,
+          password: newUser.password,
+        }),
+        redirect: "follow",
+      };
+  
+      fetch("/register", requestOptions)
+        .then((response) => response.text())
+        .then((result) => console.log(result))
+        .catch((error) => console.log("error", error));
+    };
+
+
     //! check orga and password
     // if (validation successful) {
 
@@ -94,7 +129,7 @@ export const Login = () => {
     // } else {
     //  handle wrong login
     // }
-  };
+
 
   return (
     <Container component="main" maxWidth="xs">
@@ -156,7 +191,39 @@ export const Login = () => {
             Anmelden
           </Button>
         </form>
+
+        {/* Registrieren */}
+        <TextField
+                    autoFocus
+                    margin="dense"
+                    id="e_mail"
+                    label="User"
+                    onChange={handleNewUser}
+                    value={newUser.e_mail || ""}
+        />
+         <TextField
+                    autoFocus
+                    margin="dense"
+                    id="password"
+                    label="Passwort"
+                    type="password"
+                    onChange={handleNewUser}
+                    value={newUser.password || ""}
+        />
+        <Button
+            fullWidth
+            variant="contained"
+            className={classes.submit}
+            onClick={() => registerUser()}
+            style={{
+              backgroundColor: colors.primaryGreen,
+              color: colors.lightGrey,
+            }}
+          >
+            Registrieren
+          </Button>
       </div>
+      {/*
       <p>testaccounts</p>
       <table>
         <tr>
@@ -171,6 +238,7 @@ export const Login = () => {
       <Box mt={8}>
         <Copyright />
       </Box>
+      */}
     </Container>
   );
 };
