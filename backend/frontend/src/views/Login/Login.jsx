@@ -6,7 +6,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import LockIcon from "@material-ui/icons/Lock";
 import React, { useState } from "react";
 import { useHistory } from "react-router";
 import { authenticationService } from "../../services/authenticationService";
@@ -138,7 +138,7 @@ export const Login = () => {
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
-          <LockOutlinedIcon  style={{color: "#005000"}} /> 
+          <LockIcon  style={{color: "#005000"}} /> 
         </Avatar>
         <Typography component="h1" variant="h5" align="center">
           Bitte melden Sie sich mit Ihrem Konto an
