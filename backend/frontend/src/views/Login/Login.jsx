@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
+    color: "#005000",
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -138,7 +139,7 @@ export const Login = () => {
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
-          <LockIcon style={{colorPrimary: "#005000"}}/> 
+          <LockIcon /> 
         </Avatar>
         <Typography component="h1" variant="h5" align="center">
           Bitte melden Sie sich mit Ihrem Konto an
