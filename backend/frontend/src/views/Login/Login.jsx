@@ -138,10 +138,10 @@ export const Login = () => {
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
+          <LockOutlinedIcon style={{ color: "#005000" }}></LockOutlinedIcon> />
         </Avatar>
         <Typography component="h1" variant="h5" align="center">
-          Bitte melden Sie sich mit Ihrem Organisationskonto an
+          Bitte melden Sie sich mit Ihrem Konto an
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
@@ -154,7 +154,7 @@ export const Login = () => {
             required
             fullWidth
             id="email"
-            label="Organisation"
+            label="User"
             name="orga"
             // autoComplete="email"
             autoFocus
