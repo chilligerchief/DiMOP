@@ -202,6 +202,7 @@ export const Login = () => {
                     label="User"
                     variant="outlined"
                     margin="normal"
+                    fullWidth
                     onChange={handleNewUser}
                     value={newUser.e_mail || ""}
         />
@@ -213,6 +214,7 @@ export const Login = () => {
                     type="password"
                     variant="outlined"
                     margin="normal"
+                    fullWidth
                     onChange={handleNewUser}
                     value={newUser.password || ""}
         />
