@@ -6,7 +6,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
-import LockIcon from "@material-ui/icons/Lock";
+import LockIcon from "@material-ui/icons/LockOpen";
 import React, { useState } from "react";
 import { useHistory } from "react-router";
 import { authenticationService } from "../../services/authenticationService";
