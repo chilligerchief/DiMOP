@@ -30,7 +30,7 @@
     "react-sticky-footer": "0.1.0-rc3",
     "semantic-ui-react": "^0.88.2",
     "styled-components": "^5.2.1",
-    "xlsx": "^0.16.9",
+    "xlsx": "^0.17.0",
     "yup": "^0.32.8"
   },
   "scripts": {
